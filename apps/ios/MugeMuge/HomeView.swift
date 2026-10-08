@@ -118,7 +118,7 @@ struct HomeView: View {
             .tabItem { Label("성장", systemImage: "chart.xyaxis.line") }
 
             NavigationStack {
-                BackupView()
+                CloudAccountView()
                     .navigationTitle("데이터 관리")
             }
             .tabItem { Label("데이터", systemImage: "externaldrive") }

@@ -20,3 +20,4 @@ targets:
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
         CODE_SIGNING_ALLOWED: NO
+        CODE_SIGN_ENTITLEMENTS: MugeMuge/MugeMuge.entitlements

@@ -13,3 +13,11 @@
 - `public.save_workout_snapshot(expected_revision, next_payload)` creates only when absent, otherwise updates only matching revision.
 - Direct client INSERT/UPDATE/DELETE grants revoked. Owner-only SELECT RLS remains.
 - `CloudTransport.swift` is a typed Swift URLSession transport (read and CAS write). It is not yet invoked by the app: auth and cross-device merge UX are prerequisites.
+
+## iOS account connection (implemented locally, not device verified)
+- `CloudAuth.swift`: native Sign in with Apple, hashed nonce and token exchange, Keychain session storage, refresh-token support.
+- `CloudAccountView.swift`: explicit first upload (create-only), server snapshot preview, restore **only if local database is empty**. No automatic upload, merge or overwrite.
+- Apple sign-in capability declared in `MugeMuge.entitlements`. Xcode signing must use a provisioning profile supporting this capability.
+- Configure Apple provider in Supabase Auth providers and Apple Developer App ID / bundle ID (`app.mugemuge.ios`) before attempting device login.
+- **Do not interpret unsigned build success as functional Apple login or Supabase roundtrip testing.** Apple Developer provisioning and iOS 26-capable Xcode remain blockers.
+- Cloud login does not yet imply background sync. A multi-device merge strategy, per-account local partitioning, revision persistence and signed-in integration tests are still required before enabling ongoing synchronization.
