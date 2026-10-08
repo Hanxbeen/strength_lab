@@ -91,7 +91,10 @@ final class CloudAuth: ObservableObject {
 
     func accessToken() async throws -> String {
         guard let current = session else { throw CloudAuthError.expired }
-        if let expiresAt = current.expires_at, expiresAt > Int(Date().timeIntervalSince1970) + 90 {
+        // Supabase token responses may include expires_in without expires_at.
+        // Never assume such a restored token is still valid: refresh instead.
+        if let expiresAt = current.expires_at,
+           expiresAt > Int(Date().timeIntervalSince1970) + 90 {
             return current.access_token
         }
         var request = URLRequest(url: CloudConfiguration.url.appendingPathComponent("auth/v1/token"))
@@ -121,7 +124,14 @@ final class CloudAuth: ObservableObject {
     }
 
     private func saveSession(_ next: CloudSession) throws {
-        let data = try JSONEncoder().encode(next)
+        let normalized = CloudSession(
+            access_token: next.access_token,
+            refresh_token: next.refresh_token,
+            expires_at: next.expires_at ?? next.expires_in.map { Int(Date().timeIntervalSince1970) + $0 },
+            expires_in: next.expires_in,
+            user: next.user
+        )
+        let data = try JSONEncoder().encode(normalized)
         let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                     kSecAttrAccount as String: keychainAccount]
         SecItemDelete(query as CFDictionary)
@@ -129,8 +139,8 @@ final class CloudAuth: ObservableObject {
         attrs[kSecValueData as String] = data
         attrs[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
         guard SecItemAdd(attrs as CFDictionary, nil) == errSecSuccess else { throw CloudAuthError.server }
-        session = next
-        userID = next.user.id
+        session = normalized
+        userID = normalized.user.id
     }
 
     private func readKeychain() -> Data? {

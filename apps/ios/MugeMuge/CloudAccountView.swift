@@ -5,6 +5,7 @@ struct CloudAccountView: View {
     @EnvironmentObject private var auth: CloudAuth
     @EnvironmentObject private var workouts: WorkoutStore
     @State private var remote: CloudSnapshot?
+    @State private var remoteChecked = false
     @State private var message: String?
     @State private var busy = false
     @State private var showUploadConfirmation = false
@@ -27,6 +28,7 @@ struct CloudAccountView: View {
                         .font(.caption).foregroundStyle(.secondary)
                     Button("로그아웃 (기기 기록은 유지)") {
                         remote = nil
+                        remoteChecked = false
                         auth.signOut()
                         message = "로그아웃했습니다. 기기 기록은 그대로 남아 있습니다."
                     }
@@ -57,13 +59,13 @@ struct CloudAccountView: View {
                                 .font(.caption).foregroundStyle(.orange)
                         }
                     } else {
-                        Text("서버 기록이 없거나 아직 확인되지 않았습니다.")
+                        Text(remoteChecked ? "서버에 저장된 기록이 없습니다." : "서버 기록을 아직 확인하지 않았습니다.")
                             .font(.caption).foregroundStyle(.secondary)
                     }
                     Button("기기 기록을 클라우드에 최초 업로드") {
                         showUploadConfirmation = true
                     }
-                    .disabled(busy || remote != nil || localIsEmpty)
+                    .disabled(busy || !remoteChecked || remote != nil || localIsEmpty)
                     Text("최초 업로드만 지원합니다. 이미 서버에 기록이 있다면 덮어쓰지 않습니다.")
                         .font(.caption).foregroundStyle(.secondary)
                 }
@@ -90,30 +92,47 @@ struct CloudAccountView: View {
     }
 
     private func refreshRemote() async {
-        guard let id = auth.userID else { return }
+        guard let id = auth.userID, !busy else { return }
         busy = true
         defer { busy = false }
         do {
             let token = try await auth.accessToken()
-            remote = try await transport.fetch(userID: id, accessToken: token)
-            message = remote == nil ? "서버에 저장된 기록이 없습니다." : "서버 기록을 확인했습니다."
+            let fetched = try await transport.fetch(userID: id, accessToken: token)
+            guard auth.userID == id else { return }
+            remote = fetched
+            remoteChecked = true
+            message = fetched == nil ? "서버에 저장된 기록이 없습니다." : "서버 기록을 확인했습니다."
         } catch {
+            remoteChecked = false
+            remote = nil
             message = error.localizedDescription
         }
     }
 
     private func firstUpload() async {
-        guard auth.userID != nil, !localIsEmpty else { return }
+        guard let id = auth.userID, !busy, remoteChecked, remote == nil, !localIsEmpty else { return }
         busy = true
         defer { busy = false }
         do {
             let data = try workouts.exportBackup()
             let payload = try JSONDecoder().decode(CloudPayload.self, from: data)
             let token = try await auth.accessToken()
+            // Fetch again to detect account changes and stale preview before creating.
+            let existing = try await transport.fetch(userID: id, accessToken: token)
+            guard auth.userID == id else { return }
+            guard existing == nil else {
+                remote = existing
+                message = "서버에 이미 기록이 있습니다. 덮어쓰지 않았습니다."
+                return
+            }
             _ = try await transport.save(payload, expectedRevision: nil, accessToken: token)
+            guard auth.userID == id else { return }
+            remote = try await transport.fetch(userID: id, accessToken: token)
+            remoteChecked = true
             message = "최초 업로드 완료. 이후 변경은 자동 동기화되지 않습니다."
-            await refreshRemote()
         } catch {
+            remoteChecked = false
+            remote = nil
             message = error.localizedDescription
         }
     }
