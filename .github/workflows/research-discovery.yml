@@ -34,6 +34,10 @@ jobs:
       - name: Validate no unreviewed study is published
         run: |
           python -c "import json; x=json.load(open('data/research/review_queue.json')); assert x['approved_protocols']==0 and x['approved_charts']==0; assert all(not p['runnable'] and not p['chart_publishable'] for p in x['papers'])"
+      - name: Compare extracted cells with curated source reference
+        run: python -m scripts.research_gold_eval
+      - name: Enforce signed release gate
+        run: python -m scripts.research_release_gate
       - name: Upload review-only metadata
         uses: actions/upload-artifact@v4
         with:

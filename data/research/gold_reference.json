@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "reference_status": "curated_source_transcription_not_independently_human_double_verified",
+  "source": "Europe PMC JATS original table cells, manually selected comparison fixtures; header/group mapping still requires independent review",
+  "cases": [
+    {
+      "case_id": "38816857-squat",
+      "pmid": "38816857",
+      "table_id": "Tab2",
+      "row_index_zero_based": 10,
+      "expected_cells": [
+        "1RM 90° squat (kg)",
+        "101 ± 18",
+        "122 ± 19",
+        "100 ± 23",
+        "113 ± 21",
+        "-8.00 (-16.34 – 0.36)"
+      ]
+    },
+    {
+      "case_id": "38816857-trapbar",
+      "pmid": "38816857",
+      "table_id": "Tab2",
+      "row_index_zero_based": 11,
+      "expected_cells": [
+        "1RM trap bar deadlift (kg)",
+        "102 ± 14",
+        "114 ± 19",
+        "104 ± 21",
+        "122 ± 23",
+        "6.54 (-2.50 – 15.58)"
+      ]
+    },
+    {
+      "case_id": "33846516-bench-pre",
+      "pmid": "33846516",
+      "table_id": "Tab1",
+      "row_index_zero_based": 2,
+      "expected_cells": [
+        "1RM BP (kg)",
+        "Before",
+        "105.4 ± 11.8",
+        "95.4 ± 10.3",
+        "110.7 ± 11.2"
+      ]
+    },
+    {
+      "case_id": "33846516-squat-pre",
+      "pmid": "33846516",
+      "table_id": "Tab1",
+      "row_index_zero_based": 6,
+      "expected_cells": [
+        "1RM BS (kg)",
+        "Before",
+        "126.5 ± 9.8",
+        "126.7 ± 8.7",
+        "129.5 ± 13.7"
+      ]
+    },
+    {
+      "case_id": "33846516-deadlift-pre",
+      "pmid": "33846516",
+      "table_id": "Tab1",
+      "row_index_zero_based": 10,
+      "expected_cells": [
+        "1RM DL (kg)",
+        "Before",
+        "124.5 ± 9.8",
+        "121.7 ± 6.9",
+        "127.5 ± 11.7"
+      ]
+    },
+    {
+      "case_id": "33846516-bench-post",
+      "pmid": "33846516",
+      "table_id": "Tab1",
+      "row_index_zero_based": 3,
+      "expected_cells": [
+        "After",
+        "121.0 ± 12.4*",
+        "122.3 ± 10.7*",
+        "113.1 ± 11.7"
+      ]
+    },
+    {
+      "case_id": "33846516-squat-post",
+      "pmid": "33846516",
+      "table_id": "Tab1",
+      "row_index_zero_based": 7,
+      "expected_cells": [
+        "After",
+        "138.8 ± 12.1*",
+        "144.1 ± 12.2*",
+        "130.7 ± 14.0"
+      ]
+    },
+    {
+      "case_id": "33846516-deadlift-post",
+      "pmid": "33846516",
+      "table_id": "Tab1",
+      "row_index_zero_based": 11,
+      "expected_cells": [
+        "After",
+        "138.7 ± 12.4*",
+        "140.5 ± 9.4*",
+        "128.1 ± 10.7"
+      ]
+    },
+    {
+      "case_id": "33846516-week1-cluster",
+      "pmid": "33846516",
+      "table_id": "Tab4",
+      "row_index_zero_based": 2,
+      "expected_cells": [
+        "1",
+        "CS",
+        "2 × 5",
+        "70",
+        "20",
+        "120",
+        "2 × 5",
+        "75",
+        "30",
+        "120",
+        "2 × 4",
+        "80",
+        "30",
+        "120",
+        "2 × 3",
+        "85",
+        "30",
+        "180"
+      ]
+    },
+    {
+      "case_id": "33846516-week1-traditional",
+      "pmid": "33846516",
+      "table_id": "Tab4",
+      "row_index_zero_based": 3,
+      "expected_cells": [
+        "TS",
+        "1 × 10",
+        "70",
+        "0",
+        "120",
+        "1 × 10",
+        "75",
+        "0",
+        "120",
+        "1 × 8",
+        "80",
+        "0",
+        "120",
+        "1 × 6",
+        "85",
+        "0",
+        "180"
+      ]
+    },
+    {
+      "case_id": "33846516-week5-cluster",
+      "pmid": "33846516",
+      "table_id": "Tab4",
+      "row_index_zero_based": 10,
+      "expected_cells": [
+        "5",
+        "CS",
+        "2 × 4",
+        "80",
+        "20",
+        "120",
+        "2 × 3",
+        "85",
+        "20",
+        "120",
+        "2 × 2",
+        "90",
+        "20",
+        "120",
+        "2 × 2",
+        "95",
+        "30",
+        "180"
+      ]
+    },
+    {
+      "case_id": "33846516-week8-traditional",
+      "pmid": "33846516",
+      "table_id": "Tab4",
+      "row_index_zero_based": 17,
+      "expected_cells": [
+        "TS",
+        "1 × 8",
+        "85",
+        "0",
+        "120",
+        "1 × 6",
+        "85",
+        "0",
+        "120",
+        "1 × 4",
+        "90",
+        "0",
+        "120",
+        "1 × 4",
+        "95",
+        "0",
+        "180"
+      ]
+    }
+  ]
+}
