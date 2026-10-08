@@ -1,0 +1,872 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-08T14:12:38.832989+00:00",
+  "requested": 20,
+  "retrieved_ids": 500,
+  "pool_candidates": 100,
+  "checked": 50,
+  "selected": 20,
+  "complete": true,
+  "notes": "Only verified accessible XML, NOT verified study protocols or numerical outcomes. Human review required.",
+  "screening_log": [
+    {
+      "pmid": "41723227",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "41762201",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "41832049",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "42155066",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "42318260",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "42340141",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "42458937",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "42644110",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "42678372",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "42713318",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "39109891",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "39266729",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "39924706",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "40267419",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "40299706",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "40325759",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "40469860",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "40512632",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "40594656",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "40717194",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "40728831",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "41018898",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "41113618",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "41210082",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "38167650",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "38816857",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "38875405",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "39067184",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "39169050",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "35916876",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "36812922",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "37086038",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "37967946",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "32881839",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "33634677",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "33655812",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "33871234",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "33969958",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "35112815",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "35682140",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "35916746",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "36193438",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "31425456",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "32957077",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "33547265",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "33662923",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "33846516",
+      "full_text_status": "open_xml_accessible"
+    },
+    {
+      "pmid": "34033625",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "34260860",
+      "full_text_status": "not_available"
+    },
+    {
+      "pmid": "34639560",
+      "full_text_status": "open_xml_accessible"
+    }
+  ],
+  "papers": [
+    {
+      "pmid": "41723227",
+      "doi": "10.1038/s41598-026-40482-x",
+      "title": "High intensity functional training versus traditional resistance training effects on inflammatory, metabolic, and physical outcomes in overweight men a randomized controlled trial.",
+      "year": "2026",
+      "abstract": "Overweight and obesity are major global health concerns linked to chronic diseases. This study compared the effects of high-intensity functional training (HIFT) and resistance training (RT) on metabolic, inflammatory, and physical markers in overweight men. Thirty-four overweight men (31.91 ± 2.44 years, BMI 27.78 ± 1.47 kg/m2) were assigned to the HIFT (n = 13), RT (n = 10), and control (n = 11) groups. The HIFT included four sets of 30-second exercises at 30% 1RM, whereas the RT involved three sets of 12 repetitions at 70% 1RM. Both interventions were performed thrice weekly for eight weeks. Blood samples were collected before and after training to assess the levels of inflammatory markers (IL-4, γ-IFN, MMP-9 and TLR4) and metabolic markers (FBS, LDL, HDL, triglycerides and cholesterol). Body composition and performance were evaluated. No significant differences in inflammatory markers were detected between the groups. HIFT and RT significantly reduced fasting blood sugar (p < 0.05). RT lowered total cholesterol, whereas triglycerides decreased in both groups. Skeletal muscle mass increased significantly. Compared with RT, HIFT led to greater body fat reduction, although both improved from baseline. Both groups had increased 1RM bench press strength. Compared with RT and the control, HIFT significantly increased VO2max, whereas RT improved VO2max compared with the control. HIFT is a promising approach for managing overweight and obesity, particularly for enhancing cardiovascular fitness and body composition.Trial registration IRCT.ir, IRCT20170724035269N2, registered on 27/05/2025. This study was retrospectively registered.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41723227/",
+      "pmcid": "PMC13022234",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13022234/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "rest interval",
+        "progression",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "one-repetition maximum",
+        "squat",
+        "bench press",
+        "deadlift"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "41832049",
+      "doi": "10.1002/ejsc.70160",
+      "title": "Acute Responses and Chronic Adaptations to Cluster Versus Traditional Set Resistance Training in Males and Females.",
+      "year": "2026",
+      "abstract": "This study compared acute and chronic adaptations to cluster set (CS) and traditional set (TS) structures during a 6-week linear periodised resistance training programme in the back squat. Thirty-six resistance-trained females and males were randomly assigned to the CS or the TS group. Acute responses were assessed using objective (blood lactate, mean propulsive velocity, velocity loss [VL], countermovement jump [CMJ] height and modified reactive strength index) and subjective measures (rating of perceived exertion [RPE], delayed onset muscle soreness and the short recovery and stress scale). Chronic adaptations included one-repetition maximum (1RM), relative isometric peak force, muscle endurance, CMJ height, velocity at 70% 1RM (v70) and load-velocity (L-V) profiling. CS displayed higher barbell velocities and lower acute fatigue, reflected by VL (g = -0.56 to -2.16), lactate (g = -0.51 to -1.86) and RPE (g = -0.91). TS did not demonstrate lower fatigue in any acute measure. Both protocols elicited comparable improvements in 1RM (CS: g = 0.28; TS: g = 0.23), muscle endurance (CS: g = 0.48; TS: g = 0.50) and v70 (CS: g = 1.18; TS: g = 1.32), with no significant improvements in CMJ height or isometric peak force. Post-intervention L-V profiling revealed distinct adaptations, with CS demonstrating a shallower slope, indicating higher velocities at heavier loads. Sex differences were minimal; females displayed lower lactate and RPE, while longitudinal adaptations were similar. In conclusion, both protocols improved muscle strength and endurance. Collectively, CS provided superior fatigue management, better preservation of barbell velocity and unique L-V profile adaptations.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41832049/",
+      "pmcid": "PMC13140343",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13140343/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "rest interval",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "squat",
+        "bench press"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "42340141",
+      "doi": "10.1111/sms.70327",
+      "title": "Comparison of Repetition-Based Progressive-Overload Strategies in Resistance Training: Rest-Pause Versus Drop Sets.",
+      "year": "2026",
+      "abstract": "Rest-pause (RP) and drop sets (DS) are widely used as intensification strategies during resistance training. However, their incorporation within a repetition-based progressive-overload (PO) model and their effects under supervised conditions are not well established. We compared progressive-overload rest-pause (PO-RP) with progressive-overload drop-set (PO-DS) training, assessing changes in body composition and maximal strength in resistance-trained adults. Twenty-three participants (20 men and 3 women; 29.1 [5.9] years; 25.0 [3.1] kg/m2) were randomized to either PO-RP (n = 12) or PO-DS (n = 11). After a 1-week familiarization phase, both groups trained twice weekly for 8 weeks under supervision while following a prescribed nutritional protocol. Pre/post measures of body composition were assessed by DXA, and maximal strength was evaluated by the one-repetition maximum (1-RM) bench press. Adiposity-related outcomes (total and upper-body fat mass, and total and upper-body fat-free adipose tissue) remained essentially unchanged in both protocols (all group × time p > 0.05). Lean soft tissue mass increased in PO-DS (Δ = 1.4 kg; 95% CI, 0.8-2.2; p < 0.001; g = 0.1) and PO-RP (Δ = 1.2 kg; 95% CI, 0.8-2.0; p < 0.001; g = 0.1), with no between-protocol difference in change (group × time p = 0.688). Bench press 1-RM increased in both protocols (PO-DS: Δ = 12.3 kg; 95% CI, 9.6-14.0; p < 0.001; g = 0.7; PO-RP: Δ = 9.5 kg; 95% CI, 7.3-11.2; p < 0.001; g = 0.4), without a statistically significant group × time effect (p = 0.086). Under supervised training and a standardized nutritional protocol, PO-RP and PO-DS produced comparable adaptations. Adiposity-related outcomes remained stable, fat-free compartment measures increased, and maximal strength improved, with no statistically significant between-protocol differences in change. Future research should determine whether these adaptations are maintained over longer interventions and whether responses differ across populations with different characteristics, including women, older adults, clinical populations, or individuals with different training experience. Further studies incorporating larger samples, direct assessments of muscle hypertrophy, additional strength outcomes, and mechanistic measures of fatigue and recovery may help refine the application of advanced resistance-training strategies in evidence-based exercise programs.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42340141/",
+      "pmcid": "PMC13292392",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13292392/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "rest interval",
+        "progression",
+        "intensity",
+        "training frequency"
+      ],
+      "results_keyword_hits": [
+        "bench press"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "42644110",
+      "doi": "10.7717/peerj.21649",
+      "title": "Ischemic preconditioning enhances 6-hour sprint, jump, and isometric strength responses to complex training in resistance-trained males: a randomized controlled pilot trial.",
+      "year": "2026",
+      "abstract": "Optimization of the recovery-adaptation timeline following high-intensity training is critical for athletic performance. However, the specific time-course effects of ischemic preconditioning (IPC) when combined with complex training (CT) remain unclear. This study aimed to examine the delayed potentiation effects of IPC applied prior to a CT protocol on power and speed performance over a 48-hour period in resistance-trained males. Sixteen resistance-trained males (relative back squat one-repetition maximum (1RM) ≥ 1.5×body mass) with at least one year of resistance training experience participated in this randomized controlled trial. Participants were assigned to either an IPC with CT group (IPC+CT; n = 8) or a CT-only control group (CT-only; n = 8). The IPC protocol involved five 5-minute cycles of bilateral thigh occlusion (220 mmHg) alternating with 5-minute reperfusion periods, before receiving a lower-body CT intervention. Sprint performance (10-m and 30-m sprint), change-of-direction ability (5-0-5 test), jump performance (standing long jump (SLJ), countermovement jump [CMJ], squat jump (SJ), drop jump (DJ), and continuous vertical jump (CVJ)), maximal strength (1RM back squat), and isometric strength (isometric mid-thigh pull (IMTP)) were assessed at baseline and at 6, 24, and 48 hours post-intervention. This trial was registered at the Chinese Clinical Trial Registry (ChiCTR2500114472). At 6 h post-intervention, the IPC+CT group showed more favorable responses than the CT-only group in the 10-m sprint, SLJ, CMJ, SJ, DJ, CVJ, and IMTP outcomes (all P < 0.045). Bonferroni-adjusted within-group comparisons indicated that the 6 h response was partially attenuated at 24 h and 48 h, although the pattern differed between groups and outcomes. These outcome-specific findings should be interpreted as exploratory because no multiplicity adjustment was applied across the different performance outcomes. These preliminary findings suggest that IPC applied before CT may promote a short-term improvement in selected power, speed, and isometric strength outcomes, particularly at 6 h post-intervention. Larger sham-controlled studies with physiological measurements are needed to confirm these effects and clarify the underlying mechanisms.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42644110/",
+      "pmcid": "PMC13505524",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13505524/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "one-repetition maximum",
+        "squat",
+        "deadlift"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "39924706",
+      "doi": "10.14814/phy2.70219",
+      "title": "Eight weeks of resistance exercise improves mood state and intestinal permeability in healthy adults: A randomized controlled trial.",
+      "year": "2025",
+      "abstract": "To explore a potential link between resistance exercise and the gut-brain axis, this study examined the impact of resistance exercise on intestinal permeability, as indicated by lipopolysaccharide binding protein (LBP), and mood state in healthy adults. Sedentary participants (n = 20; 39.5 ± 12.1 y; 27.4 ± 5.3 kg/m2) were randomly assigned to the resistance exercise (REX) or wait-listed control (CON) groups. REX participants strength trained 3× weekly (advancing from 45%-55% to 70%-80% 1RM for 3-4 sets over 8 weeks). Strength testing, evaluation of mood states, and collection of fasting blood occurred at baseline and weeks 4 and 8. At baseline, LBP concentrations were inversely correlated to all strength measures (r range: -0.48 to -0.57; p < 0.05). The gain in total strength [(split squat left + right)/2 + bench press] was 45% higher for REX versus CON participants (p = 0.019), and serum LBP concentrations fell 16% for REX participants and rose 9% in CON participants (p = 0.014). Mood was significantly improved by resistance training versus control (but this improvement was not related to changes in LBP; r = -0.001). These findings support a role for resistance exercise in improving mood state and intestinal barrier function, but more research is warranted to further explore the effects of resistance training on the gut-brain axis.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/39924706/",
+      "pmcid": "PMC11807843",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11807843/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "rest interval",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "squat",
+        "bench press"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "40299706",
+      "doi": "10.1002/ejsc.12309",
+      "title": "Reliability and Acute Changes in the Load-Velocity Profile During Countermovement Jump Exercise Following Different Velocity-Based Resistance Training Protocols in Recreational Runners.",
+      "year": "2025",
+      "abstract": "This study aimed (i) to explore the reliability of the load-velocity relationship variables (load-axis intercept [L0], velocity-axis intercept [v0], and the area under the load-velocity relationship line [Aline]) obtained during the countermovement jump exercise in successive sessions and (ii) to examine the feasibility of the load-velocity relationship variables to detect acute changes in the lower-body maximal mechanical capacities following different velocity-based training (VBT) protocols. Twenty-one recreational runners completed four randomized VBT protocols (three back squat sets with three minutes of rest) on separate occasions: (i) VBT with 60% of the one-repetition maximum (1RM) and 10% velocity loss (VBT60-10); (ii) VBT with 60% 1RM and 30% velocity loss (VBT60-30); (iii) VBT with 80% 1RM and 10% velocity loss (VBT80-10); and (iv) VBT with 80% 1RM and 30% velocity loss (VBT80-30). The load-velocity relationship was determined before and after each VBT protocol using the two-point method in the countermovement jump with a 0.5 kg load and another matching a mean velocity of 0.55 m·s-1. All load-velocity relationship variables had an acceptable reliability (CV ≤ 5.61% and ICC ≥ 0.83, except for v0 between VBT60-30 and VBT80-10). Both v0 and Aline were reduced after VBT60-30 and VBT80-30 (p ≤ 0.044 and ES ≥ -0.47) but not after VBT60-10 and VBT80-10 (p ≥ 0.066 and ES ≤ -0.37). The post-pre differences were not significantly associated between VBT protocols for any load-velocity relationship variable (r ≤ 0.327 and p ≥ 0.148). Although the load-velocity relationship is reliable and sensitive to high-repetition VBT protocols, its use to detect acute changes in the lower-body maximal mechanical capacities is characterized by a high variability in individual responses.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40299706/",
+      "pmcid": "PMC12039844",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12039844/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "squat",
+        "bench press"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "40594656",
+      "doi": "10.1038/s41598-025-05800-9",
+      "title": "Effects of 8-week complex and resistance training on strength and power in adolescent long jumpers.",
+      "year": "2025",
+      "abstract": "This study aimed to compare the effects of complex training (CT) and resistance training (RT) on lower-limb strength and power performance in adolescent long jumpers. It was hypothesized that complex training would result in more significant improvements in performance compared to traditional resistance training. A total of 36 male adolescent long jumpers (mean age 15 years) participated in an 8-week randomized controlled trial. Participants were randomly assigned to either a complex training group (n = 18) or a resistance training group (n = 18). Strength and performance were measured before and after the intervention, including tests for one-repetition maximum (1RM) squat, isometric mid-thigh pull (IMTP), vertical jump (VJ), standing long jump (SLJ), pre-stretch augmentation percentage (PSAP), and reactive strength index (RSI). Significant group × time interactions were observed for 1RM squat (p = 0.002, Partial η² = 0.965), IMTP (p < 0.001, Partial η² = 0.909), VJ (p < 0.001, Partial η² = 0.798), SLJ (p < 0.001, Partial η² = 0.894), and RSI (p = 0.001, Partial η² = 0.667). PSAP showed no significant interaction (p = 0.156), but a main effect of time was detected (p = 0.030). Complex training is a more effective strategy than resistance training for improving lower-limb strength and power in adolescent long jumpers. The combination of resistance and plyometric exercises in complex training leads to better performance outcomes, making it an optimal training method for long jumpers.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40594656/",
+      "pmcid": "PMC12215453",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12215453/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "rest interval",
+        "progression",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "one-repetition maximum",
+        "squat",
+        "bench press",
+        "deadlift"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "40717194",
+      "doi": "10.1038/s41598-025-12721-0",
+      "title": "Maximal strength training improves muscle-tendon properties and increases tendon matrix remodulation in well-trained triathletes.",
+      "year": "2025",
+      "abstract": "This study assessed the effects of a 12-week strength training (ST) intervention on Achilles and patellar tendon stiffness and tendon-matrix blood-borne markers in well-trained triathletes performing concomitant high-volume aerobic training. Eighteen triathletes (VO2max: 64.43 ± 4.65 ml kg-1 min-1) were randomized into a combined endurance and ST group (3-times/week; intervention) or endurance-only group (control). Pre- and post-intervention assessments included ultrasound-based force-elongation measurements of the Achilles and patellar tendons, blood analysis of selected markers before and after an experimental ST session in weeks 1 and 12, and dynamic strength and endurance testing. Achilles (39.1 ± 31.8%) and patellar tendon stiffness (15.8 ± 8.5%), isometric maximal knee extensor strength (8.9 ± 5.7%), and squat one-repetition maximum (20.0 ± 9.7%) significantly increased in the intervention group (all p ≤ 0.002). Additionally, serum concentrations of matrix metalloproteinase (MMP) I (46.30 ± 20%; p = 0.027) and decorin (30.50 ± 19.94%; p = 0.015) increased after the first experimental ST session, while after the second session MMP-III (40.77 ± 20.13%; p = 0.040) and decorin (36.59 ± 37.81%; p = 0.007) were increased. Baseline tenascin-c concentrations decreased significantly only in the control group (-19.49 ± 20.55%; p = 0.029). Our data clearly show improved muscle-tendon properties of the plantar flexor muscles and quadriceps femoris, indicating Achilles and patellar tendon stiffness to be similarly responsive to heavy ST despite concomitantly performing high volumes of endurance training.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40717194/",
+      "pmcid": "PMC12301477",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12301477/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "progression",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "one-repetition maximum",
+        "squat"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "40728831",
+      "doi": "10.1519/JSC.0000000000005216",
+      "title": "Optimizing Resistance Training Outcomes: Comparing In-Person Supervision, Online Coaching, and Self-Guided Approaches: A Randomized Controlled Trial.",
+      "year": "2025",
+      "abstract": "Gavanda, S, Held, S, Schrey, S, Oberwetter, K, Lazzaro, P-GM, Pergelt, M, and Geisler, S. Optimizing resistance training outcomes: comparing in-person supervision, online coaching, and self-guided approaches: a randomized controlled trial. J Strength Cond Res 39(11): 1129-1137, 2025-This randomized, parallel-group trial investigated the effects of supervised (SUP), app-guided (APP), and self-guided (PDF) 10-week, thrice-weekly full-body resistance training (RT) on strength, body composition, well-being, and supervision satisfaction (S-SRQ) in trained men and women ( n = 79, 48% women; 30.7 ± 7.8 years, 1.75 ± 0.1 m, 77.5 ± 17.5 kg). Adherence was highest in SUP (88.2%), followed by APP (81.2%) and PDF (52.2%). At p ≤ 0.05, body mass (+1.8 ± 1.9 kg, p = 0.006) and fat-free mass (+1.4 ± 0.9 kg, p ≤ 0.001) increased significantly in SUP. Muscle mass gains were observed in SUP (+1.4 ± 0.9 kg, p = 0.009) and PDF (+0.9 ± 1.3 kg, p = 0.047). All groups improved squat 1-repetition maximum (1RM) (SUP: +26.6 ± 6.5 kg, p ≤ 0.001; APP: +19.2 ± 11.0 kg, p ≤ 0.001; PDF: +19.4 ± 11.7 kg, p ≤ 0.001) and bench press 1RM (SUP: +9.1 ± 3.5 kg, p ≤ 0.001; APP: +8.2 ± 4.0 kg, p ≤ 0.001; PDF: +7.7 ± 5.8 kg, p ≤ 0.001). Supervised showed significantly greater squat gains than APP and PDF ( p ≤ 0.044). Well-being (WHO-5) improved in SUP (+15.7 ± 16.2 points, p ≤ 0.001) and PDF (+9.0 ± 20.4 points, p = 0.032). Satisfaction with supervision was significantly higher in SUP (96.7 ± 4.3%) than in APP (92.0 ± 7.1%, p = 0.005). In conclusion, supervised RT resulted in superior improvements in strength, body composition, well-being, and supervision satisfaction compared with app-guided or self-guided training. Although APP and PDF resulted in some positive effects, their magnitude was generally smaller. These findings underscore the value of in-person coaching in optimizing RT outcomes. However, app-based RT shows promise for maintaining adherence, offering a viable alternative when full supervision is not feasible.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40728831/",
+      "pmcid": "PMC12529976",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12529976/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "rest interval",
+        "progression",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "one-repetition maximum",
+        "squat",
+        "bench press",
+        "deadlift"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "41018898",
+      "doi": "10.7717/peerj.19928",
+      "title": "Individualized responses to velocity-based versus percentage-based resistance training in combat sports athletes: the influence of baseline characteristics.",
+      "year": "2025",
+      "abstract": "Traditional percentage-based resistance training (PBRT) is a cornerstone of strength development, but its fixed nature may not account for daily fluctuations in athlete readiness. Velocity-based resistance training (VBRT) has been proposed as a superior alternative for power development due to its auto-regulatory capabilities, but its efficacy in highly trained combat sports athletes remains contested. This study aimed to compare the effects of velocity-based resistance training (VBRT) and percentage-based resistance training (PBRT) on upper limb strength, general power, and sport-specific power in combat sports athletes, and to explore individualized training responses. A randomized parallel-group controlled trial was conducted, recruiting 24 male university combat sports athletes (age: 21.5 ± 2.1 years; training experience: 4.8 ± 1.5 years; baseline bench press one-repetition maximum (1RM): 95.4 ± 10.2 kg). Participants were randomly assigned to either a VBRT group (n = 12) or a PBRT group (n = 12) for an 8-week bench press intervention. Pre- and post-intervention tests included bench press 1RM, medicine ball throws, and power in the Seoi-nage (shoulder throw). A 2 × 2 mixed-model analysis of variance (ANOVA) revealed that while both groups significantly improved in most metrics, the PBRT group demonstrated significantly greater improvements in several key areas. Significant Group × Time interactions were found favoring the PBRT group for 4kg medicine ball velocity (p < .001), power (p = .012), and distance (p = .020), as well as for sport-specific power in both the left (p < .001) and right (p = .018) Seoi-nage. Crucially, at post-test, the PBRT group's left Seoi-nage power was significantly higher than the VBRT group's (p = .035). Exploratory cluster analysis identified three distinct athlete subgroups, and PBRT elicited superior or comparable training adaptations across all of them. For the cohort of university-level combat sports athletes in this study, PBRT was a more effective training methodology than VBRT for enhancing both general and sport-specific power. These findings challenge the assumption of VBRT's universal superiority for power development and highlight the continued efficacy and robustness of traditional PBRT for strength and conditioning in this population.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41018898/",
+      "pmcid": "PMC12476169",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12476169/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "intensity",
+        "training frequency"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "one-repetition maximum",
+        "squat",
+        "bench press"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "41113618",
+      "doi": "10.3389/fphys.2025.1701045",
+      "title": "The effect of velocity-based resistance training (VBT) on lower-limb strength performance in male collegiate boxers: a randomized controlled trial.",
+      "year": "2025",
+      "abstract": "Boxing performance heavily relies on lower-limb strength and power. Velocity-based resistance training (VBT), which adjusts load and repetition volume using real-time velocity feedback, may provide a more individualized and effective approach compared to traditional percentage-based training (PBT). However, its long-term effect on boxing-specific performance outcomes remains underexplored. Twenty-eight male collegiate boxers were randomly assigned to a VBT group (n = 14) or a PBT group (n = 14) for an 8-week training program. Both groups performed four sets of each exercise (back squat, Bulgarian split-squat, and deadlift) at 70% of their one-repetition maximum (1RM). The VBT group performed a flexible number of repetitions until their velocity dropped below a 10% threshold, whereas the PBT group consistently performed sets of 5 repetition. Pre- and post-intervention assessments included 1RM strength, countermovement jump (CMJ) height, standing long jump (SLJ) distance, and 30 m sprint run time. All dependent variables demonstrated significant main effects of \"time\" (p < 0.001; averaged Hedges' g = 0.44 for VBT group and 0.23 for PBT group). Notably, significant \"time\" × \"group\" interactions were observed for the CMJ, SLJ, and 30 m sprint run (p ≤ 0.038), whereas no significant interactions were found for 1RM strength measures across exercises (p ≥ 0.163). Furthermore, when comparing the magnitude of changes between groups, the VBT group exhibited small effect size improvements in CMJ height (Hedges' g = 0.41), SLJ distance (Hedges' g = 0.56), and 30 m sprint time (Hedges' g = 0.51). In contrast, all other variables only showed trivial (Hedges' g < 0.20) differences between groups. Both training programs led to comparable improvements in maximal strength (1RM) across exercises. However, VBT was more effective than PBT in enhancing performance in high-velocity tasks such as vertical and horizontal jumps and sprinting. These findings support the use of VBT to optimize neuromuscular adaptations relevant to explosive actions in male collegiate boxers.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41113618/",
+      "pmcid": "PMC12528053",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12528053/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "rest interval",
+        "progression",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "one-repetition maximum",
+        "squat",
+        "bench press",
+        "deadlift"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "38816857",
+      "doi": "10.1186/s13102-024-00911-8",
+      "title": "Comparison of resistance training using barbell half squats and trap bar deadlifts on maximal strength, power performance, and lean mass in recreationally active females: an eight-week randomised trial.",
+      "year": "2024",
+      "abstract": "The aim of this study was to investigate the effect of high load resistance training using barbell half squats compared with trap bar deadlifts on maximal strength, power performance, and lean mass in recreationally active females. Twenty-two recreationally active female participants (age: 26.9 ± 7.7 yrs.; height: 166.0 ± 5.1 cm; weight: 68.6 ± 9.9 kg) were randomly assigned to either a barbell half squat group (SG: n = 10) or trap bar deadlift group (DG: n = 12). Training consisted of twice-weekly sessions for eight weeks. Both groups completed one-repetition maximum (1RM) testing for both barbell half squat and trap bar deadlift groups. Countermovement jump (CMJ) and sprint performance were also assessed. Total body (TBLM) and leg lean mass (LLM) were measured with dual-energy x-ray absorptiometry. Between-group differences were analysed using analysis of covariance. SG tended to improve 1RM half squat (21.0 ± 11.5 kg vs. 13.1 ± 7.5 kg) more than DG (mean difference (MD): 8.0 kg, 95% CI: -0.36 - 16.3 kg). A similar pattern in favour of DG (18.4 ± 11.2 vs. 11.7 ± 8.1 kg) compared to SG was observed (MD: 6.5 kg, 95% CI: -2.5 - 15.6 kg). No between-group differences for sprint, jump or lean body mass changes was observed. For groups combined, the following changes in CMJ (2.0 ± 2.4 cm), 5-m sprint (-0.020 ± 0.039 s), 15-m sprint (-0.055 ± 0.230 s), TBLM (0.84 ± 1.12 kg), and LLM (0.27 ± 0.59 kg) was observed. An exercise intervention consisting of half squats or trap bar deadlift were associated with improved muscle strength, power, and lean mass. Our findings suggests that in recreationally active females, exercise selection is less of a concern provided that heavy loads are applied, and relevant muscle groups are targeted.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38816857/",
+      "pmcid": "PMC11140948",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11140948/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "progression",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "one-repetition maximum",
+        "squat",
+        "deadlift"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "38875405",
+      "doi": "10.1097/MD.0000000000038524",
+      "title": "Transforming performance: The impact of an 8-week complex training program on strength, power, and change of direction in female basketball athletes.",
+      "year": "2024",
+      "abstract": "This study aimed to investigate the effect of complex training on the strength, power, and change of direction (COD) performance of college female basketball athletes. This design used experimental and randomized studies. A total of 32 female basketball players volunteered to participate in this study and were randomly allocated to a complex training group (CT group: n = 16) and a resistance training group (RT group: n = 16). The CT group performed CT and the RT group completed RT for 8 weeks. The CT and RT programs were developed based on the linear periodization theory, which required participants to train 2 times a week in the first 4 weeks and 3 times a week in the following 4 weeks. All participants were tested using the 5-0-5 COD test, Illinois agility test (IAT), one-repetition maximum back squat (1RM BS) test, and countermovement jump (CMJ) test before and after the 8-week training period. Two-way repeated measure ANOVA showed a significant group × time interaction for the 5-0-5 COD, IAT, 1RM BS, and CMJ results after the intervention compared with that before the intervention (P < .05) in the CT group (effect size = 0.86-4.04). CT compared with RT caused remarkably larger enhancements in the IAT (P < .001) and CMJ (P = .040) scores. Our findings indicate that the implementation of CT could be a promising and innovative intervention for enhancing the strength, power, and COD performance of female basketball players.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38875405/",
+      "pmcid": "PMC11175861",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11175861/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "rest interval",
+        "progression",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "one-repetition maximum",
+        "squat",
+        "bench press",
+        "deadlift"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "39169050",
+      "doi": "10.1038/s41598-024-69073-4",
+      "title": "Minimal dose resistance training enhances strength without affecting cardiac autonomic modulation in menopausal women: a randomized clinical trial.",
+      "year": "2024",
+      "abstract": "The proposition of a minimal dose of resistance training (RT) to elicit health benefits, encompassing physiological and psychological aspects, has garnered attention. While empirical investigations have demonstrated the efficacy of low-volume RT protocols in inducing adaptations such as enhanced strength and functional capacity, further exploration of the effects of this paradigm across a broader spectrum of variables is warranted. Thus, this study aimed to investigate the effects of minimal dose RT on strength and functional capacity, cardiac autonomic modulation, and hemodynamic parameters in menopausal women. Twenty-six women were randomly assigned to the training (TG: 63.2 ± 9.3 years) or control group (CG: 59.3 ± 7.6 years). Anthropometric measurements, strength and functional performance tests, cardiac autonomic assessment, and hemodynamic parameters were performed before and after four weeks of intervention. The TG performed the minimum dose RT twice weekly for four weeks (2 sets of 8-12 repetitions in three dynamic exercises, plus three 1-min isometric planks), and the CG had a weekly meeting with lectures and stretching. Two-way ANOVA with repeated measures was applied to each variable. Regarding time comparisons, there was a significant increase for LniRR (F = 4.78; ω2 = 0.046; p = 0.04), one repetition maximum (1RM) bench press (F = 8.06; ω2 = 0,013; p = 0.01), and 1RM leg press (F = 17.3; ω2 = 0,098; p < 0.01). There was a group*time interaction only for the index LnRMSSD (F = 5.11; ω2 = 0.042; p = 0.03), and 1RM bench press (F = 9.52; ω2 = 0,016; p = 0.01). No between-group main effect for any variable was found. The minimal dose RT protocol improved muscle strength, while cardiac autonomic and hemodynamic variables, as well as functional capacity, remained stable over 4 weeks in menopausal women.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/39169050/",
+      "pmcid": "PMC11339369",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11339369/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "progression",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "one-repetition maximum",
+        "bench press"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "37086038",
+      "doi": "10.1080/15502783.2023.2204083",
+      "title": "Effects of different phenylcapsaicin doses on resistance training performance, muscle damage, protein breakdown, metabolic response, ratings of perceived exertion, and recovery: a randomized, triple-blinded, placebo-controlled, crossover trial.",
+      "year": "2023",
+      "abstract": "The aim of this study was to explore the effects of a low dose (LD) of 0.625 mg and a high dose (HD) of 2.5 mg of phenylcapsaicin (PC) on full squat (SQ) performance, active muscle (RPE-AM) and overall body (RPE-OB) ratings of perceived exertion, muscle damage, protein breakdown, metabolic response, and 24-h recovery in comparison to placebo (PLA). Twenty-five resistance-trained males (age = 21.00 ± 2.15 years, SQ 1-repetition maximum [1RM] normalized = 1.66 ± 0.22 kg) were enrolled in this randomized, triple-blinded, placebo-controlled, crossover trial. Participants completed 2 weekly sessions per condition (LD, HD, and PLA). The first session consisted of pre-blood testing of lactate, urea, and aspartate aminotransferases (AST) and 2 SQ repetitions with 60% 1RM followed by the resistance exercise protocol, which consisted of SQ sets of 3 × 8 × 70% 1RM monitoring lifting velocity. RPE-OB and RPE-AM were assessed after each set. After the first session, 2 SQ repetitions with 60% 1RM were performed, and blood lactate and urea posttests were collected. After 24 h, AST posttest and 1 × 2 × 60% 1RM were determined as biochemical and mechanical fatigue outcomes. HD reported significant differences for RPE-AM, AST, and SQ performance compared to LD and PLA. Post-hoc analyses revealed that HD attained faster velocities in SQ than LD (p = 0.008). HD induced a lower RPE-AM when compared with LD (p = 0.02) and PLA (p = 0.004). PLA resulted in higher AST concentrations at 24-h post than HD (p = 0.02). No significant differences were observed for the rest of the comparisons. This study suggests that PC may favorably influence SQ performance, RPE-AM, and muscle damage compared to PLA. However, HD exhibited most of the biochemical and mechanical anti-fatigue effects instead of LD.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/37086038/",
+      "pmcid": "PMC10124973",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10124973/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "rest interval",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "one-repetition maximum",
+        "squat"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "37967946",
+      "doi": "10.1265/ehpm.23-00146",
+      "title": "Acute and chronic functional and traditional resistance training improve muscular fitness in young males via the AMPK/PGC-1α/irisin signaling pathway.",
+      "year": "2023",
+      "abstract": "In this study, we aimed to investigate the effects of acute and chronic resistance training of varying intensities on molecular responses and their association with muscular fitness in a cohort of young males who participated in this intervention study. Young males (19-28 years) with no prior training experience underwent a six-week program consisting of two distinct modalities of resistance training. The participants were randomly divided into a functional resistance training group (FRT; n = 9; participants performed 4-5 sets of 20 repetitions maximum (RM) at 40% 1RM) or a traditional resistance training group (TRT; n = 9; participants performed 4-5 sets of 12 RM at 70% 1RM). Both protocols entailed training three days per week for six weeks. Blood samples were obtained before, immediately after an acute bout of training, and after the six-week training program to determine alterations in molecular responses. Muscular fitness analysis and anthropometric measurements were conducted before and after the six-week training program. After the six-week training program, the lean body mass of participants in both TRT and FRT groups was significantly increased (p < 0.05), whereas body fat percentage and fat mass were significantly decreased solely in the FRT group (p < 0.05). All muscular fitness variables were significantly increased in both groups (p < 0.01), with no difference between the two groups. Additionally, in the TRT group, serum levels of AMP-activated protein kinase (AMPK) were significantly increased following acute training and six weeks of resistance training, whereas in the FRT group, no significant increase in serum levels of AMPK was observed. In both groups, serum levels of peroxisome proliferator-activated receptor-γ coactivator-1α (PGC-1α), irisin, and insulin-like growth factor-1 were significantly increased. Moreover, myostatin was significantly decreased following acute training and six weeks of resistance training (p < 0.05), with no difference between the two groups. Furthermore, a significant correlation was observed between barbell back squat and certain molecular variables. Overall, our study indicates that acute and chronic resistance training of varying intensities are effective changing molecular responses, the chronic FRT and TRT improve muscular fitness in young males through the AMPK/PGC-1α/irisin signaling pathway. Chinese Clinical Trial Registry: ChiCTR2200059775 (11/05/2022).",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/37967946/",
+      "pmcid": "PMC10654215",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10654215/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "squat",
+        "bench press",
+        "deadlift"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "35682140",
+      "doi": "10.3390/ijerph19116547",
+      "title": "Effects of 8-Week In-Season Contrast Strength Training Program on Measures of Athletic Performance and Lower-Limb Asymmetry in Male Youth Volleyball Players.",
+      "year": "2022",
+      "abstract": "Strength training using high and lower load such as contrast training (CST) seems to be beneficial as it addresses larger adaptive reserves in youth athletes. Therefore, the aim of this study was to investigate the effects of CST on dynamic balance (composite score during dynamic balance test (CS-YBT)), one repetition maximum lower-limb back squat (1RM), jumping performance (single-leg hop (SLH) or countermovement jump height (CMJ)), lower-limb asymmetry (predicted from the single-leg jump performance between two legs [ILA]) in elite youth male volleyball players. Thirty-one male youth volleyball players aged 14 years were randomly assigned to a CST group (n = 16) or a control group (n = 15). The tests were performed before and after 8 weeks of training. Significant group × time interactions was observed for CS-YBT [p < 0.001, ηp2 = 0.70], 1RM [p < 0.001, ηp2 = 0.95], SLH with right and left leg [p < 0.001, ηp2 = 0.69 and 0.51], CMJ [p < 0.001, ηp2 = 0.47]), whilst it was not notable in ILA [p < 0.294]. Post hoc tests showed that CST group demonstrated greater improvement in all of the dependent variables from medium to large effect size (for all p < 0.001). As a result, 8 weeks of CST twice a week can be an effective and efficient training along with volleyball training to improve skill-related fitness measures, except for lower-limb asymmetry in young volleyball players.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/35682140/",
+      "pmcid": "PMC9180623",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9180623/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "squat",
+        "bench press"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "36193438",
+      "doi": "10.7717/peerj.14049",
+      "title": "The effect of high and low velocity-based training on the throwing performance of collegiate handball players.",
+      "year": "2022",
+      "abstract": "The intensity of strength training exercise is generally regarded to be the most essential element in developing muscle strength and power. The exercise intensity of strength training is known as one-repetition maximum (1RM). Velocity-based training (VBT) has been proposed as a different approach for determining training intensity. VBT relies on the use of linear position transducers and inertial measurement units, providing real-time feedback to objectively adjust the exercise intensity based on an athlete's velocity zone. This study investigated the effects of two different training interventions based on individualized load velocity profiles (LVP) on maximal bench press strength (i.e., 1RM), maximum throwing velocity (TV), and skeletal muscle mass (SKMM). Twenty-two university handball players were randomly assigned to Group 1 (low-movement speed training) or Group 2 (high-movement speed training). Group 1 exercised with a bar speed of 0.75-0.96 m/s, which corresponds to a resistance of approximately 60% 1RM, whereas Group 2 trained at 1.03-1.20 m/s, corresponding to a resistance of approximately 40% 1RM. Both groups exercised three times a week for five weeks, with strength and throwing tests performed at baseline and post-intervention. A two-way repeated measures ANOVA was applied, and the results showed the interaction between group and time was not statistically significant for SKMM (p = 0.537), 1RM (p = 0.883), or TV (p = 0.774). However, both groups significantly improved after the five weeks of training: SKMM (3.1% and 3.5%, p < 0.01), 1RM (15.5% and 15.0%, p < 0.01), and throwing velocity (18.7% and 18.3%, p < 0.01) in Group 1 and 2 respectively. Training at both prescribed velocities in this study elicited similar changes in strength, muscle mass, and throwing velocity.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36193438/",
+      "pmcid": "PMC9526411",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9526411/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "intensity",
+        "training frequency"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "one-repetition maximum",
+        "squat",
+        "bench press"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "33846516",
+      "doi": "10.1038/s41598-021-87372-y",
+      "title": "The effect of resistance training set configuration on strength and muscular performance adaptations in male powerlifters.",
+      "year": "2021",
+      "abstract": "The purpose of this study was to determine the effects of different set configurations on strength and muscular performance adaptations after an 8-week resistance training program. Twenty-four male powerlifters participated in this study and were randomly assigned to one of two resistance training groups: (1) cluster sets (CS: n = 8), (2), traditional sets (TS: n = 8), and a control group (CG: n = 8). All powerlifters were evaluated for thigh and arm circumference, upper and lower body impulsive activities, and 1 repetition maximum (1RM) in the back squat, bench press, and deadlift prior to and after the 8-week training intervention. After training, both the CS and TS groups increased arm and thigh circumferences and decreased body fat. The CS group resulted in greater increases in upper and lower body impulsive activities than the TS group, respectively. In addition, the CS and TS groups indicated similar changes in 1RM bench press, back squat, and deadlift following the 8 weeks training intervention. These results suggest that cluster sets induce adaptive changes that favor impulsive activities in powerlifters.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/33846516/",
+      "pmcid": "PMC8041766",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8041766/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "rest interval",
+        "intensity",
+        "training frequency"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "squat",
+        "bench press",
+        "deadlift"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "34639560",
+      "doi": "10.3390/ijerph181910261",
+      "title": "The Effect of Concurrent Resistance Training on Upper Body Strength, Sprint Swimming Performance and Kinematics in Competitive Adolescent Swimmers. A Randomized Controlled Trial.",
+      "year": "2021",
+      "abstract": "This study aimed to examine the effect of 9 weeks of concurrent resistance training (CRT) between resistance on dry land (bench press (BP) and medicine ball throw) and resistance in water (water parachute and hand paddles) on muscle strength, sprint swimming performance and kinematic variables compared by the usual training (standard in-water training). Twenty-two male competitive swimmers participated in this study and were randomly allocated to two groups. The CRT group (CRTG, age = 16.5 ± 0.30 years) performed a CRT program, and the control group (CG, age = 16.1 ± 0.32 years) completed their usual training. The independent variables were measured pre- and post-intervention. The findings showed that the one-repetition maximum bench press (1RM BP) was improved only after a CRT program (d = 2.18; +12.11 ± 1.79%). Moreover, all sprint swimming performances were optimized in the CRT group (d = 1.3 to 2.61; -4.22 ± 0.18% to -7.13 ± 0.23%). In addition, the findings revealed an increase in velocity and stroke rate (d = 1.67, d = 2.24; 9.36 ± 2.55%, 13.51 ± 4.22%, respectively) after the CRT program. The CRT program improved the muscle strength, which, in turn, improved the stroke rate, with no change in the stroke length. Then, the improved stroke rate increased the swimming velocity. Ultimately, a faster velocity leads to better swim performances.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "needs_human_full_text_review",
+      "outcome_status": "needs_numeric_source_verification",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/34639560/",
+      "pmcid": "PMC8508303",
+      "open_access_flag": true,
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8508303/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "methods_keyword_hits": [
+        "sets",
+        "repetitions",
+        "intensity"
+      ],
+      "results_keyword_hits": [
+        "1rm",
+        "one-repetition maximum",
+        "squat",
+        "bench press"
+      ],
+      "screening_flags": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    }
+  ]
+}
