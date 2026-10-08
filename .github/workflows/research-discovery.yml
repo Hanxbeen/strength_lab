@@ -15,14 +15,8 @@ jobs:
           python-version: '3.11'
       - name: Unit tests
         run: python -m unittest discover -s tests -v
-      - name: Discover 20 candidate papers
-        run: python scripts/research_batch.py --limit 20 --output data/research/latest.json
-      - name: Check open-access metadata and triage
-        run: python scripts/research_triage.py
-      - name: Check open-access full texts (no auto-publishing)
-        run: python scripts/research_enrich.py --input data/research/latest.json --output data/research/enriched.json
-      - name: Select open-XML candidates before truncating to 20
-        run: python -m scripts.research_oa_discovery --limit 20 --pool 100
+      - name: Verify curated source-cell regression against pinned reference
+        run: python -m scripts.research_gold_eval
       - name: Batch OA metadata and strict SBD candidate screening
         run: python -m scripts.research_oa_v2 --pool 100 --limit 20
       - name: Audit Methods and Results evidence locations
@@ -34,8 +28,6 @@ jobs:
       - name: Validate no unreviewed study is published
         run: |
           python -c "import json; x=json.load(open('data/research/review_queue.json')); assert x['approved_protocols']==0 and x['approved_charts']==0; assert all(not p['runnable'] and not p['chart_publishable'] for p in x['papers'])"
-      - name: Compare extracted cells with curated source reference
-        run: python -m scripts.research_gold_eval
       - name: Enforce signed release gate
         run: python -m scripts.research_release_gate
       - name: Upload review-only metadata
