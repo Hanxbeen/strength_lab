@@ -35,3 +35,9 @@ For iPhone physical-device development, configure a reachable HTTPS API endpoint
 - On first launch, old `workout-logs.json` and `training-state.json` are migrated if present. Legacy files remain untouched. Dangling set references are filtered.
 - A corrupted unified file blocks all writes and is preserved for recovery. File write failure does not update in-memory data.
 - Verified with Swift CLI persistence tests; real-device forced termination, storage exhaustion, and power-loss tests remain outstanding.
+
+## Backup and edit UI
+- Tap a completed set in the exercise screen to edit its weight/repetitions. Changes update e1RM and volume from the same persisted data.
+- The Data tab exports the unified snapshot as a JSON file via the iOS share sheet. The user must save it somewhere safe; this is not automatic cloud backup.
+- Import uses the system document picker, schema and referential integrity validation, and an explicit destructive confirmation. Import replaces the entire current snapshot, never merges.
+- Swift CLI tests cover export/import roundtrip, invalid backup rejection, edit persistence, and prior migration scenarios. Actual file-picker/share-sheet interaction still needs on-device testing.

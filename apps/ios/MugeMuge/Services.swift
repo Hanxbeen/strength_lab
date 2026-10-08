@@ -23,6 +23,7 @@ final class WorkoutStore: ObservableObject {
     var error: String? { lastError }
     private let url: URL
     private var storageBlocked = false
+    private var pendingSetToken: UUID?
 
     private struct Snapshot: Codable {
         var schemaVersion: Int = 1
@@ -125,10 +126,46 @@ final class WorkoutStore: ObservableObject {
     }
 
     /// A set and its session reference are committed together or not at all.
+    /// Export a portable snapshot. Never export the mutable database file directly.
+    func exportBackup() throws -> Data {
+        guard !storageBlocked else { throw WorkoutStoreError.saveFailed }
+        return try JSONEncoder().encode(snapshot)
+    }
+
+    /// Import is a full replacement; UI must ask for explicit confirmation.
+    @discardableResult
+    func importBackup(_ data: Data) -> Bool {
+        guard !storageBlocked, data.count <= 20_000_000,
+              let decoded = try? JSONDecoder().decode(Snapshot.self, from: data),
+              decoded.schemaVersion == 1, Self.isConsistent(decoded) else {
+            lastError = "백업 파일 형식 또는 데이터 무결성을 확인해주세요."
+            return false
+        }
+        return persist(decoded)
+    }
+
+    private static func isConsistent(_ value: Snapshot) -> Bool {
+        let ids = value.logs.map(\.id)
+        guard Set(ids).count == ids.count,
+              value.logs.allSatisfy({ !$0.exerciseID.isEmpty && $0.weightKg.isFinite &&
+                  (0...2000).contains($0.weightKg) && (1...100).contains($0.reps) }),
+              value.measuredMaxes.allSatisfy({ $0.weightKg.isFinite && (0...2000).contains($0.weightKg) }),
+              value.history.allSatisfy({ $0.finishedAt != nil }) else { return false }
+        let validIDs = Set(ids)
+        let allWorkouts = value.history + (value.active.map { [$0] } ?? [])
+        return allWorkouts.allSatisfy {
+            $0.protocolVersion > 0 && !$0.protocolID.isEmpty &&
+            $0.setIDs.allSatisfy { validIDs.contains($0) }
+        }
+    }
+
     @discardableResult
     func completeSet(exerciseID: String, weightKg: Double, reps: Int,
                      protocolID: String, version: Int, sessionID: String,
-                     restSeconds: Int) -> UUID? {
+                     restSeconds: Int, requestID: UUID = UUID()) -> UUID? {
+        guard pendingSetToken == nil else { return nil }
+        pendingSetToken = requestID
+        defer { pendingSetToken = nil }
         guard var workout = active, workout.protocolID == protocolID,
               workout.protocolVersion == version, workout.sessionID == sessionID,
               !exerciseID.isEmpty, weightKg >= 0, weightKg <= 2000,
