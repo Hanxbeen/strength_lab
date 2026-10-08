@@ -23,8 +23,8 @@ def discover(limit):
     root = ET.fromstring(fetch('esearch.fcgi', {'db':'pubmed','term':QUERY,'retmax':str(max(limit*5,100)),'sort':'relevance','retmode':'xml'}))
     ids = [e.text for e in root.findall('./IdList/Id') if e.text]
     records=[]
-    for i in range(0,len(ids),50):
-        root=ET.fromstring(fetch('efetch.fcgi', {'db':'pubmed','id':','.join(ids[i:i+50]),'rettype':'xml','retmode':'xml'}))
+    for i in range(0,len(ids),15):
+        root=ET.fromstring(fetch('efetch.fcgi', {'db':'pubmed','id':','.join(ids[i:i+15]),'rettype':'xml','retmode':'xml'}))
         for article in root.findall('.//PubmedArticle'):
             pmid=article.findtext('./MedlineCitation/PMID')
             title=''.join(article.find('./MedlineCitation/Article/ArticleTitle').itertext()) if article.find('./MedlineCitation/Article/ArticleTitle') is not None else ''
