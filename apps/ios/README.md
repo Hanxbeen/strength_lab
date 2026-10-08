@@ -41,3 +41,9 @@ For iPhone physical-device development, configure a reachable HTTPS API endpoint
 - The Data tab exports the unified snapshot as a JSON file via the iOS share sheet. The user must save it somewhere safe; this is not automatic cloud backup.
 - Import uses the system document picker, schema and referential integrity validation, and an explicit destructive confirmation. Import replaces the entire current snapshot, never merges.
 - Swift CLI tests cover export/import roundtrip, invalid backup rejection, edit persistence, and prior migration scenarios. Actual file-picker/share-sheet interaction still needs on-device testing.
+
+## Native visual system
+- `BrandUI.swift` defines reusable color, card, section title, primary action and platform-native glass wrapper.
+- Home uses branded editorial hierarchy and restrained surfaces. NativeGlassPanel uses system material on older SDKs; its iOS 26 glassEffect branch is compiled only by Swift 6.2+ toolchains with iOS 26 SDK support.
+- Xcode 16.2 cannot compile or visually verify actual iOS 26 Liquid Glass. Real iOS 26 styling and touch behavior remain unverified until SDK upgrade.
+- Cloud sync architecture proposal: `docs/CLOUD_ARCHITECTURE.md`. No remote cloud sync is deployed.

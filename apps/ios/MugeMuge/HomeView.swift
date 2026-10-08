@@ -9,40 +9,104 @@ struct HomeView: View {
     var body: some View {
         TabView {
             NavigationStack {
-                List {
-                    Section {
-                        Text("논문으로 고르고, 바벨로 검증한다.").font(.headline)
-                        Text("연구 검증이 완료된 처방만 연구 루틴으로 표시합니다.")
-                            .font(.caption).foregroundStyle(.secondary)
-                    }
-                    Section("검증된 연구 루틴") {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 26) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("STRENGTH, WITH EVIDENCE")
+                                .font(.caption.weight(.semibold))
+                                .tracking(2)
+                                .foregroundStyle(MugeStyle.accent)
+                            Text("오늘의 무게를,\n내일의 근거로.")
+                                .font(.system(size: 36, weight: .bold, design: .rounded))
+                                .tracking(-1.4)
+                                .foregroundStyle(MugeStyle.ink)
+                                .fixedSize(horizontal: false, vertical: true)
+                            Text("논문으로 고르고, 바벨로 검증한다.")
+                                .font(.subheadline)
+                                .foregroundStyle(MugeStyle.muted)
+                        }
+                        .padding(.top, 16)
+
+                        if let active = workouts.active {
+                            MugeCard {
+                                Label("진행 중인 운동", systemImage: "figure.strengthtraining.traditional")
+                                    .font(.caption.weight(.semibold))
+                                    .foregroundStyle(MugeStyle.accent)
+                                Text(active.title)
+                                    .font(.title2.bold())
+                                    .foregroundStyle(MugeStyle.ink)
+                                Text("\\(active.setIDs.count)세트 기록 · \\(active.startedAt.formatted(date: .omitted, time: .shortened)) 시작")
+                                    .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                                HStack {
+                                    MugePrimaryButton(title: "세션 완료") { _ = workouts.finish() }
+                                    Button("폐기") { _ = workouts.discard() }
+                                        .font(.subheadline)
+                                        .foregroundStyle(.red)
+                                        .padding()
+                                }
+                            }
+                        }
+
+                        MugeSectionTitle(title: "연구 기반 루틴", subtitle: "검증된 처방만 이곳에 게시됩니다.")
                         if catalog.protocols.isEmpty {
-                            ContentUnavailableView("게시된 루틴이 없습니다", systemImage: "books.vertical",
-                                                   description: Text("검증이 완료된 루틴만 이곳에 표시됩니다."))
+                            MugeCard {
+                                Image(systemName: "text.book.closed")
+                                    .font(.title)
+                                    .foregroundStyle(MugeStyle.accent)
+                                Text("아직 게시된 연구 루틴이 없어요")
+                                    .font(.headline).foregroundStyle(MugeStyle.ink)
+                                Text("근거 검증이 완료되면 여기에 표시됩니다. 검증되지 않은 루틴을 연구 결과로 소개하지 않습니다.")
+                                    .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                            }
+                        } else {
+                            ForEach(catalog.protocols) { item in
+                                NavigationLink {
+                                    ProtocolView(item: item, isDemo: false)
+                                } label: {
+                                    MugeCard {
+                                        Label("검증된 연구 프로토콜", systemImage: "checkmark.seal")
+                                            .font(.caption).foregroundStyle(MugeStyle.accent)
+                                        Text(item.title).font(.headline).foregroundStyle(MugeStyle.ink)
+                                        Image(systemName: "arrow.up.right")
+                                            .foregroundStyle(MugeStyle.accent)
+                                    }
+                                }
+                                .buttonStyle(.plain)
+                            }
                         }
-                        ForEach(catalog.protocols) { item in
-                            NavigationLink(item.title) { ProtocolView(item: item, isDemo: false) }
-                        }
-                    }
-                    if let active = workouts.active {
-                        Section("진행 중인 운동") {
-                            Label(active.title, systemImage: "figure.strengthworkouts.traditional")
-                            Text("기록한 세트 \(active.setIDs.count)개 · 시작 \(active.startedAt.formatted(date: .abbreviated, time: .shortened))")
-                                .font(.caption).foregroundStyle(.secondary)
-                            Button("운동 종료") { _ = workouts.finish() }
-                            Button("세션 폐기 (세트 기록은 유지)", role: .destructive) { _ = workouts.discard() }
-                        }
-                    }
-                    Section("기록 체험 · 연구 처방 아님") {
+
+                        MugeSectionTitle(title: "먼저 기록해보기", subtitle: "연구 처방이 아닌 기능 체험용 루틴입니다.")
                         ForEach(catalog.demo) { item in
-                            NavigationLink(item.title) { ProtocolView(item: item, isDemo: true) }
+                            NavigationLink {
+                                ProtocolView(item: item, isDemo: true)
+                            } label: {
+                                MugeCard {
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 8) {
+                                            Text("DEMO · RECORDING ONLY")
+                                                .font(.caption2.bold()).tracking(1)
+                                                .foregroundStyle(MugeStyle.accent)
+                                            Text(item.title).font(.title3.bold()).foregroundStyle(MugeStyle.ink)
+                                            Text("스쿼트 · 벤치프레스 · 데드리프트")
+                                                .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                                        }
+                                        Spacer()
+                                        Image(systemName: "arrow.up.right")
+                                            .foregroundStyle(MugeStyle.accent)
+                                    }
+                                }
+                            }
+                            .buttonStyle(.plain)
+                        }
+                        if let error = catalog.error {
+                            Text(error).font(.caption).foregroundStyle(MugeStyle.muted)
                         }
                     }
-                    if let error = catalog.error {
-                        Text(error).font(.caption).foregroundStyle(.secondary)
-                    }
+                    .padding(20)
                 }
+                .background(MugeStyle.canvas)
                 .navigationTitle("무게무게")
+                .navigationBarTitleDisplayMode(.inline)
                 .refreshable { await catalog.refresh() }
             }
             .tabItem { Label("루틴", systemImage: "dumbbell") }
@@ -59,6 +123,7 @@ struct HomeView: View {
             }
             .tabItem { Label("데이터", systemImage: "externaldrive") }
         }
+        .tint(MugeStyle.accent)
         .task { await catalog.refresh() }
     }
 }
@@ -157,8 +222,10 @@ struct ExerciseView: View {
                         Text("\(max(0, Int(ceil(until.timeIntervalSince(timeline.date)))))초 남음")
                             .font(.title2.monospacedDigit())
                     }
-                    Text("앱을 닫아도 휴식 종료 시각은 유지됩니다.")
-                        .font(.caption).foregroundStyle(.secondary)
+                    NativeGlassPanel {
+                        Label("앱을 닫아도 휴식 종료 시각은 유지됩니다.", systemImage: "clock")
+                            .font(.caption).foregroundStyle(.secondary)
+                    }
                 }
             }
             Section("완료한 세트") {
