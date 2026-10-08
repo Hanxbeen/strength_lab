@@ -1,0 +1,25 @@
+name: Research discovery (review only)
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * 1'
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Discover 20 candidate papers
+        run: python scripts/research_batch.py --limit 20 --output data/research/latest.json
+      - name: Upload review-only metadata
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-candidates
+          path: data/research/latest.json
+          retention-days: 30
