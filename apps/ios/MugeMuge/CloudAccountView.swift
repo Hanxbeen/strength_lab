@@ -18,20 +18,23 @@ struct CloudAccountView: View {
     @State private var inspectedAccount: UUID?
     @State private var mergePreview: CloudPayload?
     @State private var mergeWarning: String?
-    private let ownerKey = "strength_lab.cloud.local_owner"
-    private let revisionKey = "strength_lab.cloud.last_revision"
-    private let digestKey = "strength_lab.cloud.last_digest"
+    private func scopedKey(_ suffix: String, for id: UUID) -> String {
+        "strength_lab.cloud.\(id.uuidString.lowercased()).\(suffix)"
+    }
+    private var revisionKey: String { scopedKey("last_revision", for: auth.userID ?? UUID(uuidString: "00000000-0000-0000-0000-000000000000")!) }
+    private var digestKey: String { scopedKey("last_digest", for: auth.userID ?? UUID(uuidString: "00000000-0000-0000-0000-000000000000")!) }
 
     private func digest() throws -> Data {
         let data = try workouts.exportBackup()
         return Data(SHA256.hash(data: data))
     }
     private func storedOwner() -> UUID? {
-        UserDefaults.standard.string(forKey: ownerKey).flatMap(UUID.init(uuidString:))
+        guard let id = auth.userID else { return nil }
+        return UserDefaults.standard.string(forKey: scopedKey("owner", for: id)).flatMap(UUID.init(uuidString:))
     }
     private func bindOwner(_ id: UUID, revision: Int64) throws {
         let value = try digest()
-        UserDefaults.standard.set(id.uuidString, forKey: ownerKey)
+        UserDefaults.standard.set(id.uuidString, forKey: scopedKey("owner", for: id))
         UserDefaults.standard.set(String(revision), forKey: revisionKey)
         UserDefaults.standard.set(value, forKey: digestKey)
         cloudOwner = id
@@ -95,6 +98,14 @@ struct CloudAccountView: View {
             }
         }
         .onAppear { refreshBinding() }
+        .onChange(of: auth.userID) { _, _ in
+            remote = nil
+            remoteChecked = false
+            inspectedAccount = nil
+            mergePreview = nil
+            mergeWarning = nil
+            refreshBinding()
+        }
         .confirmationDialog("기기 기록을 최초 업로드할까요?", isPresented: $showUploadConfirmation) {
             Button("업로드") { Task { await firstUpload() } }
             Button("취소", role: .cancel) {}

@@ -21,7 +21,7 @@ final class WorkoutStore: ObservableObject {
     @Published private(set) var measuredMaxes: [MeasuredMax] = []
     @Published private(set) var lastError: String?
     var error: String? { lastError }
-    private let url: URL
+    private var url: URL
     private var storageBlocked = false
     private var pendingSetToken: UUID?
 
@@ -85,6 +85,38 @@ final class WorkoutStore: ObservableObject {
                 }
             }
         }
+    }
+
+    /// Account-specific local databases. The guest file is never moved or overwritten.
+    /// A corrupt target file blocks switching and leaves the current database untouched.
+    @discardableResult
+    func switchAccount(_ userID: UUID?) -> Bool {
+        let folder = url.deletingLastPathComponent()
+        let filename = userID.map { "workout-account-\($0.uuidString.lowercased()).json" }
+            ?? "workout-database.json"
+        let destination = folder.appendingPathComponent(filename)
+        if destination == url { return !storageBlocked }
+        let next: Snapshot
+        if FileManager.default.fileExists(atPath: destination.path) {
+            guard let data = try? Data(contentsOf: destination),
+                  let decoded = try? JSONDecoder().decode(Snapshot.self, from: data),
+                  decoded.schemaVersion == 1, Self.isConsistent(decoded) else {
+                // Fail closed: never display a prior account's records under the new login.
+                url = destination
+                storageBlocked = true
+                apply(Snapshot(logs: [], active: nil, history: [], measuredMaxes: []))
+                lastError = "계정 기록 파일이 손상되어 표시와 저장을 차단했습니다. 원본 파일은 보존했습니다."
+                return false
+            }
+            next = decoded
+        } else {
+            next = Snapshot(logs: [], active: nil, history: [], measuredMaxes: [])
+        }
+        url = destination
+        storageBlocked = false
+        apply(next)
+        lastError = nil
+        return true
     }
 
     private var snapshot: Snapshot {

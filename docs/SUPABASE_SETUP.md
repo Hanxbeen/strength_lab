@@ -38,3 +38,10 @@
 - Account screen offers an explicit conflict preview without persisting or uploading the result.
 - The preview is **not** a safe final three-way merge: without a common ancestor and deletion tombstones, simple union can resurrect deletions. Merge commit remains disabled until these are implemented.
 - Actual device installation remains intentionally deferred.
+
+## Account isolation and safe three-way merge foundation
+- `WorkoutStore.switchAccount` selects `workout-account-<auth UUID>.json` for authenticated users, retaining `workout-database.json` for guests. No automatic guest-to-account migration. On corrupt account file it fails closed and does not show the previous account's data.
+- The UI resets remote previews and stores sync metadata under account-scoped UserDefaults keys on account changes.
+- `CloudThreeWayMerge.merge(base, local, remote)` uses a common ancestor to detect independent additions, edits and deletions. Delete-vs-edit and edit-vs-edit conflicts fail rather than silently overwriting. `CloudSyncPlan` chooses upload/download/no-op/conflict conservatively.
+- **Not yet wired to an automatic background sync engine**: a durable common-ancestor store, transactional local/cloud apply, per-account migration, conflict resolution UI and end-to-end Apple authentication tests are still required. Do not claim automatic sync or real-device Apple login works.
+- The signed-in iOS authentication flow still needs the Apple Developer/Supabase provider setup and a signed integration test; unsigned compile alone does not validate authentication.

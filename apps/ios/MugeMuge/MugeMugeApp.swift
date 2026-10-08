@@ -12,6 +12,10 @@ struct MugeMugeApp: App {
                 .environmentObject(workouts)
                 .environmentObject(catalog)
                 .environmentObject(cloudAuth)
+                .onAppear { _ = workouts.switchAccount(cloudAuth.userID) }
+                .onChange(of: cloudAuth.userID) { _, userID in
+                    _ = workouts.switchAccount(userID)
+                }
         }
     }
 }
