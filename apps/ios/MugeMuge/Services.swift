@@ -129,7 +129,9 @@ final class WorkoutStore: ObservableObject {
     /// Export a portable snapshot. Never export the mutable database file directly.
     func exportBackup() throws -> Data {
         guard !storageBlocked else { throw WorkoutStoreError.saveFailed }
-        return try JSONEncoder().encode(snapshot)
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.sortedKeys]
+        return try encoder.encode(snapshot)
     }
 
     /// Import is a full replacement; UI must ask for explicit confirmation.

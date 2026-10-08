@@ -27,3 +27,8 @@
 - Explicit update action only appears when local data changed. The server RPC atomically compares revision before writing; any conflict leaves local data intact.
 - Switching to a different signed-in account blocks upload/restore of locally bound data. **This is a guard, not full per-account local storage isolation**; local JSON is still shared by the app installation.
 - This is manual revision-based upload, **not** automatic bidirectional synchronization or conflict merging. A production-grade sync journal, ownership migration and integration tests remain pending.
+
+## Session-switch and deterministic change detection
+- Local export uses sorted JSON keys to keep digest comparison stable across encodings of unchanged records.
+- A server snapshot preview is associated with the signed-in account ID; a stale preview from a different login cannot authorize an upload or restore.
+- This does not replace per-user on-device storage isolation, offline merge/conflict UI, or real Apple Auth end-to-end tests.

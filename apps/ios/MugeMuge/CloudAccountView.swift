@@ -15,6 +15,7 @@ struct CloudAccountView: View {
     @State private var cloudRevision: Int64?
     @State private var syncedLocalDigest: Data?
     @State private var cloudOwner: UUID?
+    @State private var inspectedAccount: UUID?
     private let ownerKey = "strength_lab.cloud.local_owner"
     private let revisionKey = "strength_lab.cloud.last_revision"
     private let digestKey = "strength_lab.cloud.last_digest"
@@ -68,6 +69,7 @@ struct CloudAccountView: View {
                     Button("로그아웃 (기기 기록은 유지)") {
                         remote = nil
                         remoteChecked = false
+                        inspectedAccount = nil
                         auth.signOut()
                         message = "로그아웃했습니다. 기기 기록은 그대로 남아 있습니다."
                     }
@@ -139,7 +141,7 @@ struct CloudAccountView: View {
                     Button("기기 기록을 클라우드에 최초 업로드") {
                         showUploadConfirmation = true
                     }
-                    .disabled(busy || accountMismatch || !remoteChecked || remote != nil || localIsEmpty)
+                    .disabled(busy || accountMismatch || inspectedAccount != auth.userID || !remoteChecked || remote != nil || localIsEmpty)
                     Text("최초 업로드는 서버에 기록이 없을 때만 가능합니다.")
                         .font(.caption).foregroundStyle(.secondary)
                 }
@@ -148,7 +150,7 @@ struct CloudAccountView: View {
                         Button("변경된 기록 업로드 (서버 버전 확인)") {
                             showUpdateConfirmation = true
                         }
-                        .disabled(busy || accountMismatch || !remoteChecked || remote == nil)
+                        .disabled(busy || accountMismatch || inspectedAccount != auth.userID || !remoteChecked || remote == nil)
                         Text("서버가 다른 기기에서 변경됐다면 업로드하지 않고 충돌을 표시합니다.")
                             .font(.caption).foregroundStyle(.secondary)
                     }
@@ -158,6 +160,9 @@ struct CloudAccountView: View {
 
     private func refreshRemote() async {
         guard let id = auth.userID, !busy else { return }
+        remoteChecked = false
+        remote = nil
+        inspectedAccount = nil
         busy = true
         defer { busy = false }
         do {
@@ -165,6 +170,7 @@ struct CloudAccountView: View {
             let fetched = try await transport.fetch(userID: id, accessToken: token)
             guard auth.userID == id else { return }
             remote = fetched
+            inspectedAccount = id
             remoteChecked = true
             if let bound = cloudRevision, cloudOwner == id,
                let fetched, fetched.revision != bound {
@@ -175,12 +181,14 @@ struct CloudAccountView: View {
         } catch {
             remoteChecked = false
             remote = nil
+            inspectedAccount = nil
             message = error.localizedDescription
         }
     }
 
     private func firstUpload() async {
-        guard let id = auth.userID, !busy, !accountMismatch, remoteChecked, remote == nil, !localIsEmpty else { return }
+        guard let id = auth.userID, !busy, !accountMismatch,
+              inspectedAccount == id, remoteChecked, remote == nil, !localIsEmpty else { return }
         busy = true
         defer { busy = false }
         do {
@@ -210,7 +218,7 @@ struct CloudAccountView: View {
 
     private func uploadChanges() async {
         guard let id = auth.userID, !busy, !accountMismatch,
-              cloudOwner == id, let revision = cloudRevision,
+              inspectedAccount == id, cloudOwner == id, let revision = cloudRevision,
               remoteChecked, remote?.revision == revision, hasPendingLocalChanges else { return }
         busy = true
         defer { busy = false }
@@ -244,7 +252,8 @@ struct CloudAccountView: View {
     }
 
     private func restoreToEmptyDevice() {
-        guard localIsEmpty, !accountMismatch, let id = auth.userID, let remote else { return }
+        guard localIsEmpty, !accountMismatch, let id = auth.userID,
+              inspectedAccount == id, let remote else { return }
         do {
             let data = try JSONEncoder().encode(remote.payload)
             if workouts.importBackup(data) {
