@@ -26,6 +26,18 @@ struct HomeView: View {
                                 .foregroundStyle(MugeStyle.muted)
                         }
                         .padding(.top, 16)
+                        HStack(spacing: 12) {
+                            MugeMascot(size: 100)
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("오늘도 차곡차곡")
+                                    .font(.headline).foregroundStyle(MugeStyle.ink)
+                                Text("무게는 숫자지만, 성장은 이야기니까.")
+                                    .font(.caption).foregroundStyle(MugeStyle.muted)
+                            }
+                            Spacer(minLength: 0)
+                        }
+                        .padding(12)
+                        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
 
                         if let active = workouts.active {
                             MugeCard {
@@ -35,7 +47,7 @@ struct HomeView: View {
                                 Text(active.title)
                                     .font(.title2.bold())
                                     .foregroundStyle(MugeStyle.ink)
-                                Text("\\(active.setIDs.count)세트 기록 · \\(active.startedAt.formatted(date: .omitted, time: .shortened)) 시작")
+                                Text("\(active.setIDs.count)세트 기록 · \\(active.startedAt.formatted(date: .omitted, time: .shortened)) 시작")
                                     .font(.subheadline).foregroundStyle(MugeStyle.muted)
                                 HStack {
                                     MugePrimaryButton(title: "세션 완료") { _ = workouts.finish() }

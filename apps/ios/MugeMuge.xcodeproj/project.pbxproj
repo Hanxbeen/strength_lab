@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B23ACBA556F234DE0144654 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50C3D9EBFC46A557B4E3556 /* Models.swift */; };
+		1FB75BAFC37ACD416C5858E6 /* MugeMascot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7982630AB09572CCC9E04F6A /* MugeMascot.swift */; };
 		2E77BC668202584B256799ED /* TrainingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19401CE421EA9BB3C3247D7E /* TrainingState.swift */; };
 		33623D38E614D9AD85752167 /* CloudMerge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1500B8521141D46032C62 /* CloudMerge.swift */; };
 		46EA9522149F5F6E3F115CCB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */; };
@@ -29,6 +30,7 @@
 		19401CE421EA9BB3C3247D7E /* TrainingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingState.swift; sourceTree = "<group>"; };
 		583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugeMugeApp.swift; sourceTree = "<group>"; };
 		6F7587D144FA81489AC657AF /* StrengthMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrengthMetrics.swift; sourceTree = "<group>"; };
+		7982630AB09572CCC9E04F6A /* MugeMascot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugeMascot.swift; sourceTree = "<group>"; };
 		7E744A319CEA1DCD087DD588 /* CloudAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAccountView.swift; sourceTree = "<group>"; };
 		9E23B881405602BC5A2D5937 /* CloudSyncPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSyncPlan.swift; sourceTree = "<group>"; };
 		C50C3D9EBFC46A557B4E3556 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				ED6DC524ED31912C1513BC54 /* CloudTransport.swift */,
 				0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */,
 				C50C3D9EBFC46A557B4E3556 /* Models.swift */,
+				7982630AB09572CCC9E04F6A /* MugeMascot.swift */,
 				D86AAC36109BD955C8A0A463 /* MugeMuge.entitlements */,
 				583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */,
 				D6DAE7A055551BEC23579F96 /* Services.swift */,
@@ -165,6 +168,7 @@
 				9269CD76BCC84AA4192FDBE4 /* CloudTransport.swift in Sources */,
 				46EA9522149F5F6E3F115CCB /* HomeView.swift in Sources */,
 				0B23ACBA556F234DE0144654 /* Models.swift in Sources */,
+				1FB75BAFC37ACD416C5858E6 /* MugeMascot.swift in Sources */,
 				AAE69B3A60EC25C845B53DCF /* MugeMugeApp.swift in Sources */,
 				8FDFB5B3F32E1239CC65E045 /* Services.swift in Sources */,
 				A3C16BF9E09A3C02DE8E17A4 /* StrengthMetrics.swift in Sources */,
