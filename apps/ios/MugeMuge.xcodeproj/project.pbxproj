@@ -12,6 +12,7 @@
 		46EA9522149F5F6E3F115CCB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */; };
 		7918A417D55792A2FEF02DA2 /* demo-catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = D572A0A487D87B6E13722EBB /* demo-catalog.json */; };
 		8FDFB5B3F32E1239CC65E045 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DAE7A055551BEC23579F96 /* Services.swift */; };
+		9269CD76BCC84AA4192FDBE4 /* CloudTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6DC524ED31912C1513BC54 /* CloudTransport.swift */; };
 		A3C16BF9E09A3C02DE8E17A4 /* StrengthMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7587D144FA81489AC657AF /* StrengthMetrics.swift */; };
 		AAE69B3A60EC25C845B53DCF /* MugeMugeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */; };
 		C7F6B375480392E2B75134F2 /* BrandUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF347449ABE0A62C0B2E63 /* BrandUI.swift */; };
@@ -27,6 +28,7 @@
 		D572A0A487D87B6E13722EBB /* demo-catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "demo-catalog.json"; sourceTree = "<group>"; };
 		D6DAE7A055551BEC23579F96 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		E3A254024E9A0EDAC4CE8EDA /* MugeMuge.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MugeMuge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED6DC524ED31912C1513BC54 /* CloudTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudTransport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -50,6 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				CDCF347449ABE0A62C0B2E63 /* BrandUI.swift */,
+				ED6DC524ED31912C1513BC54 /* CloudTransport.swift */,
 				0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */,
 				C50C3D9EBFC46A557B4E3556 /* Models.swift */,
 				583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */,
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7F6B375480392E2B75134F2 /* BrandUI.swift in Sources */,
+				9269CD76BCC84AA4192FDBE4 /* CloudTransport.swift in Sources */,
 				46EA9522149F5F6E3F115CCB /* HomeView.swift in Sources */,
 				0B23ACBA556F234DE0144654 /* Models.swift in Sources */,
 				AAE69B3A60EC25C845B53DCF /* MugeMugeApp.swift in Sources */,
