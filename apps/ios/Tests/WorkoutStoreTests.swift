@@ -15,7 +15,7 @@ struct WorkoutStoreTests {
         let restored = WorkoutStore(directory: directory)
         assert(restored.logs.count == 1)
         assert(restored.logs[0].id == id!)
-        restored.delete(id: id!)
+        assert(restored.delete(id: id!))
         assert(WorkoutStore(directory: directory).logs.isEmpty)
         print("WorkoutStore: 7 assertions passed")
     }

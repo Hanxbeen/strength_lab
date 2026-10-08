@@ -12,37 +12,158 @@ enum WorkoutStoreError: LocalizedError {
     }
 }
 
+/// One atomic on-disk snapshot is the transaction boundary for sets, sessions and measured maxes.
 @MainActor
 final class WorkoutStore: ObservableObject {
     @Published private(set) var logs: [LoggedSet] = []
+    @Published private(set) var active: ActiveWorkout?
+    @Published private(set) var history: [ActiveWorkout] = []
+    @Published private(set) var measuredMaxes: [MeasuredMax] = []
     @Published private(set) var lastError: String?
+    var error: String? { lastError }
     private let url: URL
+    private var storageBlocked = false
 
-    init(filename: String = "workout-logs.json", directory: URL? = nil) {
+    private struct Snapshot: Codable {
+        var schemaVersion: Int = 1
+        var logs: [LoggedSet]
+        var active: ActiveWorkout?
+        var history: [ActiveWorkout]
+        var measuredMaxes: [MeasuredMax]
+    }
+
+    init(filename: String = "workout-database.json", directory: URL? = nil) {
         let folder = directory ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
         url = folder.appendingPathComponent(filename)
-        if let data = try? Data(contentsOf: url),
-           let saved = try? JSONDecoder().decode([LoggedSet].self, from: data) {
-            logs = saved
+        if FileManager.default.fileExists(atPath: url.path) {
+            if let data = try? Data(contentsOf: url),
+               let snapshot = try? JSONDecoder().decode(Snapshot.self, from: data),
+               snapshot.schemaVersion == 1 {
+                apply(snapshot)
+            } else {
+                storageBlocked = true
+                lastError = "운동 데이터 파일을 읽지 못했습니다. 기존 파일을 보존했으며 새 기록을 차단합니다."
+            }
+        } else {
+            // One-time migration from the two previous local JSON stores.
+            let oldLogs = folder.appendingPathComponent("workout-logs.json")
+            let oldState = folder.appendingPathComponent("training-state.json")
+            if FileManager.default.fileExists(atPath: oldLogs.path) ||
+               FileManager.default.fileExists(atPath: oldState.path) {
+                struct LegacyState: Decodable {
+                    let active: ActiveWorkout?
+                    let history: [ActiveWorkout]
+                    let measuredMaxes: [MeasuredMax]
+                }
+                let logsExist = FileManager.default.fileExists(atPath: oldLogs.path)
+                let stateExists = FileManager.default.fileExists(atPath: oldState.path)
+                let oldLogData = try? Data(contentsOf: oldLogs)
+                let oldStateData = try? Data(contentsOf: oldState)
+                let recoveredLogs = oldLogData.flatMap { try? JSONDecoder().decode([LoggedSet].self, from: $0) }
+                let recoveredState = oldStateData.flatMap { try? JSONDecoder().decode(LegacyState.self, from: $0) }
+                if (logsExist && recoveredLogs == nil) ||
+                   (stateExists && recoveredState == nil) {
+                    storageBlocked = true
+                    lastError = "이전 기록 변환에 실패했습니다. 원본을 보존했으며 저장을 차단합니다."
+                } else {
+                    // Reconcile dangling set references from prior two-file writes.
+                    let validIDs = Set((recoveredLogs ?? []).map(\.id))
+                    var active = recoveredState?.active
+                    if var existing = active {
+                        existing.setIDs = existing.setIDs.filter { validIDs.contains($0) }
+                        active = existing
+                    }
+                    let history = (recoveredState?.history ?? []).map { workout -> ActiveWorkout in
+                        var fixed = workout
+                        fixed.setIDs = fixed.setIDs.filter { validIDs.contains($0) }
+                        return fixed
+                    }
+                    _ = persist(Snapshot(logs: recoveredLogs ?? [], active: active,
+                                         history: history, measuredMaxes: recoveredState?.measuredMaxes ?? []))
+                }
+            }
+        }
+    }
+
+    private var snapshot: Snapshot {
+        Snapshot(logs: logs, active: active, history: history, measuredMaxes: measuredMaxes)
+    }
+
+    private func apply(_ next: Snapshot) {
+        logs = next.logs
+        active = next.active
+        history = next.history
+        measuredMaxes = next.measuredMaxes
+    }
+
+    @discardableResult
+    private func persist(_ next: Snapshot) -> Bool {
+        guard !storageBlocked else { return false }
+        do {
+            try JSONEncoder().encode(next).write(to: url, options: .atomic)
+            apply(next)
+            lastError = nil
+            return true
+        } catch {
+            lastError = WorkoutStoreError.saveFailed.localizedDescription
+            return false
         }
     }
 
     @discardableResult
     func append(exerciseID: String, weightKg: Double, reps: Int) -> UUID? {
-        guard !exerciseID.isEmpty, weightKg >= 0, weightKg <= 2000, weightKg.isFinite,
-              reps > 0, reps <= 100 else {
+        guard !exerciseID.isEmpty, weightKg >= 0, weightKg <= 2000,
+              weightKg.isFinite, (1...100).contains(reps) else {
             lastError = WorkoutStoreError.invalidSet.localizedDescription
             return nil
         }
-        var next = logs
-        let newSet = LoggedSet(exerciseID: exerciseID, weightKg: weightKg, reps: reps)
-        next.append(newSet)
-        return persist(next) ? newSet.id : nil
+        let entry = LoggedSet(exerciseID: exerciseID, weightKg: weightKg, reps: reps)
+        var next = snapshot
+        next.logs.append(entry)
+        return persist(next) ? entry.id : nil
     }
 
-    func delete(id: UUID) {
-        persist(logs.filter { $0.id != id })
+    /// A set and its session reference are committed together or not at all.
+    @discardableResult
+    func completeSet(exerciseID: String, weightKg: Double, reps: Int,
+                     protocolID: String, version: Int, sessionID: String,
+                     restSeconds: Int) -> UUID? {
+        guard var workout = active, workout.protocolID == protocolID,
+              workout.protocolVersion == version, workout.sessionID == sessionID,
+              !exerciseID.isEmpty, weightKg >= 0, weightKg <= 2000,
+              weightKg.isFinite, (1...100).contains(reps),
+              (0...3600).contains(restSeconds) else { return nil }
+        let entry = LoggedSet(exerciseID: exerciseID, weightKg: weightKg, reps: reps)
+        workout.setIDs.append(entry.id)
+        workout.restUntil = Date().addingTimeInterval(TimeInterval(restSeconds))
+        var next = snapshot
+        next.logs.append(entry)
+        next.active = workout
+        return persist(next) ? entry.id : nil
+    }
+
+    @discardableResult
+    func updateSet(id: UUID, weightKg: Double, reps: Int) -> Bool {
+        guard weightKg >= 0, weightKg <= 2000, weightKg.isFinite,
+              (1...100).contains(reps) else { return false }
+        var next = snapshot
+        guard let index = next.logs.firstIndex(where: { $0.id == id }) else { return false }
+        next.logs[index].weightKg = weightKg
+        next.logs[index].reps = reps
+        return persist(next)
+    }
+
+    @discardableResult
+    func delete(id: UUID) -> Bool {
+        var next = snapshot
+        guard next.logs.contains(where: { $0.id == id }) else { return false }
+        next.logs.removeAll { $0.id == id }
+        next.active?.setIDs.removeAll { $0 == id }
+        for index in next.history.indices {
+            next.history[index].setIDs.removeAll { $0 == id }
+        }
+        return persist(next)
     }
 
     func records(for exerciseID: String) -> [LoggedSet] {
@@ -50,17 +171,39 @@ final class WorkoutStore: ObservableObject {
     }
 
     @discardableResult
-    private func persist(_ next: [LoggedSet]) -> Bool {
-        do {
-            let data = try JSONEncoder().encode(next)
-            try data.write(to: url, options: .atomic)
-            logs = next
-            lastError = nil
-            return true
-        } catch {
-            lastError = WorkoutStoreError.saveFailed.localizedDescription
-            return false
-        }
+    func start(protocolID: String, version: Int, sessionID: String, title: String) -> Bool {
+        guard active == nil, !protocolID.isEmpty, version > 0, !sessionID.isEmpty else { return false }
+        var next = snapshot
+        next.active = ActiveWorkout(protocolID: protocolID, protocolVersion: version,
+                                    sessionID: sessionID, title: title)
+        return persist(next)
+    }
+
+    @discardableResult
+    func finish() -> Bool {
+        guard var workout = active else { return false }
+        workout.finishedAt = Date()
+        var next = snapshot
+        next.active = nil
+        next.history.append(workout)
+        return persist(next)
+    }
+
+    @discardableResult
+    func discard() -> Bool {
+        guard active != nil else { return false }
+        var next = snapshot
+        next.active = nil
+        return persist(next)
+    }
+
+    @discardableResult
+    func recordMeasuredMax(exerciseID: String, weightKg: Double) -> Bool {
+        guard ["squat", "bench", "deadlift"].contains(exerciseID),
+              weightKg > 0, weightKg <= 2000, weightKg.isFinite else { return false }
+        var next = snapshot
+        next.measuredMaxes.append(MeasuredMax(exerciseID: exerciseID, weightKg: weightKg, measuredAt: Date()))
+        return persist(next)
     }
 }
 

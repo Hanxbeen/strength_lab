@@ -4,7 +4,6 @@ import Charts
 struct HomeView: View {
     @EnvironmentObject private var catalog: CatalogStore
     @EnvironmentObject private var workouts: WorkoutStore
-    @EnvironmentObject private var training: TrainingState
 
     var body: some View {
         TabView {
@@ -24,13 +23,13 @@ struct HomeView: View {
                             NavigationLink(item.title) { ProtocolView(item: item, isDemo: false) }
                         }
                     }
-                    if let active = training.active {
+                    if let active = workouts.active {
                         Section("진행 중인 운동") {
-                            Label(active.title, systemImage: "figure.strengthtraining.traditional")
+                            Label(active.title, systemImage: "figure.strengthworkouts.traditional")
                             Text("기록한 세트 \(active.setIDs.count)개 · 시작 \(active.startedAt.formatted(date: .abbreviated, time: .shortened))")
                                 .font(.caption).foregroundStyle(.secondary)
-                            Button("운동 종료") { _ = training.finish() }
-                            Button("세션 폐기 (세트 기록은 유지)", role: .destructive) { _ = training.discard() }
+                            Button("운동 종료") { _ = workouts.finish() }
+                            Button("세션 폐기 (세트 기록은 유지)", role: .destructive) { _ = workouts.discard() }
                         }
                     }
                     Section("기록 체험 · 연구 처방 아님") {
@@ -60,7 +59,7 @@ struct HomeView: View {
 struct ProtocolView: View {
     let item: TrainingProtocol
     let isDemo: Bool
-    @EnvironmentObject private var training: TrainingState
+    @EnvironmentObject private var workouts: WorkoutStore
     var body: some View {
         List {
             if isDemo {
@@ -70,14 +69,14 @@ struct ProtocolView: View {
             Text(item.description)
             ForEach(item.sessions) { session in
                 Section(session.title) {
-                    if training.active == nil {
+                    if workouts.active == nil {
                         Button("이 세션 시작") {
-                            _ = training.start(protocolID: item.id, version: item.version,
+                            _ = workouts.start(protocolID: item.id, version: item.version,
                                                sessionID: session.id, title: session.title)
                         }
-                    } else if training.active?.sessionID == session.id &&
-                                training.active?.protocolID == item.id &&
-                                training.active?.protocolVersion == item.version {
+                    } else if workouts.active?.sessionID == session.id &&
+                                workouts.active?.protocolID == item.id &&
+                                workouts.active?.protocolVersion == item.version {
                         Label("이 세션 진행 중", systemImage: "checkmark.circle")
                             .foregroundStyle(.green)
                     } else {
@@ -109,13 +108,12 @@ struct ExerciseView: View {
     let protocolVersion: Int
     let sessionID: String
     @EnvironmentObject private var workouts: WorkoutStore
-    @EnvironmentObject private var training: TrainingState
     @State private var weight = "20"
     @State private var reps = "5"
     private var isCurrentSession: Bool {
-        training.active?.protocolID == protocolID &&
-        training.active?.protocolVersion == protocolVersion &&
-        training.active?.sessionID == sessionID
+        workouts.active?.protocolID == protocolID &&
+        workouts.active?.protocolVersion == protocolVersion &&
+        workouts.active?.sessionID == sessionID
     }
 
     private var records: [LoggedSet] { workouts.records(for: exercise.id) }
@@ -128,9 +126,9 @@ struct ExerciseView: View {
                 Button("세트 완료 · 기기에 저장") {
                     let parsedWeight = Double(weight.replacingOccurrences(of: ",", with: "."))
                     guard let kg = parsedWeight, let count = Int(reps) else { return }
-                    if let id = workouts.append(exerciseID: exercise.id, weightKg: kg, reps: count) {
-                        _ = training.attachSet(id, restSeconds: exercise.restSeconds)
-                    }
+                    _ = workouts.completeSet(exerciseID: exercise.id, weightKg: kg, reps: count,
+                                             protocolID: protocolID, version: protocolVersion,
+                                             sessionID: sessionID, restSeconds: exercise.restSeconds)
                 }
                 .disabled(!isCurrentSession)
                 if !isCurrentSession {
@@ -141,7 +139,7 @@ struct ExerciseView: View {
                     Text(error).foregroundStyle(.red).font(.caption)
                 }
             }
-            if isCurrentSession, let until = training.active?.restUntil {
+            if isCurrentSession, let until = workouts.active?.restUntil {
                 Section("휴식") {
                     TimelineView(.periodic(from: .now, by: 1)) { timeline in
                         Text("\(max(0, Int(ceil(until.timeIntervalSince(timeline.date)))))초 남음")
@@ -159,8 +157,7 @@ struct ExerciseView: View {
                     let displayed = Array(records.reversed())
                     for offset in offsets {
                         let id = displayed[offset].id
-                        workouts.delete(id: id)
-                        training.removeSetReference(id)
+                        _ = workouts.delete(id: id)
                     }
                 }
             }
@@ -171,7 +168,6 @@ struct ExerciseView: View {
 
 struct StrengthDashboard: View {
     @EnvironmentObject private var workouts: WorkoutStore
-    @EnvironmentObject private var training: TrainingState
     @State private var actualWeight = ""
     @State private var selected = "squat"
     private let exercises = [("squat", "Squat"), ("bench", "Bench"), ("deadlift", "Deadlift")]
@@ -224,18 +220,18 @@ struct StrengthDashboard: View {
                     .keyboardType(.decimalPad)
                 Button("실제 1RM 기록") {
                     if let weight = Double(actualWeight.replacingOccurrences(of: ",", with: ".")),
-                       training.recordMeasuredMax(exerciseID: selected, weightKg: weight) {
+                       workouts.recordMeasuredMax(exerciseID: selected, weightKg: weight) {
                         actualWeight = ""
                     }
                 }
-                ForEach(training.measuredMaxes.filter { $0.exerciseID == selected }.reversed()) { maxRecord in
+                ForEach(workouts.measuredMaxes.filter { $0.exerciseID == selected }.reversed()) { maxRecord in
                     Text("\(maxRecord.weightKg.formatted()) kg · \(maxRecord.measuredAt.formatted(date: .abbreviated, time: .omitted))")
                 }
                 Text("직접 수행한 최대 중량만 입력하세요. 추정값을 실제 1RM으로 기록하지 마세요.")
                     .font(.caption).foregroundStyle(.secondary)
             }
             Section("완료한 세션") {
-                ForEach(training.history.reversed()) { workout in
+                ForEach(workouts.history.reversed()) { workout in
                     Text("\(workout.title) · \(workout.setIDs.count)세트 · \(workout.startedAt.formatted(date: .abbreviated, time: .shortened))")
                 }
             }

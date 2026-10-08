@@ -28,3 +28,10 @@ For iPhone physical-device development, configure a reachable HTTPS API endpoint
 - Build and run on the selected physical device. Never use CODE_SIGNING_ALLOWED=NO for physical installation.
 - Device installation attempted on 2026-10-09 and failed because the app was unsigned; automatic signing then failed because Xcode has no account credentials for the development team.
 - The app has not yet passed device UI, gesture, lifecycle, or end-to-end testing.
+
+## Atomic workout persistence (2026-10)
+- All logged sets, active session, completed sessions, and measured 1RMs share one atomically written `workout-database.json` snapshot.
+- `completeSet` commits both the set and its session reference in one operation. `delete` also removes all session references in the same operation; `updateSet` modifies the saved weight/reps atomically.
+- On first launch, old `workout-logs.json` and `training-state.json` are migrated if present. Legacy files remain untouched. Dangling set references are filtered.
+- A corrupted unified file blocks all writes and is preserved for recovery. File write failure does not update in-memory data.
+- Verified with Swift CLI persistence tests; real-device forced termination, storage exhaustion, and power-loss tests remain outstanding.
