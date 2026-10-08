@@ -32,3 +32,9 @@
 - Local export uses sorted JSON keys to keep digest comparison stable across encodings of unchanged records.
 - A server snapshot preview is associated with the signed-in account ID; a stale preview from a different login cannot authorize an upload or restore.
 - This does not replace per-user on-device storage isolation, offline merge/conflict UI, or real Apple Auth end-to-end tests.
+
+## Merge conflict preview
+- `CloudMerge.preview` detects conflicting edits with identical UUIDs for sets, sessions and measured maxes; it refuses to combine active sessions.
+- Account screen offers an explicit conflict preview without persisting or uploading the result.
+- The preview is **not** a safe final three-way merge: without a common ancestor and deletion tombstones, simple union can resurrect deletions. Merge commit remains disabled until these are implemented.
+- Actual device installation remains intentionally deferred.

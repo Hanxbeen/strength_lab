@@ -16,6 +16,8 @@ struct CloudAccountView: View {
     @State private var syncedLocalDigest: Data?
     @State private var cloudOwner: UUID?
     @State private var inspectedAccount: UUID?
+    @State private var mergePreview: CloudPayload?
+    @State private var mergeWarning: String?
     private let ownerKey = "strength_lab.cloud.local_owner"
     private let revisionKey = "strength_lab.cloud.last_revision"
     private let digestKey = "strength_lab.cloud.last_digest"
@@ -138,6 +140,19 @@ struct CloudAccountView: View {
                         Text(remoteChecked ? "서버에 저장된 기록이 없습니다." : "서버 기록을 아직 확인하지 않았습니다.")
                             .font(.caption).foregroundStyle(.secondary)
                     }
+                    if remote != nil && !localIsEmpty && !accountMismatch {
+                        Button("기기·서버 기록 충돌 검사") { inspectMerge() }
+                            .disabled(busy || inspectedAccount != auth.userID)
+                        if let mergeWarning {
+                            Text(mergeWarning).font(.caption).foregroundStyle(.orange)
+                        }
+                        if let mergePreview {
+                            Text("미리보기: 세트 \(mergePreview.logs.count)개 · 세션 \(mergePreview.history.count)개")
+                                .font(.caption)
+                            Text("미리보기는 저장되지 않습니다. 삭제 기록 복원 위험이 있어 자동 병합은 비활성화했습니다.")
+                                .font(.caption).foregroundStyle(.secondary)
+                        }
+                    }
                     Button("기기 기록을 클라우드에 최초 업로드") {
                         showUploadConfirmation = true
                     }
@@ -163,6 +178,8 @@ struct CloudAccountView: View {
         remoteChecked = false
         remote = nil
         inspectedAccount = nil
+        mergePreview = nil
+        mergeWarning = nil
         busy = true
         defer { busy = false }
         do {
@@ -248,6 +265,20 @@ struct CloudAccountView: View {
             message = "변경사항 업로드 완료."
         } catch {
             message = error.localizedDescription
+        }
+    }
+
+    private func inspectMerge() {
+        mergePreview = nil
+        mergeWarning = nil
+        guard let id = auth.userID, inspectedAccount == id, !accountMismatch,
+              let remote else { return }
+        do {
+            let local = try JSONDecoder().decode(CloudPayload.self, from: workouts.exportBackup())
+            mergePreview = try CloudMerge.preview(local: local, remote: remote.payload)
+            mergeWarning = "서로 다른 기록을 합칠 수 있는지 미리 검사했습니다. 실제 병합·저장은 수행하지 않았습니다."
+        } catch {
+            mergeWarning = error.localizedDescription
         }
     }
 
