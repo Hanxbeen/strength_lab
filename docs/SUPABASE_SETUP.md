@@ -21,3 +21,9 @@
 - Configure Apple provider in Supabase Auth providers and Apple Developer App ID / bundle ID (`app.mugemuge.ios`) before attempting device login.
 - **Do not interpret unsigned build success as functional Apple login or Supabase roundtrip testing.** Apple Developer provisioning and iOS 26-capable Xcode remain blockers.
 - Cloud login does not yet imply background sync. A multi-device merge strategy, per-account local partitioning, revision persistence and signed-in integration tests are still required before enabling ongoing synchronization.
+
+## Manual incremental upload (development build)
+- After first upload or restore, client records local account owner, last cloud revision and last local snapshot digest in UserDefaults.
+- Explicit update action only appears when local data changed. The server RPC atomically compares revision before writing; any conflict leaves local data intact.
+- Switching to a different signed-in account blocks upload/restore of locally bound data. **This is a guard, not full per-account local storage isolation**; local JSON is still shared by the app installation.
+- This is manual revision-based upload, **not** automatic bidirectional synchronization or conflict merging. A production-grade sync journal, ownership migration and integration tests remain pending.
