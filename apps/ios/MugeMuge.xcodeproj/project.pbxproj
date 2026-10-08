@@ -9,14 +9,18 @@
 /* Begin PBXBuildFile section */
 		0B23ACBA556F234DE0144654 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50C3D9EBFC46A557B4E3556 /* Models.swift */; };
 		46EA9522149F5F6E3F115CCB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */; };
+		7918A417D55792A2FEF02DA2 /* demo-catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = D572A0A487D87B6E13722EBB /* demo-catalog.json */; };
 		8FDFB5B3F32E1239CC65E045 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DAE7A055551BEC23579F96 /* Services.swift */; };
+		A3C16BF9E09A3C02DE8E17A4 /* StrengthMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7587D144FA81489AC657AF /* StrengthMetrics.swift */; };
 		AAE69B3A60EC25C845B53DCF /* MugeMugeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugeMugeApp.swift; sourceTree = "<group>"; };
+		6F7587D144FA81489AC657AF /* StrengthMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrengthMetrics.swift; sourceTree = "<group>"; };
 		C50C3D9EBFC46A557B4E3556 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		D572A0A487D87B6E13722EBB /* demo-catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "demo-catalog.json"; sourceTree = "<group>"; };
 		D6DAE7A055551BEC23579F96 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		E3A254024E9A0EDAC4CE8EDA /* MugeMuge.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MugeMuge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -30,6 +34,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		5A803A1E5CEDD180AC05237A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D572A0A487D87B6E13722EBB /* demo-catalog.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		BE919EE16B9D1754E21D57AF /* MugeMuge */ = {
 			isa = PBXGroup;
 			children = (
@@ -37,6 +49,8 @@
 				C50C3D9EBFC46A557B4E3556 /* Models.swift */,
 				583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */,
 				D6DAE7A055551BEC23579F96 /* Services.swift */,
+				6F7587D144FA81489AC657AF /* StrengthMetrics.swift */,
+				5A803A1E5CEDD180AC05237A /* Resources */,
 			);
 			path = MugeMuge;
 			sourceTree = "<group>";
@@ -57,6 +71,7 @@
 			buildConfigurationList = 7941CBF96ABC0AC4C2837EAE /* Build configuration list for PBXNativeTarget "MugeMuge" */;
 			buildPhases = (
 				FC6FF2C8C4E53769863DEA9F /* Sources */,
+				10308AD200C60D48421C5A0F /* Resources */,
 			);
 			buildRules = (
 			);
@@ -99,6 +114,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		10308AD200C60D48421C5A0F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7918A417D55792A2FEF02DA2 /* demo-catalog.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FC6FF2C8C4E53769863DEA9F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -108,6 +134,7 @@
 				0B23ACBA556F234DE0144654 /* Models.swift in Sources */,
 				AAE69B3A60EC25C845B53DCF /* MugeMugeApp.swift in Sources */,
 				8FDFB5B3F32E1239CC65E045 /* Services.swift in Sources */,
+				A3C16BF9E09A3C02DE8E17A4 /* StrengthMetrics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

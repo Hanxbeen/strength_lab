@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "items": [{
+    "id": "demo-sbd-001",
+    "version": 1,
+    "title": "SBD 기록 연습",
+    "status": "DEMO_ONLY",
+    "runnable": false,
+    "description": "앱 기록 기능을 확인하기 위한 예시입니다. 검증된 논문 루틴이나 운동 처방이 아닙니다.",
+    "sessions": [{
+      "id": "demo-session",
+      "title": "체험 세션",
+      "exercises": [
+        {"id": "squat", "name": "Squat", "sets": 3, "reps": 5, "rest_seconds": 180},
+        {"id": "bench", "name": "Bench Press", "sets": 3, "reps": 5, "rest_seconds": 180},
+        {"id": "deadlift", "name": "Deadlift", "sets": 3, "reps": 5, "rest_seconds": 180}
+      ]
+    }]
+  }]
+}
