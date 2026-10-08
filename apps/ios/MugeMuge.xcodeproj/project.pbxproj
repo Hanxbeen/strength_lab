@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B23ACBA556F234DE0144654 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50C3D9EBFC46A557B4E3556 /* Models.swift */; };
 		2E77BC668202584B256799ED /* TrainingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19401CE421EA9BB3C3247D7E /* TrainingState.swift */; };
+		33623D38E614D9AD85752167 /* CloudMerge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1500B8521141D46032C62 /* CloudMerge.swift */; };
 		46EA9522149F5F6E3F115CCB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */; };
 		4FE523099F1EC19C115412E5 /* CloudAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E744A319CEA1DCD087DD588 /* CloudAccountView.swift */; };
 		7918A417D55792A2FEF02DA2 /* demo-catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = D572A0A487D87B6E13722EBB /* demo-catalog.json */; };
@@ -34,6 +35,7 @@
 		D86AAC36109BD955C8A0A463 /* MugeMuge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MugeMuge.entitlements; sourceTree = "<group>"; };
 		E3A254024E9A0EDAC4CE8EDA /* MugeMuge.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MugeMuge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED6DC524ED31912C1513BC54 /* CloudTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudTransport.swift; sourceTree = "<group>"; };
+		FAD1500B8521141D46032C62 /* CloudMerge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudMerge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -59,6 +61,7 @@
 				CDCF347449ABE0A62C0B2E63 /* BrandUI.swift */,
 				7E744A319CEA1DCD087DD588 /* CloudAccountView.swift */,
 				07375A476AB1E5577D26D23C /* CloudAuth.swift */,
+				FAD1500B8521141D46032C62 /* CloudMerge.swift */,
 				ED6DC524ED31912C1513BC54 /* CloudTransport.swift */,
 				0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */,
 				C50C3D9EBFC46A557B4E3556 /* Models.swift */,
@@ -150,6 +153,7 @@
 				C7F6B375480392E2B75134F2 /* BrandUI.swift in Sources */,
 				4FE523099F1EC19C115412E5 /* CloudAccountView.swift in Sources */,
 				7DA4C4E50DB53841E9E80D68 /* CloudAuth.swift in Sources */,
+				33623D38E614D9AD85752167 /* CloudMerge.swift in Sources */,
 				9269CD76BCC84AA4192FDBE4 /* CloudTransport.swift in Sources */,
 				46EA9522149F5F6E3F115CCB /* HomeView.swift in Sources */,
 				0B23ACBA556F234DE0144654 /* Models.swift in Sources */,
