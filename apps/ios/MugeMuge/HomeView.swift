@@ -192,65 +192,141 @@ struct ExerciseView: View {
 
     private var records: [LoggedSet] { workouts.records(for: exercise.id) }
 
+    private var currentSessionSetCount: Int {
+        guard let active = workouts.active, isCurrentSession else { return 0 }
+        let sessionIDs = Set(active.setIDs)
+        return records.filter { sessionIDs.contains($0.id) }.count
+    }
+
+    private var parsedWeight: Double? {
+        Double(weight.replacingOccurrences(of: ",", with: "."))
+    }
+    private var canSave: Bool {
+        guard let kg = parsedWeight, let count = Int(reps) else { return false }
+        return isCurrentSession && !isSaving && kg.isFinite &&
+            (0...2000).contains(kg) && (1...100).contains(count)
+    }
+
     var body: some View {
-        Form {
-            Section(exercise.name) {
-                TextField("중량 (kg)", text: $weight).keyboardType(.decimalPad)
-                TextField("반복 횟수", text: $reps).keyboardType(.numberPad)
-                Button("세트 완료 · 기기에 저장") {
-                    let parsedWeight = Double(weight.replacingOccurrences(of: ",", with: "."))
-                    guard let kg = parsedWeight, let count = Int(reps) else { return }
-                    guard !isSaving else { return }
-                    isSaving = true
-                    defer { isSaving = false }
-                    _ = workouts.completeSet(exerciseID: exercise.id, weightKg: kg, reps: count,
-                                             protocolID: protocolID, version: protocolVersion,
-                                             sessionID: sessionID, restSeconds: exercise.restSeconds)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 22) {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("TRAINING LOG")
+                        .font(.caption.weight(.semibold)).tracking(2)
+                        .foregroundStyle(MugeStyle.accent)
+                    Text(exercise.name)
+                        .font(.system(size: 32, weight: .bold, design: .rounded))
+                        .foregroundStyle(MugeStyle.ink)
+                    Text("\(exercise.sets)세트 · 목표 \(exercise.reps)회 · 휴식 \(exercise.restSeconds)초")
+                        .font(.subheadline).foregroundStyle(MugeStyle.muted)
                 }
-                .disabled(!isCurrentSession || isSaving)
-                if !isCurrentSession {
-                    Text("세션을 시작해야 기록할 수 있습니다.")
-                        .font(.caption).foregroundStyle(.secondary)
-                }
-                if let error = workouts.lastError {
-                    Text(error).foregroundStyle(.red).font(.caption)
-                }
-            }
-            if isCurrentSession, let until = workouts.active?.restUntil {
-                Section("휴식") {
-                    TimelineView(.periodic(from: .now, by: 1)) { timeline in
-                        Text("\(max(0, Int(ceil(until.timeIntervalSince(timeline.date)))))초 남음")
-                            .font(.title2.monospacedDigit())
+                MugeCard {
+                    HStack {
+                        Label("오늘의 세트", systemImage: "checkmark.circle")
+                            .font(.subheadline.weight(.semibold))
+                        Spacer()
+                        Text("\(currentSessionSetCount) / \(exercise.sets)")
+                            .font(.title3.bold().monospacedDigit())
+                            .foregroundStyle(MugeStyle.accent)
                     }
-                    NativeGlassPanel {
-                        Label("앱을 닫아도 휴식 종료 시각은 유지됩니다.", systemImage: "clock")
-                            .font(.caption).foregroundStyle(.secondary)
+                    ProgressView(value: Double(min(currentSessionSetCount, exercise.sets)),
+                                 total: Double(max(exercise.sets, 1)))
+                        .tint(MugeStyle.accent)
+                    if !isCurrentSession {
+                        Label("먼저 루틴에서 이 세션을 시작해주세요.", systemImage: "info.circle")
+                            .font(.caption).foregroundStyle(MugeStyle.muted)
                     }
                 }
-            }
-            Section("완료한 세트") {
-                ForEach(records.reversed()) { set in
-                    Button {
-                        editingSet = set
-                    } label: {
-                        HStack {
-                            Text("\(set.weightKg.formatted()) kg × \(set.reps)")
-                            Spacer()
-                            Image(systemName: "pencil").foregroundStyle(.secondary)
+                MugeCard {
+                    Text("다음 세트 기록")
+                        .font(.headline).foregroundStyle(MugeStyle.ink)
+                    HStack(spacing: 16) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("중량 · kg").font(.caption).foregroundStyle(MugeStyle.muted)
+                            TextField("20", text: $weight)
+                                .keyboardType(.decimalPad)
+                                .font(.system(size: 30, weight: .bold, design: .rounded))
+                                .accessibilityLabel("중량 킬로그램")
+                        }
+                        Divider()
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("반복 · 회").font(.caption).foregroundStyle(MugeStyle.muted)
+                            TextField("5", text: $reps)
+                                .keyboardType(.numberPad)
+                                .font(.system(size: 30, weight: .bold, design: .rounded))
+                                .accessibilityLabel("반복 횟수")
                         }
                     }
-                    .buttonStyle(.plain)
+                    .frame(height: 88)
+                    MugePrimaryButton(title: isSaving ? "저장 중" : "세트 완료") {
+                        guard canSave, let kg = parsedWeight, let count = Int(reps) else { return }
+                        isSaving = true
+                        defer { isSaving = false }
+                        _ = workouts.completeSet(exerciseID: exercise.id, weightKg: kg, reps: count,
+                                                 protocolID: protocolID, version: protocolVersion,
+                                                 sessionID: sessionID, restSeconds: exercise.restSeconds)
+                    }
+                    .disabled(!canSave)
+                    .opacity(canSave ? 1 : 0.45)
+                    Text("세트와 진행 상태를 기기에 함께 저장합니다.")
+                        .font(.caption).foregroundStyle(MugeStyle.muted)
+                    if let error = workouts.lastError {
+                        Label(error, systemImage: "exclamationmark.triangle")
+                            .font(.caption).foregroundStyle(.red)
+                    }
                 }
-                .onDelete { offsets in
-                    let displayed = Array(records.reversed())
-                    for offset in offsets {
-                        let id = displayed[offset].id
-                        _ = workouts.delete(id: id)
+                if isCurrentSession, let until = workouts.active?.restUntil {
+                    NativeGlassPanel {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 6) {
+                                Label("세트 간 휴식", systemImage: "timer")
+                                    .font(.subheadline.weight(.semibold))
+                                Text("종료 시각은 앱을 닫아도 유지돼요.")
+                                    .font(.caption).foregroundStyle(MugeStyle.muted)
+                            }
+                            Spacer()
+                            TimelineView(.periodic(from: .now, by: 1)) { timeline in
+                                Text("\(max(0, Int(ceil(until.timeIntervalSince(timeline.date)))))초")
+                                    .font(.title2.bold().monospacedDigit())
+                                    .foregroundStyle(MugeStyle.accent)
+                            }
+                        }
+                    }
+                }
+                MugeSectionTitle(title: "기록한 세트", subtitle: "항목을 누르면 중량과 반복을 수정할 수 있어요.")
+                if records.isEmpty {
+                    MugeCard {
+                        Text("아직 기록한 세트가 없어요.")
+                            .foregroundStyle(MugeStyle.muted)
+                    }
+                } else {
+                    ForEach(records.reversed()) { set in
+                        MugeCard {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 5) {
+                                    Text("\(set.weightKg.formatted()) kg × \(set.reps)회")
+                                        .font(.title3.bold()).foregroundStyle(MugeStyle.ink)
+                                    Text(set.performedAt.formatted(date: .abbreviated, time: .shortened))
+                                        .font(.caption).foregroundStyle(MugeStyle.muted)
+                                }
+                                Spacer()
+                                Button {
+                                    editingSet = set
+                                } label: {
+                                    Label("수정", systemImage: "pencil")
+                                }
+                                .font(.subheadline)
+                                .accessibilityLabel("세트 수정")
+                            }
+                        }
                     }
                 }
             }
+            .padding(20)
         }
+        .background(MugeStyle.canvas)
         .navigationTitle(exercise.name)
+        .navigationBarTitleDisplayMode(.inline)
         .sheet(item: $editingSet) { set in
             EditSetSheet(set: set)
                 .environmentObject(workouts)
@@ -313,64 +389,104 @@ struct StrengthDashboard: View {
     }
 
     var body: some View {
-        List {
-            Section {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 22) {
+                MugeSectionTitle(title: "쌓이는 기록, 보이는 성장", subtitle: "실제 측정과 공식 기반 추정치를 구분해요.")
+                    .padding(.top, 12)
                 Picker("운동", selection: $selected) {
                     ForEach(exercises, id: \.0) { item in
                         Text(item.1).tag(item.0)
                     }
-                }.pickerStyle(.segmented)
-            }
-            Section("추정 1RM · e1RM") {
-                if let best = StrengthMetrics.bestEstimatedOneRepMax(records) {
-                    Text("\(best, specifier: "%.1f") kg")
-                        .font(.largeTitle.bold().monospacedDigit())
-                    Text("Epley 공식 · 1~10회 수행 기록 기준. 실제 측정 1RM이 아닙니다.")
-                        .font(.caption).foregroundStyle(.secondary)
-                } else {
-                    Text("유효한 세트 기록이 없습니다.")
-                        .foregroundStyle(.secondary)
                 }
-            }
-            Section("추정 1RM 변화") {
-                if estimates.isEmpty {
-                    Text("기록을 추가하면 변화가 표시됩니다.").foregroundStyle(.secondary)
-                } else {
-                    Chart(estimates) { set in
-                        if let value = StrengthMetrics.estimatedOneRepMax(weightKg: set.weightKg, reps: set.reps) {
-                            PointMark(x: .value("날짜", set.performedAt),
-                                      y: .value("e1RM (kg)", value))
+                .pickerStyle(.segmented)
+
+                MugeCard {
+                    Text("추정 1RM · e1RM")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(MugeStyle.muted)
+                    if let best = StrengthMetrics.bestEstimatedOneRepMax(records) {
+                        HStack(alignment: .firstTextBaseline, spacing: 7) {
+                            Text(best, format: .number.precision(.fractionLength(1)))
+                                .font(.system(size: 44, weight: .bold, design: .rounded))
+                                .monospacedDigit()
+                            Text("kg").font(.title3.weight(.medium))
+                        }
+                        .foregroundStyle(MugeStyle.ink)
+                    } else {
+                        Text("아직 기록이 없어요")
+                            .font(.title2.bold()).foregroundStyle(MugeStyle.ink)
+                    }
+                    Text("Epley 공식 · 1~10회 세트 기록 기준. 실제 측정한 1RM이 아닙니다.")
+                        .font(.caption).foregroundStyle(MugeStyle.muted)
+                }
+                MugeCard {
+                    Text("추정 1RM 변화")
+                        .font(.headline).foregroundStyle(MugeStyle.ink)
+                    if estimates.isEmpty {
+                        Text("세트를 기록하면 추정치의 변화를 볼 수 있어요.")
+                            .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                    } else {
+                        Chart(estimates) { set in
+                            if let value = StrengthMetrics.estimatedOneRepMax(weightKg: set.weightKg, reps: set.reps) {
+                                PointMark(x: .value("날짜", set.performedAt),
+                                          y: .value("e1RM (kg)", value))
+                                    .foregroundStyle(MugeStyle.accent)
+                            }
+                        }
+                        .frame(height: 210)
+                    }
+                    Text("세트별 추정치이며 연구 결과나 직접 측정한 1RM이 아닙니다.")
+                        .font(.caption).foregroundStyle(MugeStyle.muted)
+                }
+                MugeCard {
+                    Text("누적 훈련량")
+                        .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                    Text("\(StrengthMetrics.volume(records), specifier: "%.0f") kg")
+                        .font(.title2.bold().monospacedDigit()).foregroundStyle(MugeStyle.ink)
+                    Text("세트 중량 × 반복 횟수의 합")
+                        .font(.caption).foregroundStyle(MugeStyle.muted)
+                }
+                MugeCard {
+                    Text("직접 측정한 1RM")
+                        .font(.headline).foregroundStyle(MugeStyle.ink)
+                    Text("추정치와 별도로 보관해요.")
+                        .font(.caption).foregroundStyle(MugeStyle.muted)
+                    TextField("직접 측정한 1RM (kg)", text: $actualWeight)
+                        .keyboardType(.decimalPad)
+                        .textFieldStyle(.roundedBorder)
+                    MugePrimaryButton(title: "실제 1RM 기록") {
+                        if let weight = Double(actualWeight.replacingOccurrences(of: ",", with: ".")),
+                           workouts.recordMeasuredMax(exerciseID: selected, weightKg: weight) {
+                            actualWeight = ""
                         }
                     }
-                    .frame(height: 220)
-                    Text("세트별 추정치이며 측정된 실제 1RM이나 연구 결과가 아닙니다.")
-                        .font(.caption).foregroundStyle(.secondary)
+                    ForEach(workouts.measuredMaxes.filter { $0.exerciseID == selected }.reversed()) { entry in
+                        HStack {
+                            Text("\(entry.weightKg.formatted()) kg").fontWeight(.semibold)
+                            Spacer()
+                            Text(entry.measuredAt.formatted(date: .abbreviated, time: .omitted))
+                                .font(.caption).foregroundStyle(MugeStyle.muted)
+                        }
+                    }
+                    Text("직접 수행한 최대 중량만 입력하세요.")
+                        .font(.caption).foregroundStyle(MugeStyle.muted)
                 }
-            }
-            Section("누적 훈련량") {
-                Text("\(StrengthMetrics.volume(records), specifier: "%.0f") kg · 세트 중량 × 반복")
-            }
-            Section("실제 측정 1RM · e1RM과 별도") {
-                TextField("직접 측정한 1RM (kg)", text: $actualWeight)
-                    .keyboardType(.decimalPad)
-                Button("실제 1RM 기록") {
-                    if let weight = Double(actualWeight.replacingOccurrences(of: ",", with: ".")),
-                       workouts.recordMeasuredMax(exerciseID: selected, weightKg: weight) {
-                        actualWeight = ""
+                MugeSectionTitle(title: "완료한 운동", subtitle: "운동별 세션 기록")
+                if workouts.history.isEmpty {
+                    MugeCard { Text("완료한 세션이 아직 없어요.").foregroundStyle(MugeStyle.muted) }
+                } else {
+                    ForEach(workouts.history.reversed()) { session in
+                        MugeCard {
+                            Text(session.title).font(.headline).foregroundStyle(MugeStyle.ink)
+                            Text("\(session.setIDs.count)세트 · \(session.startedAt.formatted(date: .abbreviated, time: .shortened))")
+                                .font(.caption).foregroundStyle(MugeStyle.muted)
+                        }
                     }
                 }
-                ForEach(workouts.measuredMaxes.filter { $0.exerciseID == selected }.reversed()) { maxRecord in
-                    Text("\(maxRecord.weightKg.formatted()) kg · \(maxRecord.measuredAt.formatted(date: .abbreviated, time: .omitted))")
-                }
-                Text("직접 수행한 최대 중량만 입력하세요. 추정값을 실제 1RM으로 기록하지 마세요.")
-                    .font(.caption).foregroundStyle(.secondary)
             }
-            Section("완료한 세션") {
-                ForEach(workouts.history.reversed()) { workout in
-                    Text("\(workout.title) · \(workout.setIDs.count)세트 · \(workout.startedAt.formatted(date: .abbreviated, time: .shortened))")
-                }
-            }
+            .padding(20)
         }
+        .background(MugeStyle.canvas)
     }
 }
 

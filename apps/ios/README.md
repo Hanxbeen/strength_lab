@@ -47,3 +47,9 @@ For iPhone physical-device development, configure a reachable HTTPS API endpoint
 - Home uses branded editorial hierarchy and restrained surfaces. NativeGlassPanel uses system material on older SDKs; its iOS 26 glassEffect branch is compiled only by Swift 6.2+ toolchains with iOS 26 SDK support.
 - Xcode 16.2 cannot compile or visually verify actual iOS 26 Liquid Glass. Real iOS 26 styling and touch behavior remain unverified until SDK upgrade.
 - Cloud sync architecture proposal: `docs/CLOUD_ARCHITECTURE.md`. No remote cloud sync is deployed.
+
+## Training and progress UI iteration
+- Exercise screen: branded session progress, prominent weight/reps, guarded save, persistent rest timer, editable history cards.
+- Progress screen: SBD selector, separated estimated 1RM and manually measured 1RM, training volume, estimate chart, session history.
+- All changes use SwiftUI and reusable brand primitives; iOS 26 Liquid Glass still requires SDK and on-device visual validation.
+- Supabase is connected to the assistant but the target project has not yet been identified; do not deploy schema or credentials into an unrelated project.
