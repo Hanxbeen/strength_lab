@@ -1,0 +1,433 @@
+{
+  "schema_version": 1,
+  "total": 3,
+  "approved_protocols": 0,
+  "approved_charts": 0,
+  "required_review_fields": [
+    "study_design",
+    "population",
+    "arms",
+    "duration",
+    "frequency",
+    "session_exercises",
+    "sets_reps",
+    "intensity",
+    "rest",
+    "progression",
+    "accessories",
+    "week_by_week",
+    "group_outcomes",
+    "uncertainty_type",
+    "outcome_units"
+  ],
+  "papers": [
+    {
+      "pmid": "38816857",
+      "pmcid": "PMC11140948",
+      "title": "Comparison of resistance training using barbell half squats and trap bar deadlifts on maximal strength, power performance, and lean mass in recreationally active females: an eight-week randomised trial.",
+      "status": "awaiting_human_review",
+      "fields": {
+        "study_design": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "population": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "arms": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "duration": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "frequency": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "session_exercises": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "sets_reps": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "intensity": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "rest": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "progression": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "accessories": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "week_by_week": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "group_outcomes": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "uncertainty_type": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "outcome_units": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        }
+      },
+      "source_hints_present": {
+        "duration": true,
+        "frequency": true,
+        "exercises": true,
+        "sets": true,
+        "reps": true,
+        "intensity": true,
+        "rest": true,
+        "progression": true,
+        "weekly_schedule": true
+      },
+      "training_table_ids": [
+        "Tab1"
+      ],
+      "week_row_locators": [],
+      "numeric_outcome_row_count": 2,
+      "integrity_issues": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "blocking_reasons": [
+        "No signed field-level human verification",
+        "No verified arm-by-arm complete prescription",
+        "No verified group/timepoint/uncertainty mapping for numerical outcomes"
+      ]
+    },
+    {
+      "pmid": "33846516",
+      "pmcid": "PMC8041766",
+      "title": "The effect of resistance training set configuration on strength and muscular performance adaptations in male powerlifters.",
+      "status": "awaiting_human_review",
+      "fields": {
+        "study_design": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "population": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "arms": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "duration": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "frequency": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "session_exercises": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "sets_reps": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "intensity": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "rest": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "progression": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "accessories": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "week_by_week": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "group_outcomes": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "uncertainty_type": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "outcome_units": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        }
+      },
+      "source_hints_present": {
+        "duration": true,
+        "frequency": true,
+        "exercises": true,
+        "sets": true,
+        "reps": true,
+        "intensity": true,
+        "rest": true,
+        "progression": false,
+        "weekly_schedule": true
+      },
+      "training_table_ids": [
+        "Tab2",
+        "Tab4"
+      ],
+      "week_row_locators": [
+        {
+          "week": 1,
+          "table_id": "Tab4",
+          "row_index_zero_based": 2
+        },
+        {
+          "week": 2,
+          "table_id": "Tab4",
+          "row_index_zero_based": 4
+        },
+        {
+          "week": 3,
+          "table_id": "Tab4",
+          "row_index_zero_based": 6
+        },
+        {
+          "week": 4,
+          "table_id": "Tab4",
+          "row_index_zero_based": 8
+        },
+        {
+          "week": 5,
+          "table_id": "Tab4",
+          "row_index_zero_based": 10
+        },
+        {
+          "week": 6,
+          "table_id": "Tab4",
+          "row_index_zero_based": 12
+        },
+        {
+          "week": 7,
+          "table_id": "Tab4",
+          "row_index_zero_based": 14
+        },
+        {
+          "week": 8,
+          "table_id": "Tab4",
+          "row_index_zero_based": 16
+        }
+      ],
+      "numeric_outcome_row_count": 6,
+      "integrity_issues": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "blocking_reasons": [
+        "No signed field-level human verification",
+        "No verified arm-by-arm complete prescription",
+        "No verified group/timepoint/uncertainty mapping for numerical outcomes"
+      ]
+    },
+    {
+      "pmid": "32269656",
+      "pmcid": "PMC7126254",
+      "title": "The Effects of the Movement Tempo on the One-Repetition Maximum Bench Press Results.",
+      "status": "awaiting_human_review",
+      "fields": {
+        "study_design": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "population": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "arms": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "duration": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "frequency": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "session_exercises": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "sets_reps": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "intensity": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "rest": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "progression": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "accessories": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "week_by_week": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "group_outcomes": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "uncertainty_type": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        },
+        "outcome_units": {
+          "status": "unverified",
+          "reviewer": null,
+          "source_locators": [],
+          "notes": null
+        }
+      },
+      "source_hints_present": {
+        "duration": false,
+        "frequency": false,
+        "exercises": false,
+        "sets": true,
+        "reps": true,
+        "intensity": true,
+        "rest": true,
+        "progression": false,
+        "weekly_schedule": true
+      },
+      "training_table_ids": [
+        "j_hukin-2020-0001_tab_003"
+      ],
+      "week_row_locators": [],
+      "numeric_outcome_row_count": 1,
+      "integrity_issues": [],
+      "runnable": false,
+      "chart_publishable": false,
+      "blocking_reasons": [
+        "No signed field-level human verification",
+        "No verified arm-by-arm complete prescription",
+        "No verified group/timepoint/uncertainty mapping for numerical outcomes"
+      ]
+    }
+  ]
+}

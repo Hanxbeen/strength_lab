@@ -1,0 +1,1526 @@
+{
+  "schema_version": 1,
+  "total": 3,
+  "runnable_count": 0,
+  "chart_count": 0,
+  "notes": "Review packet only. Exact original table cells retained for human mapping, no inferred outcomes or prescriptions.",
+  "papers": [
+    {
+      "pmid": "38816857",
+      "pmcid": "PMC11140948",
+      "title": "Comparison of resistance training using barbell half squats and trap bar deadlifts on maximal strength, power performance, and lean mass in recreationally active females: an eight-week randomised trial.",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11140948/fullTextXML",
+      "field_evidence": {
+        "duration": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC11140948",
+                "section_id": "Sec10",
+                "section": "Training protocol",
+                "paragraph": 1
+              },
+              "matched": "8 weeks",
+              "context": "ants attended non-supervised training twice a week for 8 weeks. The DG were instructed to perform four sets of four repetitions of trap bar deadlifts, w"
+            }
+          ]
+        },
+        "frequency": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC11140948",
+                "section_id": "Sec10",
+                "section": "Training protocol",
+                "paragraph": 1
+              },
+              "matched": "twice a week",
+              "context": "testing, participants attended non-supervised training twice a week for 8 weeks. The DG were instructed to perform four sets of four repetitions of trap bar "
+            }
+          ]
+        },
+        "exercises": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC11140948",
+                "section_id": "Sec10",
+                "section": "Training protocol",
+                "paragraph": 1
+              },
+              "matched": "deadlift",
+              "context": "ecific group target exercise (i.e., squats or trap bar deadlift), and then perform Bulgarian split squats and hip thrusts in whatever order they preferre"
+            }
+          ]
+        },
+        "sets": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC11140948",
+                "section_id": "Sec10",
+                "section": "Training protocol",
+                "paragraph": 1
+              },
+              "matched": "four sets",
+              "context": " a week for 8 weeks. The DG were instructed to perform four sets of four repetitions of trap bar deadlifts, while the SG performed the same number of sets"
+            },
+            {
+              "source": {
+                "pmcid": "PMC11140948",
+                "table_id": "Tab1"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        },
+        "reps": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC11140948",
+                "section_id": "Sec10",
+                "section": "Training protocol",
+                "paragraph": 1
+              },
+              "matched": "four repetitions",
+              "context": " weeks. The DG were instructed to perform four sets of four repetitions of trap bar deadlifts, while the SG performed the same number of sets and repetitions wit"
+            },
+            {
+              "source": {
+                "pmcid": "PMC11140948",
+                "table_id": "Tab1"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        },
+        "intensity": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC11140948",
+                "section_id": "Sec10",
+                "section": "Training protocol",
+                "paragraph": 1
+              },
+              "matched": "85% of pre-test 1RM",
+              "context": "ith barbell half squats. The load was initially set at 85% of pre-test 1RM. Participants were instructed to increase the load by 2.5 kg to 10 kg if they could compl"
+            },
+            {
+              "source": {
+                "pmcid": "PMC11140948",
+                "table_id": "Tab1"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        },
+        "rest": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC11140948",
+                "section_id": "Sec10",
+                "section": "Training protocol",
+                "paragraph": 1
+              },
+              "matched": "3 min of rest",
+              "context": "ever order they preferred. Each set was separated by ≥ 3 min of rest for all exercises. Participants were instructed to refrain from any other lower-body stre"
+            },
+            {
+              "source": {
+                "pmcid": "PMC11140948",
+                "table_id": "Tab1"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        },
+        "progression": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC11140948",
+                "section_id": "Sec10",
+                "section": "Training protocol",
+                "paragraph": 1
+              },
+              "matched": "increase the load",
+              "context": "t 85% of pre-test 1RM. Participants were instructed to increase the load by 2.5 kg to 10 kg if they could complete more than four repetitions, resulting in consis"
+            }
+          ]
+        },
+        "weekly_schedule": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC11140948",
+                "table_id": "Tab1"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        }
+      },
+      "missing_evidence_fields": [],
+      "tables": [
+        {
+          "table_id": "Tab1",
+          "caption": "Resistance training protocol",
+          "row_count": 5,
+          "rows": [
+            [
+              "",
+              "Exercise",
+              "Sets",
+              "Repetitions",
+              "Intensity"
+            ],
+            [
+              "SG",
+              "Squat",
+              "4",
+              "4",
+              "> 85% 1RM"
+            ],
+            [
+              "DG",
+              "Trap-bar deadlift",
+              "4",
+              "4",
+              "> 85% 1RM"
+            ],
+            [
+              "Both groups",
+              "Bulgarian split squat",
+              "3",
+              "8",
+              "2 RIR"
+            ],
+            [
+              "",
+              "Barbell hip-thrust",
+              "3",
+              "8",
+              "2 RIR"
+            ]
+          ]
+        },
+        {
+          "table_id": "Tab2",
+          "caption": "Differences in strength- and power performance",
+          "row_count": 12,
+          "rows": [
+            [
+              "",
+              "SG ( n = 10)",
+              "DG ( n = 12)",
+              ""
+            ],
+            [
+              "Performance metric",
+              "Pre",
+              "Post",
+              "Pre",
+              "Post",
+              "Adjusted mean difference (95% CI)"
+            ],
+            [
+              "Total body mass (kg)",
+              "69.3 ± 10",
+              "69.3 ± 9",
+              "68.0 ± 10",
+              "69.1 ± 11",
+              "0.92 (-2.20 – 4.03)"
+            ],
+            [
+              "Body fat (%)",
+              "30.1 ± 6",
+              "29.8 ± 5",
+              "31.6 ± 7",
+              "30.8 ± 7",
+              "-0.51 (-1.69 – 0.68)"
+            ],
+            [
+              "TBLM (kg)",
+              "44.9 ± 4",
+              "45.8 ± 4",
+              "43.7 ± 4",
+              "44.5 ± 4",
+              "-0.15 (-1.20 – 0.91)"
+            ],
+            [
+              "LLM (kg) a",
+              "17.2 ± 2.1",
+              "17.4 ± 2.3",
+              "16.3 ± 1.1",
+              "16.5 ± 1.4",
+              "0.03 (-0.28 – 0.34)"
+            ],
+            [
+              "Sprint time (s)",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "5-m",
+              "1.12 ± 0.08",
+              "1.10 ± 0.07",
+              "1.11 ± 0.07",
+              "1.10 ± 0.08",
+              "0.01 (-0.03 – 0.05)"
+            ],
+            [
+              "15-m",
+              "2.86 ± 0.18",
+              "2.84 ± 0.14",
+              "2.80 ± 0.17",
+              "2.79 ± 0.18",
+              "-0.01 (-0.07 – 0.06)"
+            ],
+            [
+              "CMJ (cm) b",
+              "28.9 ± 5.4",
+              "30.9 ± 5.1",
+              "28.7 ± 4.3",
+              "30.7 ± 5.7",
+              "0.11 (-2.22 – 2.44)"
+            ],
+            [
+              "1RM 90° squat (kg)",
+              "101 ± 18",
+              "122 ± 19",
+              "100 ± 23",
+              "113 ± 21",
+              "-8.00 (-16.34 – 0.36)"
+            ],
+            [
+              "1RM trap bar deadlift (kg)",
+              "102 ± 14",
+              "114 ± 19",
+              "104 ± 21",
+              "122 ± 23",
+              "6.54 (-2.50 – 15.58)"
+            ]
+          ]
+        }
+      ],
+      "candidate_outcome_rows": [
+        {
+          "source": {
+            "pmcid": "PMC11140948",
+            "table_id": "Tab2",
+            "row_index_zero_based": 10
+          },
+          "cells": [
+            "1RM 90° squat (kg)",
+            "101 ± 18",
+            "122 ± 19",
+            "100 ± 23",
+            "113 ± 21",
+            "-8.00 (-16.34 – 0.36)"
+          ],
+          "numeric_verification": "pending_group_header_and_uncertainty_review"
+        },
+        {
+          "source": {
+            "pmcid": "PMC11140948",
+            "table_id": "Tab2",
+            "row_index_zero_based": 11
+          },
+          "cells": [
+            "1RM trap bar deadlift (kg)",
+            "102 ± 14",
+            "114 ± 19",
+            "104 ± 21",
+            "122 ± 23",
+            "6.54 (-2.50 – 15.58)"
+          ],
+          "numeric_verification": "pending_group_header_and_uncertainty_review"
+        }
+      ],
+      "runnable": false,
+      "chart_publishable": false,
+      "human_review_required": true,
+      "protocol_decision": "BLOCKED",
+      "chart_decision": "BLOCKED",
+      "reason": "Keyword/table evidence is not complete per-arm, per-session verified prescription or chart-safe outcome mapping."
+    },
+    {
+      "pmid": "33846516",
+      "pmcid": "PMC8041766",
+      "title": "The effect of resistance training set configuration on strength and muscular performance adaptations in male powerlifters.",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8041766/fullTextXML",
+      "field_evidence": {
+        "duration": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "section_id": "Sec15",
+                "section": "Training program",
+                "paragraph": 1
+              },
+              "matched": "4 Week",
+              "context": "e 4 Resistance training program. Set 1 Set 2 Set 3 Set 4 Week Set type Cluster × Reps %1RM Cluster rest Rest (s) Cluster × Reps %1RM Cluster rest Rest "
+            }
+          ]
+        },
+        "frequency": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "section_id": "Sec15",
+                "section": "Training program",
+                "paragraph": 1
+              },
+              "matched": "two days per week",
+              "context": "ed in the same powerlifting training for 80 to 90 min, two days per week (on Sunday and Wednesday), which included 4 to 5 sets of the bench press, back squat, and"
+            }
+          ]
+        },
+        "exercises": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "section_id": "Sec15",
+                "section": "Training program",
+                "paragraph": 1
+              },
+              "matched": "bench press",
+              "context": "nday and Wednesday), which included 4 to 5 sets of the bench press, back squat, and deadlift exercise with 60 to 95% of 1RM. The CS and TS groups participat"
+            }
+          ]
+        },
+        "sets": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "section_id": "Sec15",
+                "section": "Training program",
+                "paragraph": 1
+              },
+              "matched": "5 sets",
+              "context": "er week (on Sunday and Wednesday), which included 4 to 5 sets of the bench press, back squat, and deadlift exercise with 60 to 95% of 1RM. The CS and T"
+            },
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "table_id": "Tab2"
+              },
+              "matched": "training table present; individual cells require review"
+            },
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "table_id": "Tab4"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        },
+        "reps": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "table_id": "Tab2"
+              },
+              "matched": "training table present; individual cells require review"
+            },
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "table_id": "Tab4"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        },
+        "intensity": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "section_id": "Sec15",
+                "section": "Training program",
+                "paragraph": 1
+              },
+              "matched": "95% of 1RM",
+              "context": "ch press, back squat, and deadlift exercise with 60 to 95% of 1RM. The CS and TS groups participated in an additional three RT sessions per week on Saturda"
+            },
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "table_id": "Tab2"
+              },
+              "matched": "training table present; individual cells require review"
+            },
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "table_id": "Tab4"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        },
+        "rest": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "table_id": "Tab2"
+              },
+              "matched": "training table present; individual cells require review"
+            },
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "table_id": "Tab4"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        },
+        "progression": {
+          "status": "not_found",
+          "evidence": []
+        },
+        "weekly_schedule": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "table_id": "Tab2"
+              },
+              "matched": "training table present; individual cells require review"
+            },
+            {
+              "source": {
+                "pmcid": "PMC8041766",
+                "table_id": "Tab4"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        }
+      },
+      "missing_evidence_fields": [
+        "progression"
+      ],
+      "tables": [
+        {
+          "table_id": "Tab1",
+          "caption": "Absolute and relative 1RMs for each lift.",
+          "row_count": 14,
+          "rows": [
+            [
+              "Characteristic",
+              "",
+              "CS (n = 8)",
+              "TS (n = 8)",
+              "CG (n = 8)"
+            ],
+            [
+              "Mean ± SD",
+              "Mean ± SD",
+              "Mean ± SD"
+            ],
+            [
+              "1RM BP (kg)",
+              "Before",
+              "105.4 ± 11.8",
+              "95.4 ± 10.3",
+              "110.7 ± 11.2"
+            ],
+            [
+              "After",
+              "121.0 ± 12.4*",
+              "122.3 ± 10.7*",
+              "113.1 ± 11.7"
+            ],
+            [
+              "1RM BP/BW (Ratio)",
+              "Before",
+              "1.34 ± 0.81",
+              "1.22 ± 0.52",
+              "1.31 ± 0.63"
+            ],
+            [
+              "After",
+              "1.46 ± 0.67*",
+              "1.49 ± 0.73*",
+              "1.34 ± 0.78"
+            ],
+            [
+              "1RM BS (kg)",
+              "Before",
+              "126.5 ± 9.8",
+              "126.7 ± 8.7",
+              "129.5 ± 13.7"
+            ],
+            [
+              "After",
+              "138.8 ± 12.1*",
+              "144.1 ± 12.2*",
+              "130.7 ± 14.0"
+            ],
+            [
+              "1RM BS/BW (Ratio)",
+              "Before",
+              "1.56 ± 0.87",
+              "1.55 ± 0.84",
+              "1.55 ± 0.83"
+            ],
+            [
+              "After",
+              "1.72 ± 0.79*",
+              "1.78 ± 0.64*",
+              "1.58 ± 0.71"
+            ],
+            [
+              "1RM DL (kg)",
+              "Before",
+              "124.5 ± 9.8",
+              "121.7 ± 6.9",
+              "127.5 ± 11.7"
+            ],
+            [
+              "After",
+              "138.7 ± 12.4*",
+              "140.5 ± 9.4*",
+              "128.1 ± 10.7"
+            ],
+            [
+              "1RM DL/BW (Ratio)",
+              "Before",
+              "1.51 ± 0.54",
+              "1.47 ± 0.43",
+              "1.55 ± 0.73"
+            ],
+            [
+              "After",
+              "1.69 ± 0.73*",
+              "1.74 ± 0.65*",
+              "1.59 ± 0.69"
+            ]
+          ]
+        },
+        {
+          "table_id": "Tab2",
+          "caption": "Changes in anthropometric variables in response to 8 weeks training intervention (mean ± SD).",
+          "row_count": 25,
+          "rows": [
+            [
+              "Variables",
+              "CS(n = 8)",
+              "",
+              "TS (n = 8)",
+              "",
+              "CG(n = 8)",
+              ""
+            ],
+            [
+              "Weight (kg)"
+            ],
+            [
+              "Before",
+              "78.6 ± 4.5",
+              "",
+              "79.2 ± 4.1",
+              "",
+              "77.2 ± 4.9",
+              ""
+            ],
+            [
+              "After",
+              "79.9 ± 4.2",
+              "",
+              "80.5 ± 4.7",
+              "",
+              "78.2 ± 4.9",
+              ""
+            ],
+            [
+              "ES",
+              "0.3 (− 0.7 to 1.27)",
+              "Small",
+              "0.29 (− 0.71 to 1.26)",
+              "Small",
+              "0.2 (− 0.79 to 1.18)",
+              "Small"
+            ],
+            [
+              "Absolute change",
+              "1.6 ± 2.5",
+              "",
+              "1.3 ± 2.3",
+              "",
+              "1.2 ± 2.9",
+              ""
+            ],
+            [
+              "% change",
+              "1.6",
+              "",
+              "1.6",
+              "",
+              "1.2",
+              ""
+            ],
+            [
+              "Body fat (%)"
+            ],
+            [
+              "Before",
+              "17.9 ± 3.1",
+              "",
+              "18.3 ± 3.1",
+              "",
+              "16.7 ± 2.3",
+              ""
+            ],
+            [
+              "After",
+              "16.9 ± 3.1",
+              "*",
+              "17.4 ± 2.9",
+              "*",
+              "17.2 ± 2.6",
+              ""
+            ],
+            [
+              "ES",
+              "− 0.32 (− 1.29 to 0.68)",
+              "Small",
+              "− 0.31 (− 1.27 to 0.70)",
+              "Small",
+              "0.2 (− 0.79 to 1.17)",
+              "Small"
+            ],
+            [
+              "Absolute change",
+              "− 1.0 ± 0.3",
+              "",
+              "− 0.9 ± 0.5",
+              "",
+              "0.5 ± 0.5",
+              ""
+            ],
+            [
+              "% change",
+              "− 6",
+              "",
+              "− 5",
+              "",
+              "3.1",
+              ""
+            ],
+            [
+              "Thigh circumference (cm)"
+            ],
+            [
+              "Before",
+              "57.5 ± 3.1",
+              "",
+              "57.1 ± 2.7",
+              "",
+              "56.0 ± 3.0",
+              ""
+            ],
+            [
+              "After",
+              "59.5 ± 4.1",
+              "*",
+              "59.5 ± 2.5",
+              "*",
+              "55.1 ± 3.5",
+              ""
+            ],
+            [
+              "ES",
+              "0.55 (− 0.48 to 1.52)",
+              "Small",
+              "0.92 (− 0.15 to 1.90)",
+              "Moderate",
+              "− 0.28 (− 1.25 to 0.72)",
+              "Small"
+            ],
+            [
+              "Absolute change",
+              "2 ± 2.5",
+              "",
+              "2.3 ± 1.3",
+              "",
+              "− 0.9 ± 0.7",
+              ""
+            ],
+            [
+              "% change",
+              "3.1",
+              "",
+              "4.2",
+              "",
+              "− 2.1",
+              ""
+            ],
+            [
+              "Arm circumference (cm)"
+            ],
+            [
+              "Before",
+              "35.4 ± 2.0",
+              "",
+              "36.5 ± 1.5",
+              "",
+              "36.8 ± 1.1",
+              ""
+            ],
+            [
+              "After",
+              "36.8 ± 2.1",
+              "*",
+              "37.9 ± 2.2",
+              "*",
+              "36.7 ± 1.1",
+              ""
+            ],
+            [
+              "ES",
+              "0.68 (− 0.36 to 1.65)",
+              "Moderate",
+              "0.74 (− 0.31 to 1.71)",
+              "Moderate",
+              "0.09 (− 0.89 to 1.07)",
+              "Trivial"
+            ],
+            [
+              "Absolute change",
+              "1.4 ± 0.5",
+              "",
+              "1.3 ± 0.6",
+              "",
+              "− 0.1 ± 0.5",
+              ""
+            ],
+            [
+              "% change",
+              "4.1",
+              "",
+              "4.2",
+              "",
+              "0",
+              ""
+            ]
+          ]
+        },
+        {
+          "table_id": "Tab4",
+          "caption": "Resistance training program.",
+          "row_count": 18,
+          "rows": [
+            [
+              "",
+              "Set 1",
+              "Set 2",
+              "Set 3",
+              "Set 4"
+            ],
+            [
+              "Week",
+              "Set type",
+              "Cluster × Reps",
+              "%1RM",
+              "Cluster rest",
+              "Rest (s)",
+              "Cluster × Reps",
+              "%1RM",
+              "Cluster rest",
+              "Rest (s)",
+              "Cluster × Reps",
+              "%1RM",
+              "Cluster rest",
+              "Rest (s)",
+              "Cluster × Reps",
+              "%1RM",
+              "Cluster rest",
+              "Rest (s)"
+            ],
+            [
+              "1",
+              "CS",
+              "2 × 5",
+              "70",
+              "20",
+              "120",
+              "2 × 5",
+              "75",
+              "30",
+              "120",
+              "2 × 4",
+              "80",
+              "30",
+              "120",
+              "2 × 3",
+              "85",
+              "30",
+              "180"
+            ],
+            [
+              "TS",
+              "1 × 10",
+              "70",
+              "0",
+              "120",
+              "1 × 10",
+              "75",
+              "0",
+              "120",
+              "1 × 8",
+              "80",
+              "0",
+              "120",
+              "1 × 6",
+              "85",
+              "0",
+              "180"
+            ],
+            [
+              "2",
+              "CS",
+              "2 × 5",
+              "70",
+              "20",
+              "120",
+              "2 × 5",
+              "75",
+              "30",
+              "120",
+              "2 × 4",
+              "80",
+              "30",
+              "120",
+              "2 × 3",
+              "85",
+              "30",
+              "180"
+            ],
+            [
+              "TS",
+              "1 × 10",
+              "70",
+              "0",
+              "120",
+              "1 × 10",
+              "75",
+              "0",
+              "120",
+              "1 × 8",
+              "80",
+              "0",
+              "120",
+              "1 × 6",
+              "85",
+              "0",
+              "180"
+            ],
+            [
+              "3",
+              "CS",
+              "2 × 5",
+              "70",
+              "20",
+              "120",
+              "2 × 5",
+              "75",
+              "30",
+              "120",
+              "2 × 4",
+              "80",
+              "30",
+              "120",
+              "2 × 3",
+              "85",
+              "30",
+              "180"
+            ],
+            [
+              "TS",
+              "1 × 10",
+              "70",
+              "0",
+              "120",
+              "1 × 10",
+              "75",
+              "0",
+              "120",
+              "1 × 8",
+              "80",
+              "0",
+              "120",
+              "1 × 6",
+              "85",
+              "0",
+              "180"
+            ],
+            [
+              "4",
+              "CS",
+              "2 × 5",
+              "70",
+              "20",
+              "120",
+              "2 × 5",
+              "75",
+              "30",
+              "120",
+              "2 × 4",
+              "80",
+              "30",
+              "120",
+              "2 × 3",
+              "85",
+              "30",
+              "180"
+            ],
+            [
+              "TS",
+              "1 × 10",
+              "70",
+              "0",
+              "120",
+              "1 × 10",
+              "75",
+              "0",
+              "120",
+              "1 × 8",
+              "80",
+              "0",
+              "120",
+              "1 × 6",
+              "85",
+              "0",
+              "180"
+            ],
+            [
+              "5",
+              "CS",
+              "2 × 4",
+              "80",
+              "20",
+              "120",
+              "2 × 3",
+              "85",
+              "20",
+              "120",
+              "2 × 2",
+              "90",
+              "20",
+              "120",
+              "2 × 2",
+              "95",
+              "30",
+              "180"
+            ],
+            [
+              "TS",
+              "1 × 8",
+              "80",
+              "0",
+              "120",
+              "1 × 6",
+              "85",
+              "0",
+              "120",
+              "1 × 4",
+              "90",
+              "0",
+              "120",
+              "1 × 4",
+              "95",
+              "0",
+              "180"
+            ],
+            [
+              "6",
+              "CS",
+              "2 × 4",
+              "80",
+              "20",
+              "120",
+              "2 × 3",
+              "85",
+              "20",
+              "120",
+              "2 × 2",
+              "90",
+              "20",
+              "120",
+              "2 × 2",
+              "95",
+              "30",
+              "180"
+            ],
+            [
+              "TS",
+              "1 × 8",
+              "80",
+              "0",
+              "120",
+              "1 × 6",
+              "85",
+              "0",
+              "120",
+              "1 × 4",
+              "90",
+              "0",
+              "120",
+              "1 × 4",
+              "95",
+              "0",
+              "180"
+            ],
+            [
+              "7",
+              "CS",
+              "2 × 4",
+              "85",
+              "20",
+              "120",
+              "2 × 3",
+              "85",
+              "20",
+              "120",
+              "2 × 2",
+              "90",
+              "20",
+              "120",
+              "2 × 2",
+              "95",
+              "30",
+              "180"
+            ],
+            [
+              "TS",
+              "1 × 8",
+              "85",
+              "0",
+              "120",
+              "1 × 6",
+              "85",
+              "0",
+              "120",
+              "1 × 4",
+              "90",
+              "0",
+              "120",
+              "1 × 4",
+              "95",
+              "0",
+              "180"
+            ],
+            [
+              "8",
+              "CS",
+              "2 × 4",
+              "85",
+              "20",
+              "120",
+              "2 × 3",
+              "85",
+              "20",
+              "120",
+              "2 × 2",
+              "90",
+              "20",
+              "120",
+              "2 × 2",
+              "95",
+              "30",
+              "180"
+            ],
+            [
+              "TS",
+              "1 × 8",
+              "85",
+              "0",
+              "120",
+              "1 × 6",
+              "85",
+              "0",
+              "120",
+              "1 × 4",
+              "90",
+              "0",
+              "120",
+              "1 × 4",
+              "95",
+              "0",
+              "180"
+            ]
+          ]
+        }
+      ],
+      "candidate_outcome_rows": [
+        {
+          "source": {
+            "pmcid": "PMC8041766",
+            "table_id": "Tab1",
+            "row_index_zero_based": 2
+          },
+          "cells": [
+            "1RM BP (kg)",
+            "Before",
+            "105.4 ± 11.8",
+            "95.4 ± 10.3",
+            "110.7 ± 11.2"
+          ],
+          "numeric_verification": "pending_group_header_and_uncertainty_review"
+        },
+        {
+          "source": {
+            "pmcid": "PMC8041766",
+            "table_id": "Tab1",
+            "row_index_zero_based": 4
+          },
+          "cells": [
+            "1RM BP/BW (Ratio)",
+            "Before",
+            "1.34 ± 0.81",
+            "1.22 ± 0.52",
+            "1.31 ± 0.63"
+          ],
+          "numeric_verification": "pending_group_header_and_uncertainty_review"
+        },
+        {
+          "source": {
+            "pmcid": "PMC8041766",
+            "table_id": "Tab1",
+            "row_index_zero_based": 6
+          },
+          "cells": [
+            "1RM BS (kg)",
+            "Before",
+            "126.5 ± 9.8",
+            "126.7 ± 8.7",
+            "129.5 ± 13.7"
+          ],
+          "numeric_verification": "pending_group_header_and_uncertainty_review"
+        },
+        {
+          "source": {
+            "pmcid": "PMC8041766",
+            "table_id": "Tab1",
+            "row_index_zero_based": 8
+          },
+          "cells": [
+            "1RM BS/BW (Ratio)",
+            "Before",
+            "1.56 ± 0.87",
+            "1.55 ± 0.84",
+            "1.55 ± 0.83"
+          ],
+          "numeric_verification": "pending_group_header_and_uncertainty_review"
+        },
+        {
+          "source": {
+            "pmcid": "PMC8041766",
+            "table_id": "Tab1",
+            "row_index_zero_based": 10
+          },
+          "cells": [
+            "1RM DL (kg)",
+            "Before",
+            "124.5 ± 9.8",
+            "121.7 ± 6.9",
+            "127.5 ± 11.7"
+          ],
+          "numeric_verification": "pending_group_header_and_uncertainty_review"
+        },
+        {
+          "source": {
+            "pmcid": "PMC8041766",
+            "table_id": "Tab1",
+            "row_index_zero_based": 12
+          },
+          "cells": [
+            "1RM DL/BW (Ratio)",
+            "Before",
+            "1.51 ± 0.54",
+            "1.47 ± 0.43",
+            "1.55 ± 0.73"
+          ],
+          "numeric_verification": "pending_group_header_and_uncertainty_review"
+        }
+      ],
+      "runnable": false,
+      "chart_publishable": false,
+      "human_review_required": true,
+      "protocol_decision": "BLOCKED",
+      "chart_decision": "BLOCKED",
+      "reason": "Keyword/table evidence is not complete per-arm, per-session verified prescription or chart-safe outcome mapping."
+    },
+    {
+      "pmid": "32269656",
+      "pmcid": "PMC7126254",
+      "title": "The Effects of the Movement Tempo on the One-Repetition Maximum Bench Press Results.",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7126254/fullTextXML",
+      "field_evidence": {
+        "duration": {
+          "status": "not_found",
+          "evidence": []
+        },
+        "frequency": {
+          "status": "not_found",
+          "evidence": []
+        },
+        "exercises": {
+          "status": "not_found",
+          "evidence": []
+        },
+        "sets": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC7126254",
+                "table_id": "j_hukin-2020-0001_tab_003"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        },
+        "reps": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC7126254",
+                "table_id": "j_hukin-2020-0001_tab_003"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        },
+        "intensity": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC7126254",
+                "table_id": "j_hukin-2020-0001_tab_003"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        },
+        "rest": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC7126254",
+                "table_id": "j_hukin-2020-0001_tab_003"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        },
+        "progression": {
+          "status": "not_found",
+          "evidence": []
+        },
+        "weekly_schedule": {
+          "status": "candidate_found_not_verified",
+          "evidence": [
+            {
+              "source": {
+                "pmcid": "PMC7126254",
+                "table_id": "j_hukin-2020-0001_tab_003"
+              },
+              "matched": "training table present; individual cells require review"
+            }
+          ]
+        }
+      },
+      "missing_evidence_fields": [
+        "duration",
+        "frequency",
+        "exercises",
+        "progression"
+      ],
+      "tables": [
+        {
+          "table_id": "j_hukin-2020-0001_tab_001",
+          "caption": "One-repetition maximum (1RM) performance with different movement tempos",
+          "row_count": 7,
+          "rows": [
+            [
+              "",
+              "Movement tempo during the 1RM test"
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "p"
+            ],
+            [
+              "",
+              "V/0/V/0",
+              "2/0/V/0",
+              "5/0/V/0",
+              "8/0/V/0",
+              "10/V/0/0",
+              ""
+            ],
+            [
+              "",
+              "(95% CI)",
+              "(95% CI)",
+              "(95% CI)",
+              "(95% CI)",
+              "(95% CI)",
+              ""
+            ],
+            [
+              "1RM (kg)",
+              "121.4 ± 49.6",
+              "120.9 ± 49.2",
+              "113.8 ± 47.1",
+              "107.1 ± 44.5",
+              "105.9 ± 43.0",
+              "0.01*"
+            ],
+            [
+              "",
+              "(111.0 to",
+              "(110.6 to",
+              "(103.9 to",
+              "(97.8 to",
+              "(96.8 to",
+              ""
+            ],
+            [
+              "",
+              "131.7)",
+              "131.3)",
+              "123.6)",
+              "116.5)",
+              "114.9)",
+              ""
+            ]
+          ]
+        },
+        {
+          "table_id": "j_hukin-2020-0001_tab_003",
+          "caption": "Hypothetical relationships between different training volume indices including total time under tension (TUT) according to different 1-repetiton maximum (1RM) scores for different movement tempos.",
+          "row_count": 6,
+          "rows": [
+            [
+              "Tempo",
+              "2/0/1/0",
+              "5/0/1/0",
+              "8/0/1/0",
+              "10/0/1/0",
+              "10/0/1/0"
+            ],
+            [
+              "1RM",
+              "150",
+              "140",
+              "130",
+              "125",
+              "125"
+            ],
+            [
+              "75% 1RM",
+              "113 kg",
+              "105 kg",
+              "98 kg",
+              "94 kg",
+              "94 kg"
+            ],
+            [
+              "Number of repetitions",
+              "15 reps",
+              "15 reps",
+              "15 reps",
+              "15 reps",
+              "5 reps"
+            ],
+            [
+              "Load*Reps",
+              "1.695 kg",
+              "1.575 kg",
+              "1.470 kg",
+              "1.410 kg",
+              "470 kg"
+            ],
+            [
+              "Load*Reps*TUT",
+              "5.085 kg*s",
+              "9.450 kg*s",
+              "13.230 kg*s",
+              "15.510 kg*s",
+              "5.170 kg*s"
+            ]
+          ]
+        }
+      ],
+      "candidate_outcome_rows": [
+        {
+          "source": {
+            "pmcid": "PMC7126254",
+            "table_id": "j_hukin-2020-0001_tab_001",
+            "row_index_zero_based": 4
+          },
+          "cells": [
+            "1RM (kg)",
+            "121.4 ± 49.6",
+            "120.9 ± 49.2",
+            "113.8 ± 47.1",
+            "107.1 ± 44.5",
+            "105.9 ± 43.0",
+            "0.01*"
+          ],
+          "numeric_verification": "pending_group_header_and_uncertainty_review"
+        }
+      ],
+      "runnable": false,
+      "chart_publishable": false,
+      "human_review_required": true,
+      "protocol_decision": "BLOCKED",
+      "chart_decision": "BLOCKED",
+      "reason": "Keyword/table evidence is not complete per-arm, per-session verified prescription or chart-safe outcome mapping."
+    }
+  ]
+}

@@ -27,6 +27,13 @@ jobs:
         run: python -m scripts.research_oa_v2 --pool 100 --limit 20
       - name: Audit Methods and Results evidence locations
         run: python -m scripts.research_evidence_gate --input data/research/oa_candidates_v2.json --output data/research/evidence_audit.json
+      - name: Extract source-located protocol fields and outcome table cells
+        run: python -m scripts.research_protocol_audit --input data/research/oa_candidates_v2.json --output data/research/protocol_audit.json
+      - name: Build blocked human review queue
+        run: python -m scripts.research_review_queue --input data/research/protocol_audit.json --output data/research/review_queue.json
+      - name: Validate no unreviewed study is published
+        run: |
+          python -c "import json; x=json.load(open('data/research/review_queue.json')); assert x['approved_protocols']==0 and x['approved_charts']==0; assert all(not p['runnable'] and not p['chart_publishable'] for p in x['papers'])"
       - name: Upload review-only metadata
         uses: actions/upload-artifact@v4
         with:
