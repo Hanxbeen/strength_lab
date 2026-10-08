@@ -29,15 +29,16 @@ final class WorkoutStore: ObservableObject {
     }
 
     @discardableResult
-    func append(exerciseID: String, weightKg: Double, reps: Int) -> Bool {
+    func append(exerciseID: String, weightKg: Double, reps: Int) -> UUID? {
         guard !exerciseID.isEmpty, weightKg >= 0, weightKg <= 2000, weightKg.isFinite,
               reps > 0, reps <= 100 else {
             lastError = WorkoutStoreError.invalidSet.localizedDescription
-            return false
+            return nil
         }
         var next = logs
-        next.append(LoggedSet(exerciseID: exerciseID, weightKg: weightKg, reps: reps))
-        return persist(next)
+        let newSet = LoggedSet(exerciseID: exerciseID, weightKg: weightKg, reps: reps)
+        next.append(newSet)
+        return persist(next) ? newSet.id : nil
     }
 
     func delete(id: UUID) {

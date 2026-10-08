@@ -19,3 +19,12 @@ For iPhone physical-device development, configure a reachable HTTPS API endpoint
 - Sets can be deleted. The Growth tab shows Epley e1RM estimates (1–10 reps) and training volume; actual 1RM recording is not yet implemented.
 - API URL may be supplied via Info.plist key MugeMugeAPIURL (HTTPS for remote hosts).
 - iOS 26 Liquid Glass requires a newer Xcode/iOS SDK than the currently installed Xcode 16.2.
+
+## Device installation checklist (iPhone iOS 26.5)
+- A physical iPhone named Hanbeen (iPhone 15 Pro, iOS 26.5) is paired with this Mac.
+- The current Xcode is 16.2 (iOS 18.2 SDK). Upgrade to an Xcode release supporting iOS 26.5 for on-device debugging and Liquid Glass development.
+- Xcode > Settings > Accounts: sign in with the Apple ID that owns the development team.
+- In Signing & Capabilities choose that team and enable automatic signing; generate a development provisioning profile for the app bundle ID.
+- Build and run on the selected physical device. Never use CODE_SIGNING_ALLOWED=NO for physical installation.
+- Device installation attempted on 2026-10-09 and failed because the app was unsigned; automatic signing then failed because Xcode has no account credentials for the development team.
+- The app has not yet passed device UI, gesture, lifecycle, or end-to-end testing.

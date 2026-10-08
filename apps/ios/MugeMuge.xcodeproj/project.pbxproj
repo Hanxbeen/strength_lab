@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B23ACBA556F234DE0144654 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50C3D9EBFC46A557B4E3556 /* Models.swift */; };
+		2E77BC668202584B256799ED /* TrainingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19401CE421EA9BB3C3247D7E /* TrainingState.swift */; };
 		46EA9522149F5F6E3F115CCB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */; };
 		7918A417D55792A2FEF02DA2 /* demo-catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = D572A0A487D87B6E13722EBB /* demo-catalog.json */; };
 		8FDFB5B3F32E1239CC65E045 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DAE7A055551BEC23579F96 /* Services.swift */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		19401CE421EA9BB3C3247D7E /* TrainingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingState.swift; sourceTree = "<group>"; };
 		583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugeMugeApp.swift; sourceTree = "<group>"; };
 		6F7587D144FA81489AC657AF /* StrengthMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrengthMetrics.swift; sourceTree = "<group>"; };
 		C50C3D9EBFC46A557B4E3556 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 				583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */,
 				D6DAE7A055551BEC23579F96 /* Services.swift */,
 				6F7587D144FA81489AC657AF /* StrengthMetrics.swift */,
+				19401CE421EA9BB3C3247D7E /* TrainingState.swift */,
 				5A803A1E5CEDD180AC05237A /* Resources */,
 			);
 			path = MugeMuge;
@@ -135,6 +138,7 @@
 				AAE69B3A60EC25C845B53DCF /* MugeMugeApp.swift in Sources */,
 				8FDFB5B3F32E1239CC65E045 /* Services.swift in Sources */,
 				A3C16BF9E09A3C02DE8E17A4 /* StrengthMetrics.swift in Sources */,
+				2E77BC668202584B256799ED /* TrainingState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
