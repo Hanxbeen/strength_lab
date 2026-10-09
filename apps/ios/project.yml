@@ -19,5 +19,12 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
-        CODE_SIGNING_ALLOWED: NO
-        CODE_SIGN_ENTITLEMENTS: MugeMuge/MugeMuge.entitlements
+        CODE_SIGNING_ALLOWED: YES
+        CODE_SIGN_STYLE: Automatic
+        INFOPLIST_KEY_CFBundleDisplayName: "무게꾼"
+        CODE_SIGN_ENTITLEMENTS: MugeMuge/MugeMugeDevelopment.entitlements
+      configs:
+        Debug:
+          DEVELOPMENT_TEAM: C7C4WB633C
+        Release:
+          CODE_SIGN_ENTITLEMENTS: MugeMuge/MugeMuge.entitlements

@@ -15,6 +15,7 @@
 		4FE523099F1EC19C115412E5 /* CloudAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E744A319CEA1DCD087DD588 /* CloudAccountView.swift */; };
 		7918A417D55792A2FEF02DA2 /* demo-catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = D572A0A487D87B6E13722EBB /* demo-catalog.json */; };
 		7DA4C4E50DB53841E9E80D68 /* CloudAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07375A476AB1E5577D26D23C /* CloudAuth.swift */; };
+		818D6109FA6BD74AE38C69A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E921D81DFFD49ED96A27D /* Assets.xcassets */; };
 		8FDFB5B3F32E1239CC65E045 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DAE7A055551BEC23579F96 /* Services.swift */; };
 		9269CD76BCC84AA4192FDBE4 /* CloudTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6DC524ED31912C1513BC54 /* CloudTransport.swift */; };
 		A3C16BF9E09A3C02DE8E17A4 /* StrengthMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7587D144FA81489AC657AF /* StrengthMetrics.swift */; };
@@ -29,12 +30,14 @@
 		0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		19401CE421EA9BB3C3247D7E /* TrainingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingState.swift; sourceTree = "<group>"; };
 		583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugeMugeApp.swift; sourceTree = "<group>"; };
+		604C1EA0AECEB9A6B8CB3594 /* MugeMugeDevelopment.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MugeMugeDevelopment.entitlements; sourceTree = "<group>"; };
 		6F7587D144FA81489AC657AF /* StrengthMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrengthMetrics.swift; sourceTree = "<group>"; };
 		7982630AB09572CCC9E04F6A /* MugeMascot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugeMascot.swift; sourceTree = "<group>"; };
 		7E744A319CEA1DCD087DD588 /* CloudAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAccountView.swift; sourceTree = "<group>"; };
 		9E23B881405602BC5A2D5937 /* CloudSyncPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSyncPlan.swift; sourceTree = "<group>"; };
 		C50C3D9EBFC46A557B4E3556 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		CDCF347449ABE0A62C0B2E63 /* BrandUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandUI.swift; sourceTree = "<group>"; };
+		D22E921D81DFFD49ED96A27D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D572A0A487D87B6E13722EBB /* demo-catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "demo-catalog.json"; sourceTree = "<group>"; };
 		D6DAE7A055551BEC23579F96 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		D86AAC36109BD955C8A0A463 /* MugeMuge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MugeMuge.entitlements; sourceTree = "<group>"; };
@@ -56,6 +59,7 @@
 		5A803A1E5CEDD180AC05237A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D22E921D81DFFD49ED96A27D /* Assets.xcassets */,
 				D572A0A487D87B6E13722EBB /* demo-catalog.json */,
 			);
 			path = Resources;
@@ -76,6 +80,7 @@
 				7982630AB09572CCC9E04F6A /* MugeMascot.swift */,
 				D86AAC36109BD955C8A0A463 /* MugeMuge.entitlements */,
 				583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */,
+				604C1EA0AECEB9A6B8CB3594 /* MugeMugeDevelopment.entitlements */,
 				D6DAE7A055551BEC23579F96 /* Services.swift */,
 				6F7587D144FA81489AC657AF /* StrengthMetrics.swift */,
 				19401CE421EA9BB3C3247D7E /* TrainingState.swift */,
@@ -122,6 +127,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					43C6BFD7658BF30830AC1D80 = {
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 67AFAA1C86E889915E0CB363 /* Build configuration list for PBXProject "MugeMuge" */;
@@ -148,6 +156,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				818D6109FA6BD74AE38C69A5 /* Assets.xcassets in Resources */,
 				7918A417D55792A2FEF02DA2 /* demo-catalog.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,10 +192,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_ENTITLEMENTS = MugeMuge/MugeMuge.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "무게꾼";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -267,10 +278,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGN_ENTITLEMENTS = MugeMuge/MugeMuge.entitlements;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_ENTITLEMENTS = MugeMuge/MugeMugeDevelopment.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C7C4WB633C;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "무게꾼";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
