@@ -14,11 +14,11 @@ class LilaPhase1ContractTests(unittest.TestCase):
     def setUpClass(cls):
         cls.spec = json.loads(SPEC_PATH.read_text(encoding='utf-8'))
 
-    def test_phase2_is_locked_before_approval(self):
+    def test_phase2_asset_preparation_approved_by_user(self):
         self.assertEqual(self.spec['phase'], 1)
-        self.assertEqual(self.spec['approval_status'], 'pending_user_approval')
-        self.assertFalse(self.spec['approval_gate']['rive_work_permitted'])
-        self.assertIsNone(self.spec['appearance']['tuft']['selected'])
+        self.assertEqual(self.spec['approval_status'], 'approved_for_phase2_asset_preparation')
+        self.assertTrue(self.spec['approval_gate']['rive_work_permitted'])
+        self.assertEqual(self.spec['appearance']['tuft']['selected'],'short_laid_2_to_3_strands')
 
     def test_all_six_levels_in_order(self):
         self.assertEqual([x['id'] for x in self.spec['levels']], list(range(1, 7)))

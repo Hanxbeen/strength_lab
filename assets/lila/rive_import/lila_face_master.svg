@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 620" width="600" height="620" aria-label="릴라 성장 릴라" data-level="3" data-role="lila-layered-artwork">
+  
+<defs>
+  <radialGradient id="furGrad" cx="36%" cy="23%" r="89%" fx="28%" fy="20%">
+    <stop offset="0%" stop-color="#515151"/>
+    <stop offset="45%" stop-color="#343434"/>
+    <stop offset="100%" stop-color="#1B1C1D"/>
+  </radialGradient>
+  <radialGradient id="furDark" cx="30%" cy="15%" r="98%">
+    <stop offset="0%" stop-color="#424141"/>
+    <stop offset="100%" stop-color="#222223"/>
+  </radialGradient>
+  <radialGradient id="skinGrad" cx="30%" cy="12%" r="98%">
+    <stop offset="0%" stop-color="#FFF6EA"/>
+    <stop offset="62%" stop-color="#F3E7DB"/>
+    <stop offset="100%" stop-color="#D8C3B3"/>
+  </radialGradient>
+  <radialGradient id="skinMuzzle" cx="32%" cy="12%" r="100%">
+    <stop offset="0%" stop-color="#FFF8EB"/>
+    <stop offset="65%" stop-color="#F3E7DB"/>
+    <stop offset="100%" stop-color="#DFCCBA"/>
+  </radialGradient>
+  <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#FFE6A7"/>
+    <stop offset="45%" stop-color="#E4AE50"/>
+    <stop offset="100%" stop-color="#B27B2B"/>
+  </linearGradient>
+  <linearGradient id="capeRed" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#C84943"/>
+    <stop offset="100%" stop-color="#8C2424"/>
+  </linearGradient>
+</defs>
+  <g id="character_root">
+    
+    
+    
+    
+    
+    
+    <g id="head_group" transform="translate(300 202) scale(1.015) translate(-300 -187)">
+    <g id="ear_left">
+      <ellipse cx="166" cy="218" rx="40" ry="48" fill="url(#furDark)"/>
+      <ellipse cx="166" cy="220" rx="19" ry="27" fill="#2A2A2A"/>
+    </g>
+    <g id="ear_right">
+      <ellipse cx="434" cy="218" rx="40" ry="48" fill="url(#furDark)"/>
+      <ellipse cx="434" cy="220" rx="19" ry="27" fill="#2A2A2A"/>
+    </g>
+    <g id="head_skull">
+      <path d="M300 48 C197 43 142 120 142 219 C137 306 190 365 300 367 C410 365 463 306 458 219 C458 120 403 43 300 48Z" fill="url(#furGrad)"/>
+    </g>
+    <g id="tuft_A" aria-label="짧게 옆으로 누운 3가닥 잔털">
+      <path d="M299 52 C285 41 279 30 284 25 C295 24 302 37 307 48Z" fill="#353535"/>
+      <path d="M304 51 C304 33 312 24 320 30 C323 38 318 46 309 53Z" fill="#3B3B3B"/>
+      <path d="M305 54 C314 41 328 40 332 46 C331 54 317 59 305 54Z" fill="#303031"/>
+    </g>
+    <g id="forehead_skin">
+      <path d="M207 226 C206 176 218 139 252 137 C269 132 289 144 300 155 C315 140 327 132 348 136 C387 135 397 178 394 227 C390 272 358 285 301 288 C237 285 210 263 207 226Z" fill="url(#skinGrad)"/>
+    </g>
+    <g id="muzzle_skin">
+      <path d="M215 255 C236 237 265 236 298 247 C333 235 363 237 386 255 C411 272 416 313 401 345 C386 380 338 399 300 396 C256 399 212 377 198 341 C186 310 192 276 215 255Z" fill="url(#skinMuzzle)"/>
+    </g>
+    <g id="eye_left"><rect x="265" y="195" width="13" height="33" rx="6.5" fill="#191A1B"/></g>
+    <g id="eye_right"><rect x="322" y="195" width="13" height="33" rx="6.5" fill="#191A1B"/></g>
+    <g id="nostril_left"><ellipse cx="292" cy="272" rx="4.1" ry="4.8" fill="#191A1B"/></g>
+    <g id="nostril_right"><ellipse cx="307" cy="272" rx="4.1" ry="4.8" fill="#191A1B"/></g>
+  </g>
+    
+  </g>
+</svg>

@@ -1,0 +1,233 @@
+{
+  "version": "2.0.0-alpha",
+  "brand": "무게꾼",
+  "character": "릴라",
+  "phase": 2,
+  "asset_status": "editable_svg_source_prototype_not_rive",
+  "approved_tuft": "short_laid_2_to_3_strands",
+  "mouth": false,
+  "artboard": {
+    "width": 600,
+    "height": 620,
+    "viewbox": "0 0 600 620"
+  },
+  "levels": [
+    {
+      "id": 1,
+      "name": "아기 릴라",
+      "svg": "rive_import/lila_level_01.svg",
+      "body_x": 106,
+      "arm_rx": 31,
+      "leg_rx": 34,
+      "head_scale": 1.1,
+      "props": []
+    },
+    {
+      "id": 2,
+      "name": "새싹 릴라",
+      "svg": "rive_import/lila_level_02.svg",
+      "body_x": 106,
+      "arm_rx": 31,
+      "leg_rx": 30,
+      "head_scale": 1.055,
+      "props": []
+    },
+    {
+      "id": 3,
+      "name": "성장 릴라",
+      "svg": "rive_import/lila_level_03.svg",
+      "body_x": 121,
+      "arm_rx": 37,
+      "leg_rx": 37,
+      "head_scale": 1.015,
+      "props": []
+    },
+    {
+      "id": 4,
+      "name": "단단한 릴라",
+      "svg": "rive_import/lila_level_04.svg",
+      "body_x": 144,
+      "arm_rx": 45,
+      "leg_rx": 44,
+      "head_scale": 0.98,
+      "props": []
+    },
+    {
+      "id": 5,
+      "name": "숙련 릴라",
+      "svg": "rive_import/lila_level_05.svg",
+      "body_x": 164,
+      "arm_rx": 56,
+      "leg_rx": 52,
+      "head_scale": 0.96,
+      "props": []
+    },
+    {
+      "id": 6,
+      "name": "무게왕 릴라",
+      "svg": "rive_import/lila_level_06.svg",
+      "body_x": 164,
+      "arm_rx": 56,
+      "leg_rx": 52,
+      "head_scale": 0.96,
+      "props": [
+        "crown",
+        "cape"
+      ]
+    }
+  ],
+  "master_face": "rive_import/lila_face_master.svg",
+  "part_groups": [
+    "cape_back",
+    "leg_left",
+    "leg_right",
+    "foot_left",
+    "foot_right",
+    "body_torso",
+    "belly_skin",
+    "arm_left",
+    "arm_right",
+    "head_group",
+    "ear_left",
+    "ear_right",
+    "head_skull",
+    "tuft_A",
+    "forehead_skin",
+    "muzzle_skin",
+    "eye_left",
+    "eye_right",
+    "nostril_left",
+    "nostril_right",
+    "crown_front"
+  ],
+  "pivot_hints": {
+    "head_group": [
+      300,
+      187
+    ],
+    "body_torso": [
+      300,
+      430
+    ],
+    "arm_left": [
+      160,
+      360
+    ],
+    "arm_right": [
+      440,
+      360
+    ],
+    "leg_left": [
+      230,
+      465
+    ],
+    "leg_right": [
+      370,
+      465
+    ],
+    "foot_left": [
+      230,
+      548
+    ],
+    "foot_right": [
+      370,
+      548
+    ],
+    "tuft_A": [
+      300,
+      52
+    ]
+  },
+  "moods": [
+    {
+      "id": "idle",
+      "label": "기본",
+      "symbol": ""
+    },
+    {
+      "id": "happy",
+      "label": "행복",
+      "symbol": "♥"
+    },
+    {
+      "id": "surprise",
+      "label": "놀람",
+      "symbol": "!"
+    },
+    {
+      "id": "curious",
+      "label": "궁금",
+      "symbol": "?"
+    },
+    {
+      "id": "dizzy",
+      "label": "어지러움",
+      "symbol": "@"
+    },
+    {
+      "id": "focus",
+      "label": "집중",
+      "symbol": "•"
+    },
+    {
+      "id": "sleepy",
+      "label": "졸림",
+      "symbol": "Zzz"
+    },
+    {
+      "id": "confident",
+      "label": "자신감",
+      "symbol": "✦"
+    },
+    {
+      "id": "celebrate",
+      "label": "축하",
+      "symbol": "✧"
+    },
+    {
+      "id": "repairing",
+      "label": "정비",
+      "symbol": "⚙"
+    },
+    {
+      "id": "warning",
+      "label": "주의",
+      "symbol": "!"
+    }
+  ],
+  "motion_contract": {
+    "idle": "breathing_and_subtle_head_sway",
+    "blink": "brief_eye_compression",
+    "happy": "soft_eyes_plus_heart_optional",
+    "surprise": "enlarged_eyes_plus_exclamation",
+    "curious": "eyes_glance_plus_question",
+    "dizzy": "brief_wobble_and_spiral",
+    "focus": "stillness_and_narrowed_eyes",
+    "sleepy": "lowered_lids_and_slow_breath",
+    "confident": "subtle_chest_expansion",
+    "celebrate": "brief_safe_hop_and_star",
+    "repairing": "arm_reaches_tool_to_target_actual_tool_animation_pending",
+    "warning": "brief_alert_then_stationary"
+  },
+  "import_guidance": {
+    "svg_features": [
+      "editable_groups",
+      "simple_paths",
+      "linear_gradients",
+      "radial_gradients"
+    ],
+    "unsupported_avoided": [
+      "filter",
+      "embedded_images",
+      "mask",
+      "stroke-dasharray"
+    ]
+  },
+  "review_gates": {
+    "original_3d_likeness": "manual_review_required",
+    "rive_bones_and_states": "not_built",
+    "real_riv_file": "not_built",
+    "ios_runtime": "not_integrated",
+    "production_ready": false
+  }
+}

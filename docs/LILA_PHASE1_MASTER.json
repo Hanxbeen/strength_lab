@@ -3,7 +3,7 @@
   "brand": "무게꾼",
   "character": "릴라",
   "phase": 1,
-  "approval_status": "pending_user_approval",
+  "approval_status": "approved_for_phase2_asset_preparation",
   "reference": {
     "type": "user_selected_3d_character_sheet",
     "date": "2026-10-09",
@@ -51,7 +51,7 @@
         "short_laid_2_to_3_strands",
         "none"
       ],
-      "selected": null,
+      "selected": "short_laid_2_to_3_strands",
       "forbidden": [
         "stacked_buns",
         "three_spherical_balls",
@@ -239,6 +239,7 @@
       "no_unapproved_measurements",
       "source_reference_reviewed"
     ],
-    "rive_work_permitted": false
+    "rive_work_permitted": true,
+    "artwork_visual_review_required": true
   }
 }
