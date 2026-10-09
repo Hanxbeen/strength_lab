@@ -1,0 +1,244 @@
+{
+  "version": "1.0.0-draft",
+  "brand": "무게꾼",
+  "character": "릴라",
+  "phase": 1,
+  "approval_status": "pending_user_approval",
+  "reference": {
+    "type": "user_selected_3d_character_sheet",
+    "date": "2026-10-09",
+    "status": "chat_only_not_in_repository",
+    "note": "New generated proposal images must not silently replace the user-approved reference."
+  },
+  "appearance": {
+    "fur": {
+      "base": "#2A2A2A",
+      "light": "#424141",
+      "shadow": "#1B1C1D",
+      "finish": "matte_3d",
+      "no_green_cast": true
+    },
+    "skin": {
+      "base": "#F3E7DB",
+      "light": "#FFF3E6",
+      "shadow": "#D8C3B3"
+    },
+    "face": {
+      "ivory_forehead": true,
+      "ivory_protruding_wide_muzzle": true,
+      "eyes": {
+        "count": 2,
+        "default_shape": "vertical_oval",
+        "color": "#191A1B",
+        "white_sclera": false
+      },
+      "nostrils": {
+        "count": 2,
+        "small": true,
+        "color": "#191A1B"
+      },
+      "mouth": "never",
+      "teeth": false,
+      "tongue": false
+    },
+    "ears": {
+      "count": 2,
+      "shape": "round",
+      "relative_size": "small"
+    },
+    "tuft": {
+      "options": [
+        "short_laid_2_to_3_strands",
+        "none"
+      ],
+      "selected": null,
+      "forbidden": [
+        "stacked_buns",
+        "three_spherical_balls",
+        "horns",
+        "tall_pointy_spikes"
+      ]
+    },
+    "accent": {
+      "crown": "#E4AE50",
+      "cape": "#B53B35",
+      "cape_and_crown_levels": [
+        6
+      ]
+    },
+    "presentation": {
+      "camera": "frontal",
+      "lighting": "consistent_soft_3d",
+      "ground_line": "identical",
+      "prop_policy": "none_except_crown_and_cape_at_level_6"
+    }
+  },
+  "levels": [
+    {
+      "id": 1,
+      "name": "아기 릴라",
+      "pose": "seated",
+      "body_signature": [
+        "oversized_head",
+        "short_limbs",
+        "compact_body"
+      ],
+      "props": []
+    },
+    {
+      "id": 2,
+      "name": "새싹 릴라",
+      "pose": "standing",
+      "body_signature": [
+        "young_slim_limbs",
+        "still_small_shoulders",
+        "longer_limbs_than_1"
+      ],
+      "props": []
+    },
+    {
+      "id": 3,
+      "name": "성장 릴라",
+      "pose": "standing",
+      "body_signature": [
+        "first_clear_chest_volume",
+        "shoulder_width_increase",
+        "stable_upright_posture"
+      ],
+      "props": []
+    },
+    {
+      "id": 4,
+      "name": "단단한 릴라",
+      "pose": "standing",
+      "body_signature": [
+        "thicker_forearms",
+        "thicker_upper_arms",
+        "thicker_thighs",
+        "stronger_chest_curve"
+      ],
+      "props": []
+    },
+    {
+      "id": 5,
+      "name": "숙련 릴라",
+      "pose": "standing_arms_down",
+      "body_signature": [
+        "broad_shoulders",
+        "thicker_traps",
+        "wide_upper_body",
+        "grounded_legs"
+      ],
+      "props": []
+    },
+    {
+      "id": 6,
+      "name": "무게왕 릴라",
+      "pose": "standing_arms_down",
+      "body_signature": [
+        "same_adult_body_as_5",
+        "crown",
+        "cape"
+      ],
+      "props": [
+        "crown",
+        "cape"
+      ]
+    }
+  ],
+  "expressions": {
+    "eye_base": "two_vertical_ovals",
+    "mouth_always": "none",
+    "symbol_layer": "separate_2d_overlay",
+    "states": [
+      {
+        "id": "idle",
+        "eye": "vertical_oval",
+        "glyph": null
+      },
+      {
+        "id": "blink",
+        "eye": "compressed_vertical_oval",
+        "glyph": null
+      },
+      {
+        "id": "happy",
+        "eye": "soft_arc",
+        "glyph": "heart_optional"
+      },
+      {
+        "id": "surprise",
+        "eye": "wide_vertical_oval",
+        "glyph": "exclamation"
+      },
+      {
+        "id": "curious",
+        "eye": "glance",
+        "glyph": "question"
+      },
+      {
+        "id": "dizzy",
+        "eye": "swirling",
+        "glyph": "at_or_spiral"
+      },
+      {
+        "id": "focus",
+        "eye": "slightly_narrowed",
+        "glyph": "short_marks_optional"
+      },
+      {
+        "id": "sleepy",
+        "eye": "half_closed",
+        "glyph": "zzz"
+      },
+      {
+        "id": "confident",
+        "eye": "vertical_oval",
+        "glyph": "sparkle_optional"
+      },
+      {
+        "id": "celebrate",
+        "eye": "bright_vertical",
+        "glyph": "confetti_optional"
+      },
+      {
+        "id": "warning",
+        "eye": "short_blink",
+        "glyph": "warning_mark"
+      },
+      {
+        "id": "repairing",
+        "eye": "focused_vertical",
+        "glyph": "gear_optional"
+      }
+    ]
+  },
+  "forbidden": [
+    "mouth",
+    "tongue",
+    "teeth",
+    "unknown_handheld_props",
+    "non_charcoal_fur",
+    "green_or_teal_fur",
+    "random_height_cm_labels",
+    "random_weight_kg_labels",
+    "same_shape_rescaled_as_all_levels"
+  ],
+  "approval_gate": {
+    "min_levels": 6,
+    "max_levels": 6,
+    "criteria": [
+      "six_levels_present",
+      "correct_order_names",
+      "no_props_levels_1_5",
+      "only_crown_cape_level_6",
+      "consistent_face_eyes_nose",
+      "gradual_muscle_shape_progression",
+      "no_mouth",
+      "correct_tuft_option",
+      "no_unapproved_measurements",
+      "source_reference_reviewed"
+    ],
+    "rive_work_permitted": false
+  }
+}
