@@ -1,0 +1,69 @@
+{
+  "version": "poster-derived-Rive-v1",
+  "kind": "embedded_3D_poster_bitmaps",
+  "source_reference": "assets/lila/poster_sprites/poster_reference.jpeg",
+  "reference_is_3D_render_not_editable_3D_model": true,
+  "level_pngs": [
+    {
+      "level": 1,
+      "source": "assets/lila/poster_sprites/lila_lv01.webp",
+      "width": 265,
+      "height": 265,
+      "sha256": "7a86eb5872cc32baa6f1381d0e925d59fd66dea9526f67064b253642c02ca945",
+      "png": "assets/lila/rive_cli/sprites/lila_lv01.png"
+    },
+    {
+      "level": 2,
+      "source": "assets/lila/poster_sprites/lila_lv02.webp",
+      "width": 304,
+      "height": 374,
+      "sha256": "b310f81a727f598b27fcc3611f20c48ce4e499dd3d093762f995f7d6164fba33",
+      "png": "assets/lila/rive_cli/sprites/lila_lv02.png"
+    },
+    {
+      "level": 3,
+      "source": "assets/lila/poster_sprites/lila_lv03.webp",
+      "width": 417,
+      "height": 421,
+      "sha256": "b78f20340c68a55bddef3ee8f59f08e598a3ba0fb95a32c9029ad13ede28da57",
+      "png": "assets/lila/rive_cli/sprites/lila_lv03.png"
+    },
+    {
+      "level": 4,
+      "source": "assets/lila/poster_sprites/lila_lv04.webp",
+      "width": 443,
+      "height": 441,
+      "sha256": "07c63b0fb8f666d70165cc035764c05d1a4be4b1038f6884b47a31c02e0ffb1c",
+      "png": "assets/lila/rive_cli/sprites/lila_lv04.png"
+    },
+    {
+      "level": 5,
+      "source": "assets/lila/poster_sprites/lila_lv05.webp",
+      "width": 462,
+      "height": 458,
+      "sha256": "ee18f62d234113c4290f1ce0402dd37436c56e6e6ec0f1f747bac0631a51c77b",
+      "png": "assets/lila/rive_cli/sprites/lila_lv05.png"
+    },
+    {
+      "level": 6,
+      "source": "assets/lila/poster_sprites/lila_lv06.webp",
+      "width": 534,
+      "height": 478,
+      "sha256": "7393c577dd3e87b5d76a7b43ea61edb3e5d474afe5e1d2cc76bd8906e8b124d2",
+      "png": "assets/lila/rive_cli/sprites/lila_lv06.png"
+    }
+  ],
+  "artboard": "600x620",
+  "floor_y": 562,
+  "animation_implemented": [
+    "calm_full_body_breath",
+    "subtle_full_body_sway"
+  ],
+  "animation_not_implemented": [
+    "independent_eye_blink",
+    "emotion_states",
+    "articulated_sbd_exercise",
+    "viewpoint_rotation"
+  ],
+  "quality_gate": "user_reference_match_required_on_physical_iphone"
+}

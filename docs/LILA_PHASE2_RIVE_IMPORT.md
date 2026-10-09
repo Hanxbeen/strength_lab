@@ -1,69 +1,81 @@
-# 릴라 Phase 2 — 실제 Rive 빌드 및 iOS 통합 (실기기 시각 검수 대기)
+# 릴라 — 원본 3D 포스터 기반 실제 Rive 구현
 
-> 제품: 무게꾼 · 캐릭터: 릴라 · 2026-10-09 · 머리털 A안 (짧게 누운 잔털 2~3가닥)
->
-> **중요:** 공식 Rive CLI를 통해 **실제 `lila.riv` 바이너리**가 생성되었고, 공식 RiveRuntime 6.28.1을 링크하는 **iOS 코드 빌드가 통과**했다. 하지만 사용자가 승인한 **원본 3D 모델과 완전히 같은 이미지가 아니다.** 정지 SVG→RML 벡터 포팅은 조명·질감을 단순화한다. 감정 11종 및 운동 동작의 Rive state machine 제작도 아직 완료하지 않았다.
+> **상태**: 6단계 원본 3D 포스터 이미지가 **실제 Rive 아트보드**에 임베드됨. iPhone 15 Pro 실기기 설치·실행 및 Lv.6 렌더링 확인 완료(2026-10-09). 독립 표정/운동 동작과 원본 이미지 고해상도화는 미완성.
 
-## 이번에 확인한 사실
+## 디자인 원본과 에셋
 
-- Rive CLI 1.5.1 설치 및 환경 진단 정상.
-- `assets/lila/rive_cli/scene.rml`은 **Rive Markup Language 실제 소스**. 6개 아트보드 이름 `LilaLv1` ~ `LilaLv6`, 각각 `LilaCompanion` 상태 머신.
-- 각 레벨에 **IdleBreath** (머리 미세 회전/몸통 호흡)와 **NaturalBlink** (좌우 눈 수직 스케일) 두 개의 반복 애니메이션이 실제 키프레임으로 존재.
-- CLI의 `--verify` 빌드 성공, `rive inspect --summary`에서 **problems=[]**, 6개 아트보드 확인.
-- `apps/ios/MugeMuge/Resources/lila.riv`에 실제 바이너리 저장. 정식 Rive magic header `RIVE`.
-- `apps/ios/MugeMuge/LilaRiveView.swift`는 공식 `RiveRuntime`의 `AsyncRiveUIViewRepresentable`, `Worker`, `File`, `Rive` API 사용.
-- `HomeView.swift`의 홈 마스코트가 `LilaRiveView`로 변경됨. `LilaStudioView.swift`는 DEBUG 전용 레벨 1~6 검수 화면.
-- 움직임 감소 설정(`accessibilityReduceMotion`)이 켜지면 재생을 일시정지함.
-- Xcode 27에서 공식 XCFramework를 사용하여 `generic/platform=iOS` **서명 없는 빌드 및 Apple Development 서명 빌드 모두 성공**. 서명 프로파일은 `iOS Team Provisioning Profile: app.mugemuge.ios`. 경고 일부는 기존 다른 화면에서 발생.
-- Mac과 iPhone이 실제로 연결된 뒤 **코드 서명 빌드 + 설치 + 실제 렌더/충돌 검증은 별도 수행해야 함**. 완료 전 실기기 성공이라 주장하지 않는다.
+사용자가 승인한 원본 3D 포스터의 고릴라를 SVG로 재해석하지 않고, **실제 3D 렌더 이미지에서 분리한 6개의 RGBA 투명 에셋**을 사용한다.
 
-## 로컬 재현 방법
+- 원본 포스터: `assets/lila/poster_sprites/poster_reference.jpeg`
+- 캐릭터별 원본: `assets/lila/poster_sprites/lila_lv01.webp` ~ `lila_lv06.webp`
+- Rive에 포함되는 손실 없는 PNG: `assets/lila/rive_cli/sprites/lila_lv01.png` ~ `lila_lv06.png`
+- 이미지별 픽셀 동일성·출처·제약: `assets/lila/poster_sprites/implementation_manifest.json`
+- 최종 Rive 파일: `apps/ios/MugeMuge/Resources/lila.riv` (**실제 RIVE 시그니처 바이너리**)
+
+각 이미지의 픽셀·알파 채널은 WebP 디코딩 후 PNG 변환 시 **동일하게 유지**된다. 다른 고릴라 그림이나 기본 타원형 SVG를 본 생산 파일에 사용하지 않는다.
+
+단, 전체 포스터로부터 잘라낸 2D 이미지이고 편집 가능한 3D 모델이 아니다. 3D 음영은 정지 이미지로 보존되지만 **실제 3D 회전/시점 변경은 구현되지 않으며**, 원본 이미지가 작아 확대 시 해상도 제한이 있다. 머리와 손발을 큰 폭으로 독립 움직이려면 고품질 원본 파츠 추가 제작이 필요하다.
+
+## Rive 구현
+
+- 아트보드: `LilaLv1`~`LilaLv6` (6개)
+- 상태 머신: 각 레벨별 `LilaCompanion`
+- 두 애니메이션 (각 레벨별): `CalmBreath` (발 위치 기준 미세 수직 압축) 및 `SoftSway` (작은 좌우 회전)
+- 이미지 파츠: 현 단계에서는 **각 레벨의 전체 캐릭터 이미지 1개**. 독립 눈/팔/다리/머리 파츠는 아직 없음
+- Lv.6에만 왕관·망토가 포함되며, 이는 원본 이미지에 이미 렌더되어 있음. 왕관·망토의 별도 분리·운동 중 숨김은 아직 안 됨.
+- 실제 SwiftUI 통합: `LilaRiveView.swift` → 공식 `RiveRuntime` → `lila.riv`; `LilaStudioView.swift`에서 Lv.1~6 교체 확인
+- Reduce Motion: 켜진 경우 Rive 재생 일시정지
+
+**구현하지 않은 것:** 감정 11종 인터랙션, 독립 눈 깜빡임, 전신 관절 리그, 스쿼트/벤치/데드리프트 등 운동 동작, 정확한 3D 자유 회전. UI에 이 기능을 구현했다고 주장하면 안 된다.
+
+## 정식 빌드 경로
 
 ```bash
 cd /Users/hanbeen/codex-workspace/strength_lab
 
-# 최초 1회: 공식 런타임 ZIP 확보, 체크섬 검증, 앱 저장소에서 제외된 바이너리로 압축 해제
-bash scripts/install_rive_xcframework.sh
-
-# 단계/얼굴 SVG → RML → 실제 .riv → 6개 아트보드 검사 → iOS 리소스 복사 → 테스트
+# 받은 원본 3D 포스터 에셋을 이미 repo의 assets/lila/poster_sprites에 둠
+# 원본 PNG를 임베드하는 RML 생성 → 실제 .riv → 검사 → iOS 리소스 교체
 bash scripts/build_lila_rive.sh
+
+# 첫 빌드 전 공식 Rive 6.28.1 xcframework 다운로드/체크섬 검증
+bash scripts/install_rive_xcframework.sh
 
 cd apps/ios
 xcodegen generate
 xcodebuild -project MugeMuge.xcodeproj -scheme MugeMuge \
   -configuration Debug -destination 'generic/platform=iOS' \
-  CODE_SIGNING_ALLOWED=NO build
+  DEVELOPMENT_TEAM=C7C4WB633C CODE_SIGN_STYLE=Automatic \
+  CODE_SIGNING_ALLOWED=YES -allowProvisioningUpdates build
 ```
 
-### 재현성·저장소 경계
+공식 Rive CLI 1.5.1을 사용하며, RML 생성기는 `scripts/generate_lila_poster_rive_rml.py`이다. 이전 `scripts/generate_lila_rive_rml.py`와 `assets/lila/rive_import/*.svg`는 **히스토리 참고용 레거시**이고, 생산 빌드에서 사용하지 않는다.
 
-- 공식 릴리스 ZIP 소스 URL: `https://github.com/rive-app/rive-ios/releases/download/6.28.1/RiveRuntime.xcframework.zip`
-- SHA-256: `6912ebf2cb6b5b99cac9a255f7d205cf8edf59a22fbdacd561a36d3820cc9baa`
-- `apps/ios/RiveRuntimePackage/Package.swift`는 **로컬 바이너리 타깃**의 래퍼. `Binaries/`는 `.gitignore`로 제외되어 Git에 넣지 않는다.
-- `assets/lila/rive_cli/build/`는 CLI 빌드 임시 디렉터리. **프로젝트의 `apps/ios/MugeMuge/Resources/lila.riv`만 배포용 바이너리**.
-- RML 생성: `scripts/generate_lila_rive_rml.py`; SVG 생성: `scripts/build_lila_phase2_assets.py`; 전체 빌드/검수: `scripts/build_lila_rive.sh`.
+앱 아이콘은 `scripts/generate_lila_poster_icon.py`로 **Lv.3 포스터 원본 릴라 얼굴을 추출**해 제작한다. 앱 아이콘에는 Rive 파일을 직접 사용할 수 없으므로 정적 PNG만 사용한다.
 
-## 현재 QA 게이트
+### 품질·검증 상태
 
-| 게이트 | 상태 |
+| 항목 | 상태 |
 |---|---|
-| A1. 원화 6레벨/입 없음/소품 규칙 | 자동 테스트 통과 |
-| A2. RML 빌드 및 6개 Rive 아트보드, 2개 실제 애니메이션 | CLI 검증 통과 |
-| A3. Rive iOS 프레임워크 링크, 앱 패키지에 .riv 포함 | Xcode 빌드 및 실기기용 개발 서명 통과 |
-| B1. 원본 3D 릴라와 동일한 질감·형상 | **미통과 / 추가 디자인 보정 필요** |
-| B2. 감정 11종 상태 전환 | **미구현** (현재 2개 idle/blink 반복 애니메이션만 구현) |
-| B3. 운동 자세·관절·장비 상호작용 | **미구현** |
-| C1. iPhone 실제 설치/실행/상태 전환 | **기기 연결 후 검증 필요** |
-| C2. 성능·접근성·저전력·앱 데이터 보존 | 실기기 검증 대기 |
+| 6개 원본 이미지·투명도 | 확인 |
+| 각 원본 이미지와 PNG 디코딩 결과 픽셀 일치 | 자동 검증 통과 |
+| 6개 실제 Rive 아트보드 | Rive CLI 검사 통과 |
+| 기본 호흡·미세 흔들림 키프레임 | 코드 및 Rive CLI 검사 통과 |
+| 원본 포스터에서 잘라낸 이미지와 동일한 정면 인상 | 직접 추출이므로 구조·색·형태 동일, 단 원본 해상도 한계 존재 |
+| 실제 iPhone 설치·실행 | **iPhone 15 Pro에 같은 번들 ID로 업데이트 설치, 앱 실행 확인** |
+| 실제 iPhone 렌더링 | **Lv.6 왕관·빨간 망토가 있는 원본 3D 릴라 화면 캡처로 확인** |
+| Rive 애니메이션 시간 차 검증 | **Lv.6 0초 vs 1초 프레임 차이 확인 (밝기차 >5 픽셀 27,729개)** |
+| 독립 표정·운동 동작 | 미구현 |
+| 3D 모델·해상도 업그레이드 | 미구현 |
 
-## 실기기에서 확인할 화면
+### 파일 관리
 
-1. iPhone을 Mac에 연결하고 잠금 해제. `xcrun devicectl list devices`에서 `Hanbeen`이 `available`인지 확인.
-2. 동일 Bundle ID `app.mugemuge.ios` 개발 앱으로 빌드/설치. 기존 데이터 손실 방지를 위해 앱 삭제·초기화 금지.
-3. 홈 상단 마스코트가 실제로 움직이는지 확인하고, **릴라 Rive 실험실**에서 Lv.1~6 선택 및 눈 깜빡임 확인.
-4. 정지/백그라운드 동작 및 Reduce Motion, 앱 재실행 검수.
-5. 성공 시 앱의 최종 디자인 후보와 실제 Rive 화면을 비교. 원본 3D 품질에는 추가 디자인 반복이 필요.
+- `docs/UX_WIREFRAME.html`은 사용자 소유 파일. 이 작업에서 수정·삭제·커밋하지 않는다.
+- iOS 번들 ID는 `app.mugemuge.ios` 유지. 같은 앱 위에 업데이트 설치하며 기존 앱을 삭제하지 않는다.
 
-## 별도 유의사항
+### 2026-10-09 실기기 검수 기록
 
-이 프로젝트의 사용자 소유 `docs/UX_WIREFRAME.html`은 수정·커밋·삭제하지 않는다.
+- 대상: Hanbeen iPhone 15 Pro / iOS 26.5 / USB 페어링 / 개발자 모드 활성화.
+- Xcode 27, Apple Development 서명 및 프로비저닝, 코드 서명 무결성 검사 통과.
+- 기존 앱을 삭제하지 않고 `app.mugemuge.ios`로 업데이트 설치. 현장 캡처에 릴라 실험실 Lv.6의 원본 3D 렌더와 왕관·망토가 표시된 것을 확인.
+- 스크린샷 자체는 개인 기기 상의 콘텐츠가 포함될 수 있어 GitHub에 업로드하지 않음.
+- 실제 iPhone 상에서 모든 6개 레벨과 모든 감정/관절 움직임의 실사용 QA 완료를 의미하지 않음.

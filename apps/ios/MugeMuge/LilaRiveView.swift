@@ -5,7 +5,8 @@ import RiveRuntime
 ///
 /// Artboards: LilaLv1 ... LilaLv6, state machine: LilaCompanion.
 /// The binary is built reproducibly from assets/lila/rive_cli/scene.rml.
-/// Fidelity of the vector artwork to the approved 3D master remains a separate QA gate.
+/// Visual layers embed the user-approved 3D poster sprite without SVG redraw.
+/// Large independent limb/eye motion is NOT yet implemented.
 struct LilaRiveView: View {
     var level: Int = 1
     var size: CGFloat = 112

@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Generate the native iOS Lila face icon (transparent-free 1024px PNG).
+"""LEGACY flat SVG-style icon generator; NOT the approved 3D Lila icon.
+
+Production icon comes from scripts/generate_lila_poster_icon.py.
+Generate the native iOS Lila face icon (transparent-free 1024px PNG).
 Self-contained Pillow renderer; avoids screen captures and trademarked assets.
 """
 from pathlib import Path
