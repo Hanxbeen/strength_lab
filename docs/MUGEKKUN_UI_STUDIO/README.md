@@ -20,6 +20,19 @@ open docs/MUGEKKUN_UI_STUDIO/index.html
 - 릴라는 사용자 선택 3D 포스터의 4× 이미지 시안이고 현재는 정적 이미지입니다. **RealityKit 작업은 디자인 승인 후 진행합니다.**
 - 사용자 소유의 `docs/UX_WIREFRAME.html`은 수정하지 않았습니다.
 
+## 시각 개선 v2 — 디자인 승인 전 참고
+
+- **[SwiftUI 패턴 기반 시각 개선 가이드](SWIFTUI_PATTERN_REVIEW_V2.md)** — Apple HIG / 실제 피트니스 앱 레퍼런스, SF 타이포그래피, 똑같은 높이의 카드 그리드, 세트 기록 중 하단 고정 CTA, RealityKit 슬롯 기준.
+- `polish-v2.css`는 **임시 비교 스타일**입니다. 아직 최종 디자인 토큰이 아닙니다.
+- 오른쪽 상단 **A / A+** 버튼으로 일반/큰 글씨 레이아웃을 비교할 수 있습니다. 이는 iOS Dynamic Type을 대신하지는 않습니다.
+- 메인 화면의 불필요한 중복 카드·영문 배지를 정리하고 제목과 숫자의 위치를 안정화했습니다.
+
+## 개선 전후 비교
+
+![왼쪽 v1, 오른쪽 레퍼런스 기반 v2](previews/before-after-home.png)
+
+v2에서는 홈의 정보 중심 헤더, 메인 CTA와 실제 운동 종목명, 통계 카드의 높이·숫자 정렬, 큰 글씨 대비를 개선했습니다.
+
 ## 화면 미리보기
 
 | Light 홈 | Dark 홈 | 세트 입력 |

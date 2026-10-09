@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
-  <title>무게꾼 | Product Studio — 화면 전체 설계</title>
+  <title>무게꾼 | Product Studio v2 — 화면 전체 설계</title>
   <meta name="description" content="무게꾼 프리미엄 미니멀 iOS 앱 디자인 검토용 인터랙티브 와이어프레임.">
   <link rel="stylesheet" href="studio.css">
+  <link rel="stylesheet" href="polish-v2.css">
 </head>
 <body>
   <div class="studio">
@@ -31,6 +32,10 @@
       <div class="stage-top">
         <div class="breadcrumb"><span>PROJECT</span><span data-icon="chevron-right"></span><strong>무게꾼 iOS</strong><span data-icon="chevron-right"></span><span id="currentGroupLabel">홈</span></div>
         <div class="stage-actions">
+          <div class="segmented tiny-seg" aria-label="글자 크기 체험">
+            <button type="button" class="type-chip" data-type="default" title="기본 크기">A</button>
+            <button type="button" class="type-chip" data-type="large" title="큰 글씨 미리보기">A+</button>
+          </div>
           <div class="segmented tiny-seg" aria-label="목업 색상 테마">
             <button type="button" class="theme-chip" data-theme="light">Light</button>
             <button type="button" class="theme-chip" data-theme="dark">Dark</button>

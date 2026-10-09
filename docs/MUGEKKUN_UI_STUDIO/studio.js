@@ -126,12 +126,12 @@ const definitions=[
 const screenMap=Object.fromEntries(definitions.map(s=>[s.id,s]));
 const K="mugekkun-design-review-v1";
 function readNotes(){try{return JSON.parse(localStorage.getItem(K)||"{}")}catch(_){return {}}}
-const state={page:"home",history:[],theme:"light",notes:readNotes(),goal:"1RM 향상",level:"중급자",lifts:["스쿼트","벤치프레스","데드리프트"],routine:"5×5 베이스",filter:"전체",recordFilter:"전체",lift:"스쿼트",lilaLevel:3,growthPeriod:"3개월",weekdays:["월","수","금"],unit:"kg",setCount:0,setLog:[],weight:"75",reps:"5",restSeconds:165,timerPaused:true,sessionActive:false,flags:{workout:true,rest:true,news:false},search:"",saved:false};
+const state={page:"home",history:[],theme:"light",typeSize:"default",notes:readNotes(),goal:"1RM 향상",level:"중급자",lifts:["스쿼트","벤치프레스","데드리프트"],routine:"5×5 베이스",filter:"전체",recordFilter:"전체",lift:"스쿼트",lilaLevel:3,growthPeriod:"3개월",weekdays:["월","수","금"],unit:"kg",setCount:0,setLog:[],weight:"75",reps:"5",restSeconds:165,timerPaused:true,sessionActive:false,flags:{workout:true,rest:true,news:false},search:"",saved:false};
 const viewport=document.getElementById("appViewport"),nav=document.getElementById("appBottomNav"),phone=document.getElementById("phoneScreen");
 
-function appHeader(){return '<div class="app-top"><div class="brand-word">무게꾼<span style="font-size:8px;margin-left:8px;vertical-align:middle;letter-spacing:.5px;font-weight:650;color:var(--muted)">STRENGTH LAB</span></div><div class="app-top-actions"><button class="circle-control" data-go="notifications" aria-label="알림">'+ic("bell")+'</button><button class="circle-control" data-go="settings" aria-label="설정">'+ic("settings")+'</button></div></div>'}
-function hero(){return '<div class="hero-home"><div class="eyebrow-app" style="color:#BCBCBD">TRAINING DAY · 03</div><h3>오늘도<br>한 세트 더.</h3><div class="hero-sub">가장 강했던 어제의 나를<br>오늘 한 번 더 만나봐요.</div><button class="cta-small" data-go="session-overview">운동 시작 '+ic("arrow-up-right")+'</button>'+photo(3,"lila-hero")+'</div>'}
-function metric(t,n,unit,foot,to){return card('<div class="between"><div class="card-kicker">'+t+'</div>'+ic("arrow-up-right")+'</div><div style="margin-top:21px" class="number">'+n+' <span>'+unit+'</span></div><div class="metric-label">'+foot+'</div>',"stat-card",to)}
+function appHeader(){return '<div class="app-top"><div class="brand-word">무게꾼</div><div class="app-top-actions"><button class="circle-control" data-go="notifications" aria-label="알림">'+ic("bell")+'</button><button class="circle-control" data-go="settings" aria-label="설정">'+ic("settings")+'</button></div></div>'}
+function hero(){return '<div class="hero-home"><div class="eyebrow-app">오늘의 루틴 · W03</div><h3>스쿼트<br>5 × 5</h3><div class="hero-sub">벤치프레스 · 데드리프트<br>예상 50분</div><button class="cta-small" data-go="session-overview">운동 시작 '+ic("arrow-up-right")+'</button>'+photo(3,"lila-hero")+'<span class="hero-gradient" aria-hidden="true"></span></div>'}
+function metric(t,n,unit,foot,to){return card('<div class="metric-head"><span class="card-kicker">'+t+'</span>'+ic("arrow-up-right")+'</div><div class="metric-value">'+n+' <span class="metric-suffix">'+unit+'</span></div><div class="metric-foot">'+foot+'</div>',"stat-card",to)}
 function onetile(t,v,sub,to){return '<button class="row-tile tap" data-go="'+to+'"><div class="row-main"><strong>'+t+'</strong><span>'+sub+'</span></div><strong style="font-size:17px">'+v+'</strong>'+ic("chevron-right")+'</button>'}
 function muscles(){return '<div class="between" style="margin-top:10px"><span class="pill dark">스쿼트</span><span class="pill dark">벤치</span><span class="pill dark">데드리프트</span></div>'}
 function welcomeShell(kicker,headline,copy,body,forward,backTo,btnText){
@@ -167,20 +167,23 @@ function startScreen(id){
 }
 function homeScreen(id){
  switch(id){
- case "home":return pane(appHeader()+'<div class="between" style="margin:8px 0 18px"><div><span class="eyebrow-app">FRIDAY, OCT 9</span><h1 class="page-title" style="margin:3px 0 0">오늘도 한 번 더.</h1></div>'+pill("DAY 03")+'</div>'+hero()+
- section("이번 주", "growth","자세히")+
- '<div class="grid-two">'+metric("운동 횟수","3","회","지난 7일 · 예시","records-calendar")+metric("누적 볼륨","3,200","kg","지난 7일 · 예시","growth")+'</div>'+
- section("오늘의 루틴","routine-detail")+
- card('<div class="between"><span class="card-kicker">STRENGTH BASE · W03</span>'+pill("예시 루틴")+'</div><div class="card-title" style="margin:14px 0 5px">스쿼트 중심 5×5</div><p class="card-copy">스쿼트 · 벤치프레스 · 보조 운동</p><div class="hr"></div><div class="between"><span class="small-text muted">'+ic("clock")+' 45~60분 · 세트간 휴식 3분</span><span class="card-arrow">'+ic("chevron-right")+'</span></div>',"", "routine-detail")+
- section("나의 변화","growth")+card('<div class="between"><span class="card-kicker">SQUAT · e1RM 추정</span><span class="small-text muted">최근 6개월</span></div><div style="margin-top:8px" class="metric-number">128 <span class="metric-unit">kg</span></div>'+graph()+'<p class="rule-label">샘플 그래프 · e1RM은 실제 1RM이 아닙니다.</p>',"","growth-lift")+
- section("릴라와 함께","growth-lila")+card('<div class="between"><div><div class="card-kicker">LILA · COMPANION</div><div class="card-title" style="margin:11px 0 5px">Lv.3 성장 릴라</div><p class="card-copy">오늘도 꾸준하게,<br>우리 페이스로.</p></div>'+photo(3,"lila-small")+'</div>',"","growth-lila")+demo(), "with-fixed");
+ case "home":return pane(appHeader()+
+ '<div class="home-intro"><div><span class="date-label">10월 9일 금요일</span><h1 class="home-title">오늘의 운동</h1></div></div>'+hero()+
+ section("이번 주의 기록","records","전체 기록")+
+ '<div class="grid-two">'+metric("운동 횟수","3","회","최근 7일 · 예시","records-calendar")+metric("누적 볼륨","3,200","kg","최근 7일 · 예시","growth")+'</div>'+
+ section("최근 운동","records","더 보기")+
+ row("calendar-check","스쿼트 중심 5×5","10월 7일 · 48분 · 예시","records-detail")+
+ section("근력 변화","growth","성장 보기")+
+ card('<div class="between"><span class="card-kicker">스쿼트 · e1RM 추정</span><span class="small-text muted">6개월</span></div><div style="margin-top:11px" class="metric-number">128 <span class="metric-unit">kg</span></div>'+graph()+'<p class="rule-label">샘플 데이터 · 실제 1RM이 아닌 추정값</p>',"","growth-lift")+
+ section("릴라","growth-lila","성장 보기")+
+ card('<div class="between"><div><div class="card-kicker">LILA · LEVEL 03</div><div class="card-title" style="margin:10px 0 5px">성장 릴라</div><p class="card-copy">함께 쌓아가는 운동 기록</p></div>'+photo(3,"lila-small")+'</div>',"","growth-lila")+demo(),"with-fixed");
  case "notifications":return pane(back("홈")+heading("알림","필요할 때만 알려드릴게요.","NOTIFICATIONS")+section("오늘")+row("calendar","운동 예정","오후 7시 · 스쿼트 중심 루틴","routine-detail")+row("timer","휴식 타이머","세트가 완료되면 자동으로 시작","settings-notices")+section("기타")+notices("현재 목업에서는 실제 푸시 알림을 발송하지 않습니다.")+section("알림 관리")+button("알림 설정","settings-notices","action-secondary"));
  case "daily-insight":return pane(back("홈")+heading("오늘의 인사이트","결론보다 맥락을 함께 보여줄게요.","TRAINING NOTE")+card('<div class="card-kicker">오늘의 가이드</div><h3 class="card-title" style="margin:10px 0">세트간 휴식은<br>목표에 따라 달라요.</h3><p class="card-copy">고중량 복합 운동의 휴식 길이는 총 수행량에 영향을 줄 수 있습니다. 개인의 회복 상태와 세트 목표에 따라 조정해야 합니다.</p>')+section("이 가이드를 읽는 법")+row("book-open","관련 연구 확인하기","근거 유무, 연구 설계, 적용 한계를 확인","routine-evidence")+row("chart","내 운동 기록과 비교","세트별 성공률과 휴식 기록을 함께 보기","growth")+notices("이 문구는 UX 예시입니다. 논문 DOI·검증 상태가 연결되기 전에는 '논문이 입증'했다고 주장하지 않습니다."));
  }return "";
 }
 
 function routineTile(t,short,params,to,badgeText){
- return card('<div class="between"><span class="card-kicker">ROUTINE · '+(badgeText||"예시")+'</span>'+pill("상세보기")+'</div><h3 class="card-title" style="margin:14px 0 8px">'+t+'</h3><p class="card-copy">'+short+'</p><div class="hr"></div><div class="between"><span class="small-text muted">'+params+'</span>'+ic("chevron-right")+'</div>',"tap",to)
+ return card('<div class="between"><span class="card-kicker">'+(badgeText||"훈련 루틴")+'</span>'+ic("chevron-right")+'</div><h3 class="card-title" style="margin:12px 0 7px">'+t+'</h3><p class="card-copy">'+short+'</p><div class="hr"></div><span class="small-text muted">'+params+'</span>',"routine-library-card tap",to)
 }
 function routineScreen(id){
  switch(id){
@@ -234,29 +237,28 @@ function sessionProgress(){return Math.min(100,Math.floor(state.setCount/5*100))
 function sessionScreen(id){
  switch(id){
  case "session-overview":return pane(back("운동 진행")+
- '<div class="between"><span class="session-live"><span></span>WORKOUT IN PROGRESS</span>'+pill("03 / 05 SETS")+'</div>'+
+ '<div class="between"><span class="session-live"><span></span>WORKOUT IN PROGRESS</span>'+pill(String(state.setCount).padStart(2,"0")+" / 05 세트")+'</div>'+
  '<h1 class="page-title big" style="margin:15px 0 8px">무게는<br>정직하게.</h1><p class="body-copy">오늘의 한 세트가 다음 기록의 기준이에요.</p>'+
  '<div class="spacer-24"></div>'+card('<div class="between"><span class="card-kicker">CURRENT SESSION · SAMPLE</span>'+ic("timer")+'</div><h3 class="card-title" style="margin:12px 0 5px">스쿼트 중심 5×5</h3><p class="card-copy">시작 19:00 · 34분 진행 (예시)</p><div class="hr"></div><div class="progress-track"><span style="width:'+sessionProgress()+'%"></span></div><div class="progress-numbers"><span>세트 진행</span><span>'+Math.min(5,state.setCount)+' / 5</span></div>')+
  section("운동별 진행")+row("dumbbell","스쿼트","'+state.setCount+' / 5 세트 · 75kg (목업)","session-exercise")+row("dumbbell","벤치프레스","0 / 5 세트 · 예정","session-exercise")+row("dumbbell","데드리프트","0 / 1 세트 · 예정","session-exercise")+
- '<div class="spacer-24"></div>'+button("현재 세트 기록하기","session-exercise")+'<button style="width:100%;margin-top:9px" class="action-plain" data-go="session-end-confirm">운동 종료</button>',"with-fixed");
+ '<div class="spacer-24"></div><button style="width:100%;margin-top:9px" class="action-plain" data-go="session-end-confirm">운동 종료</button>',"with-fixed");
  case "session-exercise":return pane(back("운동 진행")+
  '<div class="between"><span class="session-live"><span></span>세트 기록 중</span><button class="back-action" data-go="session-swap">운동 변경 '+ic("chevron-down")+'</button></div>'+
  '<h1 class="page-title big" style="margin-top:18px">'+e(state.lift)+'</h1><p class="body-copy">5세트 × 5회 · 중량은 실제 수행값을 기록하세요.</p>'+
- '<div class="spacer-16"></div>'+card('<div class="between"><div><div class="card-kicker">NEXT SET</div><div class="metric-number" style="margin-top:7px">0'+Math.min(5,state.setCount+1)+' <span class="metric-unit">/ 05</span></div></div>'+pill("목표 75 kg")+'</div><div class="progress-track" style="margin-top:16px"><span style="width:'+Math.min(100,(state.setCount||2)*20)+'%"></span></div>')+
+ '<div class="spacer-16"></div>'+card('<div class="between"><div><div class="card-kicker">NEXT SET</div><div class="metric-number" style="margin-top:7px">0'+Math.min(5,state.setCount+1)+' <span class="metric-unit">/ 05</span></div></div>'+pill("목표 75 kg")+'</div><div class="progress-track" style="margin-top:16px"><span style="width:'+Math.min(100,state.setCount*20)+'%"></span></div>')+
  section("이번 세트 입력")+
  '<div class="big-entry"><div style="flex:1"><label for="setWeight">중량</label><input id="setWeight" data-field="weight" inputmode="decimal" value="'+e(state.weight)+'" type="number"></div><span class="unit">kg</span><div class="sep"></div><div style="flex:1"><label for="setReps">반복 횟수</label><input id="setReps" data-field="reps" inputmode="numeric" value="'+e(state.reps)+'" type="number"></div><span class="unit">회</span></div>'+
  '<div class="choice-chips"><button data-act="weightStep" data-val="-2.5">− 2.5kg</button><button data-act="weightStep" data-val="2.5">+ 2.5kg</button><button data-act="repStep" data-val="-1">− 1회</button><button data-act="repStep" data-val="1">+ 1회</button></div>'+
  section("세트 기록","session-edit-set","수정")+
  card(setRows())+
- '<div class="spacer-24"></div><button class="action-primary" data-act="completeSet">세트 완료 '+ic("check")+'</button>'+
+ '<div class="spacer-24"></div>'+
  '<div class="spacer-8"></div><button class="action-secondary" data-go="session-rest">휴식 타이머 열기</button>',"with-fixed");
  case "session-rest":return pane(back("세트 기록")+
  '<div class="center" style="padding-top:7px"><span class="eyebrow-app">REST BETWEEN SETS</span><h1 class="page-title">조금 쉬어도<br>괜찮아요.</h1><p class="body-copy">다음 세트를 준비하는 시간입니다.</p></div>'+
  '<div class="timer-circle"><small>남은 시간 (목업)</small><strong id="restCountdown">'+String(Math.floor(state.restSeconds/60)).padStart(2,"0")+':'+String(state.restSeconds%60).padStart(2,"0")+'</strong><small>'+((state.timerPaused)?"일시정지":"진행 중")+'</small></div>'+
  '<div class="between" style="justify-content:center;gap:10px"><button class="inline-btn" data-act="restAdjust" data-val="-30">− 30초</button><button class="inline-btn" data-act="toggleTimer">'+ic(state.timerPaused?"play":"pause")+' '+(state.timerPaused?"재개":"일시정지")+'</button><button class="inline-btn" data-act="restAdjust" data-val="30">+ 30초</button></div>'+
  section("다음 세트")+card('<div class="between"><div><div class="card-kicker">SQUAT · SET '+(state.setCount+1)+'</div><div class="card-title" style="margin-top:8px">75 kg · 5회</div></div>'+pill("예정")+'</div>')+
- '<div class="spacer-24"></div>'+button("휴식 끝내고 다음 세트","session-exercise")+
- demo("타이머는 목업 브라우저의 실제 시간으로 카운트합니다. 알림·백그라운드 실행은 지원하지 않습니다."),"with-fixed");
+ '<div class="spacer-24"></div>'+demo("타이머는 목업 브라우저의 실제 시간으로 카운트합니다. 알림·백그라운드 실행은 지원하지 않습니다."),"with-fixed");
  case "session-edit-set":return pane(back("세트 입력")+heading("세트 수정","수정하면 이 미리보기의 기록만 변경됩니다.","EDIT SET")+
  card('<div class="between"><div class="card-kicker">SET 02 · SQUAT</div>'+pill("최근 완료")+'</div>'+
  '<div class="input-double">'+fld("중량 (kg)","editWeight",state.weight,"number")+fld("반복 (회)","editReps",state.reps,"number")+'</div>')+
@@ -269,7 +271,7 @@ function sessionScreen(id){
  case "session-end-confirm":return pane(back("운동 진행")+
  '<div class="center" style="padding-top:30px">'+photo(3,"lila-stand")+'<h1 class="page-title">여기서<br>마칠까요?</h1><p class="body-copy">완료한 기록은 유지됩니다.<br>진행 중인 세트는 저장되지 않아요.</p></div>'+
  '<div class="spacer-16"></div>'+card('<div class="grid-two"><div><div class="card-kicker">기록한 세트</div><div class="metric-number" style="margin-top:10px">'+state.setCount+'</div></div><div><div class="card-kicker">총 운동 시간</div><div class="metric-number" style="margin-top:10px">34 <span class="metric-unit">분</span></div></div></div>')+
- '<div class="spacer-24"></div><button class="action-primary" data-act="endWorkout">운동 종료 및 저장 '+ic("check")+'</button><div class="spacer-8"></div>'+button("운동 계속하기","session-overview","action-secondary"));
+ '<div class="spacer-24"></div>'+button("운동 계속하기","session-overview","action-secondary"));
  case "session-summary":return pane('<div class="center" style="padding-top:20px"><span class="eyebrow-app">WORKOUT COMPLETED</span>'+photo(4,"lila-stand")+'<h1 class="page-title" style="margin-top:7px">오늘도<br>해냈어요.</h1><p class="body-copy">무게보다 중요한 건 오늘 남긴 기록이에요.</p></div>'+
  section("오늘의 결과")+
  '<div class="grid-two">'+card('<div class="card-kicker">총 세트</div><div class="metric-number" style="margin-top:10px">'+state.setCount+' <span class="metric-unit">세트</span></div>')+
@@ -418,6 +420,17 @@ function navMarkup(id){
  const selected=currentRoot(id);
  return '<div class="phone-nav">'+tab.map(([name,title,icon])=>'<button data-go="'+name+'" class="'+(selected===name?"active":"")+'" aria-label="'+title+'" aria-current="'+(selected===name?"page":"false")+'">'+ic(icon)+'<span>'+title+'</span></button>').join("")+'</div>'
 }
+function sessionActionBar(id){
+ const buttons={
+  "session-overview":["세트 기록하기","go","session-exercise","arrow-right"],
+  "session-exercise":["세트 완료","act","completeSet","check"],
+  "session-rest":["다음 세트로","go","session-exercise","arrow-right"],
+  "session-end-confirm":["운동 종료 및 저장","act","endWorkout","check"]
+ };
+ const b=buttons[id];
+ if(!b)return "";
+ return '<div class="session-actionbar"><button class="action-primary" '+(b[1]==="go"?'data-go="':'data-act="')+b[2]+'">'+b[0]+ic(b[3])+'</button></div>';
+}
 function railMarkup(searchTerm){
  const search=(searchTerm||"").trim().toLowerCase();
  return groups.map(group=>{
@@ -448,9 +461,12 @@ function render(opts){
  if(!markup)markup='<div class="app-shell"><h2>준비 중: '+e(meta.name)+'</h2></div>';
  const previousScroll=viewport.scrollTop;
  viewport.innerHTML=markup;
- viewport.classList.toggle("full-height",meta.group==="start"||["session-rest","session-summary"].includes(meta.id));
- nav.innerHTML=meta.group==="start"||["session-rest","session-summary"].includes(meta.id)?"":navMarkup(meta.id);
+ viewport.classList.toggle("full-height",meta.group==="start"||meta.group==="session");
+ // In-progress training behaves like a full-screen session, not a fifth tab.
+ // A thumb-reachable action replaces the tab bar when the workout is active.
+ nav.innerHTML=meta.group==="start"?"":meta.group==="session"?sessionActionBar(meta.id):navMarkup(meta.id);
  phone.dataset.theme=state.theme;
+ phone.dataset.textscale=state.typeSize;
  const group=groups.find(g=>g.id===meta.group);
  document.getElementById("currentGroupLabel").textContent=group?group.name:"";
  document.getElementById("stageTitle").textContent=meta.name;
@@ -459,6 +475,7 @@ function render(opts){
  document.getElementById("screenGroups").innerHTML=railMarkup(document.getElementById("screenSearch").value);
  document.getElementById("screenInspector").innerHTML=inspectorMarkup(meta);
  document.querySelectorAll(".theme-chip").forEach(b=>b.classList.toggle("selected",b.dataset.theme===state.theme));
+ document.querySelectorAll(".type-chip").forEach(b=>b.classList.toggle("selected",b.dataset.type===state.typeSize));
  const tx=document.getElementById("feedbackText");
  tx.value=state.notes[meta.id]||"";
  document.getElementById("reviewCount").textContent=Object.values(state.notes).filter(x=>x&&x.trim()).length;
@@ -577,6 +594,7 @@ document.getElementById("screenSearch").addEventListener("input",event=>{
  document.getElementById("screenGroups").innerHTML=railMarkup(event.target.value);
 });
 document.querySelectorAll(".theme-chip").forEach(b=>b.addEventListener("click",()=>{state.theme=b.dataset.theme;render({preserveScroll:true})}));
+document.querySelectorAll(".type-chip").forEach(b=>b.addEventListener("click",()=>{state.typeSize=b.dataset.type;render({preserveScroll:true})}));
 document.getElementById("jumpFirst").addEventListener("click",()=>go("splash"));
 document.getElementById("saveFeedback").addEventListener("click",saveCurrentNote);
 document.getElementById("clearFeedback").addEventListener("click",()=>{document.getElementById("feedbackText").value="";saveCurrentNote()});

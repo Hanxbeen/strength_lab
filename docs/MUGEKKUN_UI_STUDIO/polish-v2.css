@@ -1,0 +1,490 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   MUGEKKUN / REFERENCE-LED POLISH v2 (CANDIDATE, NOT FINAL DESIGN TOKENS)
+   Sources: Apple's iOS HIG typography/layout & real fitness data dashboards.
+   CSS maps to SwiftUI semantic styles; final sizes stay subject to approval.
+   ═══════════════════════════════════════════════════════════════════════ */
+.phone-screen {
+  /* Brand: only charcoal and white/neutral. Accents: semantic states only. */
+  --app-bg:#F7F7F6;
+  --surface:#FFFFFF;
+  --surface-2:#F0F0EF;
+  --surface-3:#E5E5E3;
+  --fg:#2A2A2A;
+  --muted:#707070;
+  --secondary:#555555;
+  --hairline:#E7E7E5;
+  --shadow:0 1px 2px rgba(0,0,0,.018);
+  --tab-bg:rgba(255,255,255,.96);
+  --chart:#2A2A2A;
+  --ui-gap:12px;
+  --ui-radius:20px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Apple SD Gothic Neo",sans-serif;
+  font-size:15px;
+  line-height:1.35;
+  font-kerning:normal;
+  font-variant-numeric:tabular-nums;
+  text-rendering:optimizeLegibility;
+}
+.phone-screen[data-theme="dark"] {
+  --app-bg:#111112;
+  --surface:#202021;
+  --surface-2:#29292A;
+  --surface-3:#39393A;
+  --fg:#F7F7F7;
+  --muted:#A7A7AA;
+  --secondary:#D0D0D0;
+  --hairline:#303032;
+  --shadow:none;
+  --tab-bg:rgba(33,33,34,.97);
+  --chart:#F7F7F7;
+}
+.phone-screen .app-shell {
+  padding:18px 22px 38px;
+}
+.phone-screen .app-shell.with-fixed {padding-bottom:104px}
+.phone-screen .app-top {
+  min-height:44px;
+  margin-bottom:25px;
+  gap:12px;
+}
+.phone-screen .brand-word {
+  font-size:23px;
+  font-weight:760;
+  letter-spacing:-.065em;
+  white-space:nowrap;
+}
+.phone-screen .brand-word .brand-subline{
+  font-size:10px;
+  font-weight:600;
+  line-height:1.4;
+  color:var(--muted);
+  margin-left:9px;
+  letter-spacing:.025em;
+}
+.phone-screen .app-top-actions {gap:8px}
+.phone-screen .circle-control{
+  width:44px;height:44px;
+  border-radius:50%;
+  background:var(--surface);
+  border:1px solid var(--hairline);
+}
+.phone-screen .circle-control svg{width:19px;height:19px}
+.phone-screen .page-back{
+  min-height:34px;
+  margin-bottom:23px;
+}
+.phone-screen .back-btn{
+  min-height:40px;
+  font-size:14px;
+  font-weight:650;
+  gap:3px;
+  color:var(--fg);
+}
+.phone-screen .back-btn svg{width:20px;height:20px}
+.phone-screen .back-action{
+  font-size:13px;min-height:38px
+}
+/* 17pt human-readable body; explanatory copy 14pt rather than 10–12. */
+.phone-screen .page-title {
+  font-size:31px;
+  font-weight:735;
+  letter-spacing:-.042em;
+  line-height:1.23;
+  margin:8px 0 10px;
+  word-break:keep-all;
+}
+.phone-screen .page-title.big{font-size:35px;line-height:1.2;letter-spacing:-.044em}
+.phone-screen .page-title.mid{font-size:26px;line-height:1.24}
+.phone-screen .body-copy{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.57;
+  font-weight:400;
+  word-break:keep-all;
+}
+.phone-screen .eyebrow-app {
+  font-size:11px;
+  line-height:1.45;
+  font-weight:650;
+  letter-spacing:.055em;
+  color:var(--muted);
+}
+.phone-screen .section-head{
+  align-items:center;
+  margin:29px 0 14px;
+  min-height:25px;
+}
+.phone-screen .section-title{
+  font-size:19px;
+  letter-spacing:-.038em;
+  font-weight:720;
+  line-height:1.35;
+}
+.phone-screen .section-link{
+  min-height:36px;
+  display:inline-flex;align-items:center;
+  font-size:13px;
+  font-weight:570;
+  gap:3px;
+}
+.phone-screen .section-link svg{width:15px;height:15px}
+/* Card geometry: smaller radius + almost invisible outline + consistent padding. */
+.phone-screen .card {
+  min-width:0;
+  padding:19px;
+  background:var(--surface);
+  border-radius:21px;
+  border:1px solid var(--hairline);
+  box-shadow:var(--shadow);
+}
+.phone-screen .card.small{padding:16px;border-radius:17px}
+.phone-screen .card-kicker{
+  font-size:12px;
+  font-weight:550;
+  letter-spacing:0;
+  line-height:1.35;
+  color:var(--muted);
+}
+.phone-screen .card-title{
+  font-size:17px;
+  font-weight:690;
+  line-height:1.35;
+  letter-spacing:-.024em;
+  word-break:keep-all;
+}
+.phone-screen .card-copy{
+  font-size:13px;
+  font-weight:410;
+  line-height:1.52;
+  color:var(--muted);
+  word-break:keep-all;
+}
+.phone-screen .metric-number{
+  font-size:37px;
+  font-weight:730;
+  line-height:1.1;
+  letter-spacing:-.045em;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+.phone-screen .metric-unit{
+  font-size:14px;
+  line-height:1.3;
+  font-weight:500;
+  color:var(--muted);
+  letter-spacing:-.01em;
+  white-space:nowrap;
+}
+.phone-screen .metric-label{font-size:12px;line-height:1.4;color:var(--muted)}
+.phone-screen .small-text{font-size:13px;line-height:1.42}
+.phone-screen .tiny{font-size:12px}
+.phone-screen .rule-label{font-size:12px;line-height:1.5;letter-spacing:0}
+.phone-screen .hr{margin:17px 0;background:var(--hairline)}
+/* Explicit row alignment; old global '.card + .card {margin-top:10px}'
+   incorrectly moved column #2 downward by 10 px! */
+.phone-screen .grid-two,
+.phone-screen .grid-three {
+  display:grid;
+  align-items:stretch;
+  gap:var(--ui-gap);
+}
+.phone-screen .grid-two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.phone-screen .grid-three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.phone-screen .grid-two>.card,
+.phone-screen .grid-three>.card,
+.phone-screen .grid-two>.card+.card,
+.phone-screen .grid-three>.card+.card{
+  margin:0 !important;
+  height:100%;
+  min-width:0;
+  align-self:stretch;
+}
+.phone-screen .grid-two>.card{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.phone-screen .stat-card {
+  min-height:153px;
+  gap:0;
+  padding:18px;
+  display:grid !important;
+  grid-template-rows:38px minmax(36px,1fr) 32px;
+  align-items:stretch;
+}
+.phone-screen .stat-card .metric-head{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  min-height:38px;
+  gap:5px;
+}
+.phone-screen .stat-card .metric-head svg{width:15px;height:15px;opacity:.6}
+.phone-screen .stat-card .metric-value{
+  display:flex;align-items:center;
+  min-width:0;
+  gap:5px;
+  font-size:32px;
+  font-weight:745;
+  line-height:1;
+  letter-spacing:-.055em;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+.phone-screen .stat-card .metric-value .metric-suffix{
+  font-size:13px;font-weight:560;letter-spacing:0;
+  color:var(--muted);align-self:flex-end;padding-bottom:3px;
+}
+.phone-screen .stat-card .metric-foot{
+  align-self:end;
+  font-size:12px;
+  line-height:1.36;
+  color:var(--muted);
+  min-width:0;
+}
+.phone-screen .grid-two>.card .metric-number{font-size:31px}
+.phone-screen .grid-two>.card .metric-unit{font-size:13px}
+.phone-screen .grid-two>.card .metric-label{font-size:12px;line-height:1.4;margin-top:auto}
+/* Native-inspired flat list rows, not oversized universal cards. */
+.phone-screen .row-tile {
+  min-height:69px;
+  padding:13px 16px;
+  border-radius:18px;
+  gap:12px;
+  box-shadow:none;
+  background:var(--surface);
+}
+.phone-screen .row-tile .row-icon {
+  flex:0 0 42px;width:42px;height:42px;
+  border-radius:13px;background:var(--surface-2);
+}
+.phone-screen .row-tile .row-icon svg{width:19px;height:19px}
+.phone-screen .row-tile .row-main strong{
+  font-size:14px;
+  font-weight:670;
+  letter-spacing:-.017em;
+  line-height:1.35;
+}
+.phone-screen .row-tile .row-main span{
+  margin-top:4px;
+  font-size:12px;
+  line-height:1.4;
+  color:var(--muted);
+}
+.phone-screen .row-tile .chev{opacity:.74}
+.phone-screen .row-tile svg{width:16px;height:16px}
+.phone-screen .pill{
+  font-size:11px;
+  padding:6px 10px;
+  min-height:25px;
+  font-weight:570;
+  color:var(--secondary);
+  letter-spacing:0;
+}
+.phone-screen .pill.status-success{background:#F6FFED;color:#389E0D}
+.phone-screen .pill.status-warning{background:#FFFBE6;color:#AD6800}
+.phone-screen .pill.status-error{background:#FFF1F0;color:#CF1322}
+.phone-screen .pill.status-info{background:#E6F4FF;color:#0958D9}
+.phone-screen .action-primary,.phone-screen .action-secondary{
+  min-height:53px;
+  border-radius:15px;
+  font-size:16px;
+  font-weight:650;
+  letter-spacing:-.02em;
+}
+.phone-screen .action-primary{background:var(--fg);color:var(--app-bg)}
+.phone-screen .inline-btn{
+  font-size:13px;min-height:40px;
+  padding:9px 13px;
+  border-radius:11px;
+  font-weight:650;
+}
+.phone-screen .action-plain{font-size:14px;min-height:44px}
+.phone-screen .choice-chips{gap:8px}
+.phone-screen .choice-chips button{
+  font-size:12px;
+  min-height:37px;
+  padding:9px 12px;
+  font-weight:630;
+}
+.phone-screen .form-field label{font-size:13px;font-weight:640}
+.phone-screen .field-input{font-size:16px;min-height:47px}
+.phone-screen .field-input::placeholder{font-size:14px}
+.phone-screen .field-caption{font-size:12px;line-height:1.55}
+.phone-screen .alert-soft{
+  font-size:12.5px;line-height:1.57;
+  padding:15px;
+  border-radius:15px;
+}
+.phone-screen .choice-row{min-height:53px;padding:14px 0}
+.phone-screen .choice-row strong{font-size:14px}
+.phone-screen .choice-row span{font-size:12px}
+.phone-screen .large-choice{min-height:84px;padding:17px;border-radius:19px}
+.phone-screen .large-choice strong{font-size:15px}
+.phone-screen .large-choice p{font-size:12px;line-height:1.5}
+/* Premium home: content-led hero, one statement and one action only. */
+.phone-screen .home-intro{
+  display:flex;align-items:end;justify-content:space-between;
+  margin:0 0 20px;gap:10px;
+}
+.phone-screen .home-intro .date-label{
+  display:block;font-size:12px;font-weight:570;
+  color:var(--muted);line-height:1.3;margin-bottom:6px;
+}
+.phone-screen .home-intro .home-title{
+  margin:0;
+  font-size:32px;line-height:1.12;
+  letter-spacing:-.045em;
+  font-weight:740;
+}
+.phone-screen .hero-home{
+  background:#2A2A2A;
+  min-height:207px;
+  border-radius:23px;
+  padding:23px 20px;
+  overflow:hidden;
+  box-shadow:none;
+}
+.phone-screen .hero-home .eyebrow-app{
+  font-size:11px;letter-spacing:.045em;color:#C8C8C8;
+}
+.phone-screen .hero-home h3{
+  font-size:27px;
+  font-weight:715;
+  letter-spacing:-.04em;
+  line-height:1.22;
+  max-width:181px;
+  margin:15px 0 8px;
+  position:relative;z-index:2;
+}
+.phone-screen .hero-home .hero-sub{
+  font-size:13px;
+  line-height:1.5;
+  color:#D3D3D3;
+  max-width:189px;
+}
+.phone-screen .hero-home .cta-small{
+  min-height:42px;
+  margin-top:17px;
+  padding:9px 14px;
+  font-size:13px;
+  font-weight:675;
+  border-radius:12px;
+  background:white;color:#292929;
+}
+.phone-screen .hero-home .cta-small svg{width:14px;height:14px}
+.phone-screen .hero-home .lila-hero{
+  width:200px;height:204px;right:-12px;bottom:-28px;
+  filter:drop-shadow(0 14px 10px #0004);
+  pointer-events:none;
+}
+.phone-screen .hero-home .hero-gradient{
+  background:linear-gradient(90deg,#2A2A2A 1%,transparent 96%);
+  position:absolute;inset:0 35% 0 0;z-index:1;pointer-events:none;
+}
+.phone-screen .hero-home .eyebrow-app{position:relative;z-index:3}
+/* Entry and workout-specific metrics */
+.phone-screen .big-entry{padding:17px;gap:11px;border-radius:18px}
+.phone-screen .big-entry label{font-size:13px}
+.phone-screen .big-entry input{font-size:35px;font-weight:700;letter-spacing:-.045em}
+.phone-screen .big-entry .unit{font-size:15px}
+.phone-screen .set-grid {padding:14px 0;min-height:45px}
+.phone-screen .set-grid.hd{font-size:11px;min-height:33px}
+.phone-screen .set-grid span{font-size:13px}
+.phone-screen .session-live{font-size:12px;letter-spacing:.03em}
+.phone-screen .session-live span{background:#52C41A}
+.phone-screen .timer-circle strong{font-size:48px;letter-spacing:-.045em}
+.phone-screen .timer-circle small{font-size:13px}
+.phone-screen .progress-numbers{font-size:12px;margin-top:10px}
+/* Chart labels and numerical clarity */
+.phone-screen .chart-wrap svg text{font-size:12px}
+.phone-screen .chart-wrap{height:183px}
+.phone-screen .graph-key span{font-size:12px}
+.phone-screen .bar-chart{height:94px}
+.phone-screen .month-dots{gap:8px 4px}
+/* Home tab bar: SwiftUI TabView look, not decorative app-specific dock. */
+.phone-screen .phone-nav{
+  gap:0;
+  padding:6px 6px 5px;
+  min-height:62px;
+  border-radius:24px;
+  box-shadow:0 6px 20px rgba(0,0,0,.09);
+  background:var(--tab-bg);
+  backdrop-filter:blur(15px);
+}
+.phone-screen .phone-nav button{
+  min-height:51px;
+  padding:6px 5px 5px;
+  gap:5px;
+  border-radius:19px;
+}
+.phone-screen .phone-nav button svg{width:20px;height:20px}
+.phone-screen .phone-nav button span:last-child{font-size:11px;font-weight:620}
+.phone-screen .phone-nav button.active{background:var(--surface-2);font-weight:730}
+.phone-screen .review-demo-note{font-size:11px;line-height:1.5;margin-top:3px}
+.phone-screen .progress-track{height:5px}
+.phone-screen .card .between{align-items:center}
+/* Avoid tiny text when resizing mobile studio / inherited styles */
+@media(max-width:430px){
+ .phone-screen .app-shell{padding-left:20px;padding-right:20px}
+ .phone-screen .stat-card{min-height:153px}
+ .phone-screen .stat-card .metric-value{font-size:29px}
+ .phone-screen .home-intro .home-title{font-size:30px}
+ .phone-screen .hero-home .lila-hero{width:190px;right:-20px}
+}
+/* Purely visual prototype: viewport stays fixed, content scrolls as in iOS */
+/* Native safe-area action analogue; workout flows must not show the top-level TabView. */
+.phone-screen #appBottomNav:has(.session-actionbar){
+  padding:0 20px 0;
+  bottom:27px;
+}
+.phone-screen .session-actionbar{
+  display:block;
+  background:var(--app-bg);
+  padding:12px 0 10px;
+  border-radius:18px;
+  box-shadow:0 -10px 24px var(--app-bg);
+  pointer-events:auto;
+}
+.phone-screen .session-actionbar .action-primary{
+  min-height:57px;
+  box-shadow:0 4px 16px rgba(0,0,0,.1);
+}
+.phone-screen .app-viewport.full-height .app-shell.with-fixed{padding-bottom:126px}
+/* Larger-type review: simulates text hierarchy and stack adaptation.
+   A+ is a visual review mode, NOT a replacement for system Dynamic Type. */
+.stage-actions .type-chip{
+  border:0;background:none;border-radius:100px;
+  color:#858582;font-size:12px;font-weight:710;padding:7px 12px;
+}
+.stage-actions .type-chip.selected{
+  background:white;color:#2A2A2A;box-shadow:0 1px 5px #0001;
+}
+.phone-screen[data-textscale="large"] .home-intro .home-title{font-size:36px}
+.phone-screen[data-textscale="large"] .page-title{font-size:37px}
+.phone-screen[data-textscale="large"] .page-title.big{font-size:40px}
+.phone-screen[data-textscale="large"] .body-copy{font-size:18px}
+.phone-screen[data-textscale="large"] .card-title{font-size:20px}
+.phone-screen[data-textscale="large"] .card-copy{font-size:16px}
+.phone-screen[data-textscale="large"] .section-title{font-size:22px}
+.phone-screen[data-textscale="large"] .section-link{font-size:15px}
+.phone-screen[data-textscale="large"] .card-kicker{font-size:14px}
+.phone-screen[data-textscale="large"] .metric-label,
+.phone-screen[data-textscale="large"] .metric-foot{font-size:14px}
+.phone-screen[data-textscale="large"] .stat-card{min-height:175px}
+.phone-screen[data-textscale="large"] .stat-card .metric-value{font-size:37px}
+.phone-screen[data-textscale="large"] .grid-two{grid-template-columns:1fr}
+.phone-screen[data-textscale="large"] .grid-three{grid-template-columns:1fr}
+.phone-screen[data-textscale="large"] .row-tile .row-main strong{font-size:17px}
+.phone-screen[data-textscale="large"] .row-tile .row-main span{font-size:15px}
+.phone-screen[data-textscale="large"] .phone-nav button span:last-child{font-size:13px}
+.phone-screen[data-textscale="large"] .hero-home .hero-sub{font-size:15px}
+.phone-screen[data-textscale="large"] .hero-home h3{font-size:30px}
+.phone-screen[data-textscale="large"] .hero-home{min-height:234px}
+.phone-screen[data-textscale="large"] .hero-home .lila-hero{right:-35px;bottom:-25px}
+.phone-screen[data-textscale="large"] .action-primary{font-size:18px}
+@media(max-width:690px){
+  .stage-actions .type-chip{font-size:11px;padding:6px 9px}
+}
+/* More generous copy sizes: captions stay secondary; paragraphs read naturally. */
+.phone-screen .body-copy{font-size:15px}
+.phone-screen .card-copy{font-size:14px}
+.phone-screen .row-tile .row-main span{font-size:13px}
