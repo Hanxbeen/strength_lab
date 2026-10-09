@@ -504,3 +504,21 @@
 .phone-screen[data-textscale="large"] .body-copy{font-size:20px}
 .phone-screen[data-textscale="large"] .row-tile .row-main strong{font-size:20px}
 .phone-screen[data-textscale="large"] .row-tile .row-main span{font-size:17px}
+
+/* Review follow-through: legible session rows and consistent type weights. */
+.phone-screen .card-title,.phone-screen .section-title,
+.phone-screen .hero-home h3,.phone-screen .brand-word{font-weight:700}
+.phone-screen .card-kicker,.phone-screen .metric-foot,
+.phone-screen .metric-label{font-size:13px}
+.phone-screen .set-grid{min-height:48px}
+.phone-screen .set-grid span{font-size:15px}
+.phone-screen .set-grid.hd,.phone-screen .set-grid.hd span{font-size:13px}
+.phone-screen .choice-chips button,.phone-screen .large-choice,
+.phone-screen .stepper button{min-height:44px}
+.phone-screen .large-choice strong{font-size:17px;font-weight:600}
+.phone-screen .large-choice p{font-size:15px;line-height:1.45}
+.phone-screen .big-entry label{font-size:15px}
+.phone-screen .stat-card{grid-template-rows:minmax(38px,auto) minmax(36px,1fr) minmax(32px,auto)}
+.phone-screen[data-textscale="large"] .set-grid span{font-size:17px}
+.phone-screen[data-textscale="large"] .large-choice strong{font-size:20px}
+.phone-screen[data-textscale="large"] .large-choice p{font-size:17px}
