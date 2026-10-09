@@ -10,9 +10,16 @@ if [ ! -x "$RIVE_BIN" ]; then
 fi
 
 cd "$ROOT"
-# The production Lila visual asset is the ORIGINAL 3D poster sprite,
-# not the historically retained vector/ellipse experiment.
+# Initial generation uses the *original poster images* with 4× AI SR.
+# Prebuilt PNGs remain checked-in so a normal build never silently retrains
+# or re-generates assets with a different model.
+if [ ! -f assets/lila/poster_upscaled/lila_lv06_4x.png ]; then
+  /opt/homebrew/bin/python3.13 scripts/upscale_lila_posters.py
+fi
+
+python3 scripts/build_lila_eye_blinks.py
 python3 scripts/generate_lila_poster_rive_rml.py
+
 "$RIVE_BIN" assets/lila/rive_cli --verify
 "$RIVE_BIN" assets/lila/rive_cli --once
 "$RIVE_BIN" inspect assets/lila/rive_cli --summary > assets/lila/rive_cli/build/inspect.json
@@ -24,18 +31,22 @@ from PIL import Image
 r=json.loads(Path("assets/lila/rive_cli/build/inspect.json").read_text())
 assert not r["problems"], r["problems"]
 assert [x["name"] for x in r["artboards"]] == [f"LilaLv{i}" for i in range(1,7)]
-assert r["roots"]["types"].get("ImageAsset") == 6
+assert r["roots"]["types"].get("ImageAsset") == 12
 for art in r["artboards"]:
-    assert art["types"].get("Image",0) == 1
+    assert art["types"].get("Image",0) == 2
     assert art["types"].get("StateMachine",0) == 1
-    assert art["types"].get("LinearAnimation",0) == 2
+    assert art["types"].get("StateMachineLayer",0) == 3
+    assert art["types"].get("LinearAnimation",0) == 3
 for level in range(1,7):
-    src=Path(f"assets/lila/poster_sprites/lila_lv{level:02}.webp")
-    png=Path(f"assets/lila/rive_cli/sprites/lila_lv{level:02}.png")
-    assert Image.open(src).convert("RGBA").tobytes() == Image.open(png).convert("RGBA").tobytes()
-print("Rive QA: 6/6 original 3D sprites pixel-identical to source, 6 artboards, 12 loop animations")
+    src=Image.open(f"assets/lila/poster_sprites/lila_lv{level:02}.webp")
+    png=Image.open(f"assets/lila/rive_cli/sprites/lila_lv{level:02}.png")
+    overlay=Image.open(f"assets/lila/rive_cli/sprites/lila_lv{level:02}_blink_overlay.png")
+    assert png.size == (src.width*4,src.height*4)
+    assert overlay.size == png.size
+    assert overlay.getchannel("A").getbbox() is not None
+print("Rive QA: original 3D artwork 4× + independently animated eyelids on all six levels; 18 loop animations")
 PY
 
 cp assets/lila/rive_cli/build/rive_cli.riv apps/ios/MugeMuge/Resources/lila.riv
 python3 -m unittest discover -s tests -q
-echo "Bundled original 3D Lila Rive: apps/ios/MugeMuge/Resources/lila.riv"
+echo "Bundled upscaled Lila Rive: apps/ios/MugeMuge/Resources/lila.riv"

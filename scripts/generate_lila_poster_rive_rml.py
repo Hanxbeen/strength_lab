@@ -41,22 +41,36 @@ def build():
         source = SOURCE / f"lila_lv{level:02}.webp"
         if not source.is_file():
             raise RuntimeError(f"Missing Lv{level} original sprite {source}")
-        img = PILImage.open(source).convert("RGBA")
+        enlarged=ROOT / f"assets/lila/poster_upscaled/lila_lv{level:02}_4x.png"
+        eyes=ROOT / f"assets/lila/poster_eyelids/lila_lv{level:02}_blink_overlay.png"
+        if not enlarged.is_file() or not eyes.is_file():
+            raise RuntimeError("Run upscale_lila_posters.py + build_lila_eye_blinks.py before the Rive build")
+        img = PILImage.open(enlarged).convert("RGBA")
+        assert img.size==(PILImage.open(source).width*4,PILImage.open(source).height*4)
         if img.getchannel("A").getextrema() != (0,255):
             raise ValueError(f"Lv{level} not a transparent original cutout")
         out = RASTER / f"lila_lv{level:02}.png"
         img.save(out,optimize=True)
+        eye_out=RASTER / f"lila_lv{level:02}_blink_overlay.png"
+        # Same canvas and co-ordinates; Rive fades this layer on each blink.
+        eye_png=PILImage.open(eyes).convert("RGBA")
+        assert eye_png.size==img.size
+        eye_png.save(eye_out,optimize=True)
         data.append({
             "level":level,"source":str(source.relative_to(ROOT)),
             "width":img.width,"height":img.height,
             "sha256":hashlib.sha256(source.read_bytes()).hexdigest(),
-            "png":str(out.relative_to(ROOT))
+            "png":str(out.relative_to(ROOT)),
+            "blink_overlay":str(eye_out.relative_to(ROOT))
         })
         print(f"Original 3D sprite Lv.{level}: {img.width}x{img.height}")
     for d in data:
         element(root,"ImageAsset",id=f"0:{100+d['level']}",
-                name=f"Original3D_Lv{d['level']:02}",
+                name=f"Upres3D_Lv{d['level']:02}",
                 file=f"sprites/lila_lv{d['level']:02}.png")
+        element(root,"ImageAsset",id=f"0:{200+d['level']}",
+                name=f"EyeLidLayer_Lv{d['level']:02}",
+                file=f"sprites/lila_lv{d['level']:02}_blink_overlay.png")
     for d in data:
         level=d["level"]
         board=element(root,"Artboard",id=f"0:{level*1000+1}",
@@ -68,14 +82,21 @@ def build():
                 id=f"0:{level*1000+2}")
         pivot=element(board,"Node",id=f"0:{level*1000+3}",
                       x=300,y=FLOOR_Y,name="character_root_original3D")
+        # RML stores front-to-back drawing order. Blink overlay appears above
+        # the base character, both image origins and positions are identical.
+        eye_image=element(pivot,"Image",id=f"0:{level*1000+6}",
+                x=0,y=0,assetId=f"0:{200+level}",
+                opacity=0,scaleX=".25",scaleY=".25",originX=".5",originY="1",
+                name="eye_blink_layer")
         element(pivot,"Image",id=f"0:{level*1000+4}",
                 x=0,y=0,assetId=f"0:{100+level}",
-                originX=".5",originY="1",
+                scaleX=".25",scaleY=".25",originX=".5",originY="1",
                 name="original_poster_character")
         machine=element(board,"StateMachine",id=f"0:{level*1000+5}",name="LilaCompanion")
         for i,(state_name,anim_id) in enumerate((
             ("Breathing",f"0:{level*1000+11}"),
-            ("Sway",f"0:{level*1000+12}")
+            ("Sway",f"0:{level*1000+12}"),
+            ("Blinking",f"0:{level*1000+13}")
         )):
             layer=element(machine,"StateMachineLayer",id=f"0:{level*1000+20+i}",
                           name=state_name)
@@ -91,21 +112,25 @@ def build():
         sway=element(board,"LinearAnimation",id=f"0:{level*1000+12}",
                      name="SoftSway",loopValue=1,duration=300)
         keyed(sway,pivot.get("id"),"15",[
-            (0,"-.008"),(80,".008"),(160,"-.006"),
-            (240,".007"),(300,"-.008")])
+            (0,"-.022"),(80,".018"),(160,"-.016"),
+            (240,".018"),(300,"-.022")])
+        blink=element(board,"LinearAnimation",id=f"0:{level*1000+13}",
+                      name="NaturalBlink",loopValue=1,duration=220)
+        keyed(blink,eye_image.get("id"),"18",[
+            (0,"0"),(101,"0"),(105,"1"),(108,"1"),(112,"0"),(219,"0")])
     ET.indent(root,space="  ")
     path=TARGET/"scene.rml"
     path.write_text('<?xml version="1.0" encoding="utf-8"?>\n'+
                     ET.tostring(root,encoding="unicode")+"\n",encoding="utf-8")
     meta={
-        "version":"poster-derived-Rive-v1",
+        "version":"poster-derived-Rive-v2-upscaled-blink",
         "kind":"embedded_3D_poster_bitmaps",
         "source_reference":"assets/lila/poster_sprites/poster_reference.jpeg",
         "reference_is_3D_render_not_editable_3D_model":True,
         "level_pngs":data,
         "artboard":"600x620","floor_y":FLOOR_Y,
-        "animation_implemented":["calm_full_body_breath","subtle_full_body_sway"],
-        "animation_not_implemented":["independent_eye_blink","emotion_states",
+        "animation_implemented":["calm_full_body_breath","subtle_full_body_sway","independent_eye_blink"],
+        "animation_not_implemented":["emotion_states",
                                      "articulated_sbd_exercise","viewpoint_rotation"],
         "quality_gate":"user_reference_match_required_on_physical_iphone"
     }

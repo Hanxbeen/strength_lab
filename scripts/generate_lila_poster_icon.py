@@ -5,18 +5,18 @@ from PIL import Image, ImageFilter
 import math
 
 ROOT=Path(__file__).resolve().parents[1]
-SOURCE=ROOT/"assets/lila/poster_sprites/lila_lv03.webp"
+SOURCE=ROOT/"assets/lila/poster_upscaled/lila_lv03_4x.png"
 DEST=ROOT/"apps/ios/MugeMuge/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png"
 
 def create():
     src=Image.open(SOURCE).convert("RGBA")
     # Face (including both ears and 3 original tiny fur wisps) but no body/props.
-    face=src.crop((44,0,373,214))
+    face=src.crop((44*4,0,373*4,214*4))
     # Naturally soften lower seam where the original head overlaps shoulders.
     pixels=face.load()
     for y in range(face.height):
-        if y<198:continue
-        factor=max(0,(214-y)/16)
+        if y<198*4:continue
+        factor=max(0,(214*4-y)/(16*4))
         for x in range(face.width):
             r,g,b,a=pixels[x,y]
             pixels[x,y]=(r,g,b,int(a*factor))

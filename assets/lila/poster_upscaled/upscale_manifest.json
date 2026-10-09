@@ -1,0 +1,94 @@
+{
+  "model": "RealESRGAN_x4plus_anime_6B",
+  "scale": 4,
+  "model_source": "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.2.4/RealESRGAN_x4plus_anime_6B.pth",
+  "algorithm": "RRDBNet_6B_MPS_or_CPU",
+  "device": "mps",
+  "caution": "AI super-resolution is a plausible reconstruction, not actual original 3D detail.",
+  "images": [
+    {
+      "level": 1,
+      "source_size": [
+        265,
+        265
+      ],
+      "output_size": [
+        1060,
+        1060
+      ],
+      "file": "assets/lila/poster_upscaled/lila_lv01_4x.png",
+      "mean_rgb_downsample_difference": 22.5,
+      "source_alpha_preserved": true
+    },
+    {
+      "level": 2,
+      "source_size": [
+        304,
+        374
+      ],
+      "output_size": [
+        1216,
+        1496
+      ],
+      "file": "assets/lila/poster_upscaled/lila_lv02_4x.png",
+      "mean_rgb_downsample_difference": 17.79,
+      "source_alpha_preserved": true
+    },
+    {
+      "level": 3,
+      "source_size": [
+        417,
+        421
+      ],
+      "output_size": [
+        1668,
+        1684
+      ],
+      "file": "assets/lila/poster_upscaled/lila_lv03_4x.png",
+      "mean_rgb_downsample_difference": 14.0,
+      "source_alpha_preserved": true
+    },
+    {
+      "level": 4,
+      "source_size": [
+        443,
+        441
+      ],
+      "output_size": [
+        1772,
+        1764
+      ],
+      "file": "assets/lila/poster_upscaled/lila_lv04_4x.png",
+      "mean_rgb_downsample_difference": 14.02,
+      "source_alpha_preserved": true
+    },
+    {
+      "level": 5,
+      "source_size": [
+        462,
+        458
+      ],
+      "output_size": [
+        1848,
+        1832
+      ],
+      "file": "assets/lila/poster_upscaled/lila_lv05_4x.png",
+      "mean_rgb_downsample_difference": 13.03,
+      "source_alpha_preserved": true
+    },
+    {
+      "level": 6,
+      "source_size": [
+        534,
+        478
+      ],
+      "output_size": [
+        2136,
+        1912
+      ],
+      "file": "assets/lila/poster_upscaled/lila_lv06_4x.png",
+      "mean_rgb_downsample_difference": 12.6,
+      "source_alpha_preserved": true
+    }
+  ]
+}

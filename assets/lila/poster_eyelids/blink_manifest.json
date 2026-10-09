@@ -1,0 +1,182 @@
+{
+  "rendered_from": "the same original sprite enlarged 4x",
+  "method": "independent transparent eyelid overlay animated by Rive opacity",
+  "no_mouth_added": true,
+  "not_real_3d_joint_rig": true,
+  "levels": [
+    {
+      "level": 1,
+      "source": "assets/lila/poster_upscaled/lila_lv01_4x.png",
+      "overlay": "assets/lila/poster_eyelids/lila_lv01_blink_overlay.png",
+      "eyes_native": [
+        [
+          112,
+          99,
+          119,
+          115
+        ],
+        [
+          142,
+          99,
+          150,
+          115
+        ]
+      ],
+      "size": [
+        1060,
+        1060
+      ],
+      "nonempty_alpha_bbox": [
+        414,
+        362,
+        635,
+        495
+      ]
+    },
+    {
+      "level": 2,
+      "source": "assets/lila/poster_upscaled/lila_lv02_4x.png",
+      "overlay": "assets/lila/poster_eyelids/lila_lv02_blink_overlay.png",
+      "eyes_native": [
+        [
+          135,
+          127,
+          143,
+          144
+        ],
+        [
+          170,
+          127,
+          177,
+          144
+        ]
+      ],
+      "size": [
+        1216,
+        1496
+      ],
+      "nonempty_alpha_bbox": [
+        506,
+        474,
+        743,
+        611
+      ]
+    },
+    {
+      "level": 3,
+      "source": "assets/lila/poster_upscaled/lila_lv03_4x.png",
+      "overlay": "assets/lila/poster_eyelids/lila_lv03_blink_overlay.png",
+      "eyes_native": [
+        [
+          187,
+          121,
+          194,
+          139
+        ],
+        [
+          221,
+          122,
+          229,
+          139
+        ]
+      ],
+      "size": [
+        1668,
+        1684
+      ],
+      "nonempty_alpha_bbox": [
+        714,
+        450,
+        951,
+        591
+      ]
+    },
+    {
+      "level": 4,
+      "source": "assets/lila/poster_upscaled/lila_lv04_4x.png",
+      "overlay": "assets/lila/poster_eyelids/lila_lv04_blink_overlay.png",
+      "eyes_native": [
+        [
+          199,
+          122,
+          207,
+          141
+        ],
+        [
+          237,
+          122,
+          245,
+          141
+        ]
+      ],
+      "size": [
+        1772,
+        1764
+      ],
+      "nonempty_alpha_bbox": [
+        762,
+        454,
+        1015,
+        599
+      ]
+    },
+    {
+      "level": 5,
+      "source": "assets/lila/poster_upscaled/lila_lv05_4x.png",
+      "overlay": "assets/lila/poster_eyelids/lila_lv05_blink_overlay.png",
+      "eyes_native": [
+        [
+          210,
+          127,
+          219,
+          146
+        ],
+        [
+          247,
+          127,
+          255,
+          146
+        ]
+      ],
+      "size": [
+        1848,
+        1832
+      ],
+      "nonempty_alpha_bbox": [
+        806,
+        474,
+        1055,
+        619
+      ]
+    },
+    {
+      "level": 6,
+      "source": "assets/lila/poster_upscaled/lila_lv06_4x.png",
+      "overlay": "assets/lila/poster_eyelids/lila_lv06_blink_overlay.png",
+      "eyes_native": [
+        [
+          251,
+          137,
+          259,
+          154
+        ],
+        [
+          286,
+          137,
+          294,
+          154
+        ]
+      ],
+      "size": [
+        2136,
+        1912
+      ],
+      "nonempty_alpha_bbox": [
+        970,
+        514,
+        1211,
+        651
+      ]
+    }
+  ]
+}

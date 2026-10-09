@@ -36,7 +36,8 @@ struct LilaStudioView: View {
                     Label("실제 Rive", systemImage: "checkmark.circle.fill")
                         .foregroundStyle(.green)
                     Text("• 한 개의 .riv 파일에 6개 아트보드")
-                    Text("• 포스터 원본 이미지 그대로 · 미세한 호흡과 흔들림")
+                    Text("• 원본 릴라 기반 4배 AI 초해상도 이미지")
+                    Text("• 실제 눈 깜빡임 · 호흡 · 미세한 몸 흔들림")
                     Text("• Lv.6에만 왕관과 망토")
                 }
                 .font(.subheadline)
@@ -44,7 +45,7 @@ struct LilaStudioView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Label("아직 제작·검수 전", systemImage: "exclamationmark.triangle")
                         .foregroundStyle(.orange)
-                    Text("포스터에서 추출한 이미지라 큰 화면에서는 흐릿할 수 있습니다. 독립적인 눈 깜빡임, 팔·다리 운동 애니메이션, 감정 11종 전환은 아직 구현 전입니다.")
+                    Text("원본 포스터의 작은 이미지를 AI로 확대했기 때문에 세부 질감은 추정된 것입니다. 독립 팔·다리 관절 운동, 감정 11종, 자유로운 3D 회전은 아직 구현 전입니다.")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
