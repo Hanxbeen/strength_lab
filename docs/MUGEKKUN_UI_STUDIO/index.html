@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <title>무게꾼 | Product Studio — 화면 전체 설계</title>
+  <meta name="description" content="무게꾼 프리미엄 미니멀 iOS 앱 디자인 검토용 인터랙티브 와이어프레임.">
+  <link rel="stylesheet" href="studio.css">
+</head>
+<body>
+  <div class="studio">
+    <aside class="rail" aria-label="디자인 스튜디오 내비게이션">
+      <div class="rail-head">
+        <div class="brand-lockup"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><rect x="4" y="14" width="5" height="12" rx="2"/><rect x="10" y="10" width="6" height="20" rx="2"/><path d="M18 20h4" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><rect x="24" y="10" width="6" height="20" rx="2"/><rect x="31" y="14" width="5" height="12" rx="2"/></svg></span><div><strong>무게꾼</strong><span>PRODUCT STUDIO</span></div></div>
+        <span class="phase-label">UX / 01</span>
+      </div>
+      <div class="rail-intro">
+        <h1>모든 화면,<br>하나의 흐름.</h1>
+        <p>실서비스 UI를 목표로 만든 인터랙티브 시안입니다. 직접 눌러보고 마음에 들지 않는 부분을 기록하세요.</p>
+      </div>
+      <div class="rail-filter"><span data-icon="search"></span><input id="screenSearch" placeholder="화면 찾기..." aria-label="화면 검색"></div>
+      <div id="screenGroups" class="screen-groups"></div>
+      <div class="rail-bottom">
+        <div class="sample-marker"><span class="status-dot"></span> 모든 수치·루틴은 목업 예시</div>
+        <button class="text-link" id="jumpFirst" type="button"><span data-icon="route"></span> 처음부터 체험하기 <span data-icon="arrow-up-right"></span></button>
+      </div>
+    </aside>
+
+    <main class="stage">
+      <div class="stage-top">
+        <div class="breadcrumb"><span>PROJECT</span><span data-icon="chevron-right"></span><strong>무게꾼 iOS</strong><span data-icon="chevron-right"></span><span id="currentGroupLabel">홈</span></div>
+        <div class="stage-actions">
+          <div class="segmented tiny-seg" aria-label="목업 색상 테마">
+            <button type="button" class="theme-chip" data-theme="light">Light</button>
+            <button type="button" class="theme-chip" data-theme="dark">Dark</button>
+          </div>
+          <button id="resetDemo" class="icon-btn desk-icon" title="샘플 상태 초기화" aria-label="샘플 상태 초기화"><span data-icon="rotate-ccw"></span></button>
+        </div>
+      </div>
+      <div class="stage-center">
+        <div class="preview-heading">
+          <div class="preview-overline"><span class="overline-dot"></span> INTERACTIVE PREVIEW · NOT PRODUCTION</div>
+          <h2 id="stageTitle">오늘, 한 번 더.</h2>
+          <p id="stageSubtitle">실제 화면을 누르면 다음 흐름으로 이동합니다.</p>
+        </div>
+        <div class="phone">
+          <div class="phone-screen" id="phoneScreen">
+            <div class="statusbar"><span id="statusTime">9:41</span><span class="dynamic-island" aria-hidden="true"></span><span class="status-icons"><span data-icon="signal"></span><span data-icon="wifi"></span><span class="battery-indicator"><span></span></span></span></div>
+            <div class="app-viewport" id="appViewport" aria-live="polite"></div>
+            <div id="phoneToast" role="status" aria-live="polite"></div>
+            <div id="appBottomNav"></div>
+            <div class="home-indicator"></div>
+          </div>
+        </div>
+        <div class="phone-meta"><span><span class="live-dot"></span> CLICKABLE PROTOTYPE</span><span>iPhone 15 Pro · 393 × 852</span><span id="screenCounter">01 / 40</span></div>
+      </div>
+      <div class="stage-foot"><span>BRAND: CHARCOAL · WHITE</span><span>현 단계에서 디자인 토큰은 <strong>미확정</strong></span><span>REALITYKIT: NEXT PHASE</span></div>
+    </main>
+
+    <aside class="inspector" aria-label="화면 설계 및 피드백">
+      <div class="inspector-head">
+        <div class="eyebrow">DESIGN REVIEW</div>
+        <h2>화면 검토</h2>
+        <p>예쁜 화면보다 실제로 자연스럽게 쓸 수 있는 흐름을 먼저 확인합니다.</p>
+      </div>
+      <div id="screenInspector"></div>
+      <div class="feedback-panel">
+        <div class="feedback-heading"><span data-icon="message-square"></span><strong>이 화면 피드백</strong><span id="reviewCount" class="review-count">0</span></div>
+        <label for="feedbackText">아쉬운 점이나 변경 아이디어</label>
+        <textarea id="feedbackText" rows="5" placeholder="예: 홈에서 릴라를 조금 더 작게, 통계 카드는 2개만..."></textarea>
+        <div class="feedback-actions">
+          <button id="saveFeedback" class="button-primary" type="button"><span data-icon="check"></span> 의견 저장</button>
+          <button id="clearFeedback" class="button-secondary" type="button">비우기</button>
+        </div>
+        <button id="exportFeedback" class="export-link" type="button"><span data-icon="download"></span> 전체 화면 피드백 내보내기 <span data-icon="arrow-up-right"></span></button>
+        <p class="feedback-hint">의견은 이 브라우저에만 임시 저장됩니다. 내보내기 파일을 공유하면 다음 수정 단계에 그대로 반영할 수 있어요.</p>
+      </div>
+      <div class="inspector-footer">STRENGTH, WITH EVIDENCE <span>© 무게꾼</span></div>
+    </aside>
+  </div>
+  <script src="studio.js"></script>
+</body>
+</html>
