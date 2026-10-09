@@ -488,3 +488,19 @@
 .phone-screen .body-copy{font-size:15px}
 .phone-screen .card-copy{font-size:14px}
 .phone-screen .row-tile .row-main span{font-size:13px}
+
+/* Follow-up review: semantic text hierarchy and shared numeric baselines. */
+.phone-screen .page-title{font-size:34px;font-weight:700}
+.phone-screen .home-intro .home-title{font-size:34px;font-weight:700}
+.phone-screen .body-copy{font-size:17px;line-height:1.5}
+.phone-screen .card-copy{font-size:15px;line-height:1.45}
+.phone-screen .row-tile .row-main strong{font-size:17px;font-weight:600}
+.phone-screen .row-tile .row-main span{font-size:15px;line-height:1.4}
+.phone-screen .stat-card .metric-value{align-items:baseline;font-weight:700}
+.phone-screen .stat-card .metric-value .metric-suffix{align-self:auto;padding-bottom:0}
+.phone-screen .hero-home .cta-small{min-height:44px;font-size:15px}
+.phone-screen .back-btn,.phone-screen .back-action,.phone-screen .section-link{min-height:44px}
+.phone-screen .big-entry input{font-size:36px}
+.phone-screen[data-textscale="large"] .body-copy{font-size:20px}
+.phone-screen[data-textscale="large"] .row-tile .row-main strong{font-size:20px}
+.phone-screen[data-textscale="large"] .row-tile .row-main span{font-size:17px}
