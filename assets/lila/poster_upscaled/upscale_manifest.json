@@ -2,7 +2,7 @@
   "model": "RealESRGAN_x4plus_anime_6B",
   "scale": 4,
   "model_source": "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.2.4/RealESRGAN_x4plus_anime_6B.pth",
-  "algorithm": "RRDBNet_6B_MPS_or_CPU",
+  "algorithm": "RRDBNet_6B_MPS_or_CPU_with_alpha_aware_edge_color_padding",
   "device": "mps",
   "caution": "AI super-resolution is a plausible reconstruction, not actual original 3D detail.",
   "images": [
@@ -17,7 +17,7 @@
         1060
       ],
       "file": "assets/lila/poster_upscaled/lila_lv01_4x.png",
-      "mean_rgb_downsample_difference": 22.5,
+      "mean_rgb_downsample_difference": 25.74,
       "source_alpha_preserved": true
     },
     {
@@ -31,7 +31,7 @@
         1496
       ],
       "file": "assets/lila/poster_upscaled/lila_lv02_4x.png",
-      "mean_rgb_downsample_difference": 17.79,
+      "mean_rgb_downsample_difference": 20.26,
       "source_alpha_preserved": true
     },
     {
@@ -45,7 +45,7 @@
         1684
       ],
       "file": "assets/lila/poster_upscaled/lila_lv03_4x.png",
-      "mean_rgb_downsample_difference": 14.0,
+      "mean_rgb_downsample_difference": 16.24,
       "source_alpha_preserved": true
     },
     {
@@ -59,7 +59,7 @@
         1764
       ],
       "file": "assets/lila/poster_upscaled/lila_lv04_4x.png",
-      "mean_rgb_downsample_difference": 14.02,
+      "mean_rgb_downsample_difference": 15.94,
       "source_alpha_preserved": true
     },
     {
@@ -73,7 +73,7 @@
         1832
       ],
       "file": "assets/lila/poster_upscaled/lila_lv05_4x.png",
-      "mean_rgb_downsample_difference": 13.03,
+      "mean_rgb_downsample_difference": 14.68,
       "source_alpha_preserved": true
     },
     {
@@ -87,7 +87,7 @@
         1912
       ],
       "file": "assets/lila/poster_upscaled/lila_lv06_4x.png",
-      "mean_rgb_downsample_difference": 12.6,
+      "mean_rgb_downsample_difference": 14.13,
       "source_alpha_preserved": true
     }
   ]

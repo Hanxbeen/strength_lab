@@ -71,9 +71,18 @@ class RRDBNet(nn.Module):
 
 def upscale_4x(img,net,device,tile=192,padding=16):
     # Model on composited cream RGB, preserve the real alpha matte separately.
-    base=Image.new("RGB",img.size,(247,243,235))
-    base.paste(img,mask=img.getchannel("A"))
-    rgb=np.asarray(base,dtype=np.uint8)
+    # Extend the actual original edge colors into alpha=0 pixels before SR.
+    # A cream flat composite produced a conspicuous white halo around the dark
+    # gorilla on Rive's transparent artboard. Edge-color padding avoids it.
+    from scipy.ndimage import distance_transform_edt
+    rgba=np.asarray(img,dtype=np.uint8)
+    alpha=rgba[:,:,3].astype(np.float32)/255.
+    opaque=rgba[:,:,3]>=220
+    if not opaque.any():raise ValueError("Sprite has no opaque pixels")
+    _,near=distance_transform_edt(~opaque,return_indices=True)
+    nearest=rgba[near[0],near[1],:3].astype(np.float32)
+    base_rgb=rgba[:,:,:3].astype(np.float32)
+    rgb=np.round(base_rgb*alpha[:,:,None]+nearest*(1-alpha[:,:,None])).clip(0,255).astype(np.uint8)
     h,w=rgb.shape[:2]
     out=np.zeros((h*4,w*4,3),dtype=np.uint8)
     with torch.inference_mode():
@@ -107,7 +116,7 @@ def run(levels,tile=192):
     UPSCALED.mkdir(parents=True,exist_ok=True)
     metadata={"model":"RealESRGAN_x4plus_anime_6B","scale":4,
               "model_source":"https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.2.4/RealESRGAN_x4plus_anime_6B.pth",
-              "algorithm":"RRDBNet_6B_MPS_or_CPU","device":device,
+              "algorithm":"RRDBNet_6B_MPS_or_CPU_with_alpha_aware_edge_color_padding","device":device,
               "caution":"AI super-resolution is a plausible reconstruction, not actual original 3D detail.",
               "images":[]}
     for level in levels:
