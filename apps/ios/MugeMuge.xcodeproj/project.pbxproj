@@ -23,12 +23,19 @@
 		B28DDD5FFEC862FF38AC3D20 /* CloudThreeWayMerge.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA16D5385563895CF99ED96B /* CloudThreeWayMerge.swift */; };
 		B48EE20792B79859E8D9617A /* CloudSyncPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E23B881405602BC5A2D5937 /* CloudSyncPlan.swift */; };
 		C7F6B375480392E2B75134F2 /* BrandUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF347449ABE0A62C0B2E63 /* BrandUI.swift */; };
+		C823FC79C3514EF02C0448C7 /* lila.riv in Resources */ = {isa = PBXBuildFile; fileRef = 0B0BD92E7F331AC2FB098A97 /* lila.riv */; };
+		C853A510FAB500B0654518F2 /* LilaStudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA53A123DA4073A23074D2B /* LilaStudioView.swift */; };
+		ECC05F5E541E83F5FCA90EBF /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 60E8E264E18D28532039C109 /* RiveRuntime */; };
+		FA90F1448175EB9D4AB9F72C /* LilaRiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5195BA454957DEBAF2686CAF /* LilaRiveView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		07375A476AB1E5577D26D23C /* CloudAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAuth.swift; sourceTree = "<group>"; };
+		0B0BD92E7F331AC2FB098A97 /* lila.riv */ = {isa = PBXFileReference; path = lila.riv; sourceTree = "<group>"; };
 		0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		19401CE421EA9BB3C3247D7E /* TrainingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingState.swift; sourceTree = "<group>"; };
+		5195BA454957DEBAF2686CAF /* LilaRiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilaRiveView.swift; sourceTree = "<group>"; };
+		567114F31B2F49212A4C684D /* RiveRuntimePackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RiveRuntimePackage; path = RiveRuntimePackage; sourceTree = SOURCE_ROOT; };
 		583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugeMugeApp.swift; sourceTree = "<group>"; };
 		604C1EA0AECEB9A6B8CB3594 /* MugeMugeDevelopment.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MugeMugeDevelopment.entitlements; sourceTree = "<group>"; };
 		6F7587D144FA81489AC657AF /* StrengthMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrengthMetrics.swift; sourceTree = "<group>"; };
@@ -45,7 +52,19 @@
 		EA16D5385563895CF99ED96B /* CloudThreeWayMerge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudThreeWayMerge.swift; sourceTree = "<group>"; };
 		ED6DC524ED31912C1513BC54 /* CloudTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudTransport.swift; sourceTree = "<group>"; };
 		FAD1500B8521141D46032C62 /* CloudMerge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudMerge.swift; sourceTree = "<group>"; };
+		FBA53A123DA4073A23074D2B /* LilaStudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilaStudioView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3E79E29B3ADBFB2DD01571AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECC05F5E541E83F5FCA90EBF /* RiveRuntime in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		085076B71184001A4BF2EA09 /* Products */ = {
@@ -56,11 +75,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		283E3243CE01B5B6247B5F8A /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				567114F31B2F49212A4C684D /* RiveRuntimePackage */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		5A803A1E5CEDD180AC05237A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				D22E921D81DFFD49ED96A27D /* Assets.xcassets */,
 				D572A0A487D87B6E13722EBB /* demo-catalog.json */,
+				0B0BD92E7F331AC2FB098A97 /* lila.riv */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -76,6 +104,8 @@
 				EA16D5385563895CF99ED96B /* CloudThreeWayMerge.swift */,
 				ED6DC524ED31912C1513BC54 /* CloudTransport.swift */,
 				0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */,
+				5195BA454957DEBAF2686CAF /* LilaRiveView.swift */,
+				FBA53A123DA4073A23074D2B /* LilaStudioView.swift */,
 				C50C3D9EBFC46A557B4E3556 /* Models.swift */,
 				7982630AB09572CCC9E04F6A /* MugeMascot.swift */,
 				D86AAC36109BD955C8A0A463 /* MugeMuge.entitlements */,
@@ -93,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				BE919EE16B9D1754E21D57AF /* MugeMuge */,
+				283E3243CE01B5B6247B5F8A /* Packages */,
 				085076B71184001A4BF2EA09 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,6 +137,7 @@
 			buildPhases = (
 				FC6FF2C8C4E53769863DEA9F /* Sources */,
 				10308AD200C60D48421C5A0F /* Resources */,
+				3E79E29B3ADBFB2DD01571AD /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -113,6 +145,7 @@
 			);
 			name = MugeMuge;
 			packageProductDependencies = (
+				60E8E264E18D28532039C109 /* RiveRuntime */,
 			);
 			productName = MugeMuge;
 			productReference = E3A254024E9A0EDAC4CE8EDA /* MugeMuge.app */;
@@ -141,6 +174,9 @@
 			);
 			mainGroup = C310ABB3A1982E5E41D5141A;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				862703D5C166DE87486F7059 /* XCLocalSwiftPackageReference "RiveRuntimePackage" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 085076B71184001A4BF2EA09 /* Products */;
 			projectDirPath = "";
@@ -158,6 +194,7 @@
 			files = (
 				818D6109FA6BD74AE38C69A5 /* Assets.xcassets in Resources */,
 				7918A417D55792A2FEF02DA2 /* demo-catalog.json in Resources */,
+				C823FC79C3514EF02C0448C7 /* lila.riv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +213,8 @@
 				B28DDD5FFEC862FF38AC3D20 /* CloudThreeWayMerge.swift in Sources */,
 				9269CD76BCC84AA4192FDBE4 /* CloudTransport.swift in Sources */,
 				46EA9522149F5F6E3F115CCB /* HomeView.swift in Sources */,
+				FA90F1448175EB9D4AB9F72C /* LilaRiveView.swift in Sources */,
+				C853A510FAB500B0654518F2 /* LilaStudioView.swift in Sources */,
 				0B23ACBA556F234DE0144654 /* Models.swift in Sources */,
 				1FB75BAFC37ACD416C5858E6 /* MugeMascot.swift in Sources */,
 				AAE69B3A60EC25C845B53DCF /* MugeMugeApp.swift in Sources */,
@@ -376,6 +415,20 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		862703D5C166DE87486F7059 /* XCLocalSwiftPackageReference "RiveRuntimePackage" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = RiveRuntimePackage;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		60E8E264E18D28532039C109 /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RiveRuntime;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 97A06FC9A14229CBE5D9A790 /* Project object */;
 }

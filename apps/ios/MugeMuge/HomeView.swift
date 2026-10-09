@@ -27,7 +27,7 @@ struct HomeView: View {
                         }
                         .padding(.top, 16)
                         HStack(spacing: 12) {
-                            MugeMascot(size: 100)
+                            LilaRiveView(level: 1, size: 100)
                             VStack(alignment: .leading, spacing: 6) {
                                 Text("오늘도 차곡차곡")
                                     .font(.headline).foregroundStyle(MugeStyle.ink)
@@ -38,6 +38,16 @@ struct HomeView: View {
                         }
                         .padding(12)
                         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
+
+                        #if DEBUG
+                        NavigationLink {
+                            LilaStudioView()
+                        } label: {
+                            Label("릴라 Rive 실험실 · 레벨 1~6 미리보기", systemImage: "sparkles.rectangle.stack")
+                                .font(.caption.weight(.semibold))
+                                .foregroundStyle(MugeStyle.accent)
+                        }
+                        #endif
 
                         if let active = workouts.active {
                             MugeCard {
@@ -117,7 +127,7 @@ struct HomeView: View {
                     .padding(20)
                 }
                 .background(MugeStyle.canvas)
-                .navigationTitle("무게무게")
+                .navigationTitle("무게꾼")
                 .navigationBarTitleDisplayMode(.inline)
                 .refreshable { await catalog.refresh() }
             }

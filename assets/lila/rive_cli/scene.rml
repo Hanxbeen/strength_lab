@@ -1,0 +1,2248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rive version="1" kind="fragment">
+  <Artboard width="600" height="620" name="LilaLv1" id="0:101" styleId="0:102" x="0.0" y="0" defaultStateMachineId="0:147">
+    <LayoutComponentStyle name="Artboard Style" id="0:102" />
+    <Node name="character_root" id="0:103">
+      <Node x="300" y="222.0" scaleX="1.1" scaleY="1.1" name="head_group" id="0:104">
+        <Node x="0.0" y="0.0" name="nostril_right" id="0:105">
+          <Shape x="7.0" y="85.0" rotation="0.0" name="nostril_right_0" id="0:106">
+            <Ellipse width="8.2" height="9.6" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="nostril_left" id="0:107">
+          <Shape x="-8.0" y="85.0" rotation="0.0" name="nostril_left_0" id="0:108">
+            <Ellipse width="8.2" height="9.6" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="28.5" y="24.5" name="eye_right" id="0:109">
+          <Shape x="0.0" y="0.0" rotation="0.0" name="eye_right_0" id="0:110">
+            <Rectangle width="13.0" height="33.0" name="Path" cornerRadiusTL="6.5" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="-28.5" y="24.5" name="eye_left" id="0:111">
+          <Shape x="0.0" y="0.0" rotation="0.0" name="eye_left_0" id="0:112">
+            <Rectangle width="13.0" height="33.0" name="Path" cornerRadiusTL="6.5" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="muzzle_skin" id="0:113">
+          <Shape x="-0.5" y="134.5" name="muzzle_skin_0" id="0:114">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-84.5" y="-66.5" inRotation="2.40162" inDistance="31.14482" outRotation="-0.70863" outDistance="27.65863" />
+              <CubicDetachedVertex x="-1.5" y="-74.5" inRotation="-2.81984" inDistance="34.78505" outRotation="-0.3303" outDistance="37.0" />
+              <CubicDetachedVertex x="86.5" y="-66.5" inRotation="-2.47755" inDistance="29.20616" outRotation="0.59718" outDistance="30.23243" />
+              <CubicDetachedVertex x="101.5" y="23.5" inRotation="-1.13246" inDistance="35.34119" outRotation="1.97569" outDistance="38.07887" />
+              <CubicDetachedVertex x="0.5" y="74.5" inRotation="0.07878" inDistance="38.11824" outRotation="3.07352" outDistance="44.10215" />
+              <CubicDetachedVertex x="-101.5" y="19.5" inRotation="1.19991" inDistance="38.62642" outRotation="-1.94013" outDistance="33.24154" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-60.9" startY="-56.62" endX="111.65" endY="77.48">
+                <GradientStop position="0" colorValue="FFFFF8EC" />
+                <GradientStop position="0.48" colorValue="FFF3E7DB" />
+                <GradientStop position="1" colorValue="FFE0CAB9" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="forehead_skin" id="0:115">
+          <Shape x="0.5" y="25.0" name="forehead_skin_0" id="0:116">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-93.5" y="14.0" inRotation="1.48989" inDistance="37.12142" outRotation="-1.59079" outDistance="50.01" />
+              <CubicDetachedVertex x="-48.5" y="-75.0" inRotation="3.08284" inDistance="34.05877" outRotation="-0.28605" outDistance="17.72005" />
+              <CubicDetachedVertex x="-0.5" y="-57.0" inRotation="-2.35619" inDistance="15.55635" outRotation="-0.7854" outDistance="21.2132" />
+              <CubicDetachedVertex x="47.5" y="-76.0" inRotation="-2.95337" inDistance="21.37756" outRotation="-0.02564" outDistance="39.01282" />
+              <CubicDetachedVertex x="93.5" y="15.0" inRotation="-1.50965" inDistance="49.09175" outRotation="1.65945" outDistance="45.17743" />
+              <CubicDetachedVertex x="0.5" y="76.0" inRotation="-0.05258" inDistance="57.07889" outRotation="-3.09475" outDistance="64.07027" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-56.1" startY="-57.76" endX="102.85" endY="79.04">
+                <GradientStop position="0" colorValue="FFFFF4E7" />
+                <GradientStop position="0.48" colorValue="FFF3E7DB" />
+                <GradientStop position="1" colorValue="FFD8C3B3" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="tuft_A" id="0:117">
+          <Shape x="14.0" y="-138.5" name="tuft_A_2" id="0:118">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-8.0" y="1.5" inRotation="0.2783" inDistance="7.28011" outRotation="-0.70863" outDistance="9.21954" />
+              <CubicDetachedVertex x="8.0" y="-1.5" inRotation="-2.1588" inDistance="3.60555" outRotation="2.35619" outDistance="4.24264" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF303031" />
+            </Fill>
+          </Shape>
+          <Shape x="5.0" y="-144.5" name="tuft_A_1" id="0:119">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-1.0" y="7.5" inRotation="0" inDistance="0.0" outRotation="-2.1588" outDistance="7.2111" />
+              <CubicDetachedVertex x="-4.0" y="-7.5" inRotation="2.55359" inDistance="3.60555" outRotation="0.46365" outDistance="6.7082" />
+              <CubicDetachedVertex x="4.0" y="5.5" inRotation="-1.76819" inDistance="5.09902" outRotation="0" outDistance="0.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF3B3B3B" />
+            </Fill>
+          </Shape>
+          <Shape x="-3.5" y="-142.5" name="tuft_A_0" id="0:120">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="6.5" y="5.5" inRotation="0" inDistance="0.0" outRotation="-2.87534" outDistance="11.40175" />
+              <CubicDetachedVertex x="-8.5" y="-5.5" inRotation="1.81577" inDistance="4.12311" outRotation="0.0" outDistance="8.0" />
+              <CubicDetachedVertex x="8.5" y="3.5" inRotation="-2.35619" inDistance="5.65685" outRotation="0" outDistance="0.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF353535" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="head_skull" id="0:121">
+          <Shape x="0.0" y="20.5" name="head_skull_0" id="0:122">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="0.0" y="-159.5" inRotation="-0.04851" inDistance="103.12129" outRotation="-3.09309" outDistance="103.12129" />
+              <CubicDetachedVertex x="-158.0" y="11.5" inRotation="-1.5708" inDistance="99.0" outRotation="1.6282" outDistance="87.14356" />
+              <CubicDetachedVertex x="0.0" y="159.5" inRotation="-3.12341" inDistance="110.01818" outRotation="-0.01818" outDistance="110.01818" />
+              <CubicDetachedVertex x="158.0" y="11.5" inRotation="1.51339" inDistance="87.14356" outRotation="-1.5708" outDistance="99.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-94.8" startY="-121.22" endX="173.8" endY="165.88">
+                <GradientStop position="0" colorValue="FF555555" />
+                <GradientStop position="0.48" colorValue="FF353535" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="ear_right" id="0:123">
+          <Shape x="134.0" y="33.0" rotation="0.0" name="ear_right_1" id="0:124">
+            <Ellipse width="38.0" height="54.0" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF2A2A2A" />
+            </Fill>
+          </Shape>
+          <Shape x="134.0" y="31.0" rotation="0.0" name="ear_right_0" id="0:125">
+            <Ellipse width="80.0" height="96.0" name="Path" />
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-24.0" startY="-36.48" endX="44.0" endY="49.92">
+                <GradientStop position="0" colorValue="FF464647" />
+                <GradientStop position="0.48" colorValue="FF2A2A2B" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="ear_left" id="0:126">
+          <Shape x="-134.0" y="33.0" rotation="0.0" name="ear_left_1" id="0:127">
+            <Ellipse width="38.0" height="54.0" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF2A2A2A" />
+            </Fill>
+          </Shape>
+          <Shape x="-134.0" y="31.0" rotation="0.0" name="ear_left_0" id="0:128">
+            <Ellipse width="80.0" height="96.0" name="Path" />
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-24.0" startY="-36.48" endX="44.0" endY="49.92">
+                <GradientStop position="0" colorValue="FF464647" />
+                <GradientStop position="0.48" colorValue="FF2A2A2B" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+      </Node>
+      <Node x="408.8" y="359.0" name="arm_right" id="0:129">
+        <Shape x="11.0" y="130.1" rotation="0.0" name="arm_right_1" id="0:130">
+          <Ellipse width="38.4" height="32.2" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-11.52" startY="-12.236" endX="21.12" endY="16.744">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="67.0" rotation="0.19199" name="arm_right_0" id="0:131">
+          <Ellipse width="62.0" height="152.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-18.6" startY="-57.76" endX="34.1" endY="79.04">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="191.2" y="359.0" name="arm_left" id="0:132">
+        <Shape x="-11.0" y="130.1" rotation="0.0" name="arm_left_1" id="0:133">
+          <Ellipse width="38.4" height="32.2" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-11.52" startY="-12.236" endX="21.12" endY="16.744">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="67.0" rotation="-0.19199" name="arm_left_0" id="0:134">
+          <Ellipse width="62.0" height="152.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-18.6" startY="-57.76" endX="34.1" endY="79.04">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="300.0" y="440.0" name="belly_skin" id="0:135">
+        <Shape x="0.0" y="0.0" rotation="0.0" name="belly_skin_0" id="0:136">
+          <Ellipse width="101.8" height="111.4" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-30.54" startY="-42.332" endX="55.99" endY="57.928">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="300.0" y="429.0" name="body_torso" id="0:137">
+        <Shape x="0.0" y="0.0" rotation="0.0" name="body_torso_0" id="0:138">
+          <Ellipse width="212.0" height="232.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-63.6" startY="-88.16" endX="116.6" endY="120.64">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="382.0" y="530.0" name="foot_right" id="0:139">
+        <Shape x="21.0" y="4.0" rotation="0.0" name="foot_right_0" id="0:140">
+          <Ellipse width="68.0" height="42.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-20.4" startY="-15.96" endX="37.4" endY="21.84">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="218.0" y="530.0" name="foot_left" id="0:141">
+        <Shape x="-21.0" y="4.0" rotation="0.0" name="foot_left_0" id="0:142">
+          <Ellipse width="68.0" height="42.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-20.4" startY="-15.96" endX="37.4" endY="21.84">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="370.0" y="461.0" name="leg_right" id="0:143">
+        <Shape x="12.0" y="53.0" rotation="0.0" name="leg_right_0" id="0:144">
+          <Ellipse width="134.0" height="94.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-40.2" startY="-35.72" endX="73.7" endY="48.88">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="230.0" y="461.0" name="leg_left" id="0:145">
+        <Shape x="-12.0" y="53.0" rotation="0.0" name="leg_left_0" id="0:146">
+          <Ellipse width="134.0" height="94.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-40.2" startY="-35.72" endX="73.7" endY="48.88">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+    </Node>
+    <StateMachine name="LilaCompanion" id="0:147">
+      <StateMachineLayer name="Breathing" id="0:152">
+        <AnyState x="90" y="-35.0" />
+        <ExitState x="450" y="-35.0" />
+        <EntryState x="30" y="70.0">
+          <StateTransition stateToId="0:148" />
+        </EntryState>
+        <AnimationState x="270" y="70.0" animationId="0:150" id="0:148" />
+      </StateMachineLayer>
+      <StateMachineLayer name="Blinking" id="0:153">
+        <AnyState x="90" y="125.0" />
+        <ExitState x="450" y="125.0" />
+        <EntryState x="30" y="230.0">
+          <StateTransition stateToId="0:149" />
+        </EntryState>
+        <AnimationState x="270" y="230.0" animationId="0:151" id="0:149" />
+      </StateMachineLayer>
+    </StateMachine>
+    <LinearAnimation name="IdleBreath" loopValue="1" duration="180" id="0:150">
+      <KeyedObject objectId="0:104">
+        <KeyedProperty propertyKey="15">
+          <KeyFrameDouble frame="0" value="-0.014" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.017" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="-0.012" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.011" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="-0.014" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:137">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.976" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.988" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:135">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.976" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.988" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+    </LinearAnimation>
+    <LinearAnimation name="NaturalBlink" loopValue="1" duration="220" id="0:151">
+      <KeyedObject objectId="0:111">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="107" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="111" value="0.08" interpolationType="1" />
+          <KeyFrameDouble frame="116" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="219" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:109">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="107" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="111" value="0.08" interpolationType="1" />
+          <KeyFrameDouble frame="116" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="219" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+    </LinearAnimation>
+  </Artboard>
+  <Artboard width="600" height="620" name="LilaLv2" id="0:154" styleId="0:155" x="660.0" y="0" defaultStateMachineId="0:202">
+    <LayoutComponentStyle name="Artboard Style" id="0:155" />
+    <Node name="character_root" id="0:156">
+      <Node x="300" y="210.0" scaleX="1.055" scaleY="1.055" name="head_group" id="0:157">
+        <Node x="0.0" y="0.0" name="nostril_right" id="0:158">
+          <Shape x="7.0" y="85.0" rotation="0.0" name="nostril_right_0" id="0:159">
+            <Ellipse width="8.2" height="9.6" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="nostril_left" id="0:160">
+          <Shape x="-8.0" y="85.0" rotation="0.0" name="nostril_left_0" id="0:161">
+            <Ellipse width="8.2" height="9.6" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="28.5" y="24.5" name="eye_right" id="0:162">
+          <Shape x="0.0" y="0.0" rotation="0.0" name="eye_right_0" id="0:163">
+            <Rectangle width="13.0" height="33.0" name="Path" cornerRadiusTL="6.5" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="-28.5" y="24.5" name="eye_left" id="0:164">
+          <Shape x="0.0" y="0.0" rotation="0.0" name="eye_left_0" id="0:165">
+            <Rectangle width="13.0" height="33.0" name="Path" cornerRadiusTL="6.5" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="muzzle_skin" id="0:166">
+          <Shape x="-0.5" y="134.5" name="muzzle_skin_0" id="0:167">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-84.5" y="-66.5" inRotation="2.40162" inDistance="31.14482" outRotation="-0.70863" outDistance="27.65863" />
+              <CubicDetachedVertex x="-1.5" y="-74.5" inRotation="-2.81984" inDistance="34.78505" outRotation="-0.3303" outDistance="37.0" />
+              <CubicDetachedVertex x="86.5" y="-66.5" inRotation="-2.47755" inDistance="29.20616" outRotation="0.59718" outDistance="30.23243" />
+              <CubicDetachedVertex x="101.5" y="23.5" inRotation="-1.13246" inDistance="35.34119" outRotation="1.97569" outDistance="38.07887" />
+              <CubicDetachedVertex x="0.5" y="74.5" inRotation="0.07878" inDistance="38.11824" outRotation="3.07352" outDistance="44.10215" />
+              <CubicDetachedVertex x="-101.5" y="19.5" inRotation="1.19991" inDistance="38.62642" outRotation="-1.94013" outDistance="33.24154" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-60.9" startY="-56.62" endX="111.65" endY="77.48">
+                <GradientStop position="0" colorValue="FFFFF8EC" />
+                <GradientStop position="0.48" colorValue="FFF3E7DB" />
+                <GradientStop position="1" colorValue="FFE0CAB9" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="forehead_skin" id="0:168">
+          <Shape x="0.5" y="25.0" name="forehead_skin_0" id="0:169">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-93.5" y="14.0" inRotation="1.48989" inDistance="37.12142" outRotation="-1.59079" outDistance="50.01" />
+              <CubicDetachedVertex x="-48.5" y="-75.0" inRotation="3.08284" inDistance="34.05877" outRotation="-0.28605" outDistance="17.72005" />
+              <CubicDetachedVertex x="-0.5" y="-57.0" inRotation="-2.35619" inDistance="15.55635" outRotation="-0.7854" outDistance="21.2132" />
+              <CubicDetachedVertex x="47.5" y="-76.0" inRotation="-2.95337" inDistance="21.37756" outRotation="-0.02564" outDistance="39.01282" />
+              <CubicDetachedVertex x="93.5" y="15.0" inRotation="-1.50965" inDistance="49.09175" outRotation="1.65945" outDistance="45.17743" />
+              <CubicDetachedVertex x="0.5" y="76.0" inRotation="-0.05258" inDistance="57.07889" outRotation="-3.09475" outDistance="64.07027" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-56.1" startY="-57.76" endX="102.85" endY="79.04">
+                <GradientStop position="0" colorValue="FFFFF4E7" />
+                <GradientStop position="0.48" colorValue="FFF3E7DB" />
+                <GradientStop position="1" colorValue="FFD8C3B3" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="tuft_A" id="0:170">
+          <Shape x="14.0" y="-138.5" name="tuft_A_2" id="0:171">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-8.0" y="1.5" inRotation="0.2783" inDistance="7.28011" outRotation="-0.70863" outDistance="9.21954" />
+              <CubicDetachedVertex x="8.0" y="-1.5" inRotation="-2.1588" inDistance="3.60555" outRotation="2.35619" outDistance="4.24264" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF303031" />
+            </Fill>
+          </Shape>
+          <Shape x="5.0" y="-144.5" name="tuft_A_1" id="0:172">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-1.0" y="7.5" inRotation="0" inDistance="0.0" outRotation="-2.1588" outDistance="7.2111" />
+              <CubicDetachedVertex x="-4.0" y="-7.5" inRotation="2.55359" inDistance="3.60555" outRotation="0.46365" outDistance="6.7082" />
+              <CubicDetachedVertex x="4.0" y="5.5" inRotation="-1.76819" inDistance="5.09902" outRotation="0" outDistance="0.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF3B3B3B" />
+            </Fill>
+          </Shape>
+          <Shape x="-3.5" y="-142.5" name="tuft_A_0" id="0:173">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="6.5" y="5.5" inRotation="0" inDistance="0.0" outRotation="-2.87534" outDistance="11.40175" />
+              <CubicDetachedVertex x="-8.5" y="-5.5" inRotation="1.81577" inDistance="4.12311" outRotation="0.0" outDistance="8.0" />
+              <CubicDetachedVertex x="8.5" y="3.5" inRotation="-2.35619" inDistance="5.65685" outRotation="0" outDistance="0.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF353535" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="head_skull" id="0:174">
+          <Shape x="0.0" y="20.5" name="head_skull_0" id="0:175">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="0.0" y="-159.5" inRotation="-0.04851" inDistance="103.12129" outRotation="-3.09309" outDistance="103.12129" />
+              <CubicDetachedVertex x="-158.0" y="11.5" inRotation="-1.5708" inDistance="99.0" outRotation="1.6282" outDistance="87.14356" />
+              <CubicDetachedVertex x="0.0" y="159.5" inRotation="-3.12341" inDistance="110.01818" outRotation="-0.01818" outDistance="110.01818" />
+              <CubicDetachedVertex x="158.0" y="11.5" inRotation="1.51339" inDistance="87.14356" outRotation="-1.5708" outDistance="99.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-94.8" startY="-121.22" endX="173.8" endY="165.88">
+                <GradientStop position="0" colorValue="FF555555" />
+                <GradientStop position="0.48" colorValue="FF353535" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="ear_right" id="0:176">
+          <Shape x="134.0" y="33.0" rotation="0.0" name="ear_right_1" id="0:177">
+            <Ellipse width="38.0" height="54.0" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF2A2A2A" />
+            </Fill>
+          </Shape>
+          <Shape x="134.0" y="31.0" rotation="0.0" name="ear_right_0" id="0:178">
+            <Ellipse width="80.0" height="96.0" name="Path" />
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-24.0" startY="-36.48" endX="44.0" endY="49.92">
+                <GradientStop position="0" colorValue="FF464647" />
+                <GradientStop position="0.48" colorValue="FF2A2A2B" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="ear_left" id="0:179">
+          <Shape x="-134.0" y="33.0" rotation="0.0" name="ear_left_1" id="0:180">
+            <Ellipse width="38.0" height="54.0" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF2A2A2A" />
+            </Fill>
+          </Shape>
+          <Shape x="-134.0" y="31.0" rotation="0.0" name="ear_left_0" id="0:181">
+            <Ellipse width="80.0" height="96.0" name="Path" />
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-24.0" startY="-36.48" endX="44.0" endY="49.92">
+                <GradientStop position="0" colorValue="FF464647" />
+                <GradientStop position="0.48" colorValue="FF2A2A2B" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+      </Node>
+      <Node x="411.8" y="359.0" name="arm_right" id="0:182">
+        <Shape x="11.0" y="135.9" rotation="0.0" name="arm_right_1" id="0:183">
+          <Ellipse width="38.4" height="32.2" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-11.52" startY="-12.236" endX="21.12" endY="16.744">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="67.0" rotation="0.19199" name="arm_right_0" id="0:184">
+          <Ellipse width="62.0" height="166.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-18.6" startY="-63.08" endX="34.1" endY="86.32">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="188.2" y="359.0" name="arm_left" id="0:185">
+        <Shape x="-11.0" y="135.9" rotation="0.0" name="arm_left_1" id="0:186">
+          <Ellipse width="38.4" height="32.2" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-11.52" startY="-12.236" endX="21.12" endY="16.744">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="67.0" rotation="-0.19199" name="arm_left_0" id="0:187">
+          <Ellipse width="62.0" height="166.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-18.6" startY="-63.08" endX="34.1" endY="86.32">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="300.0" y="440.0" name="belly_skin" id="0:188">
+        <Shape x="0.0" y="0.0" rotation="0.0" name="belly_skin_0" id="0:189">
+          <Ellipse width="101.8" height="114.2" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-30.54" startY="-43.396" endX="55.99" endY="59.384">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="300.0" y="429.0" name="body_torso" id="0:190">
+        <Shape x="0.0" y="0.0" rotation="0.0" name="body_torso_0" id="0:191">
+          <Ellipse width="212.0" height="238.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-63.6" startY="-90.44" endX="116.6" endY="123.76">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="349.8" y="548.0" name="foot_right" id="0:192">
+        <Shape x="0.0" y="20.0" rotation="0.0" name="foot_right_1" id="0:193">
+          <Ellipse width="40.8" height="24.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-12.24" startY="-9.12" endX="22.44" endY="12.48">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="13.0" rotation="0.0" name="foot_right_0" id="0:194">
+          <Ellipse width="88.0" height="40.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-26.4" startY="-15.2" endX="48.4" endY="20.8">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="250.2" y="548.0" name="foot_left" id="0:195">
+        <Shape x="0.0" y="20.0" rotation="0.0" name="foot_left_1" id="0:196">
+          <Ellipse width="40.8" height="24.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-12.24" startY="-9.12" endX="22.44" endY="12.48">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="13.0" rotation="0.0" name="foot_left_0" id="0:197">
+          <Ellipse width="88.0" height="40.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-26.4" startY="-15.2" endX="48.4" endY="20.8">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="348.8" y="466.0" name="leg_right" id="0:198">
+        <Shape x="0.0" y="42.0" rotation="0.0" name="leg_right_0" id="0:199">
+          <Ellipse width="60.0" height="128.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-18.0" startY="-48.64" endX="33.0" endY="66.56">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="251.2" y="466.0" name="leg_left" id="0:200">
+        <Shape x="0.0" y="42.0" rotation="0.0" name="leg_left_0" id="0:201">
+          <Ellipse width="60.0" height="128.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-18.0" startY="-48.64" endX="33.0" endY="66.56">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+    </Node>
+    <StateMachine name="LilaCompanion" id="0:202">
+      <StateMachineLayer name="Breathing" id="0:207">
+        <AnyState x="90" y="-35.0" />
+        <ExitState x="450" y="-35.0" />
+        <EntryState x="30" y="70.0">
+          <StateTransition stateToId="0:203" />
+        </EntryState>
+        <AnimationState x="270" y="70.0" animationId="0:205" id="0:203" />
+      </StateMachineLayer>
+      <StateMachineLayer name="Blinking" id="0:208">
+        <AnyState x="90" y="125.0" />
+        <ExitState x="450" y="125.0" />
+        <EntryState x="30" y="230.0">
+          <StateTransition stateToId="0:204" />
+        </EntryState>
+        <AnimationState x="270" y="230.0" animationId="0:206" id="0:204" />
+      </StateMachineLayer>
+    </StateMachine>
+    <LinearAnimation name="IdleBreath" loopValue="1" duration="180" id="0:205">
+      <KeyedObject objectId="0:157">
+        <KeyedProperty propertyKey="15">
+          <KeyFrameDouble frame="0" value="-0.014" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.017" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="-0.012" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.011" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="-0.014" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:190">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.976" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.988" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:188">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.976" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.988" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+    </LinearAnimation>
+    <LinearAnimation name="NaturalBlink" loopValue="1" duration="220" id="0:206">
+      <KeyedObject objectId="0:164">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="107" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="111" value="0.08" interpolationType="1" />
+          <KeyFrameDouble frame="116" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="219" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:162">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="107" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="111" value="0.08" interpolationType="1" />
+          <KeyFrameDouble frame="116" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="219" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+    </LinearAnimation>
+  </Artboard>
+  <Artboard width="600" height="620" name="LilaLv3" id="0:209" styleId="0:210" x="1320.0" y="0" defaultStateMachineId="0:257">
+    <LayoutComponentStyle name="Artboard Style" id="0:210" />
+    <Node name="character_root" id="0:211">
+      <Node x="300" y="202.0" scaleX="1.015" scaleY="1.015" name="head_group" id="0:212">
+        <Node x="0.0" y="0.0" name="nostril_right" id="0:213">
+          <Shape x="7.0" y="85.0" rotation="0.0" name="nostril_right_0" id="0:214">
+            <Ellipse width="8.2" height="9.6" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="nostril_left" id="0:215">
+          <Shape x="-8.0" y="85.0" rotation="0.0" name="nostril_left_0" id="0:216">
+            <Ellipse width="8.2" height="9.6" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="28.5" y="24.5" name="eye_right" id="0:217">
+          <Shape x="0.0" y="0.0" rotation="0.0" name="eye_right_0" id="0:218">
+            <Rectangle width="13.0" height="33.0" name="Path" cornerRadiusTL="6.5" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="-28.5" y="24.5" name="eye_left" id="0:219">
+          <Shape x="0.0" y="0.0" rotation="0.0" name="eye_left_0" id="0:220">
+            <Rectangle width="13.0" height="33.0" name="Path" cornerRadiusTL="6.5" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="muzzle_skin" id="0:221">
+          <Shape x="-0.5" y="134.5" name="muzzle_skin_0" id="0:222">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-84.5" y="-66.5" inRotation="2.40162" inDistance="31.14482" outRotation="-0.70863" outDistance="27.65863" />
+              <CubicDetachedVertex x="-1.5" y="-74.5" inRotation="-2.81984" inDistance="34.78505" outRotation="-0.3303" outDistance="37.0" />
+              <CubicDetachedVertex x="86.5" y="-66.5" inRotation="-2.47755" inDistance="29.20616" outRotation="0.59718" outDistance="30.23243" />
+              <CubicDetachedVertex x="101.5" y="23.5" inRotation="-1.13246" inDistance="35.34119" outRotation="1.97569" outDistance="38.07887" />
+              <CubicDetachedVertex x="0.5" y="74.5" inRotation="0.07878" inDistance="38.11824" outRotation="3.07352" outDistance="44.10215" />
+              <CubicDetachedVertex x="-101.5" y="19.5" inRotation="1.19991" inDistance="38.62642" outRotation="-1.94013" outDistance="33.24154" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-60.9" startY="-56.62" endX="111.65" endY="77.48">
+                <GradientStop position="0" colorValue="FFFFF8EC" />
+                <GradientStop position="0.48" colorValue="FFF3E7DB" />
+                <GradientStop position="1" colorValue="FFE0CAB9" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="forehead_skin" id="0:223">
+          <Shape x="0.5" y="25.0" name="forehead_skin_0" id="0:224">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-93.5" y="14.0" inRotation="1.48989" inDistance="37.12142" outRotation="-1.59079" outDistance="50.01" />
+              <CubicDetachedVertex x="-48.5" y="-75.0" inRotation="3.08284" inDistance="34.05877" outRotation="-0.28605" outDistance="17.72005" />
+              <CubicDetachedVertex x="-0.5" y="-57.0" inRotation="-2.35619" inDistance="15.55635" outRotation="-0.7854" outDistance="21.2132" />
+              <CubicDetachedVertex x="47.5" y="-76.0" inRotation="-2.95337" inDistance="21.37756" outRotation="-0.02564" outDistance="39.01282" />
+              <CubicDetachedVertex x="93.5" y="15.0" inRotation="-1.50965" inDistance="49.09175" outRotation="1.65945" outDistance="45.17743" />
+              <CubicDetachedVertex x="0.5" y="76.0" inRotation="-0.05258" inDistance="57.07889" outRotation="-3.09475" outDistance="64.07027" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-56.1" startY="-57.76" endX="102.85" endY="79.04">
+                <GradientStop position="0" colorValue="FFFFF4E7" />
+                <GradientStop position="0.48" colorValue="FFF3E7DB" />
+                <GradientStop position="1" colorValue="FFD8C3B3" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="tuft_A" id="0:225">
+          <Shape x="14.0" y="-138.5" name="tuft_A_2" id="0:226">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-8.0" y="1.5" inRotation="0.2783" inDistance="7.28011" outRotation="-0.70863" outDistance="9.21954" />
+              <CubicDetachedVertex x="8.0" y="-1.5" inRotation="-2.1588" inDistance="3.60555" outRotation="2.35619" outDistance="4.24264" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF303031" />
+            </Fill>
+          </Shape>
+          <Shape x="5.0" y="-144.5" name="tuft_A_1" id="0:227">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-1.0" y="7.5" inRotation="0" inDistance="0.0" outRotation="-2.1588" outDistance="7.2111" />
+              <CubicDetachedVertex x="-4.0" y="-7.5" inRotation="2.55359" inDistance="3.60555" outRotation="0.46365" outDistance="6.7082" />
+              <CubicDetachedVertex x="4.0" y="5.5" inRotation="-1.76819" inDistance="5.09902" outRotation="0" outDistance="0.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF3B3B3B" />
+            </Fill>
+          </Shape>
+          <Shape x="-3.5" y="-142.5" name="tuft_A_0" id="0:228">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="6.5" y="5.5" inRotation="0" inDistance="0.0" outRotation="-2.87534" outDistance="11.40175" />
+              <CubicDetachedVertex x="-8.5" y="-5.5" inRotation="1.81577" inDistance="4.12311" outRotation="0.0" outDistance="8.0" />
+              <CubicDetachedVertex x="8.5" y="3.5" inRotation="-2.35619" inDistance="5.65685" outRotation="0" outDistance="0.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF353535" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="head_skull" id="0:229">
+          <Shape x="0.0" y="20.5" name="head_skull_0" id="0:230">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="0.0" y="-159.5" inRotation="-0.04851" inDistance="103.12129" outRotation="-3.09309" outDistance="103.12129" />
+              <CubicDetachedVertex x="-158.0" y="11.5" inRotation="-1.5708" inDistance="99.0" outRotation="1.6282" outDistance="87.14356" />
+              <CubicDetachedVertex x="0.0" y="159.5" inRotation="-3.12341" inDistance="110.01818" outRotation="-0.01818" outDistance="110.01818" />
+              <CubicDetachedVertex x="158.0" y="11.5" inRotation="1.51339" inDistance="87.14356" outRotation="-1.5708" outDistance="99.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-94.8" startY="-121.22" endX="173.8" endY="165.88">
+                <GradientStop position="0" colorValue="FF555555" />
+                <GradientStop position="0.48" colorValue="FF353535" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="ear_right" id="0:231">
+          <Shape x="134.0" y="33.0" rotation="0.0" name="ear_right_1" id="0:232">
+            <Ellipse width="38.0" height="54.0" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF2A2A2A" />
+            </Fill>
+          </Shape>
+          <Shape x="134.0" y="31.0" rotation="0.0" name="ear_right_0" id="0:233">
+            <Ellipse width="80.0" height="96.0" name="Path" />
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-24.0" startY="-36.48" endX="44.0" endY="49.92">
+                <GradientStop position="0" colorValue="FF464647" />
+                <GradientStop position="0.48" colorValue="FF2A2A2B" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="ear_left" id="0:234">
+          <Shape x="-134.0" y="33.0" rotation="0.0" name="ear_left_1" id="0:235">
+            <Ellipse width="38.0" height="54.0" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF2A2A2A" />
+            </Fill>
+          </Shape>
+          <Shape x="-134.0" y="31.0" rotation="0.0" name="ear_left_0" id="0:236">
+            <Ellipse width="80.0" height="96.0" name="Path" />
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-24.0" startY="-36.48" endX="44.0" endY="49.92">
+                <GradientStop position="0" colorValue="FF464647" />
+                <GradientStop position="0.48" colorValue="FF2A2A2B" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+      </Node>
+      <Node x="425.1" y="359.0" name="arm_right" id="0:237">
+        <Shape x="11.0" y="141.7" rotation="0.0" name="arm_right_1" id="0:238">
+          <Ellipse width="45.8" height="38.4" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-13.74" startY="-14.592" endX="25.19" endY="19.968">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="67.0" rotation="0.19199" name="arm_right_0" id="0:239">
+          <Ellipse width="74.0" height="180.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-22.2" startY="-68.4" endX="40.7" endY="93.6">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="174.9" y="359.0" name="arm_left" id="0:240">
+        <Shape x="-11.0" y="141.7" rotation="0.0" name="arm_left_1" id="0:241">
+          <Ellipse width="45.8" height="38.4" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-13.74" startY="-14.592" endX="25.19" endY="19.968">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="67.0" rotation="-0.19199" name="arm_left_0" id="0:242">
+          <Ellipse width="74.0" height="180.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-22.2" startY="-68.4" endX="40.7" endY="93.6">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="300.0" y="440.0" name="belly_skin" id="0:243">
+        <Shape x="0.0" y="0.0" rotation="0.0" name="belly_skin_0" id="0:244">
+          <Ellipse width="116.2" height="125.8" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-34.86" startY="-47.804" endX="63.91" endY="65.416">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="300.0" y="429.0" name="body_torso" id="0:245">
+        <Shape x="0.0" y="0.0" rotation="0.0" name="body_torso_0" id="0:246">
+          <Ellipse width="242.0" height="262.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-72.6" startY="-99.56" endX="133.1" endY="136.24">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="356.9" y="548.0" name="foot_right" id="0:247">
+        <Shape x="0.0" y="20.0" rotation="0.0" name="foot_right_1" id="0:248">
+          <Ellipse width="50.4" height="24.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-15.12" startY="-9.12" endX="27.72" endY="12.48">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="13.0" rotation="0.0" name="foot_right_0" id="0:249">
+          <Ellipse width="102.0" height="40.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-30.6" startY="-15.2" endX="56.1" endY="20.8">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="243.1" y="548.0" name="foot_left" id="0:250">
+        <Shape x="0.0" y="20.0" rotation="0.0" name="foot_left_1" id="0:251">
+          <Ellipse width="50.4" height="24.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-15.12" startY="-9.12" endX="27.72" endY="12.48">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="13.0" rotation="0.0" name="foot_left_0" id="0:252">
+          <Ellipse width="102.0" height="40.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-30.6" startY="-15.2" endX="56.1" endY="20.8">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="355.7" y="466.0" name="leg_right" id="0:253">
+        <Shape x="0.0" y="42.0" rotation="0.0" name="leg_right_0" id="0:254">
+          <Ellipse width="74.0" height="128.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-22.2" startY="-48.64" endX="40.7" endY="66.56">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="244.3" y="466.0" name="leg_left" id="0:255">
+        <Shape x="0.0" y="42.0" rotation="0.0" name="leg_left_0" id="0:256">
+          <Ellipse width="74.0" height="128.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-22.2" startY="-48.64" endX="40.7" endY="66.56">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+    </Node>
+    <StateMachine name="LilaCompanion" id="0:257">
+      <StateMachineLayer name="Breathing" id="0:262">
+        <AnyState x="90" y="-35.0" />
+        <ExitState x="450" y="-35.0" />
+        <EntryState x="30" y="70.0">
+          <StateTransition stateToId="0:258" />
+        </EntryState>
+        <AnimationState x="270" y="70.0" animationId="0:260" id="0:258" />
+      </StateMachineLayer>
+      <StateMachineLayer name="Blinking" id="0:263">
+        <AnyState x="90" y="125.0" />
+        <ExitState x="450" y="125.0" />
+        <EntryState x="30" y="230.0">
+          <StateTransition stateToId="0:259" />
+        </EntryState>
+        <AnimationState x="270" y="230.0" animationId="0:261" id="0:259" />
+      </StateMachineLayer>
+    </StateMachine>
+    <LinearAnimation name="IdleBreath" loopValue="1" duration="180" id="0:260">
+      <KeyedObject objectId="0:212">
+        <KeyedProperty propertyKey="15">
+          <KeyFrameDouble frame="0" value="-0.014" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.017" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="-0.012" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.011" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="-0.014" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:245">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.976" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.988" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:243">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.976" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.988" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+    </LinearAnimation>
+    <LinearAnimation name="NaturalBlink" loopValue="1" duration="220" id="0:261">
+      <KeyedObject objectId="0:219">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="107" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="111" value="0.08" interpolationType="1" />
+          <KeyFrameDouble frame="116" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="219" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:217">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="107" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="111" value="0.08" interpolationType="1" />
+          <KeyFrameDouble frame="116" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="219" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+    </LinearAnimation>
+  </Artboard>
+  <Artboard width="600" height="620" name="LilaLv4" id="0:264" styleId="0:265" x="1980.0" y="0" defaultStateMachineId="0:312">
+    <LayoutComponentStyle name="Artboard Style" id="0:265" />
+    <Node name="character_root" id="0:266">
+      <Node x="300" y="195.0" scaleX="0.98" scaleY="0.98" name="head_group" id="0:267">
+        <Node x="0.0" y="0.0" name="nostril_right" id="0:268">
+          <Shape x="7.0" y="85.0" rotation="0.0" name="nostril_right_0" id="0:269">
+            <Ellipse width="8.2" height="9.6" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="nostril_left" id="0:270">
+          <Shape x="-8.0" y="85.0" rotation="0.0" name="nostril_left_0" id="0:271">
+            <Ellipse width="8.2" height="9.6" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="28.5" y="24.5" name="eye_right" id="0:272">
+          <Shape x="0.0" y="0.0" rotation="0.0" name="eye_right_0" id="0:273">
+            <Rectangle width="13.0" height="33.0" name="Path" cornerRadiusTL="6.5" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="-28.5" y="24.5" name="eye_left" id="0:274">
+          <Shape x="0.0" y="0.0" rotation="0.0" name="eye_left_0" id="0:275">
+            <Rectangle width="13.0" height="33.0" name="Path" cornerRadiusTL="6.5" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="muzzle_skin" id="0:276">
+          <Shape x="-0.5" y="134.5" name="muzzle_skin_0" id="0:277">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-84.5" y="-66.5" inRotation="2.40162" inDistance="31.14482" outRotation="-0.70863" outDistance="27.65863" />
+              <CubicDetachedVertex x="-1.5" y="-74.5" inRotation="-2.81984" inDistance="34.78505" outRotation="-0.3303" outDistance="37.0" />
+              <CubicDetachedVertex x="86.5" y="-66.5" inRotation="-2.47755" inDistance="29.20616" outRotation="0.59718" outDistance="30.23243" />
+              <CubicDetachedVertex x="101.5" y="23.5" inRotation="-1.13246" inDistance="35.34119" outRotation="1.97569" outDistance="38.07887" />
+              <CubicDetachedVertex x="0.5" y="74.5" inRotation="0.07878" inDistance="38.11824" outRotation="3.07352" outDistance="44.10215" />
+              <CubicDetachedVertex x="-101.5" y="19.5" inRotation="1.19991" inDistance="38.62642" outRotation="-1.94013" outDistance="33.24154" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-60.9" startY="-56.62" endX="111.65" endY="77.48">
+                <GradientStop position="0" colorValue="FFFFF8EC" />
+                <GradientStop position="0.48" colorValue="FFF3E7DB" />
+                <GradientStop position="1" colorValue="FFE0CAB9" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="forehead_skin" id="0:278">
+          <Shape x="0.5" y="25.0" name="forehead_skin_0" id="0:279">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-93.5" y="14.0" inRotation="1.48989" inDistance="37.12142" outRotation="-1.59079" outDistance="50.01" />
+              <CubicDetachedVertex x="-48.5" y="-75.0" inRotation="3.08284" inDistance="34.05877" outRotation="-0.28605" outDistance="17.72005" />
+              <CubicDetachedVertex x="-0.5" y="-57.0" inRotation="-2.35619" inDistance="15.55635" outRotation="-0.7854" outDistance="21.2132" />
+              <CubicDetachedVertex x="47.5" y="-76.0" inRotation="-2.95337" inDistance="21.37756" outRotation="-0.02564" outDistance="39.01282" />
+              <CubicDetachedVertex x="93.5" y="15.0" inRotation="-1.50965" inDistance="49.09175" outRotation="1.65945" outDistance="45.17743" />
+              <CubicDetachedVertex x="0.5" y="76.0" inRotation="-0.05258" inDistance="57.07889" outRotation="-3.09475" outDistance="64.07027" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-56.1" startY="-57.76" endX="102.85" endY="79.04">
+                <GradientStop position="0" colorValue="FFFFF4E7" />
+                <GradientStop position="0.48" colorValue="FFF3E7DB" />
+                <GradientStop position="1" colorValue="FFD8C3B3" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="tuft_A" id="0:280">
+          <Shape x="14.0" y="-138.5" name="tuft_A_2" id="0:281">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-8.0" y="1.5" inRotation="0.2783" inDistance="7.28011" outRotation="-0.70863" outDistance="9.21954" />
+              <CubicDetachedVertex x="8.0" y="-1.5" inRotation="-2.1588" inDistance="3.60555" outRotation="2.35619" outDistance="4.24264" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF303031" />
+            </Fill>
+          </Shape>
+          <Shape x="5.0" y="-144.5" name="tuft_A_1" id="0:282">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-1.0" y="7.5" inRotation="0" inDistance="0.0" outRotation="-2.1588" outDistance="7.2111" />
+              <CubicDetachedVertex x="-4.0" y="-7.5" inRotation="2.55359" inDistance="3.60555" outRotation="0.46365" outDistance="6.7082" />
+              <CubicDetachedVertex x="4.0" y="5.5" inRotation="-1.76819" inDistance="5.09902" outRotation="0" outDistance="0.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF3B3B3B" />
+            </Fill>
+          </Shape>
+          <Shape x="-3.5" y="-142.5" name="tuft_A_0" id="0:283">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="6.5" y="5.5" inRotation="0" inDistance="0.0" outRotation="-2.87534" outDistance="11.40175" />
+              <CubicDetachedVertex x="-8.5" y="-5.5" inRotation="1.81577" inDistance="4.12311" outRotation="0.0" outDistance="8.0" />
+              <CubicDetachedVertex x="8.5" y="3.5" inRotation="-2.35619" inDistance="5.65685" outRotation="0" outDistance="0.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF353535" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="head_skull" id="0:284">
+          <Shape x="0.0" y="20.5" name="head_skull_0" id="0:285">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="0.0" y="-159.5" inRotation="-0.04851" inDistance="103.12129" outRotation="-3.09309" outDistance="103.12129" />
+              <CubicDetachedVertex x="-158.0" y="11.5" inRotation="-1.5708" inDistance="99.0" outRotation="1.6282" outDistance="87.14356" />
+              <CubicDetachedVertex x="0.0" y="159.5" inRotation="-3.12341" inDistance="110.01818" outRotation="-0.01818" outDistance="110.01818" />
+              <CubicDetachedVertex x="158.0" y="11.5" inRotation="1.51339" inDistance="87.14356" outRotation="-1.5708" outDistance="99.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-94.8" startY="-121.22" endX="173.8" endY="165.88">
+                <GradientStop position="0" colorValue="FF555555" />
+                <GradientStop position="0.48" colorValue="FF353535" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="ear_right" id="0:286">
+          <Shape x="134.0" y="33.0" rotation="0.0" name="ear_right_1" id="0:287">
+            <Ellipse width="38.0" height="54.0" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF2A2A2A" />
+            </Fill>
+          </Shape>
+          <Shape x="134.0" y="31.0" rotation="0.0" name="ear_right_0" id="0:288">
+            <Ellipse width="80.0" height="96.0" name="Path" />
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-24.0" startY="-36.48" endX="44.0" endY="49.92">
+                <GradientStop position="0" colorValue="FF464647" />
+                <GradientStop position="0.48" colorValue="FF2A2A2B" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="ear_left" id="0:289">
+          <Shape x="-134.0" y="33.0" rotation="0.0" name="ear_left_1" id="0:290">
+            <Ellipse width="38.0" height="54.0" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF2A2A2A" />
+            </Fill>
+          </Shape>
+          <Shape x="-134.0" y="31.0" rotation="0.0" name="ear_left_0" id="0:291">
+            <Ellipse width="80.0" height="96.0" name="Path" />
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-24.0" startY="-36.48" endX="44.0" endY="49.92">
+                <GradientStop position="0" colorValue="FF464647" />
+                <GradientStop position="0.48" colorValue="FF2A2A2B" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+      </Node>
+      <Node x="447.9" y="359.0" name="arm_right" id="0:292">
+        <Shape x="11.0" y="147.5" rotation="0.0" name="arm_right_1" id="0:293">
+          <Ellipse width="55.8" height="46.8" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-16.74" startY="-17.784" endX="30.69" endY="24.336">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="67.0" rotation="0.19199" name="arm_right_0" id="0:294">
+          <Ellipse width="90.0" height="194.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-27.0" startY="-73.72" endX="49.5" endY="100.88">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="152.1" y="359.0" name="arm_left" id="0:295">
+        <Shape x="-11.0" y="147.5" rotation="0.0" name="arm_left_1" id="0:296">
+          <Ellipse width="55.8" height="46.8" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-16.74" startY="-17.784" endX="30.69" endY="24.336">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="67.0" rotation="-0.19199" name="arm_left_0" id="0:297">
+          <Ellipse width="90.0" height="194.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-27.0" startY="-73.72" endX="49.5" endY="100.88">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="300.0" y="440.0" name="belly_skin" id="0:298">
+        <Shape x="0.0" y="0.0" rotation="0.0" name="belly_skin_0" id="0:299">
+          <Ellipse width="138.2" height="137.2" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-41.46" startY="-52.136" endX="76.01" endY="71.344">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="300.0" y="429.0" name="body_torso" id="0:300">
+        <Shape x="0.0" y="0.0" rotation="0.0" name="body_torso_0" id="0:301">
+          <Ellipse width="288.0" height="286.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-86.4" startY="-108.68" endX="158.4" endY="148.72">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="367.7" y="548.0" name="foot_right" id="0:302">
+        <Shape x="0.0" y="20.0" rotation="0.0" name="foot_right_1" id="0:303">
+          <Ellipse width="59.8" height="24.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-17.94" startY="-9.12" endX="32.89" endY="12.48">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="13.0" rotation="0.0" name="foot_right_0" id="0:304">
+          <Ellipse width="116.0" height="40.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-34.8" startY="-15.2" endX="63.8" endY="20.8">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="232.3" y="548.0" name="foot_left" id="0:305">
+        <Shape x="0.0" y="20.0" rotation="0.0" name="foot_left_1" id="0:306">
+          <Ellipse width="59.8" height="24.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-17.94" startY="-9.12" endX="32.89" endY="12.48">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="13.0" rotation="0.0" name="foot_left_0" id="0:307">
+          <Ellipse width="116.0" height="40.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-34.8" startY="-15.2" endX="63.8" endY="20.8">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="366.2" y="466.0" name="leg_right" id="0:308">
+        <Shape x="0.0" y="42.0" rotation="0.0" name="leg_right_0" id="0:309">
+          <Ellipse width="88.0" height="128.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-26.4" startY="-48.64" endX="48.4" endY="66.56">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="233.8" y="466.0" name="leg_left" id="0:310">
+        <Shape x="0.0" y="42.0" rotation="0.0" name="leg_left_0" id="0:311">
+          <Ellipse width="88.0" height="128.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-26.4" startY="-48.64" endX="48.4" endY="66.56">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+    </Node>
+    <StateMachine name="LilaCompanion" id="0:312">
+      <StateMachineLayer name="Breathing" id="0:317">
+        <AnyState x="90" y="-35.0" />
+        <ExitState x="450" y="-35.0" />
+        <EntryState x="30" y="70.0">
+          <StateTransition stateToId="0:313" />
+        </EntryState>
+        <AnimationState x="270" y="70.0" animationId="0:315" id="0:313" />
+      </StateMachineLayer>
+      <StateMachineLayer name="Blinking" id="0:318">
+        <AnyState x="90" y="125.0" />
+        <ExitState x="450" y="125.0" />
+        <EntryState x="30" y="230.0">
+          <StateTransition stateToId="0:314" />
+        </EntryState>
+        <AnimationState x="270" y="230.0" animationId="0:316" id="0:314" />
+      </StateMachineLayer>
+    </StateMachine>
+    <LinearAnimation name="IdleBreath" loopValue="1" duration="180" id="0:315">
+      <KeyedObject objectId="0:267">
+        <KeyedProperty propertyKey="15">
+          <KeyFrameDouble frame="0" value="-0.014" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.017" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="-0.012" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.011" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="-0.014" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:300">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.976" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.988" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:298">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.976" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.988" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+    </LinearAnimation>
+    <LinearAnimation name="NaturalBlink" loopValue="1" duration="220" id="0:316">
+      <KeyedObject objectId="0:274">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="107" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="111" value="0.08" interpolationType="1" />
+          <KeyFrameDouble frame="116" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="219" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:272">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="107" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="111" value="0.08" interpolationType="1" />
+          <KeyFrameDouble frame="116" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="219" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+    </LinearAnimation>
+  </Artboard>
+  <Artboard width="600" height="620" name="LilaLv5" id="0:319" styleId="0:320" x="2640.0" y="0" defaultStateMachineId="0:367">
+    <LayoutComponentStyle name="Artboard Style" id="0:320" />
+    <Node name="character_root" id="0:321">
+      <Node x="300" y="187.0" scaleX="0.96" scaleY="0.96" name="head_group" id="0:322">
+        <Node x="0.0" y="0.0" name="nostril_right" id="0:323">
+          <Shape x="7.0" y="85.0" rotation="0.0" name="nostril_right_0" id="0:324">
+            <Ellipse width="8.2" height="9.6" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="nostril_left" id="0:325">
+          <Shape x="-8.0" y="85.0" rotation="0.0" name="nostril_left_0" id="0:326">
+            <Ellipse width="8.2" height="9.6" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="28.5" y="24.5" name="eye_right" id="0:327">
+          <Shape x="0.0" y="0.0" rotation="0.0" name="eye_right_0" id="0:328">
+            <Rectangle width="13.0" height="33.0" name="Path" cornerRadiusTL="6.5" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="-28.5" y="24.5" name="eye_left" id="0:329">
+          <Shape x="0.0" y="0.0" rotation="0.0" name="eye_left_0" id="0:330">
+            <Rectangle width="13.0" height="33.0" name="Path" cornerRadiusTL="6.5" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="muzzle_skin" id="0:331">
+          <Shape x="-0.5" y="134.5" name="muzzle_skin_0" id="0:332">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-84.5" y="-66.5" inRotation="2.40162" inDistance="31.14482" outRotation="-0.70863" outDistance="27.65863" />
+              <CubicDetachedVertex x="-1.5" y="-74.5" inRotation="-2.81984" inDistance="34.78505" outRotation="-0.3303" outDistance="37.0" />
+              <CubicDetachedVertex x="86.5" y="-66.5" inRotation="-2.47755" inDistance="29.20616" outRotation="0.59718" outDistance="30.23243" />
+              <CubicDetachedVertex x="101.5" y="23.5" inRotation="-1.13246" inDistance="35.34119" outRotation="1.97569" outDistance="38.07887" />
+              <CubicDetachedVertex x="0.5" y="74.5" inRotation="0.07878" inDistance="38.11824" outRotation="3.07352" outDistance="44.10215" />
+              <CubicDetachedVertex x="-101.5" y="19.5" inRotation="1.19991" inDistance="38.62642" outRotation="-1.94013" outDistance="33.24154" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-60.9" startY="-56.62" endX="111.65" endY="77.48">
+                <GradientStop position="0" colorValue="FFFFF8EC" />
+                <GradientStop position="0.48" colorValue="FFF3E7DB" />
+                <GradientStop position="1" colorValue="FFE0CAB9" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="forehead_skin" id="0:333">
+          <Shape x="0.5" y="25.0" name="forehead_skin_0" id="0:334">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-93.5" y="14.0" inRotation="1.48989" inDistance="37.12142" outRotation="-1.59079" outDistance="50.01" />
+              <CubicDetachedVertex x="-48.5" y="-75.0" inRotation="3.08284" inDistance="34.05877" outRotation="-0.28605" outDistance="17.72005" />
+              <CubicDetachedVertex x="-0.5" y="-57.0" inRotation="-2.35619" inDistance="15.55635" outRotation="-0.7854" outDistance="21.2132" />
+              <CubicDetachedVertex x="47.5" y="-76.0" inRotation="-2.95337" inDistance="21.37756" outRotation="-0.02564" outDistance="39.01282" />
+              <CubicDetachedVertex x="93.5" y="15.0" inRotation="-1.50965" inDistance="49.09175" outRotation="1.65945" outDistance="45.17743" />
+              <CubicDetachedVertex x="0.5" y="76.0" inRotation="-0.05258" inDistance="57.07889" outRotation="-3.09475" outDistance="64.07027" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-56.1" startY="-57.76" endX="102.85" endY="79.04">
+                <GradientStop position="0" colorValue="FFFFF4E7" />
+                <GradientStop position="0.48" colorValue="FFF3E7DB" />
+                <GradientStop position="1" colorValue="FFD8C3B3" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="tuft_A" id="0:335">
+          <Shape x="14.0" y="-138.5" name="tuft_A_2" id="0:336">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-8.0" y="1.5" inRotation="0.2783" inDistance="7.28011" outRotation="-0.70863" outDistance="9.21954" />
+              <CubicDetachedVertex x="8.0" y="-1.5" inRotation="-2.1588" inDistance="3.60555" outRotation="2.35619" outDistance="4.24264" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF303031" />
+            </Fill>
+          </Shape>
+          <Shape x="5.0" y="-144.5" name="tuft_A_1" id="0:337">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-1.0" y="7.5" inRotation="0" inDistance="0.0" outRotation="-2.1588" outDistance="7.2111" />
+              <CubicDetachedVertex x="-4.0" y="-7.5" inRotation="2.55359" inDistance="3.60555" outRotation="0.46365" outDistance="6.7082" />
+              <CubicDetachedVertex x="4.0" y="5.5" inRotation="-1.76819" inDistance="5.09902" outRotation="0" outDistance="0.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF3B3B3B" />
+            </Fill>
+          </Shape>
+          <Shape x="-3.5" y="-142.5" name="tuft_A_0" id="0:338">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="6.5" y="5.5" inRotation="0" inDistance="0.0" outRotation="-2.87534" outDistance="11.40175" />
+              <CubicDetachedVertex x="-8.5" y="-5.5" inRotation="1.81577" inDistance="4.12311" outRotation="0.0" outDistance="8.0" />
+              <CubicDetachedVertex x="8.5" y="3.5" inRotation="-2.35619" inDistance="5.65685" outRotation="0" outDistance="0.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF353535" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="head_skull" id="0:339">
+          <Shape x="0.0" y="20.5" name="head_skull_0" id="0:340">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="0.0" y="-159.5" inRotation="-0.04851" inDistance="103.12129" outRotation="-3.09309" outDistance="103.12129" />
+              <CubicDetachedVertex x="-158.0" y="11.5" inRotation="-1.5708" inDistance="99.0" outRotation="1.6282" outDistance="87.14356" />
+              <CubicDetachedVertex x="0.0" y="159.5" inRotation="-3.12341" inDistance="110.01818" outRotation="-0.01818" outDistance="110.01818" />
+              <CubicDetachedVertex x="158.0" y="11.5" inRotation="1.51339" inDistance="87.14356" outRotation="-1.5708" outDistance="99.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-94.8" startY="-121.22" endX="173.8" endY="165.88">
+                <GradientStop position="0" colorValue="FF555555" />
+                <GradientStop position="0.48" colorValue="FF353535" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="ear_right" id="0:341">
+          <Shape x="134.0" y="33.0" rotation="0.0" name="ear_right_1" id="0:342">
+            <Ellipse width="38.0" height="54.0" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF2A2A2A" />
+            </Fill>
+          </Shape>
+          <Shape x="134.0" y="31.0" rotation="0.0" name="ear_right_0" id="0:343">
+            <Ellipse width="80.0" height="96.0" name="Path" />
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-24.0" startY="-36.48" endX="44.0" endY="49.92">
+                <GradientStop position="0" colorValue="FF464647" />
+                <GradientStop position="0.48" colorValue="FF2A2A2B" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="ear_left" id="0:344">
+          <Shape x="-134.0" y="33.0" rotation="0.0" name="ear_left_1" id="0:345">
+            <Ellipse width="38.0" height="54.0" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF2A2A2A" />
+            </Fill>
+          </Shape>
+          <Shape x="-134.0" y="31.0" rotation="0.0" name="ear_left_0" id="0:346">
+            <Ellipse width="80.0" height="96.0" name="Path" />
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-24.0" startY="-36.48" endX="44.0" endY="49.92">
+                <GradientStop position="0" colorValue="FF464647" />
+                <GradientStop position="0.48" colorValue="FF2A2A2B" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+      </Node>
+      <Node x="467.3" y="359.0" name="arm_right" id="0:347">
+        <Shape x="11.0" y="153.3" rotation="0.0" name="arm_right_1" id="0:348">
+          <Ellipse width="69.4" height="58.2" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-20.82" startY="-22.116" endX="38.17" endY="30.264">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="67.0" rotation="0.19199" name="arm_right_0" id="0:349">
+          <Ellipse width="112.0" height="208.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-33.6" startY="-79.04" endX="61.6" endY="108.16">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="132.7" y="359.0" name="arm_left" id="0:350">
+        <Shape x="-11.0" y="153.3" rotation="0.0" name="arm_left_1" id="0:351">
+          <Ellipse width="69.4" height="58.2" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-20.82" startY="-22.116" endX="38.17" endY="30.264">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="67.0" rotation="-0.19199" name="arm_left_0" id="0:352">
+          <Ellipse width="112.0" height="208.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-33.6" startY="-79.04" endX="61.6" endY="108.16">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="300.0" y="440.0" name="belly_skin" id="0:353">
+        <Shape x="0.0" y="0.0" rotation="0.0" name="belly_skin_0" id="0:354">
+          <Ellipse width="157.4" height="146.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-47.22" startY="-55.48" endX="86.57" endY="75.92">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="300.0" y="429.0" name="body_torso" id="0:355">
+        <Shape x="0.0" y="0.0" rotation="0.0" name="body_torso_0" id="0:356">
+          <Ellipse width="328.0" height="304.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-98.4" startY="-115.52" endX="180.4" endY="158.08">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="377.1" y="548.0" name="foot_right" id="0:357">
+        <Shape x="0.0" y="20.0" rotation="0.0" name="foot_right_1" id="0:358">
+          <Ellipse width="70.8" height="24.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-21.24" startY="-9.12" endX="38.94" endY="12.48">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="13.0" rotation="0.0" name="foot_right_0" id="0:359">
+          <Ellipse width="132.0" height="40.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-39.6" startY="-15.2" endX="72.6" endY="20.8">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="222.9" y="548.0" name="foot_left" id="0:360">
+        <Shape x="0.0" y="20.0" rotation="0.0" name="foot_left_1" id="0:361">
+          <Ellipse width="70.8" height="24.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-21.24" startY="-9.12" endX="38.94" endY="12.48">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="13.0" rotation="0.0" name="foot_left_0" id="0:362">
+          <Ellipse width="132.0" height="40.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-39.6" startY="-15.2" endX="72.6" endY="20.8">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="375.4" y="466.0" name="leg_right" id="0:363">
+        <Shape x="0.0" y="42.0" rotation="0.0" name="leg_right_0" id="0:364">
+          <Ellipse width="104.0" height="128.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-31.2" startY="-48.64" endX="57.2" endY="66.56">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="224.6" y="466.0" name="leg_left" id="0:365">
+        <Shape x="0.0" y="42.0" rotation="0.0" name="leg_left_0" id="0:366">
+          <Ellipse width="104.0" height="128.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-31.2" startY="-48.64" endX="57.2" endY="66.56">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+    </Node>
+    <StateMachine name="LilaCompanion" id="0:367">
+      <StateMachineLayer name="Breathing" id="0:372">
+        <AnyState x="90" y="-35.0" />
+        <ExitState x="450" y="-35.0" />
+        <EntryState x="30" y="70.0">
+          <StateTransition stateToId="0:368" />
+        </EntryState>
+        <AnimationState x="270" y="70.0" animationId="0:370" id="0:368" />
+      </StateMachineLayer>
+      <StateMachineLayer name="Blinking" id="0:373">
+        <AnyState x="90" y="125.0" />
+        <ExitState x="450" y="125.0" />
+        <EntryState x="30" y="230.0">
+          <StateTransition stateToId="0:369" />
+        </EntryState>
+        <AnimationState x="270" y="230.0" animationId="0:371" id="0:369" />
+      </StateMachineLayer>
+    </StateMachine>
+    <LinearAnimation name="IdleBreath" loopValue="1" duration="180" id="0:370">
+      <KeyedObject objectId="0:322">
+        <KeyedProperty propertyKey="15">
+          <KeyFrameDouble frame="0" value="-0.014" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.017" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="-0.012" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.011" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="-0.014" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:355">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.976" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.988" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:353">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.976" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.988" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+    </LinearAnimation>
+    <LinearAnimation name="NaturalBlink" loopValue="1" duration="220" id="0:371">
+      <KeyedObject objectId="0:329">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="107" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="111" value="0.08" interpolationType="1" />
+          <KeyFrameDouble frame="116" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="219" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:327">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="107" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="111" value="0.08" interpolationType="1" />
+          <KeyFrameDouble frame="116" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="219" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+    </LinearAnimation>
+  </Artboard>
+  <Artboard width="600" height="620" name="LilaLv6" id="0:374" styleId="0:375" x="3300.0" y="0" defaultStateMachineId="0:432">
+    <LayoutComponentStyle name="Artboard Style" id="0:375" />
+    <Node name="character_root" id="0:376">
+      <Node x="0.0" y="0.0" name="crown_front" id="0:377">
+        <Shape x="365.0" y="34.0" rotation="0.0" name="crown_front_5" id="0:378">
+          <Ellipse width="14.0" height="14.0" name="Path" />
+          <Fill name="Fill">
+            <SolidColor name="Color" colorValue="FFFFDE98" />
+          </Fill>
+        </Shape>
+        <Shape x="300.0" y="21.0" rotation="0.0" name="crown_front_4" id="0:379">
+          <Ellipse width="14.0" height="14.0" name="Path" />
+          <Fill name="Fill">
+            <SolidColor name="Color" colorValue="FFFFDE98" />
+          </Fill>
+        </Shape>
+        <Shape x="238.0" y="34.0" rotation="0.0" name="crown_front_3" id="0:380">
+          <Ellipse width="14.0" height="14.0" name="Path" />
+          <Fill name="Fill">
+            <SolidColor name="Color" colorValue="FFFFDE98" />
+          </Fill>
+        </Shape>
+        <Shape x="300.0" y="67.0" rotation="0.0" name="crown_front_2" id="0:381">
+          <Ellipse width="12.0" height="12.0" name="Path" />
+          <Fill name="Fill">
+            <SolidColor name="Color" colorValue="FF7C9EA2" />
+          </Fill>
+        </Shape>
+        <Shape x="300.5" y="89.5" rotation="0.0" name="crown_front_1" id="0:382">
+          <Rectangle width="113.0" height="15.0" name="Path" cornerRadiusTL="7.0" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-33.9" startY="-5.7" endX="62.15" endY="7.8">
+              <GradientStop position="0" colorValue="FFFFE4A3" />
+              <GradientStop position="0.48" colorValue="FFE4AE50" />
+              <GradientStop position="1" colorValue="FFAB792F" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="301.0" y="55.0" name="crown_front_0" id="0:383">
+          <PointsPath isClosed="true" isClockwise="true" name="Path">
+            <StraightVertex x="-56.0" y="33.0" />
+            <StraightVertex x="-63.0" y="-20.0" />
+            <StraightVertex x="-33.0" y="5.0" />
+            <StraightVertex x="-1.0" y="-33.0" />
+            <StraightVertex x="32.0" y="5.0" />
+            <StraightVertex x="63.0" y="-20.0" />
+            <StraightVertex x="56.0" y="33.0" />
+          </PointsPath>
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-37.8" startY="-25.08" endX="69.3" endY="34.32">
+              <GradientStop position="0" colorValue="FFFFE4A3" />
+              <GradientStop position="0.48" colorValue="FFE4AE50" />
+              <GradientStop position="1" colorValue="FFAB792F" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="300" y="187.0" scaleX="0.96" scaleY="0.96" name="head_group" id="0:384">
+        <Node x="0.0" y="0.0" name="nostril_right" id="0:385">
+          <Shape x="7.0" y="85.0" rotation="0.0" name="nostril_right_0" id="0:386">
+            <Ellipse width="8.2" height="9.6" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="nostril_left" id="0:387">
+          <Shape x="-8.0" y="85.0" rotation="0.0" name="nostril_left_0" id="0:388">
+            <Ellipse width="8.2" height="9.6" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="28.5" y="24.5" name="eye_right" id="0:389">
+          <Shape x="0.0" y="0.0" rotation="0.0" name="eye_right_0" id="0:390">
+            <Rectangle width="13.0" height="33.0" name="Path" cornerRadiusTL="6.5" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="-28.5" y="24.5" name="eye_left" id="0:391">
+          <Shape x="0.0" y="0.0" rotation="0.0" name="eye_left_0" id="0:392">
+            <Rectangle width="13.0" height="33.0" name="Path" cornerRadiusTL="6.5" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF191A1B" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="muzzle_skin" id="0:393">
+          <Shape x="-0.5" y="134.5" name="muzzle_skin_0" id="0:394">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-84.5" y="-66.5" inRotation="2.40162" inDistance="31.14482" outRotation="-0.70863" outDistance="27.65863" />
+              <CubicDetachedVertex x="-1.5" y="-74.5" inRotation="-2.81984" inDistance="34.78505" outRotation="-0.3303" outDistance="37.0" />
+              <CubicDetachedVertex x="86.5" y="-66.5" inRotation="-2.47755" inDistance="29.20616" outRotation="0.59718" outDistance="30.23243" />
+              <CubicDetachedVertex x="101.5" y="23.5" inRotation="-1.13246" inDistance="35.34119" outRotation="1.97569" outDistance="38.07887" />
+              <CubicDetachedVertex x="0.5" y="74.5" inRotation="0.07878" inDistance="38.11824" outRotation="3.07352" outDistance="44.10215" />
+              <CubicDetachedVertex x="-101.5" y="19.5" inRotation="1.19991" inDistance="38.62642" outRotation="-1.94013" outDistance="33.24154" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-60.9" startY="-56.62" endX="111.65" endY="77.48">
+                <GradientStop position="0" colorValue="FFFFF8EC" />
+                <GradientStop position="0.48" colorValue="FFF3E7DB" />
+                <GradientStop position="1" colorValue="FFE0CAB9" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="forehead_skin" id="0:395">
+          <Shape x="0.5" y="25.0" name="forehead_skin_0" id="0:396">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-93.5" y="14.0" inRotation="1.48989" inDistance="37.12142" outRotation="-1.59079" outDistance="50.01" />
+              <CubicDetachedVertex x="-48.5" y="-75.0" inRotation="3.08284" inDistance="34.05877" outRotation="-0.28605" outDistance="17.72005" />
+              <CubicDetachedVertex x="-0.5" y="-57.0" inRotation="-2.35619" inDistance="15.55635" outRotation="-0.7854" outDistance="21.2132" />
+              <CubicDetachedVertex x="47.5" y="-76.0" inRotation="-2.95337" inDistance="21.37756" outRotation="-0.02564" outDistance="39.01282" />
+              <CubicDetachedVertex x="93.5" y="15.0" inRotation="-1.50965" inDistance="49.09175" outRotation="1.65945" outDistance="45.17743" />
+              <CubicDetachedVertex x="0.5" y="76.0" inRotation="-0.05258" inDistance="57.07889" outRotation="-3.09475" outDistance="64.07027" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-56.1" startY="-57.76" endX="102.85" endY="79.04">
+                <GradientStop position="0" colorValue="FFFFF4E7" />
+                <GradientStop position="0.48" colorValue="FFF3E7DB" />
+                <GradientStop position="1" colorValue="FFD8C3B3" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="tuft_A" id="0:397">
+          <Shape x="14.0" y="-138.5" name="tuft_A_2" id="0:398">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-8.0" y="1.5" inRotation="0.2783" inDistance="7.28011" outRotation="-0.70863" outDistance="9.21954" />
+              <CubicDetachedVertex x="8.0" y="-1.5" inRotation="-2.1588" inDistance="3.60555" outRotation="2.35619" outDistance="4.24264" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF303031" />
+            </Fill>
+          </Shape>
+          <Shape x="5.0" y="-144.5" name="tuft_A_1" id="0:399">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="-1.0" y="7.5" inRotation="0" inDistance="0.0" outRotation="-2.1588" outDistance="7.2111" />
+              <CubicDetachedVertex x="-4.0" y="-7.5" inRotation="2.55359" inDistance="3.60555" outRotation="0.46365" outDistance="6.7082" />
+              <CubicDetachedVertex x="4.0" y="5.5" inRotation="-1.76819" inDistance="5.09902" outRotation="0" outDistance="0.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF3B3B3B" />
+            </Fill>
+          </Shape>
+          <Shape x="-3.5" y="-142.5" name="tuft_A_0" id="0:400">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="6.5" y="5.5" inRotation="0" inDistance="0.0" outRotation="-2.87534" outDistance="11.40175" />
+              <CubicDetachedVertex x="-8.5" y="-5.5" inRotation="1.81577" inDistance="4.12311" outRotation="0.0" outDistance="8.0" />
+              <CubicDetachedVertex x="8.5" y="3.5" inRotation="-2.35619" inDistance="5.65685" outRotation="0" outDistance="0.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF353535" />
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="head_skull" id="0:401">
+          <Shape x="0.0" y="20.5" name="head_skull_0" id="0:402">
+            <PointsPath isClosed="true" isClockwise="true" name="Path">
+              <CubicDetachedVertex x="0.0" y="-159.5" inRotation="-0.04851" inDistance="103.12129" outRotation="-3.09309" outDistance="103.12129" />
+              <CubicDetachedVertex x="-158.0" y="11.5" inRotation="-1.5708" inDistance="99.0" outRotation="1.6282" outDistance="87.14356" />
+              <CubicDetachedVertex x="0.0" y="159.5" inRotation="-3.12341" inDistance="110.01818" outRotation="-0.01818" outDistance="110.01818" />
+              <CubicDetachedVertex x="158.0" y="11.5" inRotation="1.51339" inDistance="87.14356" outRotation="-1.5708" outDistance="99.0" />
+            </PointsPath>
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-94.8" startY="-121.22" endX="173.8" endY="165.88">
+                <GradientStop position="0" colorValue="FF555555" />
+                <GradientStop position="0.48" colorValue="FF353535" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="ear_right" id="0:403">
+          <Shape x="134.0" y="33.0" rotation="0.0" name="ear_right_1" id="0:404">
+            <Ellipse width="38.0" height="54.0" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF2A2A2A" />
+            </Fill>
+          </Shape>
+          <Shape x="134.0" y="31.0" rotation="0.0" name="ear_right_0" id="0:405">
+            <Ellipse width="80.0" height="96.0" name="Path" />
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-24.0" startY="-36.48" endX="44.0" endY="49.92">
+                <GradientStop position="0" colorValue="FF464647" />
+                <GradientStop position="0.48" colorValue="FF2A2A2B" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Node x="0.0" y="0.0" name="ear_left" id="0:406">
+          <Shape x="-134.0" y="33.0" rotation="0.0" name="ear_left_1" id="0:407">
+            <Ellipse width="38.0" height="54.0" name="Path" />
+            <Fill name="Fill">
+              <SolidColor name="Color" colorValue="FF2A2A2A" />
+            </Fill>
+          </Shape>
+          <Shape x="-134.0" y="31.0" rotation="0.0" name="ear_left_0" id="0:408">
+            <Ellipse width="80.0" height="96.0" name="Path" />
+            <Fill name="Fill">
+              <RadialGradient name="Matte shading" startX="-24.0" startY="-36.48" endX="44.0" endY="49.92">
+                <GradientStop position="0" colorValue="FF464647" />
+                <GradientStop position="0.48" colorValue="FF2A2A2B" />
+                <GradientStop position="1" colorValue="FF1B1C1D" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+      </Node>
+      <Node x="467.3" y="359.0" name="arm_right" id="0:409">
+        <Shape x="11.0" y="159.1" rotation="0.0" name="arm_right_1" id="0:410">
+          <Ellipse width="69.4" height="58.2" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-20.82" startY="-22.116" endX="38.17" endY="30.264">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="67.0" rotation="0.19199" name="arm_right_0" id="0:411">
+          <Ellipse width="112.0" height="222.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-33.6" startY="-84.36" endX="61.6" endY="115.44">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="132.7" y="359.0" name="arm_left" id="0:412">
+        <Shape x="-11.0" y="159.1" rotation="0.0" name="arm_left_1" id="0:413">
+          <Ellipse width="69.4" height="58.2" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-20.82" startY="-22.116" endX="38.17" endY="30.264">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="67.0" rotation="-0.19199" name="arm_left_0" id="0:414">
+          <Ellipse width="112.0" height="222.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-33.6" startY="-84.36" endX="61.6" endY="115.44">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="300.0" y="440.0" name="belly_skin" id="0:415">
+        <Shape x="0.0" y="0.0" rotation="0.0" name="belly_skin_0" id="0:416">
+          <Ellipse width="157.4" height="146.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-47.22" startY="-55.48" endX="86.57" endY="75.92">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="300.0" y="429.0" name="body_torso" id="0:417">
+        <Shape x="0.0" y="0.0" rotation="0.0" name="body_torso_0" id="0:418">
+          <Ellipse width="328.0" height="304.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-98.4" startY="-115.52" endX="180.4" endY="158.08">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="377.1" y="548.0" name="foot_right" id="0:419">
+        <Shape x="0.0" y="20.0" rotation="0.0" name="foot_right_1" id="0:420">
+          <Ellipse width="70.8" height="24.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-21.24" startY="-9.12" endX="38.94" endY="12.48">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="13.0" rotation="0.0" name="foot_right_0" id="0:421">
+          <Ellipse width="132.0" height="40.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-39.6" startY="-15.2" endX="72.6" endY="20.8">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="222.9" y="548.0" name="foot_left" id="0:422">
+        <Shape x="0.0" y="20.0" rotation="0.0" name="foot_left_1" id="0:423">
+          <Ellipse width="70.8" height="24.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-21.24" startY="-9.12" endX="38.94" endY="12.48">
+              <GradientStop position="0" colorValue="FFFFF4E7" />
+              <GradientStop position="0.48" colorValue="FFF3E7DB" />
+              <GradientStop position="1" colorValue="FFD8C3B3" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape x="0.0" y="13.0" rotation="0.0" name="foot_left_0" id="0:424">
+          <Ellipse width="132.0" height="40.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-39.6" startY="-15.2" endX="72.6" endY="20.8">
+              <GradientStop position="0" colorValue="FF555555" />
+              <GradientStop position="0.48" colorValue="FF353535" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="375.4" y="466.0" name="leg_right" id="0:425">
+        <Shape x="0.0" y="42.0" rotation="0.0" name="leg_right_0" id="0:426">
+          <Ellipse width="104.0" height="128.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-31.2" startY="-48.64" endX="57.2" endY="66.56">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="224.6" y="466.0" name="leg_left" id="0:427">
+        <Shape x="0.0" y="42.0" rotation="0.0" name="leg_left_0" id="0:428">
+          <Ellipse width="104.0" height="128.0" name="Path" />
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-31.2" startY="-48.64" endX="57.2" endY="66.56">
+              <GradientStop position="0" colorValue="FF464647" />
+              <GradientStop position="0.48" colorValue="FF2A2A2B" />
+              <GradientStop position="1" colorValue="FF1B1C1D" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="0.0" y="0.0" name="cape_back" id="0:429">
+        <Shape x="162.0" y="445.5" name="cape_back_1" id="0:430">
+          <PointsPath isClosed="false" isClockwise="true" name="Path">
+            <CubicDetachedVertex x="32.0" y="-102.5" inRotation="0" inDistance="0.0" outRotation="2.28087" outDistance="75.16648" />
+            <CubicDetachedVertex x="-32.0" y="102.5" inRotation="-1.33395" inDistance="59.66574" outRotation="0" outDistance="0.0" />
+          </PointsPath>
+        </Shape>
+        <Shape x="310.5" y="448.0" name="cape_back_0" id="0:431">
+          <PointsPath isClosed="true" isClockwise="true" name="Path">
+            <CubicDetachedVertex x="-114.5" y="-124.0" inRotation="0" inDistance="0.0" outRotation="2.48942" outDistance="69.2026" />
+            <CubicDetachedVertex x="-197.5" y="121.0" inRotation="-1.48372" inDistance="126.47925" outRotation="-0.42419" outDistance="34.0147" />
+            <CubicDetachedVertex x="-114.5" y="117.0" inRotation="2.75472" inDistance="29.15476" outRotation="-0.33474" outDistance="24.35159" />
+            <CubicDetachedVertex x="-64.5" y="113.0" inRotation="2.47562" inDistance="17.80449" outRotation="0" outDistance="0.0" />
+            <CubicDetachedVertex x="44.5" y="113.0" inRotation="0" inDistance="0.0" outRotation="0.49642" outDistance="27.29469" />
+            <CubicDetachedVertex x="119.5" y="120.0" inRotation="-2.64978" inDistance="31.76476" outRotation="0.38688" outDistance="29.15476" />
+            <CubicDetachedVertex x="197.5" y="124.0" inRotation="-2.66324" inDistance="30.41381" outRotation="-1.70227" outDistance="122.05327" />
+            <CubicDetachedVertex x="92.5" y="-123.0" inRotation="0.44118" inDistance="79.62412" outRotation="0" outDistance="0.0" />
+          </PointsPath>
+          <Fill name="Fill">
+            <RadialGradient name="Matte shading" startX="-118.5" startY="-94.24" endX="217.25" endY="128.96">
+              <GradientStop position="0" colorValue="FFCA4C44" />
+              <GradientStop position="0.48" colorValue="FFB53B35" />
+              <GradientStop position="1" colorValue="FF89282B" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+      </Node>
+    </Node>
+    <StateMachine name="LilaCompanion" id="0:432">
+      <StateMachineLayer name="Breathing" id="0:437">
+        <AnyState x="90" y="-35.0" />
+        <ExitState x="450" y="-35.0" />
+        <EntryState x="30" y="70.0">
+          <StateTransition stateToId="0:433" />
+        </EntryState>
+        <AnimationState x="270" y="70.0" animationId="0:435" id="0:433" />
+      </StateMachineLayer>
+      <StateMachineLayer name="Blinking" id="0:438">
+        <AnyState x="90" y="125.0" />
+        <ExitState x="450" y="125.0" />
+        <EntryState x="30" y="230.0">
+          <StateTransition stateToId="0:434" />
+        </EntryState>
+        <AnimationState x="270" y="230.0" animationId="0:436" id="0:434" />
+      </StateMachineLayer>
+    </StateMachine>
+    <LinearAnimation name="IdleBreath" loopValue="1" duration="180" id="0:435">
+      <KeyedObject objectId="0:384">
+        <KeyedProperty propertyKey="15">
+          <KeyFrameDouble frame="0" value="-0.014" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.017" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="-0.012" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.011" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="-0.014" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:417">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.976" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.988" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:415">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="45" value="0.976" interpolationType="1" />
+          <KeyFrameDouble frame="90" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="135" value="0.988" interpolationType="1" />
+          <KeyFrameDouble frame="180" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+    </LinearAnimation>
+    <LinearAnimation name="NaturalBlink" loopValue="1" duration="220" id="0:436">
+      <KeyedObject objectId="0:391">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="107" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="111" value="0.08" interpolationType="1" />
+          <KeyFrameDouble frame="116" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="219" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+      <KeyedObject objectId="0:389">
+        <KeyedProperty propertyKey="17">
+          <KeyFrameDouble frame="0" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="107" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="111" value="0.08" interpolationType="1" />
+          <KeyFrameDouble frame="116" value="1.0" interpolationType="1" />
+          <KeyFrameDouble frame="219" value="1.0" interpolationType="1" />
+        </KeyedProperty>
+      </KeyedObject>
+    </LinearAnimation>
+  </Artboard>
+</Rive>
