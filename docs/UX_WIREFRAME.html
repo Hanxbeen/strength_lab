@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>무게무게 UX Prototype</title>
+  <style>
+    :root{
+      --bg:#f5f5f2; --panel:#ffffff; --ink:#171717; --muted:#6f716f; --line:#dedfd9;
+      --accent:#212121; --soft:#ecece7; --good:#315f46; --warn:#8a5d22;
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Pretendard","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink)}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    .app{max-width:1240px;margin:0 auto;padding:28px 20px 56px}
+    .topbar{display:flex;gap:18px;align-items:flex-end;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap}
+    .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+    h1{margin:6px 0 2px;font-size:30px;line-height:1.1}
+    .sub{color:var(--muted);font-size:14px}
+    .mode{display:flex;background:#e8e8e3;border-radius:14px;padding:4px;gap:4px}
+    .mode button{border:0;background:transparent;color:var(--muted);padding:10px 14px;border-radius:10px;font-weight:700}
+    .mode button.active{background:#fff;color:#111;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+    .flow{display:flex;gap:8px;overflow:auto;padding:4px 0 14px;scrollbar-width:none}
+    .flow::-webkit-scrollbar{display:none}
+    .flow button{white-space:nowrap;border:1px solid var(--line);background:#fff;color:#555;border-radius:999px;padding:9px 12px;font-size:12px}
+    .flow button.active{background:#171717;color:#fff;border-color:#171717}
+    .workspace{display:grid;grid-template-columns:minmax(220px,280px) minmax(340px,430px) minmax(240px,1fr);gap:22px;align-items:start}
+    .rail,.notes{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+    .rail h2,.notes h2{font-size:14px;margin:0 0 12px}
+    .screen-list{display:grid;gap:8px}
+    .screen-btn{border:1px solid transparent;background:transparent;border-radius:14px;padding:11px 12px;text-align:left;display:flex;gap:10px;align-items:center;color:#555}
+    .screen-btn:hover{background:#f5f5f2}
+    .screen-btn.active{border-color:#c8c8c1;background:#f2f2ee;color:#111}
+    .num{width:28px;height:28px;border-radius:9px;background:#ecece7;display:grid;place-items:center;font-size:12px;font-weight:800;flex:0 0 auto}
+    .screen-btn.active .num{background:#171717;color:#fff}
+    .screen-btn strong{display:block;font-size:13px}
+    .screen-btn span{display:block;font-size:11px;color:#8a8c88;margin-top:2px}
+    .phone-wrap{display:grid;place-items:center}
+    .phone{width:min(100%,390px);background:#0b0b0b;border-radius:42px;padding:10px;box-shadow:0 18px 55px rgba(0,0,0,.15)}
+    .viewport{background:#fbfbf8;border-radius:34px;min-height:760px;overflow:hidden;position:relative}
+    .status{height:30px;display:flex;justify-content:space-between;padding:10px 18px 0;font-size:11px;font-weight:700}
+    .screen{padding:16px 18px 90px;min-height:730px}
+    .title-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .title-row h3{font-size:24px;margin:0;letter-spacing:-.03em}
+    .ghost{border:0;background:transparent;color:var(--muted);font-size:13px;padding:8px}
+    .hero{border-radius:24px;background:#1c1c1b;color:#fff;padding:20px;margin-bottom:12px}
+    .hero small{color:#bfc1bd}
+    .hero h4{font-size:28px;margin:10px 0 8px;line-height:1.1}
+    .hero p{font-size:13px;color:#d3d5d1;margin:0}
+    .card{background:#fff;border:1px solid #e0e0db;border-radius:20px;padding:16px;margin-bottom:10px}
+    .card h4{margin:0 0 7px;font-size:15px}
+    .meta{font-size:12px;color:var(--muted)}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .stack{display:grid;gap:10px}
+    .primary,.secondary{width:100%;min-height:52px;border-radius:16px;font-weight:800;border:0}
+    .primary{background:#171717;color:#fff}
+    .secondary{background:#eeeee9;color:#222}
+    .pill{display:inline-flex;align-items:center;border-radius:999px;padding:6px 9px;font-size:11px;background:#ecece7;color:#575957}
+    .metric{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+    .metric .mini{background:#fff;border:1px solid #e0e0db;border-radius:16px;padding:12px}
+    .mini b{display:block;font-size:18px;margin-top:5px}
+    .mini span{font-size:10px;color:var(--muted)}
+    .section-label{font-size:11px;font-weight:800;color:#777a75;text-transform:uppercase;letter-spacing:.08em;margin:18px 2px 8px}
+    .big-number{font-size:56px;font-weight:850;letter-spacing:-.05em;line-height:1}
+    .setbox{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+    .field{background:#fff;border:1px solid #dadbd5;border-radius:18px;padding:14px}
+    .field span{font-size:11px;color:var(--muted);display:block}
+    .field b{font-size:28px;display:block;margin-top:5px}
+    .progress{height:7px;background:#e7e7e2;border-radius:999px;overflow:hidden}
+    .progress i{display:block;height:100%;background:#1e1e1d;border-radius:999px;width:40%}
+    .timer{text-align:center;padding:42px 0 24px}
+    .timer .big-number{font-variant-numeric:tabular-nums}
+    .chart{height:170px;border-radius:18px;background:
+      linear-gradient(#e7e7e2 1px,transparent 1px) 0 0/100% 42px,
+      linear-gradient(90deg,#eeeeea 1px,transparent 1px) 0 0/72px 100%;
+      position:relative;overflow:hidden;margin-top:12px}
+    .chart svg{position:absolute;inset:0;width:100%;height:100%}
+    .bottom-nav{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(250,250,247,.96);border:1px solid #e0e0db;border-radius:22px;padding:10px 8px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+    .bottom-nav button{border:0;background:transparent;padding:8px 2px;border-radius:12px;color:#8a8c88;font-size:10px}
+    .bottom-nav button.active{background:#e9e9e4;color:#161616;font-weight:800}
+    .notes .why{font-size:20px;font-weight:800;line-height:1.2;margin:4px 0 12px}
+    .notes p{font-size:13px;line-height:1.6;color:#575957}
+    .notes ul{padding-left:18px;margin:10px 0 0}
+    .notes li{font-size:12px;line-height:1.55;color:#666;margin-bottom:6px}
+    .legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .legend span{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:6px 8px;background:#fff}
+    .toast{position:absolute;left:50%;bottom:86px;transform:translateX(-50%);background:#171717;color:#fff;font-size:12px;padding:10px 14px;border-radius:999px;opacity:0;pointer-events:none;transition:.2s}
+    .toast.show{opacity:1}
+    .wire .phone{background:#d9d9d4;box-shadow:none;border:1px solid #bfc0bb}
+    .wire .viewport{background:#fff}
+    .wire .hero,.wire .primary{background:#dcdcd7;color:#222}
+    .wire .hero small,.wire .hero p{color:#666}
+    .wire .card,.wire .mini,.wire .field{border:1px solid #bfc0bb;background:#fff;border-radius:8px}
+    .wire .hero,.wire .primary,.wire .secondary,.wire .bottom-nav{border-radius:8px}
+    .wire .chart{filter:grayscale(1)}
+    .wire .pill{border-radius:6px}
+    .wire .phone *{box-shadow:none !important}
+    .evidence{display:grid;gap:10px}
+    .evidence .source{border-left:3px solid #b9bab4;padding:2px 0 2px 10px}
+    .source b{font-size:12px}
+    .source p{margin:3px 0 0;font-size:11px}
+    .check{display:flex;gap:10px;align-items:flex-start}
+    .check i{width:22px;height:22px;border-radius:7px;background:#e4ece7;color:var(--good);display:grid;place-items:center;font-style:normal;font-weight:900;flex:0 0 auto}
+    .empty{padding:34px 16px;text-align:center;color:var(--muted);font-size:13px}
+    @media(max-width:900px){
+      .workspace{grid-template-columns:1fr}
+      .rail{order:1}.phone-wrap{order:2}.notes{order:3}
+      .screen-list{display:flex;overflow:auto}
+      .screen-btn{min-width:170px}
+      .viewport{min-height:720px}.screen{min-height:690px}
+    }
+  </style>
+</head>
+<body>
+<div class="app" id="app">
+  <div class="topbar">
+    <div>
+      <div class="eyebrow">Strength Lab · UX Prototype</div>
+      <h1>무게무게</h1>
+      <div class="sub">Research → Protocol → Training → Data → Result</div>
+    </div>
+    <div class="mode" aria-label="보기 모드">
+      <button type="button" data-mode="visual" class="active">Visual</button>
+      <button type="button" data-mode="wire">Low-fi</button>
+    </div>
+  </div>
+
+  <nav class="flow" id="flow" aria-label="핵심 사용자 흐름"></nav>
+
+  <div class="workspace">
+    <aside class="rail">
+      <h2>화면 구조</h2>
+      <div class="screen-list" id="screenList"></div>
+    </aside>
+
+    <main class="phone-wrap">
+      <div class="phone">
+        <div class="viewport">
+          <div class="status"><span>9:41</span><span>● ● ●</span></div>
+          <div class="screen" id="screen"></div>
+          <div class="toast" id="toast" aria-live="polite"></div>
+        </div>
+      </div>
+    </main>
+
+    <aside class="notes">
+      <div class="eyebrow">UX decision</div>
+      <div class="why" id="noteTitle"></div>
+      <p id="noteBody"></p>
+      <ul id="noteList"></ul>
+      <div class="legend">
+        <span>한 손 조작</span><span>입력 최소화</span><span>근거 분리</span><span>1RM 중심</span>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+(() => {
+  const root = document.getElementById('app');
+  const screenEl = document.getElementById('screen');
+  const listEl = document.getElementById('screenList');
+  const flowEl = document.getElementById('flow');
+  const noteTitle = document.getElementById('noteTitle');
+  const noteBody = document.getElementById('noteBody');
+  const noteList = document.getElementById('noteList');
+  const toast = document.getElementById('toast');
+
+  const screens = [
+    {
+      id:'onboarding', name:'첫 실행', sub:'10초 안에 가치 이해', flow:'시작',
+      note:'첫 화면에서 설명하지 말고 약속한다.',
+      body:'“운동 기록 앱”이 아니라 “1RM을 올리는 실험 앱”이라는 차이를 바로 이해시킨다.',
+      bullets:['회원가입을 첫 화면에서 요구하지 않는다.','설명은 3줄 이내로 끝낸다.','첫 행동은 현재 기록 입력으로 이어진다.'],
+      html:`
+        <div class="title-row"><h3>더 무겁게 들기 위한<br>훈련 실험.</h3></div>
+        <div class="hero">
+          <small>무게무게</small>
+          <h4>논문으로 고르고,<br>바벨로 검증한다.</h4>
+          <p>근거가 있는 훈련 방법을 직접 해보고 내 1RM 변화를 확인하세요.</p>
+        </div>
+        <div class="section-label">이 앱에서 하는 일</div>
+        <div class="stack">
+          <div class="card"><div class="check"><i>1</i><div><h4>실험을 고릅니다</h4><div class="meta">5×5 · Heavy Triple · Top Set</div></div></div></div>
+          <div class="card"><div class="check"><i>2</i><div><h4>바벨을 듭니다</h4><div class="meta">세트 기록과 휴식은 앱이 따라갑니다.</div></div></div></div>
+          <div class="card"><div class="check"><i>3</i><div><h4>변화를 봅니다</h4><div class="meta">Actual 1RM과 e1RM을 분리합니다.</div></div></div></div>
+        </div>
+        <button class="primary" data-go="baseline">내 기록부터 입력하기</button>`
+    },
+    {
+      id:'baseline', name:'기준 기록', sub:'초기 1RM / e1RM 설정', flow:'기준',
+      note:'초기값은 “정확함”보다 “입력 부담”을 줄이는 게 먼저다.',
+      body:'Actual 1RM이 없는 사람도 많다. 최근 세트 기록으로 e1RM을 만들 수 있게 두 경로를 제공한다.',
+      bullets:['Big 3 중 하나만 입력해도 시작할 수 있다.','Actual 1RM과 e1RM을 UI에서 명확히 구분한다.','나중에 수정할 수 있다는 안전감을 준다.'],
+      html:`
+        <div class="title-row"><h3>현재 기록</h3><button class="ghost" data-go="home">건너뛰기</button></div>
+        <div class="card">
+          <div class="row"><h4>Bench Press</h4><span class="pill">e1RM</span></div>
+          <div class="setbox">
+            <div class="field"><span>최근 중량</span><b>75</b><span>kg</span></div>
+            <div class="field"><span>반복</span><b>5</b><span>reps</span></div>
+          </div>
+          <div class="row"><span class="meta">예상 1RM</span><strong>87.5 kg</strong></div>
+        </div>
+        <div class="card"><div class="row"><div><h4>Squat</h4><div class="meta">아직 입력하지 않음</div></div><button class="ghost">+ 추가</button></div></div>
+        <div class="card"><div class="row"><div><h4>Deadlift</h4><div class="meta">아직 입력하지 않음</div></div><button class="ghost">+ 추가</button></div></div>
+        <button class="primary" data-go="home">완료</button>`
+    },
+    {
+      id:'home', name:'홈', sub:'오늘 해야 할 한 가지', flow:'홈',
+      note:'홈은 대시보드가 아니라 “오늘 들 것”을 보여주는 화면이다.',
+      body:'운동 전 판단 비용을 줄인다. 앱을 켜면 오늘의 세션과 이전 기록이 가장 먼저 보여야 한다.',
+      bullets:['Primary CTA는 하나: 오늘 훈련 시작.','이번 실험의 변화량은 짧게만 보여준다.','연구 설명은 “왜?”로 한 단계 뒤에 둔다.'],
+      html:`
+        <div class="title-row"><div><div class="meta">5×5 · 2주차 1일차</div><h3>오늘도 한 칸.</h3></div><span class="pill">42%</span></div>
+        <div class="hero">
+          <small>오늘 세션 · Bench Press</small>
+          <h4>75 kg<br>5 × 5</h4>
+          <p>이전 72.5 kg · 5 × 5</p>
+          <div style="height:14px"></div>
+          <button class="primary" style="background:#fff;color:#111" data-go="session">오늘 훈련 시작</button>
+        </div>
+        <div class="card" data-go="experiment" style="cursor:pointer">
+          <div class="row"><div><h4>왜 5×5인가요?</h4><div class="meta">훈련 목적과 연구 근거 보기</div></div><span>›</span></div>
+        </div>
+        <div class="section-label">이번 실험 변화</div>
+        <div class="metric">
+          <div class="mini"><span>Squat</span><b>+2.5</b><span>kg e1RM</span></div>
+          <div class="mini"><span>Bench</span><b>+5.0</b><span>kg e1RM</span></div>
+          <div class="mini"><span>Deadlift</span><b>0</b><span>kg e1RM</span></div>
+        </div>
+        <div class="bottom-nav">
+          <button class="active" data-go="home">홈</button><button data-go="records">기록</button><button data-go="results">결과</button><button data-go="settings">설정</button>
+        </div>`
+    },
+    {
+      id:'experiment', name:'실험 상세', sub:'목적·구조·근거', flow:'실험',
+      note:'프로토콜 숫자보다 먼저 “왜 이 실험을 하는지”를 이해시킨다.',
+      body:'세트·반복·휴식은 실행 정보다. 그 위에는 목적, 대상, 기간이 있어야 한다.',
+      bullets:['프로토콜 숫자는 연구 검토 후 확정한다.','“최고의 방법” 같은 표현을 쓰지 않는다.','근거와 사용자 관찰 데이터는 섞지 않는다.'],
+      html:`
+        <div class="title-row"><button class="ghost" data-go="home">‹ 홈</button><span class="pill">진행 중</span></div>
+        <h3 style="font-size:30px;margin:0 0 8px">5 × 5</h3>
+        <div class="meta">Volume Strength · 6–8주</div>
+        <div class="section-label">이 실험의 목적</div>
+        <div class="card"><h4>근력과 훈련 볼륨을 함께 쌓기</h4><div class="meta">중간 이상의 강도로 여러 세트를 반복합니다.</div></div>
+        <div class="section-label">프로토콜</div>
+        <div class="metric">
+          <div class="mini"><span>Intensity</span><b>75%</b><span>1RM 예시</span></div>
+          <div class="mini"><span>Sets</span><b>5</b><span>sets</span></div>
+          <div class="mini"><span>Rest</span><b>3–5</b><span>min</span></div>
+        </div>
+        <div class="section-label">근거</div>
+        <div class="card"><div class="row"><div><h4>Research Evidence</h4><div class="meta">대상 · 기간 · 한계까지 확인</div></div><button class="ghost" data-go="evidence">왜?</button></div></div>
+        <button class="secondary" data-go="session">오늘 세션 보기</button>`
+    },
+    {
+      id:'evidence', name:'왜? / 근거', sub:'연구와 해석 분리', flow:'근거',
+      note:'“왜?”는 신뢰를 만드는 화면이지 논문 저장소가 아니다.',
+      body:'첫 화면은 짧게 이해시키고, 원문 정보는 한 단계 더 내려간다.',
+      bullets:['연구 결과와 제품 해석을 분리한다.','표본과 훈련 경험을 보여준다.','불확실성을 숨기지 않는다.'],
+      html:`
+        <div class="title-row"><button class="ghost" data-go="experiment">‹ 실험</button><span class="pill">Research Evidence</span></div>
+        <h3 style="font-size:26px;margin:0 0 6px">왜 이 방식인가요?</h3>
+        <p class="meta" style="line-height:1.6">높은 부하와 충분한 휴식은 최대근력 향상과 세트 수행 유지에 유리한 경향을 보입니다. 하나의 루틴이 모두에게 최적이라는 뜻은 아닙니다.</p>
+        <div class="section-label">핵심 해석</div>
+        <div class="evidence">
+          <div class="card"><h4>강도</h4><div class="meta">고중량 훈련은 최대근력 향상에 유리한 경향이 있습니다.</div></div>
+          <div class="card"><h4>휴식</h4><div class="meta">훈련 경험자에게 긴 휴식이 수행 유지에 도움이 될 수 있습니다.</div></div>
+        </div>
+        <div class="section-label">출처</div>
+        <div class="card">
+          <div class="source"><b>Systematic review / meta-analysis</b><p>대상, 중재 기간, 결과지표를 함께 기록합니다.</p></div>
+          <div style="height:12px"></div>
+          <div class="source"><b>Randomized trial</b><p>단일 연구 결과를 일반적인 사실처럼 표현하지 않습니다.</p></div>
+        </div>
+        <button class="primary" data-go="session">이해했어요 · 훈련 보기</button>`
+    },
+    {
+      id:'session', name:'세션 준비', sub:'운동 전 마지막 확인', flow:'준비',
+      note:'운동 직전에는 선택지를 줄이고 자신감을 준다.',
+      body:'사용자가 확인해야 할 것은 목표 중량, 세트 수, 이전 기록뿐이다.',
+      bullets:['예상 소요시간은 보조 정보다.','수정은 가능하되 눈에 띄게 만들지 않는다.','시작 버튼은 엄지 영역에 둔다.'],
+      html:`
+        <div class="title-row"><button class="ghost" data-go="home">‹ 홈</button><span class="pill">오늘</span></div>
+        <h3 style="font-size:28px;margin:0 0 4px">Bench Press</h3>
+        <div class="meta">5×5 · Week 2 / Day 1</div>
+        <div class="hero" style="margin-top:18px">
+          <small>오늘 목표</small>
+          <h4>75 kg · 5 × 5</h4>
+          <p>휴식 3–5분 · 예상 28분</p>
+        </div>
+        <div class="card">
+          <div class="row"><div><h4>이전 세션</h4><div class="meta">72.5 kg · 5 × 5 완료</div></div><strong>+2.5 kg</strong></div>
+        </div>
+        <div class="card"><div class="row"><div><h4>컨디션</h4><div class="meta">선택 입력</div></div><span class="pill">보통</span></div></div>
+        <button class="primary" data-go="training">세션 시작</button>`
+    },
+    {
+      id:'training', name:'운동 실행', sub:'한 손 기록', flow:'훈련',
+      note:'실서비스의 가장 중요한 화면이다.',
+      body:'운동 중에는 사고하지 않아도 된다. 목표값은 자동 입력하고 사용자는 실제 수행값만 수정한다.',
+      bullets:['세트 완료 버튼을 가장 크게 둔다.','이전 기록을 같은 화면에 둔다.','RPE/RIR은 선택 입력으로 둔다.'],
+      html:`
+        <div class="row"><span class="pill">Bench Press</span><span class="meta">Set 2 / 5</span></div>
+        <div style="height:20px"></div>
+        <div class="meta">오늘 목표</div>
+        <div class="big-number">75 <span style="font-size:20px">kg</span></div>
+        <div class="setbox">
+          <div class="field"><span>중량</span><b>75</b><span>kg</span></div>
+          <div class="field"><span>반복</span><b>5</b><span>reps</span></div>
+        </div>
+        <div class="card">
+          <div class="row"><div><h4>이전</h4><div class="meta">72.5 kg × 5</div></div><span class="pill">+2.5 kg</span></div>
+        </div>
+        <div class="section-label">진행</div>
+        <div class="progress"><i></i></div>
+        <div style="display:flex;justify-content:space-between;margin-top:7px" class="meta"><span>2 / 5 세트</span><span>40%</span></div>
+        <div style="height:18px"></div>
+        <button class="primary" id="completeSet">세트 완료</button>
+        <button class="ghost" style="width:100%;margin-top:6px">목표대로 못 했어요</button>`
+    },
+    {
+      id:'rest', name:'휴식', sub:'다음 세트 준비', flow:'휴식',
+      note:'타이머만 크게 보여주면 다음 행동이 끊긴다.',
+      body:'남은 시간과 함께 “다음에 무엇을 들지”를 항상 보여준다.',
+      bullets:['건너뛰기를 숨기지 않는다.','1분 추가는 큰 터치 타깃으로 둔다.','앱이 백그라운드로 가도 세션 상태를 보존해야 한다.'],
+      html:`
+        <div class="row"><span class="pill">휴식</span><span class="meta">Set 2 완료</span></div>
+        <div class="timer">
+          <div class="meta">다음 세트까지</div>
+          <div class="big-number" id="timerValue">04:59</div>
+        </div>
+        <div class="card">
+          <div class="row"><div><h4>다음 세트</h4><div class="meta">Set 3 / 5</div></div><strong>75 kg × 5</strong></div>
+        </div>
+        <div class="card">
+          <div class="row"><div><h4>방금 기록</h4><div class="meta">75 kg × 5 · 완료</div></div><span class="pill">저장됨</span></div>
+        </div>
+        <div class="stack">
+          <button class="secondary" id="addMinute">+ 1분</button>
+          <button class="primary" data-go="training">다음 세트 바로 시작</button>
+        </div>`
+    },
+    {
+      id:'complete', name:'세션 완료', sub:'성취 + 변화 확인', flow:'완료',
+      note:'세션 완료는 칭찬보다 “무엇이 바뀌었는지”를 보여준다.',
+      body:'볼륨, e1RM, PR을 과장하지 않고 짧게 정리한다. 실제 1RM과 e1RM은 섞지 않는다.',
+      bullets:['PR이 아니어도 완료 자체를 긍정한다.','e1RM은 추정값이라고 표시한다.','다음 행동은 결과 보기 또는 홈으로 가기다.'],
+      html:`
+        <div class="eyebrow">Session complete</div>
+        <h3 style="font-size:32px;margin:8px 0 18px">오늘 할 일은 끝.</h3>
+        <div class="hero">
+          <small>Bench Press</small>
+          <h4>75 kg · 5 × 5</h4>
+          <p>5 / 5 세트 완료</p>
+        </div>
+        <div class="metric">
+          <div class="mini"><span>총 볼륨</span><b>1,875</b><span>kg</span></div>
+          <div class="mini"><span>e1RM</span><b>87.5</b><span>kg · 추정</span></div>
+          <div class="mini"><span>이전 대비</span><b>+2.5</b><span>kg e1RM</span></div>
+        </div>
+        <div class="card" style="margin-top:10px"><div class="row"><div><h4>새 e1RM 최고</h4><div class="meta">실제 1RM 기록과는 별개입니다.</div></div><strong>87.5</strong></div></div>
+        <button class="primary" data-go="results">변화 보기</button>
+        <button class="secondary" style="margin-top:8px" data-go="home">홈으로</button>`
+    },
+    {
+      id:'records', name:'기록', sub:'무엇을 했는지', flow:'기록',
+      note:'기록 탭은 분석보다 사실을 빠르게 찾는 곳이다.',
+      body:'날짜, 운동, 최고 세트, 프로토콜을 먼저 보여주고 상세 세트는 눌러서 본다.',
+      bullets:['필터는 Big 3 중심으로 단순하게 둔다.','수정과 삭제는 상세 화면에서 한다.','실험 기간 라벨을 함께 보여준다.'],
+      html:`
+        <div class="title-row"><h3>기록</h3><span class="pill">전체</span></div>
+        <div class="card"><div class="row"><div><h4>오늘 · Bench Press</h4><div class="meta">75 kg · 5 × 5 · 5×5 실험</div></div><strong>87.5</strong></div><div class="meta" style="text-align:right">e1RM</div></div>
+        <div class="card"><div class="row"><div><h4>10월 6일 · Squat</h4><div class="meta">105 kg · 5 × 5</div></div><strong>122.5</strong></div><div class="meta" style="text-align:right">e1RM</div></div>
+        <div class="card"><div class="row"><div><h4>10월 4일 · Deadlift</h4><div class="meta">125 kg · 3 × 3</div></div><strong>137.5</strong></div><div class="meta" style="text-align:right">e1RM</div></div>
+        <div class="bottom-nav"><button data-go="home">홈</button><button class="active">기록</button><button data-go="results">결과</button><button data-go="settings">설정</button></div>`
+    },
+    {
+      id:'results', name:'결과', sub:'어떻게 변했는지', flow:'결과',
+      note:'결과 탭이 무게무게의 장기적인 재방문 이유다.',
+      body:'숫자 하나보다 실험 구간과 변화 방향을 연결해서 보여준다.',
+      bullets:['Actual 1RM과 e1RM 토글을 분리한다.','그래프에 실험 구간을 표시한다.','사용자 데이터는 인과관계처럼 해석하지 않는다.'],
+      html:`
+        <div class="title-row"><h3>결과</h3><span class="pill">Bench Press</span></div>
+        <div class="card">
+          <div class="meta">현재 e1RM</div>
+          <div class="big-number" style="font-size:46px">87.5 <span style="font-size:18px">kg</span></div>
+          <div class="row"><span class="meta">실험 시작 82.5 kg</span><strong style="color:#315f46">+5.0 kg</strong></div>
+          <div class="chart">
+            <svg viewBox="0 0 320 170" role="img" aria-label="e1RM 상승 예시 그래프">
+              <polyline fill="none" stroke="#252525" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="18,136 66,126 110,132 154,104 205,96 254,68 302,52"/>
+              <circle cx="302" cy="52" r="6" fill="#252525"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card"><div class="row"><div><h4>5×5 실험</h4><div class="meta">2주차 · 42% 진행</div></div><strong>+6.1%</strong></div></div>
+        <div class="card"><div class="row"><div><h4>Actual 1RM</h4><div class="meta">마지막 실제 성공 기록</div></div><strong>82.5 kg</strong></div></div>
+        <div class="bottom-nav"><button data-go="home">홈</button><button data-go="records">기록</button><button class="active">결과</button><button data-go="settings">설정</button></div>`
+    },
+    {
+      id:'settings', name:'설정', sub:'단위·타이머·데이터', flow:'설정',
+      note:'설정은 제품의 중심이 아니므로 조용하고 예측 가능해야 한다.',
+      body:'운동 중 자주 바꾸는 항목은 설정에 숨기지 않는다. 여기에는 전역 기본값만 둔다.',
+      bullets:['kg/lb를 제공한다.','휴식 타이머 기본값을 설정한다.','CSV/JSON 내보내기를 고려한다.'],
+      html:`
+        <div class="title-row"><h3>설정</h3></div>
+        <div class="card"><div class="row"><div><h4>중량 단위</h4><div class="meta">모든 기록에 적용</div></div><strong>kg</strong></div></div>
+        <div class="card"><div class="row"><div><h4>휴식 타이머</h4><div class="meta">세트 완료 후 자동 시작</div></div><span class="pill">ON</span></div></div>
+        <div class="card"><div class="row"><div><h4>RPE / RIR</h4><div class="meta">선택 입력</div></div><span class="pill">RIR</span></div></div>
+        <div class="card"><div class="row"><div><h4>데이터 내보내기</h4><div class="meta">CSV · JSON</div></div><span>›</span></div></div>
+        <div class="card"><div class="row"><div><h4>연구 근거 정책</h4><div class="meta">앱이 근거를 다루는 방식</div></div><span>›</span></div></div>
+        <div class="bottom-nav"><button data-go="home">홈</button><button data-go="records">기록</button><button data-go="results">결과</button><button class="active">설정</button></div>`
+    }
+  ];
+
+  const coreFlow = ['onboarding','baseline','home','experiment','evidence','session','training','rest','complete','results'];
+  let current = 'home';
+  let seconds = 299;
+  let timerId = null;
+
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'),1300);
+  }
+
+  function renderNav(){
+    listEl.innerHTML = screens.map((s,i)=>`
+      <button type="button" class="screen-btn ${s.id===current?'active':''}" data-screen="${s.id}">
+        <span class="num">${String(i+1).padStart(2,'0')}</span>
+        <span><strong>${s.name}</strong><span>${s.sub}</span></span>
+      </button>`).join('');
+
+    flowEl.innerHTML = coreFlow.map(id=>{
+      const s=screens.find(x=>x.id===id);
+      return `<button type="button" class="${id===current?'active':''}" data-screen="${id}">${s.flow}</button>`;
+    }).join('');
+  }
+
+  function renderScreen(id){
+    const s = screens.find(x=>x.id===id) || screens[0];
+    current = s.id;
+    if(timerId){ clearInterval(timerId); timerId=null; }
+    screenEl.innerHTML = s.html;
+    noteTitle.textContent = s.note;
+    noteBody.textContent = s.body;
+    noteList.innerHTML = s.bullets.map(x=>`<li>${x}</li>`).join('');
+    renderNav();
+    wireActions();
+
+    if(id==='rest'){
+      seconds=299;
+      const value = document.getElementById('timerValue');
+      const draw=()=>{
+        const m=Math.floor(seconds/60), sec=seconds%60;
+        if(value) value.textContent=`${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+      };
+      draw();
+      timerId=setInterval(()=>{ if(seconds>0){seconds--;draw();} },1000);
+    }
+  }
+
+  function wireActions(){
+    root.querySelectorAll('[data-go]').forEach(btn=>{
+      btn.addEventListener('click',()=>renderScreen(btn.dataset.go));
+    });
+    const complete=document.getElementById('completeSet');
+    if(complete) complete.addEventListener('click',()=>{showToast('세트 저장 완료');setTimeout(()=>renderScreen('rest'),350);});
+    const add=document.getElementById('addMinute');
+    if(add) add.addEventListener('click',()=>{seconds=Math.min(seconds+60,5999);showToast('1분 추가');});
+  }
+
+  root.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-screen]');
+    if(btn) renderScreen(btn.dataset.screen);
+  });
+
+  root.querySelectorAll('[data-mode]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      root.classList.toggle('wire',btn.dataset.mode==='wire');
+      root.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b===btn));
+    });
+  });
+
+  renderScreen(current);
+})();
+</script>
+</body>
+</html>

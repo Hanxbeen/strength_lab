@@ -8,7 +8,9 @@ struct MugeMugeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            ApprovedHomeView()
+                .id(cloudAuth.userID)
+                .environment(\.locale, Locale(identifier: "ko_KR"))
                 .environmentObject(workouts)
                 .environmentObject(catalog)
                 .environmentObject(cloudAuth)

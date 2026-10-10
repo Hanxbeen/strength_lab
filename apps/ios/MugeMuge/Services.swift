@@ -189,6 +189,8 @@ final class WorkoutStore: ObservableObject {
         let allWorkouts = value.history + (value.active.map { [$0] } ?? [])
         return allWorkouts.allSatisfy {
             $0.protocolVersion > 0 && !$0.protocolID.isEmpty &&
+            ($0.restPausedRemaining.map { $0.isFinite && (0...3600).contains($0) } ?? true) &&
+            !($0.restUntil != nil && $0.restPausedRemaining != nil) &&
             $0.setIDs.allSatisfy { validIDs.contains($0) }
         }
     }
@@ -208,10 +210,57 @@ final class WorkoutStore: ObservableObject {
         let entry = LoggedSet(exerciseID: exerciseID, weightKg: weightKg, reps: reps)
         workout.setIDs.append(entry.id)
         workout.restUntil = Date().addingTimeInterval(TimeInterval(restSeconds))
+        workout.restPausedRemaining = nil
         var next = snapshot
         next.logs.append(entry)
         next.active = workout
         return persist(next) ? entry.id : nil
+    }
+
+    /// Persist timer transitions atomically; wall-clock deadlines survive suspension.
+    @discardableResult
+    func adjustRest(by seconds: TimeInterval) -> Bool {
+        guard seconds.isFinite, (0...3600).contains(seconds), var workout = active,
+              workout.restUntil != nil || workout.restPausedRemaining != nil else { return false }
+        if let paused = workout.restPausedRemaining {
+            workout.restPausedRemaining = min(3600, max(0, paused) + seconds)
+        } else {
+            workout.restUntil = Date().addingTimeInterval(min(3600, max(0, workout.restUntil!.timeIntervalSinceNow) + seconds))
+        }
+        var next = snapshot
+        next.active = workout
+        return persist(next)
+    }
+
+    @discardableResult
+    func pauseRest() -> Bool {
+        guard var workout = active, let deadline = workout.restUntil else { return false }
+        workout.restPausedRemaining = min(3600, max(0, deadline.timeIntervalSinceNow))
+        workout.restUntil = nil
+        var next = snapshot
+        next.active = workout
+        return persist(next)
+    }
+
+    @discardableResult
+    func resumeRest() -> Bool {
+        guard var workout = active, let remaining = workout.restPausedRemaining,
+              remaining.isFinite, (0...3600).contains(remaining) else { return false }
+        workout.restUntil = Date().addingTimeInterval(remaining)
+        workout.restPausedRemaining = nil
+        var next = snapshot
+        next.active = workout
+        return persist(next)
+    }
+
+    @discardableResult
+    func endRest() -> Bool {
+        guard var workout = active else { return false }
+        workout.restUntil = nil
+        workout.restPausedRemaining = nil
+        var next = snapshot
+        next.active = workout
+        return persist(next)
     }
 
     @discardableResult

@@ -12,8 +12,10 @@
 		2E77BC668202584B256799ED /* TrainingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19401CE421EA9BB3C3247D7E /* TrainingState.swift */; };
 		33623D38E614D9AD85752167 /* CloudMerge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1500B8521141D46032C62 /* CloudMerge.swift */; };
 		46EA9522149F5F6E3F115CCB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */; };
+		470D61ACD79D26128639B537 /* StrengthSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582D5B32629D0B570FD5A8F1 /* StrengthSetupView.swift */; };
 		4FE523099F1EC19C115412E5 /* CloudAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E744A319CEA1DCD087DD588 /* CloudAccountView.swift */; };
 		7918A417D55792A2FEF02DA2 /* demo-catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = D572A0A487D87B6E13722EBB /* demo-catalog.json */; };
+		79901ACD16B9D74A3FD7E1A8 /* ApprovedHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E9F0A3257FF80C10101CDD /* ApprovedHomeView.swift */; };
 		7DA4C4E50DB53841E9E80D68 /* CloudAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07375A476AB1E5577D26D23C /* CloudAuth.swift */; };
 		818D6109FA6BD74AE38C69A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E921D81DFFD49ED96A27D /* Assets.xcassets */; };
 		8FDFB5B3F32E1239CC65E045 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DAE7A055551BEC23579F96 /* Services.swift */; };
@@ -25,6 +27,7 @@
 		C7F6B375480392E2B75134F2 /* BrandUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF347449ABE0A62C0B2E63 /* BrandUI.swift */; };
 		C823FC79C3514EF02C0448C7 /* lila.riv in Resources */ = {isa = PBXBuildFile; fileRef = 0B0BD92E7F331AC2FB098A97 /* lila.riv */; };
 		C853A510FAB500B0654518F2 /* LilaStudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA53A123DA4073A23074D2B /* LilaStudioView.swift */; };
+		CF91AB864F6CDAB7B681CD92 /* GuidedWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A7ECE819FBCF711F3CA8E4 /* GuidedWorkoutView.swift */; };
 		ECC05F5E541E83F5FCA90EBF /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 60E8E264E18D28532039C109 /* RiveRuntime */; };
 		FA90F1448175EB9D4AB9F72C /* LilaRiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5195BA454957DEBAF2686CAF /* LilaRiveView.swift */; };
 /* End PBXBuildFile section */
@@ -35,13 +38,16 @@
 		0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		19401CE421EA9BB3C3247D7E /* TrainingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingState.swift; sourceTree = "<group>"; };
 		5195BA454957DEBAF2686CAF /* LilaRiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilaRiveView.swift; sourceTree = "<group>"; };
+		51E9F0A3257FF80C10101CDD /* ApprovedHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedHomeView.swift; sourceTree = "<group>"; };
 		567114F31B2F49212A4C684D /* RiveRuntimePackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RiveRuntimePackage; path = RiveRuntimePackage; sourceTree = SOURCE_ROOT; };
+		582D5B32629D0B570FD5A8F1 /* StrengthSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrengthSetupView.swift; sourceTree = "<group>"; };
 		583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugeMugeApp.swift; sourceTree = "<group>"; };
 		604C1EA0AECEB9A6B8CB3594 /* MugeMugeDevelopment.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MugeMugeDevelopment.entitlements; sourceTree = "<group>"; };
 		6F7587D144FA81489AC657AF /* StrengthMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrengthMetrics.swift; sourceTree = "<group>"; };
 		7982630AB09572CCC9E04F6A /* MugeMascot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugeMascot.swift; sourceTree = "<group>"; };
 		7E744A319CEA1DCD087DD588 /* CloudAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAccountView.swift; sourceTree = "<group>"; };
 		9E23B881405602BC5A2D5937 /* CloudSyncPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSyncPlan.swift; sourceTree = "<group>"; };
+		A2A7ECE819FBCF711F3CA8E4 /* GuidedWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedWorkoutView.swift; sourceTree = "<group>"; };
 		C50C3D9EBFC46A557B4E3556 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		CDCF347449ABE0A62C0B2E63 /* BrandUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandUI.swift; sourceTree = "<group>"; };
 		D22E921D81DFFD49ED96A27D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -96,6 +102,7 @@
 		BE919EE16B9D1754E21D57AF /* MugeMuge */ = {
 			isa = PBXGroup;
 			children = (
+				51E9F0A3257FF80C10101CDD /* ApprovedHomeView.swift */,
 				CDCF347449ABE0A62C0B2E63 /* BrandUI.swift */,
 				7E744A319CEA1DCD087DD588 /* CloudAccountView.swift */,
 				07375A476AB1E5577D26D23C /* CloudAuth.swift */,
@@ -103,6 +110,7 @@
 				9E23B881405602BC5A2D5937 /* CloudSyncPlan.swift */,
 				EA16D5385563895CF99ED96B /* CloudThreeWayMerge.swift */,
 				ED6DC524ED31912C1513BC54 /* CloudTransport.swift */,
+				A2A7ECE819FBCF711F3CA8E4 /* GuidedWorkoutView.swift */,
 				0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */,
 				5195BA454957DEBAF2686CAF /* LilaRiveView.swift */,
 				FBA53A123DA4073A23074D2B /* LilaStudioView.swift */,
@@ -113,6 +121,7 @@
 				604C1EA0AECEB9A6B8CB3594 /* MugeMugeDevelopment.entitlements */,
 				D6DAE7A055551BEC23579F96 /* Services.swift */,
 				6F7587D144FA81489AC657AF /* StrengthMetrics.swift */,
+				582D5B32629D0B570FD5A8F1 /* StrengthSetupView.swift */,
 				19401CE421EA9BB3C3247D7E /* TrainingState.swift */,
 				5A803A1E5CEDD180AC05237A /* Resources */,
 			);
@@ -205,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79901ACD16B9D74A3FD7E1A8 /* ApprovedHomeView.swift in Sources */,
 				C7F6B375480392E2B75134F2 /* BrandUI.swift in Sources */,
 				4FE523099F1EC19C115412E5 /* CloudAccountView.swift in Sources */,
 				7DA4C4E50DB53841E9E80D68 /* CloudAuth.swift in Sources */,
@@ -212,6 +222,7 @@
 				B48EE20792B79859E8D9617A /* CloudSyncPlan.swift in Sources */,
 				B28DDD5FFEC862FF38AC3D20 /* CloudThreeWayMerge.swift in Sources */,
 				9269CD76BCC84AA4192FDBE4 /* CloudTransport.swift in Sources */,
+				CF91AB864F6CDAB7B681CD92 /* GuidedWorkoutView.swift in Sources */,
 				46EA9522149F5F6E3F115CCB /* HomeView.swift in Sources */,
 				FA90F1448175EB9D4AB9F72C /* LilaRiveView.swift in Sources */,
 				C853A510FAB500B0654518F2 /* LilaStudioView.swift in Sources */,
@@ -220,6 +231,7 @@
 				AAE69B3A60EC25C845B53DCF /* MugeMugeApp.swift in Sources */,
 				8FDFB5B3F32E1239CC65E045 /* Services.swift in Sources */,
 				A3C16BF9E09A3C02DE8E17A4 /* StrengthMetrics.swift in Sources */,
+				470D61ACD79D26128639B537 /* StrengthSetupView.swift in Sources */,
 				2E77BC668202584B256799ED /* TrainingState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,7 +248,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "무게꾼";
+				INFOPLIST_KEY_CFBundleDisplayName = "무게무게";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -323,7 +335,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C7C4WB633C;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "무게꾼";
+				INFOPLIST_KEY_CFBundleDisplayName = "무게무게";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (

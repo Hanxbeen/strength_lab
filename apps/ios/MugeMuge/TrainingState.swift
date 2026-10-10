@@ -10,6 +10,7 @@ struct ActiveWorkout: Codable, Identifiable {
     var finishedAt: Date?
     var setIDs: [UUID]
     var restUntil: Date?
+    var restPausedRemaining: TimeInterval?
 
     init(protocolID: String, protocolVersion: Int, sessionID: String, title: String) {
         self.id = UUID()

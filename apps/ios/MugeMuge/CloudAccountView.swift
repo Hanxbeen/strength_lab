@@ -68,8 +68,8 @@ struct CloudAccountView: View {
         Form {
             Section("계정") {
                 if let id = auth.userID {
-                    Label("Apple 계정으로 로그인됨", systemImage: "person.crop.circle.badge.checkmark")
-                    Text("계정 ID: \\(id.uuidString.prefix(8))…")
+                    Label("애플 계정으로 로그인됨", systemImage: "person.crop.circle.badge.checkmark")
+                    Text("계정 번호: \(id.uuidString.prefix(8))…")
                         .font(.caption).foregroundStyle(.secondary)
                     Button("로그아웃 (기기 기록은 유지)") {
                         remote = nil
@@ -91,7 +91,7 @@ struct CloudAccountView: View {
 
             cloudSection
             Section("기기 백업") {
-                NavigationLink("JSON 백업 내보내기 · 복원") { BackupView() }
+                NavigationLink("기록 파일 백업 내보내기 · 복원") { BackupView() }
             }
             if let message {
                 Section("동기화 상태") { Text(message).font(.subheadline) }
@@ -137,14 +137,14 @@ struct CloudAccountView: View {
                     Button("서버 기록 확인") { Task { await refreshRemote() } }
                         .disabled(busy)
                     if let remote {
-                        Text("서버 버전: \\(remote.revision)")
-                        Text("서버 세트 \\(remote.payload.logs.count)개 · 완료 세션 \\(remote.payload.history.count)개")
+                        Text("서버 버전: \(remote.revision)")
+                        Text("서버 세트 \(remote.payload.logs.count)개 · 완료 세션 \(remote.payload.history.count)개")
                         if localIsEmpty && !accountMismatch {
                             Button("서버 기록을 이 기기로 가져오기") {
                                 showRestoreConfirmation = true
                             }
                         } else {
-                            Text("기기에 기록이 있어 자동 복원을 차단했습니다. 먼저 JSON 백업을 보관하고 충돌을 해결해야 합니다.")
+                            Text("기기에 기록이 있어 자동 복원을 차단했습니다. 먼저 기록 파일 백업을 보관하고 충돌을 해결해야 합니다.")
                                 .font(.caption).foregroundStyle(.orange)
                         }
                     } else {

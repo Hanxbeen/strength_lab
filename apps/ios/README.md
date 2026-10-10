@@ -16,17 +16,17 @@ For iPhone physical-device development, configure a reachable HTTPS API endpoint
 ## Offline-first slice
 - The demo catalog is bundled in the app, so it works without a server.
 - Workout sets are atomically persisted to Application Support. Invalid values are rejected and failed writes do not update the visible log.
-- Sets can be deleted. The Growth tab shows Epley e1RM estimates (1–10 reps) and training volume; actual 1RM recording is not yet implemented.
+- Sets can be deleted. The Growth tab shows Epley e1RM estimates (1–10 reps) and training volume; measured 1RM records are stored separately from estimates through the maximum-weight setup screen.
 - API URL may be supplied via Info.plist key MugeMugeAPIURL (HTTPS for remote hosts).
-- iOS 26 Liquid Glass requires a newer Xcode/iOS SDK than the currently installed Xcode 16.2.
+- The current build uses Xcode 27.0. NativeGlassPanel keeps its compiler-gated Liquid Glass implementation; full device visual validation remains outstanding.
 
 ## Device installation checklist (iPhone iOS 26.5)
 - A physical iPhone named Hanbeen (iPhone 15 Pro, iOS 26.5) is paired with this Mac.
-- The current Xcode is 16.2 (iOS 18.2 SDK). Upgrade to an Xcode release supporting iOS 26.5 for on-device debugging and Liquid Glass development.
+- As of 2026-10-10, the connected Mac uses Xcode 27.0 (27A266a), and a signed physical-device build succeeds.
 - Xcode > Settings > Accounts: sign in with the Apple ID that owns the development team.
 - In Signing & Capabilities choose that team and enable automatic signing; generate a development provisioning profile for the app bundle ID.
 - Build and run on the selected physical device. Never use CODE_SIGNING_ALLOWED=NO for physical installation.
-- Device installation attempted on 2026-10-09 and failed because the app was unsigned; automatic signing then failed because Xcode has no account credentials for the development team.
+- Earlier installation attempts on 2026-10-09 failed with unsigned builds and missing credentials. The current signed build passed on 2026-10-10; installation and launch results are recorded in the continuation verification below.
 - The app has not yet passed device UI, gesture, lifecycle, or end-to-end testing.
 
 ## Atomic workout persistence (2026-10)
@@ -45,11 +45,22 @@ For iPhone physical-device development, configure a reachable HTTPS API endpoint
 ## Native visual system
 - `BrandUI.swift` defines reusable color, card, section title, primary action and platform-native glass wrapper.
 - Home uses branded editorial hierarchy and restrained surfaces. NativeGlassPanel uses system material on older SDKs; its iOS 26 glassEffect branch is compiled only by Swift 6.2+ toolchains with iOS 26 SDK support.
-- Xcode 16.2 cannot compile or visually verify actual iOS 26 Liquid Glass. Real iOS 26 styling and touch behavior remain unverified until SDK upgrade.
+- The earlier Xcode 16.2 limitation is historical. The current Xcode 27.0 build compiles the app, but dedicated visual and touch validation of Liquid Glass remains outstanding.
 - Cloud sync architecture proposal: `docs/CLOUD_ARCHITECTURE.md`. No remote cloud sync is deployed.
 
 ## Training and progress UI iteration
 - Exercise screen: branded session progress, prominent weight/reps, guarded save, persistent rest timer, editable history cards.
 - Progress screen: SBD selector, separated estimated 1RM and manually measured 1RM, training volume, estimate chart, session history.
-- All changes use SwiftUI and reusable brand primitives; iOS 26 Liquid Glass still requires SDK and on-device visual validation.
+- All changes use SwiftUI and reusable brand primitives; dedicated on-device visual validation remains outstanding.
 - Supabase is connected to the assistant but the target project has not yet been identified; do not deploy schema or credentials into an unrelated project.
+
+## Approved native flow verification (2026-10-10)
+- The app entry uses ApprovedHomeView: home, routine library, training history, and growth, with settings accessible from home.
+- Shared foundations in BrandUI.swift cover semantic colors, spacing, typography, cards, buttons, aligned metric cards, Dynamic Type reflow, and numeric accessibility labels.
+- StrengthSetupView offers actual 1RM entry, calculation from a previous set, and a guided assessment with preparation, technique, warmup, attempt, and result stages. Estimates do not overwrite measured records.
+- GuidedWorkoutView covers starting weights, atomic set completion, editable sets, persisted pause/resume/extension of rest, resuming a workout, and completion.
+- Display name: 무게무게. App icon: opaque 1024×1024 frontal Lila face closeup.
+- Fixed a missing initial wrapped value in the shared ScaledMetric property that prevented the latest foundation build.
+- Signed Debug build passed with Xcode 27.0 for the paired Hanbeen iPhone. devicectl installation and app launch both completed successfully (bundle ID app.mugemuge.ios).
+- All 11 Swift CLI test suites passed, including rest persistence, migration compatibility, invalid-backup rejection, account isolation, and transport/merge tests.
+- Full manual gesture, keyboard, VoiceOver, Dynamic Type, and visual comparison against every wireframe state remain unverified.

@@ -12,7 +12,7 @@ struct HomeView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 26) {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("STRENGTH, WITH EVIDENCE")
+                            Text("오늘의 운동, 기록으로 남기기")
                                 .font(.caption.weight(.semibold))
                                 .tracking(2)
                                 .foregroundStyle(MugeStyle.accent)
@@ -43,7 +43,7 @@ struct HomeView: View {
                         NavigationLink {
                             LilaStudioView()
                         } label: {
-                            Label("릴라 Rive 실험실 · 레벨 1~6 미리보기", systemImage: "sparkles.rectangle.stack")
+                            Label("릴라 · 레벨 1~6 미리보기", systemImage: "sparkles.rectangle.stack")
                                 .font(.caption.weight(.semibold))
                                 .foregroundStyle(MugeStyle.accent)
                         }
@@ -57,7 +57,7 @@ struct HomeView: View {
                                 Text(active.title)
                                     .font(.title2.bold())
                                     .foregroundStyle(MugeStyle.ink)
-                                Text("\(active.setIDs.count)세트 기록 · \\(active.startedAt.formatted(date: .omitted, time: .shortened)) 시작")
+                                Text("\(active.setIDs.count)세트 기록 · \(active.startedAt.formatted(date: .omitted, time: .shortened)) 시작")
                                     .font(.subheadline).foregroundStyle(MugeStyle.muted)
                                 HStack {
                                     MugePrimaryButton(title: "세션 완료") { _ = workouts.finish() }
@@ -105,7 +105,7 @@ struct HomeView: View {
                                 MugeCard {
                                     HStack {
                                         VStack(alignment: .leading, spacing: 8) {
-                                            Text("DEMO · RECORDING ONLY")
+                                            Text("기록 흐름 체험")
                                                 .font(.caption2.bold()).tracking(1)
                                                 .foregroundStyle(MugeStyle.accent)
                                             Text(item.title).font(.title3.bold()).foregroundStyle(MugeStyle.ink)
@@ -233,7 +233,7 @@ struct ExerciseView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 22) {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("TRAINING LOG")
+                    Text("운동 기록")
                         .font(.caption.weight(.semibold)).tracking(2)
                         .foregroundStyle(MugeStyle.accent)
                     Text(exercise.name)
@@ -264,7 +264,7 @@ struct ExerciseView: View {
                         .font(.headline).foregroundStyle(MugeStyle.ink)
                     HStack(spacing: 16) {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("중량 · kg").font(.caption).foregroundStyle(MugeStyle.muted)
+                            Text("중량 · 킬로그램").font(.caption).foregroundStyle(MugeStyle.muted)
                             TextField("20", text: $weight)
                                 .keyboardType(.decimalPad)
                                 .font(.system(size: 30, weight: .bold, design: .rounded))
@@ -326,7 +326,7 @@ struct ExerciseView: View {
                         MugeCard {
                             HStack {
                                 VStack(alignment: .leading, spacing: 5) {
-                                    Text("\(set.weightKg.formatted()) kg × \(set.reps)회")
+                                    Text("\(set.weightKg.formatted()) 킬로그램 × \(set.reps)회")
                                         .font(.title3.bold()).foregroundStyle(MugeStyle.ink)
                                     Text(set.performedAt.formatted(date: .abbreviated, time: .shortened))
                                         .font(.caption).foregroundStyle(MugeStyle.muted)
@@ -403,7 +403,7 @@ struct StrengthDashboard: View {
     @EnvironmentObject private var workouts: WorkoutStore
     @State private var actualWeight = ""
     @State private var selected = "squat"
-    private let exercises = [("squat", "Squat"), ("bench", "Bench"), ("deadlift", "Deadlift")]
+    private let exercises = [("squat", "스쿼트"), ("bench", "벤치프레스"), ("deadlift", "데드리프트")]
 
     private var records: [LoggedSet] { workouts.records(for: selected) }
     private var estimates: [LoggedSet] {
@@ -423,7 +423,7 @@ struct StrengthDashboard: View {
                 .pickerStyle(.segmented)
 
                 MugeCard {
-                    Text("추정 1RM · e1RM")
+                    Text("추정 최대 중량")
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(MugeStyle.muted)
                     if let best = StrengthMetrics.bestEstimatedOneRepMax(records) {
@@ -431,18 +431,18 @@ struct StrengthDashboard: View {
                             Text(best, format: .number.precision(.fractionLength(1)))
                                 .font(.system(size: 44, weight: .bold, design: .rounded))
                                 .monospacedDigit()
-                            Text("kg").font(.title3.weight(.medium))
+                            Text("킬로그램").font(.title3.weight(.medium))
                         }
                         .foregroundStyle(MugeStyle.ink)
                     } else {
                         Text("아직 기록이 없어요")
                             .font(.title2.bold()).foregroundStyle(MugeStyle.ink)
                     }
-                    Text("Epley 공식 · 1~10회 세트 기록 기준. 실제 측정한 1RM이 아닙니다.")
+                    Text("에플리 공식 · 1~10회 세트 기록 기준. 실제 측정한 최대 중량이 아닙니다.")
                         .font(.caption).foregroundStyle(MugeStyle.muted)
                 }
                 MugeCard {
-                    Text("추정 1RM 변화")
+                    Text("추정 최대 중량 변화")
                         .font(.headline).foregroundStyle(MugeStyle.ink)
                     if estimates.isEmpty {
                         Text("세트를 기록하면 추정치의 변화를 볼 수 있어요.")
@@ -451,32 +451,32 @@ struct StrengthDashboard: View {
                         Chart(estimates) { set in
                             if let value = StrengthMetrics.estimatedOneRepMax(weightKg: set.weightKg, reps: set.reps) {
                                 PointMark(x: .value("날짜", set.performedAt),
-                                          y: .value("e1RM (kg)", value))
+                                          y: .value("추정 최대 중량 (킬로그램)", value))
                                     .foregroundStyle(MugeStyle.accent)
                             }
                         }
                         .frame(height: 210)
                     }
-                    Text("세트별 추정치이며 연구 결과나 직접 측정한 1RM이 아닙니다.")
+                    Text("세트별 추정치이며 연구 결과나 직접 측정한 최대 중량이 아닙니다.")
                         .font(.caption).foregroundStyle(MugeStyle.muted)
                 }
                 MugeCard {
                     Text("누적 훈련량")
                         .font(.subheadline).foregroundStyle(MugeStyle.muted)
-                    Text("\(StrengthMetrics.volume(records), specifier: "%.0f") kg")
+                    Text("\(StrengthMetrics.volume(records), specifier: "%.0f") 킬로그램")
                         .font(.title2.bold().monospacedDigit()).foregroundStyle(MugeStyle.ink)
                     Text("세트 중량 × 반복 횟수의 합")
                         .font(.caption).foregroundStyle(MugeStyle.muted)
                 }
                 MugeCard {
-                    Text("직접 측정한 1RM")
+                    Text("직접 측정한 최대 중량")
                         .font(.headline).foregroundStyle(MugeStyle.ink)
                     Text("추정치와 별도로 보관해요.")
                         .font(.caption).foregroundStyle(MugeStyle.muted)
-                    TextField("직접 측정한 1RM (kg)", text: $actualWeight)
+                    TextField("직접 측정한 최대 중량 (킬로그램)", text: $actualWeight)
                         .keyboardType(.decimalPad)
                         .textFieldStyle(.roundedBorder)
-                    MugePrimaryButton(title: "실제 1RM 기록") {
+                    MugePrimaryButton(title: "실제 최대 중량 기록") {
                         if let weight = Double(actualWeight.replacingOccurrences(of: ",", with: ".")),
                            workouts.recordMeasuredMax(exerciseID: selected, weightKg: weight) {
                             actualWeight = ""
@@ -484,7 +484,7 @@ struct StrengthDashboard: View {
                     }
                     ForEach(workouts.measuredMaxes.filter { $0.exerciseID == selected }.reversed()) { entry in
                         HStack {
-                            Text("\(entry.weightKg.formatted()) kg").fontWeight(.semibold)
+                            Text("\(entry.weightKg.formatted()) 킬로그램").fontWeight(.semibold)
                             Spacer()
                             Text(entry.measuredAt.formatted(date: .abbreviated, time: .omitted))
                                 .font(.caption).foregroundStyle(MugeStyle.muted)
@@ -525,7 +525,7 @@ struct BackupView: View {
         Form {
             Section("내 운동 기록") {
                 Text("세트 \(workouts.logs.count)개 · 완료 세션 \(workouts.history.count)개")
-                Text("백업은 직접 보관하는 JSON 파일입니다. 자동 클라우드 동기화는 아직 제공하지 않습니다.")
+                Text("백업은 직접 보관하는 기록 파일입니다. 자동 클라우드 동기화는 아직 제공하지 않습니다.")
                     .font(.caption).foregroundStyle(.secondary)
             }
             Section("백업") {
@@ -581,7 +581,7 @@ struct BackupView: View {
             }
             Button("취소", role: .cancel) { pendingBackup = nil }
         } message: {
-            Text("이 작업은 현재 세트, 세션, 실제 1RM 기록을 모두 교체합니다.")
+            Text("이 작업은 현재 세트, 세션, 실제 최대 중량 기록을 모두 교체합니다.")
         }
     }
 }

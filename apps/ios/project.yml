@@ -26,7 +26,7 @@ targets:
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
         CODE_SIGNING_ALLOWED: YES
         CODE_SIGN_STYLE: Automatic
-        INFOPLIST_KEY_CFBundleDisplayName: "무게꾼"
+        INFOPLIST_KEY_CFBundleDisplayName: "무게무게"
         CODE_SIGN_ENTITLEMENTS: MugeMuge/MugeMugeDevelopment.entitlements
       configs:
         Debug:
