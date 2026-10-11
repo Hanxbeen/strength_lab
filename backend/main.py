@@ -4,6 +4,8 @@ from .catalog import public_catalog, preview_catalog
 from .repository import CatalogUnavailable, database_catalog
 
 app = FastAPI(title="MugeMuge API", version="0.1.0")
+from .workout_api import router as workout_router
+app.include_router(workout_router)
 
 @app.get("/health")
 def health():
