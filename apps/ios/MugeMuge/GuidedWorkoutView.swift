@@ -2,11 +2,14 @@ import SwiftUI
 
 /// Guided sessions only write through WorkoutStore's atomic operations.
 struct GuidedWorkoutView: View {
+    @AppStorage("displayUnit") private var unit: MassUnit = .kg
     let item: TrainingProtocol
     let session: TrainingSession
     @EnvironmentObject private var workouts: WorkoutStore
     @Environment(\.dismiss) private var dismiss
     @State private var weights: [String: String] = [:]
+    @State private var originalWeights: [String: Double] = [:]
+    @State private var editedWeights: Set<String> = []
     @State private var exerciseIndex = 0
     @State private var repetitions = ""
     @State private var showRest = false
@@ -63,12 +66,12 @@ struct GuidedWorkoutView: View {
         .background(MugeStyle.canvas)
         .navigationTitle(completed != nil ? "운동 마무리" : "오늘의 운동")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar(matchesActive && completed == nil ? .hidden : .automatic, for: .tabBar)
+        .toolbar(.hidden, for: .tabBar)
         .safeAreaInset(edge: .bottom, spacing: 0) {
             if matchesActive && completed == nil, let exercise {
                 VStack(spacing: MugeStyle.Space.sm) {
                     if count(for: exercise.id) < exercise.sets {
-                        Button("세트 완료 · 휴식하기") { saveSet(exercise) }
+                        Button("세트 완료") { saveSet(exercise) }
                             .buttonStyle(MugePrimaryButtonStyle())
                             .disabled(validWeight(weights[exercise.id] ?? "") == nil
                                       || !(1...100).contains(Int(repetitions) ?? 0))
@@ -86,7 +89,9 @@ struct GuidedWorkoutView: View {
         }
         .onAppear(perform: prepare)
         .sheet(item: $editingSet) { EditSetSheet(set: $0) }
-        .fullScreenCover(isPresented: $showRest) {
+        .fullScreenCover(isPresented: $showRest, onDismiss: {
+            if let exercise, count(for: exercise.id) >= exercise.sets { moveToNextExercise() }
+        }) {
             WorkoutRestScreen(exerciseName: exercise.map { localName($0) } ?? "다음 운동")
                 .environmentObject(workouts)
                 .interactiveDismissDisabled()
@@ -102,12 +107,10 @@ struct GuidedWorkoutView: View {
     private var preparation: some View {
         VStack(alignment: .leading, spacing: MugeStyle.Space.page) {
             MugeAdaptiveRow {
-                MugeSectionTitle(title: "오늘 들 무게를 정해요", subtitle: "각 운동의 시작 중량을 확인해주세요.")
-                Spacer()
-                LilaRiveView(size: 78)
+                MugeSectionTitle(title: "시작 무게 확인", subtitle: "운동할 무게를 입력해 주세요.")
             }
             if item.status == "DEMO_ONLY" {
-                Text("체험 루틴 · 전체 구성이 논문으로 검증된 프로그램은 아니에요.")
+                Text("기록 연습 · 논문 루틴 아님")
                     .font(.footnote).foregroundStyle(MugeStyle.muted)
             }
             ForEach(session.exercises) { movement in
@@ -115,22 +118,7 @@ struct GuidedWorkoutView: View {
                     Text(localName(movement)).font(MugeStyle.TypeStyle.card)
                     Text("\(movement.sets)세트 · \(movement.reps)회 · 휴식 \(movement.restSeconds)초")
                         .font(.subheadline).foregroundStyle(MugeStyle.muted)
-                    HStack {
-                        Text("시작 중량")
-                        Spacer()
-                        TextField("직접 입력", text: weightBinding(movement.id))
-                            .keyboardType(.decimalPad).multilineTextAlignment(.trailing)
-                            .frame(minWidth: 80, maxWidth: 130)
-                            .accessibilityLabel("\(localName(movement)) 시작 중량")
-                        Text("킬로그램").font(.caption)
-                    }
-                    if latestMax(for: movement.id) != nil {
-                        Text("최근 실제 최대 중량의 65%를 2.5킬로그램 단위로 내린 예시예요. 연구로 검증된 개인 처방이 아니므로 오늘 컨디션과 기구에 맞게 바꿔주세요.")
-                            .font(.caption).foregroundStyle(MugeStyle.muted)
-                    } else {
-                        Text("이 운동의 최대 중량 기록이 없어요. 자세를 유지할 수 있는 가벼운 중량을 직접 입력해주세요.")
-                            .font(.caption).foregroundStyle(MugeStyle.muted)
-                    }
+                    MugeMassInput(title: "시작 무게", text: weightBinding(movement.id), unit: unit, allowsZero: true)
                 }
             }
             Text("준비 운동을 마치고, 기구와 주변 공간을 확인하세요. 목표 횟수보다 안정적인 자세가 우선이에요.")
@@ -144,6 +132,10 @@ struct GuidedWorkoutView: View {
                 } else { error = workouts.error ?? "운동을 시작하지 못했어요. 다시 확인해주세요." }
             }
             .buttonStyle(MugePrimaryButtonStyle()).disabled(!readyToStart)
+            if !readyToStart {
+                Text("각 운동의 시작 무게를 입력하면 시작할 수 있어요.")
+                    .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
+            }
         }
     }
 
@@ -158,7 +150,7 @@ struct GuidedWorkoutView: View {
             }
             ProgressView(value: Double(activeRecords.count),
                          total: Double(max(1, session.exercises.reduce(0) { $0 + $1.sets })))
-                .tint(MugeStyle.ink)
+                .tint(MugeStyle.accent)
             if let exercise {
                 MugeSectionTitle(title: localName(exercise),
                                  subtitle: "\(exerciseIndex + 1)번째 운동 · 목표 \(exercise.reps)회")
@@ -169,10 +161,10 @@ struct GuidedWorkoutView: View {
                         .font(MugeStyle.TypeStyle.card)
                     MugeAdaptiveRow(spacing: MugeStyle.Space.lg) {
                         VStack(alignment: .leading) {
-                            Text("중량 · 킬로그램").font(.caption).foregroundStyle(MugeStyle.muted)
+                            Text("중량 · \(unit.rawValue)").font(.caption).foregroundStyle(MugeStyle.muted)
                             TextField("중량", text: weightBinding(exercise.id))
                                 .keyboardType(.decimalPad).mugeNumber(size: 38)
-                                .accessibilityLabel("이번 세트 중량, 킬로그램")
+                                .accessibilityLabel("이번 세트 중량, \(unit.rawValue)")
                         }
                         VStack(alignment: .leading) {
                             Text("반복 · 회").font(.caption).foregroundStyle(MugeStyle.muted)
@@ -191,8 +183,8 @@ struct GuidedWorkoutView: View {
                                 HStack {
                                     Text("\(index + 1)세트")
                                     Spacer()
-                                    Text("\(number(record.weightKg))킬로그램 × \(record.reps)회")
-                                    Image(systemName: "pencil").font(.caption)
+                                    Text("\(unit.label(record.weightKg)) × \(record.reps)회")
+                                    MugeIcon(name: "pencil")
                                 }
                                 .foregroundStyle(MugeStyle.ink).frame(minHeight: MugeStyle.minimumTarget).contentShape(Rectangle())
                             }
@@ -213,8 +205,8 @@ struct GuidedWorkoutView: View {
     private func completion(_ finished: ActiveWorkout) -> some View {
         VStack(alignment: .leading, spacing: MugeStyle.Space.section) {
             MugeAdaptiveRow {
-                MugeSectionTitle(title: stoppedEarly ? "오늘은 여기까지" : "오늘도 해냈어요",
-                                 subtitle: "완료한 기록을 안전하게 저장했어요.")
+                MugeSectionTitle(title: stoppedEarly ? "운동을 마쳤어요" : "운동 완료",
+                                 subtitle: "운동 기록을 저장했어요.")
                 Spacer()
                 LilaRiveView(size: 96)
             }
@@ -222,7 +214,7 @@ struct GuidedWorkoutView: View {
                 MugeAdaptiveRow {
                     metric("\(activeRecords.count)", label: "완료 세트")
                     Spacer()
-                    metric(number(StrengthMetrics.volume(activeRecords)), label: "누적 중량 · 킬로그램")
+                    metric(unit.number(StrengthMetrics.volume(activeRecords)), label: "총중량 · \(unit.rawValue)")
                     Spacer()
                     metric("\(max(0, Int((finished.finishedAt ?? Date()).timeIntervalSince(finished.startedAt) / 60)))", label: "운동 시간 · 분")
                 }
@@ -234,7 +226,7 @@ struct GuidedWorkoutView: View {
                         Text(localName(movement)).font(.headline)
                         ForEach(records) { record in
                             HStack {
-                                Text("\(number(record.weightKg))킬로그램 × \(record.reps)회")
+                                Text("\(unit.label(record.weightKg)) × \(record.reps)회")
                                 Spacer()
                             }.font(.subheadline)
                         }
@@ -246,7 +238,7 @@ struct GuidedWorkoutView: View {
     }
 
     private func metric(_ value: String, label: String) -> some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: MugeStyle.Space.xs) {
             Text(value).font(MugeStyle.TypeStyle.section).monospacedDigit()
             Text(label).font(.caption2).foregroundStyle(MugeStyle.muted)
         }
@@ -257,10 +249,8 @@ struct GuidedWorkoutView: View {
         for movement in session.exercises {
             let recent = activeRecords.last { $0.exerciseID == movement.id }
             if let recent {
-                weights[movement.id] = number(recent.weightKg)
-            } else if let measured = latestMax(for: movement.id) {
-                let proposed = floor(measured.weightKg * 0.65 / 2.5) * 2.5
-                weights[movement.id] = proposed > 0 ? number(proposed) : ""
+                originalWeights[movement.id] = recent.weightKg
+                weights[movement.id] = unit.input(recent.weightKg)
             } else { weights[movement.id] = "" }
         }
         if matchesActive {
@@ -275,22 +265,22 @@ struct GuidedWorkoutView: View {
     }
     private func count(for id: String) -> Int { activeRecords.filter { $0.exerciseID == id }.count }
     private func weightBinding(_ id: String) -> Binding<String> {
-        Binding(get: { weights[id] ?? "" }, set: { weights[id] = $0 })
+        Binding(get: { weights[id] ?? "" }, set: { weights[id] = $0; editedWeights.insert(id) })
     }
     private func validWeight(_ value: String) -> Double? {
-        guard let result = Double(value.replacingOccurrences(of: ",", with: ".")),
-              result.isFinite, (0...2000).contains(result) else { return nil }
-        return result
+        unit.parse(value, allowsZero: true)
     }
     private func saveSet(_ exercise: TrainingExercise) {
         guard matchesActive, count(for: exercise.id) < exercise.sets,
               let weight = validWeight(weights[exercise.id] ?? ""),
               let reps = Int(repetitions), (1...100).contains(reps) else { return }
-        if workouts.completeSet(exerciseID: exercise.id, weightKg: weight, reps: reps,
+        let canonical = editedWeights.contains(exercise.id) ? weight : (originalWeights[exercise.id] ?? weight)
+        let remainingSets = session.exercises.reduce(0) { $0 + max(0, $1.sets - count(for: $1.id)) }
+        if workouts.completeSet(exerciseID: exercise.id, weightKg: canonical, reps: reps,
                                 protocolID: item.id, version: item.version, sessionID: session.id,
-                                restSeconds: exercise.restSeconds) != nil {
+                                restSeconds: remainingSets > 1 ? exercise.restSeconds : 0) != nil {
             error = nil
-            showRest = true
+            showRest = remainingSets > 1 && exercise.restSeconds > 0
         } else { error = workouts.error ?? "세트를 저장하지 못했어요. 기록을 확인한 뒤 다시 시도해주세요." }
     }
     private func moveToNextExercise() {
@@ -334,7 +324,7 @@ private struct WorkoutRestScreen: View {
                 ScrollView {
                     VStack(spacing: MugeStyle.Space.section) {
                 Spacer(minLength: MugeStyle.Space.lg)
-                Text(paused ? "휴식을 잠시 멈췄어요" : seconds > 0 ? "지금은 회복할 시간" : "다음 세트 준비됐나요?")
+                Text(paused ? "타이머 일시정지" : seconds > 0 ? "휴식" : "권장 시간이 지났어요")
                     .font(MugeStyle.TypeStyle.section)
                 Text(exerciseName).font(.subheadline).foregroundStyle(MugeStyle.muted)
                 Text(String(format: "%02d:%02d", seconds / 60, seconds % 60))
@@ -343,19 +333,19 @@ private struct WorkoutRestScreen: View {
                     .accessibilityLabel("남은 휴식 \(seconds / 60)분 \(seconds % 60)초")
                 Text("호흡을 고르고, 준비가 되면 이어가세요.")
                     .font(.subheadline).foregroundStyle(MugeStyle.muted)
-                HStack(spacing: 16) {
-                    Button("+10초") { perform { workouts.adjustRest(by: 10) } }
+                HStack(spacing: MugeStyle.Space.lg) {
+                    Button("+30초") { perform { workouts.adjustRest(by: 30) } }
                     Button("+1분") { perform { workouts.adjustRest(by: 60) } }
                 }
                 .buttonStyle(MugeSecondaryButtonStyle())
-                Button(paused ? "휴식 다시 시작" : "잠시 멈춤") {
+                Button(paused ? "타이머 다시 시작" : "타이머 일시정지") {
                     perform { paused ? workouts.resumeRest() : workouts.pauseRest() }
                 }
                 .buttonStyle(MugeSecondaryButtonStyle())
                 .disabled(!paused && seconds == 0)
                 Spacer(minLength: MugeStyle.Space.lg)
                 if let error { Text(error).font(.footnote).foregroundStyle(.red) }
-                Button(seconds > 0 ? "휴식 마치고 돌아가기" : "운동으로 돌아가기") {
+                Button("다음 세트") {
                     if workouts.endRest() { dismiss() }
                     else { error = workouts.error ?? "휴식 종료를 저장하지 못했어요." }
                 }.buttonStyle(MugePrimaryButtonStyle())

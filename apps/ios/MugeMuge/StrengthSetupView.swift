@@ -1,7 +1,109 @@
 import SwiftUI
 
-/// Actual measurements and calculated estimates deliberately follow separate paths.
+/// One question per screen. Drafts stay local until the explicit atomic review/save.
 struct StrengthSetupView: View {
+    @EnvironmentObject private var workouts: WorkoutStore
+    @Environment(\.dismiss) private var dismiss
+    @AppStorage("displayUnit") private var unit: MassUnit = .kg
+    @State private var step = -1
+    @State private var drafts: [String: String] = [:]
+    @State private var error: String?
+    private let exercises = ["squat", "bench", "deadlift"]
+    private var values: [String: Double] {
+        drafts.compactMapValues { unit.parse($0) }
+    }
+    private var validCurrent: Bool {
+        exercises.indices.contains(step) && unit.parse(drafts[exercises[step]] ?? "") != nil
+    }
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: MugeStyle.Space.section) {
+                if step == -1 {
+                    MugeSectionTitle(title: "최대 중량을 알고 있나요?",
+                                     subtitle: "도움 없이 한 번 들어 올린 무게를 입력해 주세요.")
+                    Button("입력할게요") { step = 0 }.buttonStyle(MugePrimaryButtonStyle())
+                    NavigationLink { StrengthReferenceView() } label: {
+                        MugeNavigationLabel(title: "아직 몰라요 · 추정과 측정 안내")
+                    }
+                    Text("세 종목을 모두 알 필요는 없어요. 아는 종목만 저장할 수 있어요.")
+                        .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                } else if step < exercises.count {
+                    Text("\(step + 1) / 3").font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                    Text(TrainingCopy.exercise(exercises[step])).font(MugeStyle.TypeStyle.hero)
+                    MugeMassInput(title: "실제 최대 중량", text: currentDraft, unit: unit)
+                    if let recent = workouts.measuredMaxes.filter({ $0.exerciseID == exercises[step] })
+                        .max(by: { $0.measuredAt < $1.measuredAt }) {
+                        Text("최근 기록 · \(unit.label(recent.weightKg))")
+                            .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                    }
+                    Button("이 종목은 나중에") {
+                        drafts[exercises[step]] = nil
+                        step += 1
+                    }.frame(minHeight: MugeStyle.minimumTarget)
+                } else {
+                    MugeSectionTitle(title: "입력한 무게를 확인해 주세요",
+                                     subtitle: "입력한 종목만 실제 최대 중량으로 저장해요.")
+                    MugeCard {
+                        ForEach(Array(exercises.enumerated()), id: \.element) { index, id in
+                            Button { step = index; error = nil } label: {
+                                HStack {
+                                    Text(TrainingCopy.exercise(id))
+                                    Spacer()
+                                    Text(values[id].map(unit.label) ?? "미입력")
+                                    MugeIcon(name: "pencil")
+                                }.frame(minHeight: MugeStyle.minimumTarget)
+                            }.foregroundStyle(MugeStyle.ink)
+                        }
+                    }
+                    if values.isEmpty {
+                        Text("한 종목 이상 입력하면 저장할 수 있어요.")
+                            .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                    }
+                }
+                if let error { Text(error).font(MugeStyle.TypeStyle.note).foregroundStyle(.red) }
+            }.padding(MugeStyle.Space.page)
+        }
+        .background(MugeStyle.canvas).navigationTitle("최대 중량")
+        .toolbar(.hidden, for: .tabBar)
+        .navigationBarTitleDisplayMode(.inline)
+        .safeAreaInset(edge: .bottom) {
+            if step >= 0 {
+                VStack(spacing: MugeStyle.Space.sm) {
+                    Button(step < 3 ? "다음" : "저장하기") { advance() }
+                        .buttonStyle(MugePrimaryButtonStyle())
+                        .disabled(step < 3 ? !validCurrent : values.isEmpty)
+                    Button("이전") { step -= 1; error = nil }.frame(minHeight: MugeStyle.minimumTarget)
+                }.padding(MugeStyle.Space.page).background(.regularMaterial)
+            }
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("다음") { advance() }.disabled(!validCurrent)
+            }
+        }
+        .onSubmit { if validCurrent { advance() } }
+    }
+    private var currentDraft: Binding<String> {
+        let id = exercises[step]
+        return Binding(get: { drafts[id] ?? "" },
+                       set: { drafts[id] = $0; error = nil })
+    }
+    private func advance() {
+        if step < 3 {
+            guard validCurrent else { return }
+            step += 1
+        } else if workouts.recordMeasuredMaxes(values) {
+            dismiss()
+        } else {
+            error = workouts.error ?? "저장하지 못했어요. 입력을 유지했으니 다시 시도해 주세요."
+        }
+    }
+}
+
+/// Actual measurements and calculated estimates deliberately follow separate paths.
+struct StrengthReferenceView: View {
+    @AppStorage("displayUnit") private var unit: MassUnit = .kg
     @EnvironmentObject private var workouts: WorkoutStore
     @State private var exercise = "bench"
     @State private var mode = 0
@@ -39,8 +141,8 @@ struct StrengthSetupView: View {
             VStack(alignment: .leading, spacing: MugeStyle.Space.section) {
                 if !guideStarted {
                     MugeAdaptiveRow {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("내 힘의 기준을\n차근차근").font(MugeStyle.TypeStyle.hero)
+                        VStack(alignment: .leading, spacing: MugeStyle.Space.sm) {
+                            Text("최대 중량 확인").font(MugeStyle.TypeStyle.hero)
                             Text("기록이 있으면 입력하고, 없다면 추정부터 시작해요.")
                                 .font(.subheadline).foregroundStyle(MugeStyle.muted)
                         }
@@ -67,6 +169,7 @@ struct StrengthSetupView: View {
         }
         .background(MugeStyle.canvas)
         .navigationTitle("최대 중량 관리")
+        .toolbar(.hidden, for: .tabBar)
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: mode) { _, _ in message = nil }
         .onChange(of: exercise) { _, _ in message = nil; weight = "" }
@@ -81,12 +184,12 @@ struct StrengthSetupView: View {
             MugePrimaryButton(title: "최대 중량 저장하기") {
                 guard let value = number(weight) else { return }
                 if workouts.recordMeasuredMax(exerciseID: exercise, weightKg: value) {
-                    message = "\(exerciseName) \(formatted(value))킬로그램을 저장했어요."
+                    message = "\(exerciseName) \(unit.label(value)) 저장 완료"
                     weight = ""
                 } else { message = workouts.error ?? "저장하지 못했어요. 다시 시도해 주세요." }
             }.disabled(number(weight) == nil)
             if let latest = workouts.measuredMaxes.filter({ $0.exerciseID == exercise }).max(by: { $0.measuredAt < $1.measuredAt }) {
-                Text("최근 기록 · \(formatted(latest.weightKg))킬로그램")
+                Text("최근 기록 · \(unit.label(latest.weightKg))")
                     .font(.footnote).foregroundStyle(MugeStyle.muted)
             }
         }
@@ -105,7 +208,7 @@ struct StrengthSetupView: View {
             }.frame(minHeight: MugeStyle.minimumTarget).padding(MugeStyle.Space.md).background(MugeStyle.canvas, in: RoundedRectangle(cornerRadius: MugeStyle.Radius.field))
             if let estimated {
                 Text("추정 최대 중량").font(.subheadline)
-                Text("\(formatted(estimated))킬로그램").font(MugeStyle.TypeStyle.hero).monospacedDigit()
+                Text(unit.label(estimated)).font(MugeStyle.TypeStyle.hero).monospacedDigit()
                 Text("계산식: 무게 × (1 + 반복 횟수 ÷ 30)")
                     .font(.caption).foregroundStyle(MugeStyle.muted)
             }
@@ -146,7 +249,7 @@ struct StrengthSetupView: View {
         MugeCard {
             Text("\(exerciseName) · 자세 확인").font(MugeStyle.TypeStyle.section)
             ForEach(Array(techniqueSteps.enumerated()), id: \.offset) { index, line in
-                HStack(alignment: .top, spacing: 12) {
+                HStack(alignment: .top, spacing: MugeStyle.Space.md) {
                     Text("\(index + 1)").font(.headline).frame(width: 26)
                     Text(line).font(.body)
                 }
@@ -174,10 +277,10 @@ struct StrengthSetupView: View {
     }
 
     private var warmup: some View {
-        VStack(alignment: .leading, spacing: 18) {
+        VStack(alignment: .leading, spacing: MugeStyle.Space.page) {
             MugeCard {
                 Text("준비 세트 \(warmupIndex + 1) / 5").font(MugeStyle.TypeStyle.section)
-                Text("\(formatted((number(referenceWeight) ?? 0) * warmupFractions[warmupIndex]))킬로그램 · \(warmupRepetitions[warmupIndex])회")
+                Text("\(unit.label((number(referenceWeight) ?? 0) * warmupFractions[warmupIndex])) · \(warmupRepetitions[warmupIndex])회")
                     .font(MugeStyle.TypeStyle.hero)
                 Text("기준 무게의 \(formatted(warmupFractions[warmupIndex] * 100))% 예시예요. 실제 장비 단위와 컨디션에 맞춰 낮추거나 지도자와 조정하세요. 준비 세트는 운동 기록에 자동 저장하지 않아요.")
                     .font(.subheadline).foregroundStyle(MugeStyle.muted)
@@ -234,13 +337,13 @@ struct StrengthSetupView: View {
                     }
                     message = improvesBest ? "성공 기록을 저장했어요." : "이미 저장한 더 높은 성공 기록을 유지해요."
                     successfulWeights.append(value)
-                    attemptNotes.append("\(formatted(value))킬로그램 · 성공")
+                    attemptNotes.append("\(unit.label(value)) · 성공")
                     attemptWeight = ""
                     restUntil = Date().addingTimeInterval(300)
                 }.disabled(number(attemptWeight) == nil || (restUntil.map { $0 > context.date } ?? false))
             }
             Button("실패했어요 · 측정 마무리") {
-                if let value = number(attemptWeight) { attemptNotes.append("\(formatted(value))킬로그램 · 실패") }
+                if let value = number(attemptWeight) { attemptNotes.append("\(unit.label(value)) · 실패") }
                 finish("실패한 무게는 기록하지 않아요. 오늘의 성공 기록만 확인하세요.")
             }
             Button("통증 또는 불편함 · 즉시 중단") { finish("측정을 중단했어요. 증상이 있으면 추가 운동을 멈추고 필요한 도움을 받으세요.") }
@@ -255,17 +358,17 @@ struct StrengthSetupView: View {
     private var result: some View {
         MugeCard {
             MugeAdaptiveRow {
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: MugeStyle.Space.sm) {
                     Text("오늘의 기준을 확인했어요").font(MugeStyle.TypeStyle.section)
                     Text(endingReason).font(.subheadline).foregroundStyle(MugeStyle.muted)
                 }
                 LilaRiveView(size: 88)
             }
             if let bestSuccess {
-                Text("\(exerciseName) · \(formatted(bestSuccess))킬로그램").font(.title.bold())
+                Text("\(exerciseName) · \(unit.label(bestSuccess))").font(.title.bold())
                 Text("이번 측정에서 성공한 가장 높은 무게를 이미 저장했어요. 화면을 나가거나 이후 시도에 실패해도 기록은 유지돼요.")
                     .font(.subheadline).foregroundStyle(MugeStyle.muted)
-                Label("성공 기록 저장 완료", systemImage: "checkmark.circle.fill")
+                Label("성공 기록 저장 완료", image: "lucide-check")
                     .font(.headline)
             } else {
                 Text("성공한 시도가 없어 최대 중량은 저장하지 않아요.")
@@ -278,16 +381,15 @@ struct StrengthSetupView: View {
     private func weightField(_ title: String, text: Binding<String>) -> some View {
         HStack {
             Text(title).font(.subheadline)
-            TextField("킬로그램", text: text)
+            TextField(unit.rawValue, text: text)
                 .keyboardType(.decimalPad).multilineTextAlignment(.trailing)
-                .accessibilityLabel(title + ", 킬로그램")
+                .accessibilityLabel(title + ", " + unit.rawValue)
+            Text(unit.rawValue).font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
         }.frame(minHeight: MugeStyle.minimumTarget).padding(MugeStyle.Space.md).background(MugeStyle.canvas, in: RoundedRectangle(cornerRadius: MugeStyle.Radius.field))
     }
 
     private func number(_ text: String) -> Double? {
-        guard let value = Double(text.replacingOccurrences(of: ",", with: ".")),
-              value.isFinite, value > 0, value <= 2000 else { return nil }
-        return value
+        unit.parse(text)
     }
 
     private func formatted(_ value: Double) -> String {

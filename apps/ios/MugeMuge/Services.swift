@@ -209,7 +209,7 @@ final class WorkoutStore: ObservableObject {
               (0...3600).contains(restSeconds) else { return nil }
         let entry = LoggedSet(exerciseID: exerciseID, weightKg: weightKg, reps: reps)
         workout.setIDs.append(entry.id)
-        workout.restUntil = Date().addingTimeInterval(TimeInterval(restSeconds))
+        workout.restUntil = restSeconds > 0 ? Date().addingTimeInterval(TimeInterval(restSeconds)) : nil
         workout.restPausedRemaining = nil
         var next = snapshot
         next.logs.append(entry)
@@ -325,10 +325,31 @@ final class WorkoutStore: ObservableObject {
         next.measuredMaxes.append(MeasuredMax(exerciseID: exerciseID, weightKg: weightKg, measuredAt: Date()))
         return persist(next)
     }
+
+    /// A review screen saves all entered lifts in one transaction, never a partial success.
+    @discardableResult
+    func recordMeasuredMaxes(_ values: [String: Double]) -> Bool {
+        guard !values.isEmpty, values.allSatisfy({
+            ["squat", "bench", "deadlift"].contains($0.key) &&
+                $0.value.isFinite && $0.value > 0 && $0.value <= 2000
+        }) else {
+            lastError = WorkoutStoreError.invalidSet.localizedDescription
+            return false
+        }
+        var next = snapshot
+        let now = Date()
+        for id in ["squat", "bench", "deadlift"] {
+            if let value = values[id] {
+                next.measuredMaxes.append(MeasuredMax(exerciseID: id, weightKg: value, measuredAt: now))
+            }
+        }
+        return persist(next)
+    }
 }
 
 @MainActor
 final class CatalogStore: ObservableObject {
+    @Published private(set) var isLoading = false
     @Published private(set) var protocols: [TrainingProtocol] = []
     @Published private(set) var demo: [TrainingProtocol] = []
     @Published private(set) var error: String?
@@ -341,6 +362,9 @@ final class CatalogStore: ObservableObject {
     }
 
     func refresh() async {
+        guard !isLoading else { return }
+        isLoading = true
+        defer { isLoading = false }
         guard let baseURL else {
             protocols = []
             demo = Self.bundledDemo()
@@ -372,7 +396,9 @@ final class CatalogStore: ObservableObject {
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
             throw URLError(.badServerResponse)
         }
-        return try JSONDecoder().decode(CatalogResponse.self, from: data)
+        let catalog = try JSONDecoder().decode(CatalogResponse.self, from: data)
+        guard catalog.schemaVersion == 1 else { throw URLError(.cannotParseResponse) }
+        return catalog
     }
 
     private static func bundledDemo() -> [TrainingProtocol] {

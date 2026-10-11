@@ -357,17 +357,25 @@ struct ExerciseView: View {
 }
 
 struct EditSetSheet: View {
+    @AppStorage("displayUnit") private var unit: MassUnit = .kg
     let set: LoggedSet
     @EnvironmentObject private var workouts: WorkoutStore
     @Environment(\.dismiss) private var dismiss
     @State private var weight = ""
     @State private var reps = ""
     @State private var showError = false
+    @State private var editedWeight = false
+    @State private var loaded = false
+    private var canonicalWeight: Double? {
+        editedWeight ? unit.parse(weight, allowsZero: true) : set.weightKg
+    }
 
     var body: some View {
         NavigationStack {
             Form {
-                TextField("중량 (kg)", text: $weight).keyboardType(.decimalPad)
+                MugeMassInput(title: "중량", text: Binding(get: { weight }, set: {
+                    weight = $0; editedWeight = true
+                }), unit: unit, allowsZero: true)
                 TextField("반복 횟수", text: $reps).keyboardType(.numberPad)
                 if showError {
                     Text("중량 또는 반복 횟수를 확인해주세요.")
@@ -381,18 +389,20 @@ struct EditSetSheet: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("저장") {
-                        guard let kg = Double(weight.replacingOccurrences(of: ",", with: ".")),
+                        guard let kg = canonicalWeight,
                               let count = Int(reps),
                               workouts.updateSet(id: set.id, weightKg: kg, reps: count) else {
                             showError = true
                             return
                         }
                         dismiss()
-                    }
+                    }.disabled(canonicalWeight == nil || !(1...100).contains(Int(reps) ?? 0))
                 }
             }
             .onAppear {
-                weight = set.weightKg.formatted()
+                guard !loaded else { return }
+                loaded = true
+                weight = unit.input(set.weightKg)
                 reps = String(set.reps)
             }
         }

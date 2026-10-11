@@ -6,14 +6,17 @@
 
 | 역할 | 구현 |
 |---|---|
-| 텍스트·강조 | 시스템 primary, 배경과 함께 밝기 모드에 대응 |
+| 텍스트 | 시스템 primary, 배경과 함께 밝기 모드에 대응 |
+| 강조 | MugeStyle.accent, sRGB (0.12, 0.34, 0.85). 화면에서 직접 색 지정 금지 |
 | 보조 텍스트 | 시스템 secondary |
 | 화면·카드 배경 | systemGroupedBackground / secondarySystemGroupedBackground |
-| 강조 위 텍스트 | 밝은 모드 흰색 / 어두운 모드 검정 |
+| 강조 위 텍스트 | 흰색. 강조색과 계산 대비 6.16:1. 밝은/어두운 모드 동일 |
+| 비활성 버튼 | tertiarySystemFill + secondary. 활성 강조색의 투명도 조절로 대신하지 않음 |
 | 간격 | 4 / 8 / 12 / 16 / 20 / 24 / 32pt |
 | 화면·카드 안쪽 여백 | 20pt |
 | 입력·버튼·카드 반경 | 12 / 16 / 24pt |
-| 최소 주요 조작 영역 | 44pt |
+| 최소 주요 조작 영역 | 48pt |
+| 주요 버튼 높이 | 최소 56pt. 큰 글씨에서는 내용에 맞춰 확장 |
 | 화면 제목 | 시스템 largeTitle, bold |
 | 섹션·카드 제목 | title2 / title3, bold |
 | 본문·설명·주석 | body / subheadline / footnote |
@@ -28,6 +31,16 @@
 - `MugeMetricRow`: 일반 크기에서는 Grid로 같은 행의 카드 높이를 정렬하고 접근성 글자 크기에서는 세로로 배치한다.
 - `MugeAdaptiveRow`: 제목·캐릭터, 운동 입력, 완료 지표를 접근성 글자 크기에서 세로로 전환한다.
 - `mugeNumber`: 시스템 글자 크기 설정에 따라 숫자를 확대한다.
+- `MugeMassInput`: 직접 입력·±조절·범위 오류를 동일하게 표시한다. kg/lb는 MassUnit에서만 변환한다.
+- `MugeNavigationLabel`: 라벨과 Lucide chevron을 가진 48pt 이상 탐색 행이다.
+- `MugeIcon`: Lucide의 24px/2px 둥근 선 SVG를 template 자산으로 사용한다.
+
+## 아이콘 출처
+
+lucide-icons/lucide commit 70562c1ee1c4fdcf736fe97bc893fb8511927934에서 필요한 10개만 포함했다.
+원본 도형은 변경하지 않았으며 currentColor만 template용 검정으로 치환했다.
+원본 ISC/MIT 고지는 docs/third-party/Lucide-LICENSE와 앱 설정의 오픈소스 라이선스에 포함한다.
+OS 자체 내비게이션·문서 선택·계정 버튼은 시스템 표현을 유지한다.
 
 ## 화면 적용 규칙
 

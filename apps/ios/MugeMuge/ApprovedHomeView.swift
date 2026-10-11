@@ -12,7 +12,7 @@ enum TrainingCopy {
         }
     }
     static func routine(_ item: TrainingProtocol) -> String {
-        item.status == "DEMO_ONLY" ? "전신 기초 · 기록 체험" : "맞춤 운동 루틴"
+        item.status == "DEMO_ONLY" ? "기록 연습" : item.title
     }
     static func session(_ session: TrainingSession) -> String {
         "전신 운동 · \(session.exercises.count)종목"
@@ -21,18 +21,20 @@ enum TrainingCopy {
 
 struct ApprovedHomeView: View {
     @EnvironmentObject private var catalog: CatalogStore
+    @AppStorage("onboardingCompleted.v2") private var onboardingCompleted = false
+    @State private var showIntroduction = false
     var body: some View {
         TabView {
             NavigationStack { TrainingHome() }
-                .tabItem { Label("홈", systemImage: "house.fill") }
+                .tabItem { Label("홈", image: "lucide-house") }
             NavigationStack { RoutineLibrary() }
-                .tabItem { Label("루틴", systemImage: "square.stack.3d.up.fill") }
+                .tabItem { Label("루틴", image: "lucide-dumbbell") }
             NavigationStack { TrainingHistory() }
-                .tabItem { Label("기록", systemImage: "calendar") }
-            NavigationStack { TrainingGrowth() }
-                .tabItem { Label("성장", systemImage: "chart.xyaxis.line") }
+                .tabItem { Label("기록", image: "lucide-chart-no-axes-column-increasing") }
         }
-        .tint(MugeStyle.ink)
+        .tint(MugeStyle.accent)
+        .onAppear { showIntroduction = !onboardingCompleted }
+        .fullScreenCover(isPresented: $showIntroduction) { TrainingIntroduction() }
         .task { await catalog.refresh() }
     }
 }
@@ -40,6 +42,8 @@ struct ApprovedHomeView: View {
 private struct TrainingHome: View {
     @State private var confirmsUnavailableFinish = false
     @State private var finishError: String?
+    @AppStorage("homeHelpDismissed.v2") private var helpDismissed = false
+    @AppStorage("displayUnit") private var unit: MassUnit = .kg
     @EnvironmentObject private var workouts: WorkoutStore
     @EnvironmentObject private var catalog: CatalogStore
     private var activeRoute: (TrainingProtocol, TrainingSession)? {
@@ -49,94 +53,127 @@ private struct TrainingHome: View {
               }), let session = item.sessions.first(where: { $0.id == active.sessionID }) else { return nil }
         return (item, session)
     }
+    private func latest(_ id: String) -> MeasuredMax? {
+        workouts.measuredMaxes.filter { $0.exerciseID == id }.max { $0.measuredAt < $1.measuredAt }
+    }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: MugeStyle.Space.section) {
-                MugeAdaptiveRow {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text(Date.now, format: .dateTime.month().day().weekday())
-                            .font(.subheadline).foregroundStyle(.secondary)
-                        Text("어제보다\n단단한 나.").font(MugeStyle.TypeStyle.hero)
-                        Text("오늘의 한 세트가 쌓이는 곳").font(.subheadline).foregroundStyle(.secondary)
-                    }
-                    Spacer(minLength: 0)
-                    LilaRiveView(level: 1, size: 120).padding(.top, 22)
-                }
+                Text("내 운동").font(MugeStyle.TypeStyle.hero)
                 if let active = workouts.active {
                     MugeCard {
-                        Label("이어가는 운동", systemImage: "play.circle.fill").font(.caption.bold())
-                        Text("멈춘 자리에서 다시").font(MugeStyle.TypeStyle.section)
-                        Text("\(active.setIDs.count)세트를 기록했어요.").foregroundStyle(.secondary)
+                        Text("진행 중인 운동").font(MugeStyle.TypeStyle.section)
+                        Text("\(active.setIDs.count)세트 기록").foregroundStyle(MugeStyle.muted)
                         if let route = activeRoute {
                             NavigationLink { GuidedWorkoutView(item: route.0, session: route.1) } label: {
-                                ActionLabel(title: "운동 이어 하기", symbol: "arrow.right")
-                            }.buttonStyle(.plain)
+                                Text("운동 이어하기")
+                            }.buttonStyle(MugePrimaryButtonStyle())
                         } else {
-                            Text("진행 중인 운동 구성을 찾을 수 없어요. 연결을 확인해 새로고침하거나, 지금까지의 기록을 남기고 종료할 수 있어요.")
-                                .font(.footnote).foregroundStyle(.secondary)
-                            Button("기록을 보존하고 운동 종료") { confirmsUnavailableFinish = true }
-                                .font(.subheadline.bold())
-                            if let finishError {
-                                Text(finishError).font(.footnote).foregroundStyle(.red)
-                            }
+                            Text("운동 구성을 불러오지 못했어요. 기록은 보존되어 있어요.")
+                                .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                            Button("다시 불러오기") { Task { await catalog.refresh() } }
+                            Button("기록을 남기고 종료") { confirmsUnavailableFinish = true }
+                            if let finishError { Text(finishError).foregroundStyle(.red) }
                         }
                     }
                 }
-                NavigationLink { StrengthSetupView() } label: {
+                MugeCard {
+                    HStack {
+                        Text(workouts.measuredMaxes.isEmpty ? "최대 중량을 입력해 주세요" : "내 최대 중량")
+                            .font(MugeStyle.TypeStyle.section)
+                        Spacer()
+                    }
+                    if workouts.measuredMaxes.isEmpty {
+                        Text("아는 종목만 입력해도 괜찮아요.")
+                            .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                        NavigationLink { StrengthSetupView() } label: {
+                            MugeNavigationLabel(title: "입력하기", icon: "dumbbell")
+                        }
+                    } else {
+                        ForEach(["squat", "bench", "deadlift"], id: \.self) { id in
+                            VStack(alignment: .leading, spacing: MugeStyle.Space.xs) {
+                                HStack {
+                                    Text(TrainingCopy.exercise(id))
+                                    Spacer()
+                                    Text(latest(id).map { unit.label($0.weightKg) } ?? "미입력")
+                                        .font(MugeStyle.TypeStyle.action).monospacedDigit()
+                                }
+                                if let current = latest(id) {
+                                    Text(monthlyChange(id, latest: current))
+                                        .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
+                                }
+                            }.padding(.vertical, MugeStyle.Space.xs)
+                        }
+                        NavigationLink { StrengthSetupView() } label: {
+                            MugeNavigationLabel(title: "최대 중량 수정", icon: "pencil")
+                        }
+                    }
+                }
+                if workouts.active == nil {
+                    NavigationLink { RoutineLibrary() } label: { Text("루틴 보기") }
+                        .buttonStyle(MugePrimaryButtonStyle())
+                }
+                if let recent = workouts.history.max(by: { $0.startedAt < $1.startedAt }) {
+                    NavigationLink { WorkoutHistoryDetail(workout: recent) } label: {
+                        MugeCard {
+                            Text("최근 운동").font(MugeStyle.TypeStyle.card)
+                            Text(recent.startedAt, format: .dateTime.month().day())
+                                .foregroundStyle(MugeStyle.muted)
+                            MugeNavigationLabel(title: "\(recent.setIDs.count)세트 · 기록 보기")
+                        }
+                    }.buttonStyle(.plain)
+                }
+                if let demo = catalog.demo.first {
+                    NavigationLink { RoutineOverview(item: demo) } label: {
+                        MugeCard {
+                            MugeNavigationLabel(title: "운동이 처음이라면", icon: "dumbbell")
+                            Text("기록 연습 · 논문 루틴 아님")
+                                .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                        }
+                    }.buttonStyle(.plain)
+                }
+                if !helpDismissed {
                     MugeCard {
                         HStack {
-                            Image(systemName: "scalemass").font(.title2)
+                            Text("무게무게가 처음이신가요?").font(MugeStyle.TypeStyle.card)
                             Spacer()
-                            Image(systemName: "arrow.up.right")
+                            Button { helpDismissed = true } label: { MugeIcon(name: "x") }
+                                .frame(minWidth: MugeStyle.minimumTarget, minHeight: MugeStyle.minimumTarget)
+                                .accessibilityLabel("도움말 닫기")
                         }
-                        Text(workouts.measuredMaxes.isEmpty ? "내 힘의 기준부터." : "내 최대 중량 살펴보기")
-                            .font(MugeStyle.TypeStyle.section)
-                        Text(workouts.measuredMaxes.isEmpty
-                             ? "최대 중량을 기록하거나, 반복 기록으로 추정하고 측정 안내를 받아보세요."
-                             : "실제 측정과 추정치를 구분해 다음 운동의 기준을 확인해요.")
-                            .font(.subheadline).foregroundStyle(.secondary)
-                        Text("최대 중량 기록 · 측정 안내").font(.footnote.bold())
+                        Text("최대 중량을 입력하고, 운동한 무게와 횟수를 기록해 보세요.")
+                            .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                        Button("확인했어요") { helpDismissed = true }
                     }
-                }.buttonStyle(.plain)
-                MugeMetricRow {
-                    MetricTile(value: "\(workouts.history.count)", label: "완료한 운동")
-                    MetricTile(value: "\(workouts.logs.count)", label: "쌓인 세트")
                 }
-                MugeSectionTitle(title: "이유를 알고 시작해요", subtitle: "운동 구성과 근거를 함께 읽는 루틴")
-                if let item = (catalog.protocols + catalog.demo).first {
-                    NavigationLink { RoutineOverview(item: item) } label: { RoutineCard(item: item) }
-                        .buttonStyle(.plain)
-                } else {
-                    ContentUnavailableView("루틴을 불러오는 중", systemImage: "square.stack")
-                }
-                NavigationLink { ResearchNotes() } label: {
-                    Label("운동을 설계하는 연구 살펴보기", systemImage: "text.book.closed")
-                        .font(.subheadline.bold())
-                }
-                if let error = catalog.error { Text(error).font(.footnote).foregroundStyle(.secondary) }
             }.padding(MugeStyle.Space.page)
-        }
-        .background(MugeStyle.canvas)
+        }.background(MugeStyle.canvas)
         .navigationTitle("무게무게").navigationBarTitleDisplayMode(.inline)
         .toolbar { ToolbarItem(placement: .topBarTrailing) {
             NavigationLink { TrainingSettings() } label: {
-                Image(systemName: "gearshape")
+                MugeIcon(name: "settings")
                     .frame(minWidth: MugeStyle.minimumTarget, minHeight: MugeStyle.minimumTarget)
-            }
-                .accessibilityLabel("설정")
+            }.accessibilityLabel("설정")
         }}
         .refreshable { await catalog.refresh() }
         .confirmationDialog("진행 중인 운동을 종료할까요?", isPresented: $confirmsUnavailableFinish, titleVisibility: .visible) {
-            Button("기록을 보존하고 종료") {
-                finishError = nil
-                if !workouts.finish() {
-                    finishError = workouts.error ?? "종료 내용을 저장하지 못했어요. 다시 시도해주세요."
-                }
+            Button("기록을 남기고 종료") {
+                if !workouts.finish() { finishError = workouts.error ?? "저장하지 못했어요. 다시 시도해 주세요." }
             }
             Button("계속 유지", role: .cancel) {}
-        } message: {
-            Text("지금까지 입력한 세트를 운동 기록에 보존합니다. 종료하면 새로운 운동을 시작할 수 있어요.")
         }
+    }
+    private func monthlyChange(_ id: String, latest: MeasuredMax) -> String {
+        let calendar = Calendar.current
+        guard let monthStart = calendar.dateInterval(of: .month, for: Date())?.start,
+              latest.measuredAt >= monthStart,
+              let previous = workouts.measuredMaxes.filter({
+                  $0.exerciseID == id && $0.measuredAt < monthStart && $0.weightKg > 0
+              }).max(by: { $0.measuredAt < $1.measuredAt }) else {
+            return "기록일 \(latest.measuredAt.formatted(date: .abbreviated, time: .omitted)) · 지난달 비교 자료 없음"
+        }
+        let change = (latest.weightKg - previous.weightKg) / previous.weightKg * 100
+        return "지난달 대비 \(change > 0 ? "+" : "")\(change.formatted(.number.precision(.fractionLength(1))))% · \(previous.measuredAt.formatted(date: .abbreviated, time: .omitted)) → \(latest.measuredAt.formatted(date: .abbreviated, time: .omitted))"
     }
 }
 
@@ -144,7 +181,7 @@ private struct MetricTile: View {
     let value: String
     let label: String
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: MugeStyle.Space.sm) {
             Text(value).mugeNumber()
             Text(label).font(.caption).foregroundStyle(.secondary)
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -159,11 +196,11 @@ private struct ActionLabel: View {
     let title: String
     var symbol = "arrow.right"
     var body: some View {
-        HStack { Text(title); Spacer(); Image(systemName: symbol) }
+        HStack { Text(title); Spacer(); MugeIcon(name: "chevron-right") }
             .font(MugeStyle.TypeStyle.action).padding(MugeStyle.Space.lg)
-            .frame(minHeight: MugeStyle.minimumTarget)
+            .frame(minHeight: MugeStyle.actionHeight)
             .foregroundStyle(MugeStyle.onAccent)
-            .background(MugeStyle.ink, in: RoundedRectangle(cornerRadius: MugeStyle.Radius.control))
+            .background(MugeStyle.accent, in: RoundedRectangle(cornerRadius: MugeStyle.Radius.control))
     }
 }
 
@@ -171,32 +208,29 @@ private struct RoutineLibrary: View {
     @EnvironmentObject private var catalog: CatalogStore
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: MugeStyle.Space.page) {
-                Text("내 운동에는\n이유가 있으니까.")
-                    .font(MugeStyle.TypeStyle.hero)
-                MugeSectionTitle(title: "운동 루틴", subtitle: "구성, 시작 중량, 근거를 확인하고 시작해요.")
-                if catalog.protocols.isEmpty {
+            VStack(alignment: .leading, spacing: MugeStyle.Space.section) {
+                if catalog.isLoading {
+                    ProgressView("루틴을 불러오고 있어요").frame(maxWidth: .infinity)
+                } else if let error = catalog.error {
                     MugeCard {
-                        Label("검증을 마친 루틴을 준비 중이에요", systemImage: "checkmark.shield")
-                            .font(.headline)
-                        Text("아래 체험 루틴은 기록 기능을 둘러보는 예시예요. 논문으로 검증된 처방으로 제공하지 않아요.")
-                            .font(.subheadline).foregroundStyle(.secondary)
+                        Text("루틴을 불러오지 못했어요").font(MugeStyle.TypeStyle.section)
+                        Text(error).font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                        Button("다시 시도") { Task { await catalog.refresh() } }
+                            .buttonStyle(MugePrimaryButtonStyle())
+                    }
+                } else if catalog.protocols.isEmpty {
+                    MugeCard {
+                        LilaRiveView(size: 88).frame(maxWidth: .infinity)
+                        Text("공개할 루틴을 준비 중이에요").font(MugeStyle.TypeStyle.section)
+                        Text("논문과 운동 구성을 검토한 루틴만 여기에 표시해요. 기록 연습은 홈에서 시작할 수 있어요.")
+                            .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                    }
+                } else {
+                    ForEach(catalog.protocols) { item in
+                        NavigationLink { RoutineOverview(item: item) } label: { RoutineCard(item: item) }
+                            .buttonStyle(.plain)
                     }
                 }
-                ForEach(catalog.protocols) { item in
-                    NavigationLink { RoutineOverview(item: item) } label: { RoutineCard(item: item) }.buttonStyle(.plain)
-                }
-                ForEach(catalog.demo) { item in
-                    NavigationLink { RoutineOverview(item: item) } label: { RoutineCard(item: item) }.buttonStyle(.plain)
-                }
-                NavigationLink { ResearchNotes() } label: {
-                    MugeCard {
-                        Label("논문에서 배운 운동 원칙", systemImage: "text.book.closed.fill").font(.headline)
-                        Text("무게 · 세트 · 휴식, 무엇이 달라질까요?").font(.subheadline).foregroundStyle(.secondary)
-                        Text("근거와 한계 읽기 →").font(.footnote.bold())
-                    }
-                }.buttonStyle(.plain)
-                if let error = catalog.error { Text(error).font(.footnote).foregroundStyle(.secondary) }
             }.padding(MugeStyle.Space.page)
         }.background(MugeStyle.canvas).navigationTitle("루틴")
             .refreshable { await catalog.refresh() }
@@ -212,7 +246,7 @@ private struct RoutineCard: View {
                     .font(.caption.bold()).padding(.horizontal, 10).padding(.vertical, 6)
                     .background(MugeStyle.ink.opacity(0.06), in: Capsule())
                 Spacer()
-                Image(systemName: "arrow.up.right").font(.title3)
+                MugeIcon(name: "chevron-right")
             }
             Text(TrainingCopy.routine(item)).font(MugeStyle.TypeStyle.section)
             Text(item.status == "DEMO_ONLY"
@@ -220,7 +254,7 @@ private struct RoutineCard: View {
                  : "운동 구성을 살펴보고 내 기록에 맞는 시작 중량을 확인해요.")
                 .font(.subheadline).foregroundStyle(.secondary)
             HStack {
-                Label("\(item.sessions.count)개 구성", systemImage: "rectangle.stack")
+                Text("\(item.sessions.count)개 구성")
                 Spacer()
                 Text("구성 살펴보기").fontWeight(.semibold)
             }.font(.caption)
@@ -237,7 +271,7 @@ private struct RoutineOverview: View {
                 Text(item.status == "DEMO_ONLY" ? "실제 운동 기록으로 이어지는 체험용 구성" : "시작하기 전에 운동 구성을 확인하세요.")
                     .foregroundStyle(.secondary)
                 MugeCard {
-                    Label("이 루틴을 읽는 방법", systemImage: "info.circle").font(.headline)
+                    Text(item.status == "DEMO_ONLY" ? "기록 연습 · 논문 루틴 아님" : "운동 구성").font(.headline)
                     Text(item.status == "DEMO_ONLY"
                          ? "기록과 휴식 흐름을 확인하는 예시입니다. 외부 루틴을 논문 검증까지 마친 결과로 표시하지 않습니다."
                          : "공개 상태를 확인한 루틴입니다. 개인에게 최적이라는 의미는 아니며, 운동 경험과 당일 상태를 함께 고려하세요.")
@@ -247,10 +281,10 @@ private struct RoutineOverview: View {
                     MugeCard {
                         Text(TrainingCopy.session(session)).font(MugeStyle.TypeStyle.card)
                         ForEach(Array(session.exercises.enumerated()), id: \.element.id) { index, exercise in
-                            HStack(spacing: 14) {
+                            HStack(spacing: MugeStyle.Space.lg) {
                                 Text(String(format: "%02d", index + 1))
                                     .font(.title2.bold().monospacedDigit()).foregroundStyle(.tertiary)
-                                VStack(alignment: .leading, spacing: 4) {
+                                VStack(alignment: .leading, spacing: MugeStyle.Space.xs) {
                                     Text(TrainingCopy.exercise(exercise.id)).font(.headline)
                                     Text("\(exercise.sets)세트 × \(exercise.reps)회 · 휴식 \(exercise.restSeconds)초")
                                         .font(.caption).foregroundStyle(.secondary)
@@ -259,7 +293,7 @@ private struct RoutineOverview: View {
                             }.padding(.vertical, 5)
                         }
                         NavigationLink { GuidedWorkoutView(item: item, session: session) } label: {
-                            ActionLabel(title: "시작 중량 확인하기")
+                            ActionLabel(title: "시작 무게 확인")
                         }.buttonStyle(.plain)
                     }
                 }
@@ -328,14 +362,30 @@ private struct ResearchNotes: View {
 }
 
 private struct TrainingHistory: View {
+    @State private var selection = 0
+    var body: some View {
+        VStack(spacing: 0) {
+            Picker("기록 종류", selection: $selection) {
+                Text("운동 기록").tag(0)
+                Text("성장").tag(1)
+            }.pickerStyle(.segmented).padding(MugeStyle.Space.page)
+            if selection == 0 { WorkoutHistoryList() }
+            else { TrainingGrowth() }
+        }.background(MugeStyle.canvas).navigationTitle("기록")
+    }
+}
+
+private struct WorkoutHistoryList: View {
     @EnvironmentObject private var workouts: WorkoutStore
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 18) {
-                Text("쌓인 기록이\n나를 말해줘요.").font(MugeStyle.TypeStyle.hero)
+            VStack(alignment: .leading, spacing: MugeStyle.Space.page) {
                 if workouts.history.isEmpty {
-                    ContentUnavailableView("첫 기록을 기다리고 있어요", systemImage: "calendar.badge.plus",
-                                           description: Text("루틴에서 운동을 시작하고 완료하면 여기에 쌓여요."))
+                    ContentUnavailableView {
+                        Label("아직 운동 기록이 없어요", image: "lucide-dumbbell")
+                    } description: {
+                        Text("운동을 마치면 세트별 기록을 볼 수 있어요.")
+                    }
                 }
                 ForEach(workouts.history.reversed()) { workout in
                     NavigationLink { WorkoutHistoryDetail(workout: workout) } label: {
@@ -343,7 +393,7 @@ private struct TrainingHistory: View {
                             HStack {
                                 Text(workout.startedAt, format: .dateTime.month().day().weekday()).font(.headline)
                                 Spacer()
-                                Image(systemName: "chevron.right").font(.caption)
+                                MugeIcon(name: "chevron-right")
                             }
                             Text("운동 기록").font(MugeStyle.TypeStyle.card)
                             Text("\(workout.setIDs.count)세트 · 기록 살펴보기").font(.subheadline).foregroundStyle(.secondary)
@@ -356,6 +406,7 @@ private struct TrainingHistory: View {
 }
 
 private struct WorkoutHistoryDetail: View {
+    @AppStorage("displayUnit") private var unit: MassUnit = .kg
     let workout: ActiveWorkout
     @EnvironmentObject private var workouts: WorkoutStore
     @State private var editing: LoggedSet?
@@ -367,7 +418,9 @@ private struct WorkoutHistoryDetail: View {
             Section("운동 요약") {
                 LabeledContent("날짜", value: workout.startedAt.formatted(date: .abbreviated, time: .shortened))
                 LabeledContent("기록한 세트", value: "\(records.count)세트")
-                LabeledContent("누적 중량", value: "\(StrengthMetrics.volume(records).formatted())킬로그램")
+                LabeledContent("총중량", value: unit.label(StrengthMetrics.volume(records)))
+                Text("이 기록에는 원래 계획·실제 휴식 비교 자료가 없어요.")
+                    .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
             }
             Section("세트 기록 · 눌러서 수정") {
                 ForEach(records) { set in
@@ -375,7 +428,7 @@ private struct WorkoutHistoryDetail: View {
                         HStack {
                             Text(TrainingCopy.exercise(set.exerciseID))
                             Spacer()
-                            Text("\(set.weightKg.formatted())킬로그램 × \(set.reps)회").foregroundStyle(.secondary)
+                            Text("\(unit.label(set.weightKg)) × \(set.reps)회").foregroundStyle(.secondary)
                         }
                     }.foregroundStyle(MugeStyle.ink)
                 }
@@ -386,30 +439,46 @@ private struct WorkoutHistoryDetail: View {
 }
 
 private struct TrainingGrowth: View {
+    @AppStorage("displayUnit") private var unit: MassUnit = .kg
     @EnvironmentObject private var workouts: WorkoutStore
     @State private var exercise = "squat"
     private var records: [LoggedSet] { workouts.records(for: exercise).sorted { $0.performedAt < $1.performedAt } }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: MugeStyle.Space.section) {
-                Text("숫자보다 중요한 건,\n계속하고 있다는 것.")
-                    .font(MugeStyle.TypeStyle.hero)
                 Picker("종목", selection: $exercise) {
                     Text("스쿼트").tag("squat")
                     Text("벤치프레스").tag("bench")
                     Text("데드리프트").tag("deadlift")
                 }.pickerStyle(.segmented)
                 MugeCard {
+                    Text("실제 최대 중량").font(MugeStyle.TypeStyle.card)
+                    let actual = workouts.measuredMaxes.filter { $0.exerciseID == exercise }
+                        .sorted { $0.measuredAt < $1.measuredAt }
+                    if let latest = actual.last {
+                        Text(unit.label(latest.weightKg)).mugeNumber()
+                        Chart(actual) { record in
+                            PointMark(x: .value("날짜", record.measuredAt),
+                                      y: .value("실측 (\(unit.rawValue))", unit.display(record.weightKg)))
+                        }.frame(height: 180).foregroundStyle(MugeStyle.accent)
+                        Text("실제로 한 번 들어 올린 기록만 표시해요.")
+                            .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
+                    } else {
+                        Text("실제 측정 기록이 없어요. 추정값으로 채우지 않아요.")
+                            .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                    }
+                }
+                MugeCard {
                     Text("반복 기록으로 본 추정 최대 중량").font(.headline)
                     if let value = StrengthMetrics.bestEstimatedOneRepMax(records) {
-                        HStack(alignment: .firstTextBaseline, spacing: 5) {
-                            Text(value.formatted(.number.precision(.fractionLength(1))))
+                        HStack(alignment: .firstTextBaseline, spacing: MugeStyle.Space.xs) {
+                            Text(unit.number(value))
                                 .mugeNumber(size: 44)
-                            Text("킬로그램").foregroundStyle(.secondary)
+                            Text(unit.rawValue).foregroundStyle(.secondary)
                         }
                         Chart(records) { record in
                             if let estimate = StrengthMetrics.estimatedOneRepMax(weightKg: record.weightKg, reps: record.reps) {
-                                PointMark(x: .value("날짜", record.performedAt), y: .value("추정 중량", estimate))
+                                PointMark(x: .value("날짜", record.performedAt), y: .value("추정 중량 (\(unit.rawValue))", unit.display(estimate)))
                             }
                         }.frame(height: 180).foregroundStyle(MugeStyle.ink)
                     } else {
@@ -420,7 +489,7 @@ private struct TrainingGrowth: View {
                 }
                 MugeMetricRow {
                     MetricTile(value: "\(records.count)", label: "이 종목의 세트")
-                    MetricTile(value: StrengthMetrics.volume(records).formatted(.number.precision(.fractionLength(0))), label: "누적 중량 · 킬로그램")
+                    MetricTile(value: unit.number(StrengthMetrics.volume(records)), label: "총중량 · \(unit.rawValue)")
                 }
                 NavigationLink { StrengthSetupView() } label: { ActionLabel(title: "실제 최대 중량 관리하기") }.buttonStyle(.plain)
             }.padding(MugeStyle.Space.page)
@@ -429,20 +498,78 @@ private struct TrainingGrowth: View {
 }
 
 private struct TrainingSettings: View {
+    @AppStorage("displayUnit") private var unit: MassUnit = .kg
+    @State private var showsIntroduction = false
     var body: some View {
         List {
             Section("내 운동 기준") {
-                NavigationLink("최대 중량 기록 · 측정 안내") { StrengthSetupView() }
+                Picker("중량 단위", selection: $unit) {
+                    ForEach(MassUnit.allCases, id: \.self) { Text($0.rawValue).tag($0) }
+                }
+                Text("표시 단위만 바뀌며 저장된 중량은 유지돼요.")
+                    .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
             }
             Section("내 데이터") {
                 NavigationLink("기록 백업과 복원") { BackupView() }
                 NavigationLink("계정과 동기화") { CloudAccountView() }
             }
             Section("운동 안내") {
+                NavigationLink("오픈소스 라이선스") {
+                    ScrollView {
+                        Text(MugeThirdPartyNotices.lucide)
+                            .font(MugeStyle.TypeStyle.note).textSelection(.enabled)
+                            .padding(MugeStyle.Space.page)
+                    }.navigationTitle("Lucide")
+                }
+                Button("처음 안내 다시 보기") { showsIntroduction = true }
                 NavigationLink("운동의 근거") { ResearchNotes() }
                 Text("릴라는 시작과 준비, 운동을 마친 순간에 함께해요. 운동과 휴식 중에는 기록과 타이머에 집중할 수 있어요.")
                     .font(.subheadline).foregroundStyle(.secondary)
             }
         }.navigationTitle("설정")
+            .fullScreenCover(isPresented: $showsIntroduction) { TrainingIntroduction() }
     }
+}
+
+private struct TrainingIntroduction: View {
+    @Environment(\.dismiss) private var dismiss
+    @AppStorage("onboardingCompleted.v2") private var completed = false
+    @State private var page = 0
+    private let titles = [
+        "스쿼트·벤치·데드리프트를 기록해요.",
+        "논문을 검토해 루틴을 준비해요.",
+        "내 기록의 변화를 확인해요."
+    ]
+    private let descriptions = [
+        "최대 중량을 입력하고, 실제 운동한 무게와 횟수를 남겨 보세요.",
+        "공개된 루틴의 운동 구성과 출처를 확인할 수 있어요. 검토 중인 루틴은 공개하지 않아요.",
+        "실제 측정과 추정값을 구분해 볼 수 있어요. 연구의 평균 결과는 나의 예상 성장률이 아니에요."
+    ]
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: MugeStyle.Space.section) {
+                    Text("\(page + 1) / 3").font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                    LilaRiveView(size: 144).frame(maxWidth: .infinity)
+                    Text(titles[page]).font(MugeStyle.TypeStyle.hero).accessibilityAddTraits(.isHeader)
+                    Text(descriptions[page]).font(MugeStyle.TypeStyle.body).foregroundStyle(MugeStyle.muted)
+                }.padding(MugeStyle.Space.page)
+            }
+            .background(MugeStyle.canvas)
+            .toolbar { ToolbarItem(placement: .topBarTrailing) {
+                Button("건너뛰기") { close() }
+            }}
+            .safeAreaInset(edge: .bottom) {
+                VStack(spacing: MugeStyle.Space.sm) {
+                    Button(page == 2 ? "시작하기" : "다음") {
+                        if page == 2 { close() } else { page += 1 }
+                    }.buttonStyle(MugePrimaryButtonStyle())
+                    if page > 0 {
+                        Button("이전") { page -= 1 }.frame(minHeight: MugeStyle.minimumTarget)
+                    }
+                }.padding(MugeStyle.Space.page).background(.regularMaterial)
+            }
+        }.interactiveDismissDisabled()
+    }
+    private func close() { completed = true; dismiss() }
 }
