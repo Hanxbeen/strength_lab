@@ -1,0 +1,3095 @@
+{
+  "schema_version": 2,
+  "engine_version": "source-programme-v2",
+  "programmes": [
+    {
+      "schema_version": 2,
+      "engine_version": "source-programme-v2",
+      "programme_id": "PMC11140948-SG",
+      "programme_version": "14ad8185aa72b685398e3912b7fbfabe0ab4def963fdea21697ca784f57033b5",
+      "definition": {
+        "schema_version": 2,
+        "id": "PMC11140948-SG",
+        "arm": "SG",
+        "title": "하프 스쿼트 · 8주",
+        "source": {
+          "pmcid": "PMC11140948",
+          "pmid": "38816857",
+          "sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11140948/",
+          "title": "Comparison of resistance training using barbell half squats and trap bar deadlifts on maximal strength, power performance, and lean mass in recreationally active females: an eight-week randomised trial",
+          "license": "CC-BY-4.0",
+          "raw_text_redistributed": false,
+          "adapter_version": "1",
+          "cohort_deduplication": "not_independently_assessed"
+        },
+        "weeks": 8,
+        "sessions_per_week": 2,
+        "population": {
+          "sex": "female",
+          "min_age": 18,
+          "age_min_exclusive": true,
+          "max_age": null,
+          "training_months": 6,
+          "healthy": true
+        },
+        "context": {
+          "other_lower_body_training": "excluded",
+          "other_training": "upper_body_and_endurance_permitted",
+          "supervision": "unsupervised",
+          "between_exercise_rest": {
+            "seconds": 180,
+            "operator": "gte",
+            "status": "source_reported"
+          },
+          "warmup": {
+            "status": "not_reported"
+          },
+          "accessory_per_leg_counting": "not_reported"
+        },
+        "progression": {
+          "kind": "bounded_load_adjustment",
+          "target_reps": 4,
+          "increase_kg": [
+            2.5,
+            10.0
+          ],
+          "decrease_kg": [
+            2.5,
+            5.0
+          ],
+          "increase_timing": "not_reported",
+          "decrease_timing": "next_set"
+        },
+        "spacing": {
+          "min_day_difference": null,
+          "status": "not_reported"
+        },
+        "order": {
+          "first": "barbell_half_squat",
+          "accessory_order": "user_choice"
+        },
+        "exercises": [
+          {
+            "id": "barbell_half_squat",
+            "sets": 4,
+            "reps": {
+              "min": 4,
+              "max": 4
+            },
+            "load": {
+              "kind": "initial_percent_1rm",
+              "percent": 85,
+              "reference_exercise": "barbell_half_squat",
+              "ongoing_intensity": "adjusted_by_source_rule"
+            },
+            "rest": {
+              "seconds": 180,
+              "operator": "gte"
+            },
+            "tempo": {
+              "concentric": "maximal_intended_velocity",
+              "eccentric": "not_reported"
+            }
+          },
+          {
+            "id": "dumbbell_bulgarian_split_squat",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 8
+            },
+            "load": {
+              "kind": "rir",
+              "target": 2
+            },
+            "rest": {
+              "seconds": 180,
+              "operator": "gte"
+            },
+            "tempo": {
+              "concentric": "maximal_intended_velocity",
+              "eccentric": "not_reported"
+            }
+          },
+          {
+            "id": "barbell_hip_thrust",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 8
+            },
+            "load": {
+              "kind": "rir",
+              "target": 2
+            },
+            "rest": {
+              "seconds": 180,
+              "operator": "gte"
+            },
+            "tempo": {
+              "concentric": "maximal_intended_velocity",
+              "eccentric": "not_reported"
+            }
+          }
+        ],
+        "provenance": {
+          "weeks": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "387b3adcff17a45f707ad11b776a9b0717c3205563eb14245587494fb2d75f8c"
+            },
+            "policy_id": null,
+            "value_sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+          },
+          "sessions_per_week": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "387b3adcff17a45f707ad11b776a9b0717c3205563eb14245587494fb2d75f8c"
+            },
+            "policy_id": null,
+            "value_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+          },
+          "population": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec4",
+              "paragraph": 1,
+              "matched_text_sha256": "4fad7dc29f3379d665f163f1f8e6f99aea94aa864075f0619afc64ed2352dee9"
+            },
+            "policy_id": null,
+            "value_sha256": "b9715315d5751b091c7a574faa2dce07f7aaa16a9912741e3efa2e6d0fdc8345"
+          },
+          "context": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "65062a6acab7c05d8aaee5531c874e575662551c5a34512257b6f95ad9e589bd"
+            },
+            "policy_id": null,
+            "value_sha256": "5d636f01e776bf4feca7aa3d8ea9420880c02ad03b5938788bb6d7cb873f8d6b"
+          },
+          "progression": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "17b392a0cb3c5f46588fd518b31a8765f4aee819c7078a4bb070f0c6fb96953f"
+            },
+            "policy_id": null,
+            "value_sha256": "8eb7f1614306ae7abcea6ce8beb5d049e7707a4ca09b489ea2127af626dec52f"
+          },
+          "spacing": {
+            "kind": "not_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": null,
+            "policy_id": null,
+            "value_sha256": "9956d31aa56b563c8462421eb9325babe1b2a9cd2ba27e340cbfe4326723930a"
+          },
+          "order": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "5b672de27b799b2bb485498e2f495945b6611f12eb8aeb574bd8d1bf2282cd2f"
+            },
+            "policy_id": null,
+            "value_sha256": "7f3ffd892965c0ce2ccd67c282f1bab3c5995af6abfa003f96677ad26cf28073"
+          },
+          "exercises.0.id": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "13a172b5ae86316989073a3367653c3ef829ac0812920f7de68e7b3e5c35c118"
+            },
+            "policy_id": null,
+            "value_sha256": "3c333149b5dbf0b8075e0fb00f2db422d5cc1c71f5b89183c22528ac156a3981"
+          },
+          "exercises.0.sets": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "72cf2641959b23dd687547b748c6503631956e62ea2bef89d7f3f6e7b09eb4bd"
+            },
+            "policy_id": null,
+            "value_sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+          },
+          "exercises.0.reps": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "72cf2641959b23dd687547b748c6503631956e62ea2bef89d7f3f6e7b09eb4bd"
+            },
+            "policy_id": null,
+            "value_sha256": "5248eac89ffcf609789c29482c87ebd6ed3d6485b75833756e0424043443402b"
+          },
+          "exercises.0.load": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "d75ccf0c49ab7db960d9c54468bf34db45e3eff47b990ef1c3975f1f26f14544"
+            },
+            "policy_id": null,
+            "value_sha256": "5ca470d6f4afdec9611f13afbe3af5c56dd5eaf68f3ba45c27d2ed725dc77925"
+          },
+          "exercises.0.rest": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "faeb418bdc13cb88d3c3cbf04fcef2096d50f505c76ecf706fc8d7653e5475fc"
+            },
+            "policy_id": null,
+            "value_sha256": "6c94715e97b9e0c999d30b5afa209c49fd57f2472c208b15d4d8363df6f23f97"
+          },
+          "exercises.0.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "797160c5741c26dc56701025c5fefef478f0bad02be8922308871f8f7fbaf22b"
+            },
+            "policy_id": null,
+            "value_sha256": "298ac86064cdd9c2ae2c36b123e5ef649135643b9ad43466305ae40497921f98"
+          },
+          "exercises.1.id": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "1edf9ba44df3c85459adf154abc7bdc6f38974c057eee65bf0e4b00f456e0165"
+            },
+            "policy_id": null,
+            "value_sha256": "e9ac725037eb8b8d6153920fbcf2334008136e9b7bf372424c3b80d4d938d89b"
+          },
+          "exercises.1.sets": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "1edf9ba44df3c85459adf154abc7bdc6f38974c057eee65bf0e4b00f456e0165"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.1.reps": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "1edf9ba44df3c85459adf154abc7bdc6f38974c057eee65bf0e4b00f456e0165"
+            },
+            "policy_id": null,
+            "value_sha256": "a935ad4607fd14aea4798b2fce1473ba41b00107a8881dea55e48976c7f191c2"
+          },
+          "exercises.1.load": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "e93ec0d6464fd10588cfb25eade2979c3643972a9d171220c5d6730d0d7c9fb9"
+            },
+            "policy_id": null,
+            "value_sha256": "6961d360ee7b1b0eb6904ac2b5368a346c2c6c04914791e3643abca884cdd73f"
+          },
+          "exercises.1.rest": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "faeb418bdc13cb88d3c3cbf04fcef2096d50f505c76ecf706fc8d7653e5475fc"
+            },
+            "policy_id": null,
+            "value_sha256": "6c94715e97b9e0c999d30b5afa209c49fd57f2472c208b15d4d8363df6f23f97"
+          },
+          "exercises.1.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "797160c5741c26dc56701025c5fefef478f0bad02be8922308871f8f7fbaf22b"
+            },
+            "policy_id": null,
+            "value_sha256": "298ac86064cdd9c2ae2c36b123e5ef649135643b9ad43466305ae40497921f98"
+          },
+          "exercises.2.id": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "1edf9ba44df3c85459adf154abc7bdc6f38974c057eee65bf0e4b00f456e0165"
+            },
+            "policy_id": null,
+            "value_sha256": "968a66a11daed80bc547325f3a8834b40a288e99c8420548267afff57be69a88"
+          },
+          "exercises.2.sets": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "1edf9ba44df3c85459adf154abc7bdc6f38974c057eee65bf0e4b00f456e0165"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.2.reps": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "1edf9ba44df3c85459adf154abc7bdc6f38974c057eee65bf0e4b00f456e0165"
+            },
+            "policy_id": null,
+            "value_sha256": "a935ad4607fd14aea4798b2fce1473ba41b00107a8881dea55e48976c7f191c2"
+          },
+          "exercises.2.load": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "e93ec0d6464fd10588cfb25eade2979c3643972a9d171220c5d6730d0d7c9fb9"
+            },
+            "policy_id": null,
+            "value_sha256": "6961d360ee7b1b0eb6904ac2b5368a346c2c6c04914791e3643abca884cdd73f"
+          },
+          "exercises.2.rest": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "faeb418bdc13cb88d3c3cbf04fcef2096d50f505c76ecf706fc8d7653e5475fc"
+            },
+            "policy_id": null,
+            "value_sha256": "6c94715e97b9e0c999d30b5afa209c49fd57f2472c208b15d4d8363df6f23f97"
+          },
+          "exercises.2.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "797160c5741c26dc56701025c5fefef478f0bad02be8922308871f8f7fbaf22b"
+            },
+            "policy_id": null,
+            "value_sha256": "298ac86064cdd9c2ae2c36b123e5ef649135643b9ad43466305ae40497921f98"
+          }
+        },
+        "applicability": "Recorded study population; not an individual outcome guarantee",
+        "independent_expert_review": false
+      },
+      "session_count": 16,
+      "working_set_count": 160,
+      "evidence_status": "SOURCE_STRUCTURED",
+      "scientific_approval": false,
+      "client_contract": "requires_schema_v2",
+      "chart_publishable": false,
+      "readiness": "REQUIRES_EXPLICIT_SETUP",
+      "required_setup": [
+        "exercise_specific_loads",
+        "warmup_choice",
+        "exercise_order",
+        "unreported_transition_rest"
+      ],
+      "explanation": "Source-based workload template; unreported execution choices must be explicitly supplied and labelled as product/user choices."
+    },
+    {
+      "schema_version": 2,
+      "engine_version": "source-programme-v2",
+      "programme_id": "PMC11140948-DG",
+      "programme_version": "8bac66f43cf61b072f76335847d4bb9687984dda6bdfd0b692ea97f42a05f22b",
+      "definition": {
+        "schema_version": 2,
+        "id": "PMC11140948-DG",
+        "arm": "DG",
+        "title": "트랩바 데드리프트 · 8주",
+        "source": {
+          "pmcid": "PMC11140948",
+          "pmid": "38816857",
+          "sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11140948/",
+          "title": "Comparison of resistance training using barbell half squats and trap bar deadlifts on maximal strength, power performance, and lean mass in recreationally active females: an eight-week randomised trial",
+          "license": "CC-BY-4.0",
+          "raw_text_redistributed": false,
+          "adapter_version": "1",
+          "cohort_deduplication": "not_independently_assessed"
+        },
+        "weeks": 8,
+        "sessions_per_week": 2,
+        "population": {
+          "sex": "female",
+          "min_age": 18,
+          "age_min_exclusive": true,
+          "max_age": null,
+          "training_months": 6,
+          "healthy": true
+        },
+        "context": {
+          "other_lower_body_training": "excluded",
+          "other_training": "upper_body_and_endurance_permitted",
+          "supervision": "unsupervised",
+          "between_exercise_rest": {
+            "seconds": 180,
+            "operator": "gte",
+            "status": "source_reported"
+          },
+          "warmup": {
+            "status": "not_reported"
+          },
+          "accessory_per_leg_counting": "not_reported"
+        },
+        "progression": {
+          "kind": "bounded_load_adjustment",
+          "target_reps": 4,
+          "increase_kg": [
+            2.5,
+            10.0
+          ],
+          "decrease_kg": [
+            2.5,
+            5.0
+          ],
+          "increase_timing": "not_reported",
+          "decrease_timing": "next_set"
+        },
+        "spacing": {
+          "min_day_difference": null,
+          "status": "not_reported"
+        },
+        "order": {
+          "first": "trap_bar_deadlift",
+          "accessory_order": "user_choice"
+        },
+        "exercises": [
+          {
+            "id": "trap_bar_deadlift",
+            "sets": 4,
+            "reps": {
+              "min": 4,
+              "max": 4
+            },
+            "load": {
+              "kind": "initial_percent_1rm",
+              "percent": 85,
+              "reference_exercise": "trap_bar_deadlift",
+              "ongoing_intensity": "adjusted_by_source_rule"
+            },
+            "rest": {
+              "seconds": 180,
+              "operator": "gte"
+            },
+            "tempo": {
+              "concentric": "maximal_intended_velocity",
+              "eccentric": "not_reported"
+            }
+          },
+          {
+            "id": "dumbbell_bulgarian_split_squat",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 8
+            },
+            "load": {
+              "kind": "rir",
+              "target": 2
+            },
+            "rest": {
+              "seconds": 180,
+              "operator": "gte"
+            },
+            "tempo": {
+              "concentric": "maximal_intended_velocity",
+              "eccentric": "not_reported"
+            }
+          },
+          {
+            "id": "barbell_hip_thrust",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 8
+            },
+            "load": {
+              "kind": "rir",
+              "target": 2
+            },
+            "rest": {
+              "seconds": 180,
+              "operator": "gte"
+            },
+            "tempo": {
+              "concentric": "maximal_intended_velocity",
+              "eccentric": "not_reported"
+            }
+          }
+        ],
+        "provenance": {
+          "weeks": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "387b3adcff17a45f707ad11b776a9b0717c3205563eb14245587494fb2d75f8c"
+            },
+            "policy_id": null,
+            "value_sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+          },
+          "sessions_per_week": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "387b3adcff17a45f707ad11b776a9b0717c3205563eb14245587494fb2d75f8c"
+            },
+            "policy_id": null,
+            "value_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+          },
+          "population": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec4",
+              "paragraph": 1,
+              "matched_text_sha256": "4fad7dc29f3379d665f163f1f8e6f99aea94aa864075f0619afc64ed2352dee9"
+            },
+            "policy_id": null,
+            "value_sha256": "b9715315d5751b091c7a574faa2dce07f7aaa16a9912741e3efa2e6d0fdc8345"
+          },
+          "context": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "65062a6acab7c05d8aaee5531c874e575662551c5a34512257b6f95ad9e589bd"
+            },
+            "policy_id": null,
+            "value_sha256": "5d636f01e776bf4feca7aa3d8ea9420880c02ad03b5938788bb6d7cb873f8d6b"
+          },
+          "progression": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "17b392a0cb3c5f46588fd518b31a8765f4aee819c7078a4bb070f0c6fb96953f"
+            },
+            "policy_id": null,
+            "value_sha256": "8eb7f1614306ae7abcea6ce8beb5d049e7707a4ca09b489ea2127af626dec52f"
+          },
+          "spacing": {
+            "kind": "not_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": null,
+            "policy_id": null,
+            "value_sha256": "9956d31aa56b563c8462421eb9325babe1b2a9cd2ba27e340cbfe4326723930a"
+          },
+          "order": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "5b672de27b799b2bb485498e2f495945b6611f12eb8aeb574bd8d1bf2282cd2f"
+            },
+            "policy_id": null,
+            "value_sha256": "f4a3e6e93c72b9945a398befd2c38397f21473480a6040d35e21e455af257d70"
+          },
+          "exercises.0.id": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "72cf2641959b23dd687547b748c6503631956e62ea2bef89d7f3f6e7b09eb4bd"
+            },
+            "policy_id": null,
+            "value_sha256": "287a098ab72bc490e1a2e25f35c00530cc62f5dde366005e3209f87455cf9392"
+          },
+          "exercises.0.sets": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "72cf2641959b23dd687547b748c6503631956e62ea2bef89d7f3f6e7b09eb4bd"
+            },
+            "policy_id": null,
+            "value_sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+          },
+          "exercises.0.reps": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "72cf2641959b23dd687547b748c6503631956e62ea2bef89d7f3f6e7b09eb4bd"
+            },
+            "policy_id": null,
+            "value_sha256": "5248eac89ffcf609789c29482c87ebd6ed3d6485b75833756e0424043443402b"
+          },
+          "exercises.0.load": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "d75ccf0c49ab7db960d9c54468bf34db45e3eff47b990ef1c3975f1f26f14544"
+            },
+            "policy_id": null,
+            "value_sha256": "855b2ad2b7c924a6d9f094ff396f2d0274654f714e5bd09719e7b7badab193c5"
+          },
+          "exercises.0.rest": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "faeb418bdc13cb88d3c3cbf04fcef2096d50f505c76ecf706fc8d7653e5475fc"
+            },
+            "policy_id": null,
+            "value_sha256": "6c94715e97b9e0c999d30b5afa209c49fd57f2472c208b15d4d8363df6f23f97"
+          },
+          "exercises.0.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "797160c5741c26dc56701025c5fefef478f0bad02be8922308871f8f7fbaf22b"
+            },
+            "policy_id": null,
+            "value_sha256": "298ac86064cdd9c2ae2c36b123e5ef649135643b9ad43466305ae40497921f98"
+          },
+          "exercises.1.id": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "1edf9ba44df3c85459adf154abc7bdc6f38974c057eee65bf0e4b00f456e0165"
+            },
+            "policy_id": null,
+            "value_sha256": "e9ac725037eb8b8d6153920fbcf2334008136e9b7bf372424c3b80d4d938d89b"
+          },
+          "exercises.1.sets": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "1edf9ba44df3c85459adf154abc7bdc6f38974c057eee65bf0e4b00f456e0165"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.1.reps": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "1edf9ba44df3c85459adf154abc7bdc6f38974c057eee65bf0e4b00f456e0165"
+            },
+            "policy_id": null,
+            "value_sha256": "a935ad4607fd14aea4798b2fce1473ba41b00107a8881dea55e48976c7f191c2"
+          },
+          "exercises.1.load": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "e93ec0d6464fd10588cfb25eade2979c3643972a9d171220c5d6730d0d7c9fb9"
+            },
+            "policy_id": null,
+            "value_sha256": "6961d360ee7b1b0eb6904ac2b5368a346c2c6c04914791e3643abca884cdd73f"
+          },
+          "exercises.1.rest": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "faeb418bdc13cb88d3c3cbf04fcef2096d50f505c76ecf706fc8d7653e5475fc"
+            },
+            "policy_id": null,
+            "value_sha256": "6c94715e97b9e0c999d30b5afa209c49fd57f2472c208b15d4d8363df6f23f97"
+          },
+          "exercises.1.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "797160c5741c26dc56701025c5fefef478f0bad02be8922308871f8f7fbaf22b"
+            },
+            "policy_id": null,
+            "value_sha256": "298ac86064cdd9c2ae2c36b123e5ef649135643b9ad43466305ae40497921f98"
+          },
+          "exercises.2.id": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "1edf9ba44df3c85459adf154abc7bdc6f38974c057eee65bf0e4b00f456e0165"
+            },
+            "policy_id": null,
+            "value_sha256": "968a66a11daed80bc547325f3a8834b40a288e99c8420548267afff57be69a88"
+          },
+          "exercises.2.sets": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "1edf9ba44df3c85459adf154abc7bdc6f38974c057eee65bf0e4b00f456e0165"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.2.reps": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "1edf9ba44df3c85459adf154abc7bdc6f38974c057eee65bf0e4b00f456e0165"
+            },
+            "policy_id": null,
+            "value_sha256": "a935ad4607fd14aea4798b2fce1473ba41b00107a8881dea55e48976c7f191c2"
+          },
+          "exercises.2.load": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "e93ec0d6464fd10588cfb25eade2979c3643972a9d171220c5d6730d0d7c9fb9"
+            },
+            "policy_id": null,
+            "value_sha256": "6961d360ee7b1b0eb6904ac2b5368a346c2c6c04914791e3643abca884cdd73f"
+          },
+          "exercises.2.rest": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "faeb418bdc13cb88d3c3cbf04fcef2096d50f505c76ecf706fc8d7653e5475fc"
+            },
+            "policy_id": null,
+            "value_sha256": "6c94715e97b9e0c999d30b5afa209c49fd57f2472c208b15d4d8363df6f23f97"
+          },
+          "exercises.2.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+            "locator": {
+              "section_id": "Sec10",
+              "paragraph": 1,
+              "matched_text_sha256": "797160c5741c26dc56701025c5fefef478f0bad02be8922308871f8f7fbaf22b"
+            },
+            "policy_id": null,
+            "value_sha256": "298ac86064cdd9c2ae2c36b123e5ef649135643b9ad43466305ae40497921f98"
+          }
+        },
+        "applicability": "Recorded study population; not an individual outcome guarantee",
+        "independent_expert_review": false
+      },
+      "session_count": 16,
+      "working_set_count": 160,
+      "evidence_status": "SOURCE_STRUCTURED",
+      "scientific_approval": false,
+      "client_contract": "requires_schema_v2",
+      "chart_publishable": false,
+      "readiness": "REQUIRES_EXPLICIT_SETUP",
+      "required_setup": [
+        "exercise_specific_loads",
+        "warmup_choice",
+        "exercise_order",
+        "unreported_transition_rest"
+      ],
+      "explanation": "Source-based workload template; unreported execution choices must be explicitly supplied and labelled as product/user choices."
+    },
+    {
+      "schema_version": 2,
+      "engine_version": "source-programme-v2",
+      "programme_id": "PMC5003312-LOW",
+      "programme_version": "10fd468e6fc7adb339a8192ebd1312e4c3fdde25fa07c7bd81ee6a92b874aa14",
+      "definition": {
+        "schema_version": 2,
+        "id": "PMC5003312-LOW",
+        "arm": "LOW",
+        "title": "낮은 부하 · 8주",
+        "source": {
+          "pmcid": "PMC5003312",
+          "pmid": "27625750",
+          "sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5003312/",
+          "title": "A Comparison of Increases in Volume Load Over 8 Weeks of Low-Versus High-Load Resistance Training",
+          "license": "CC-BY-NC-4.0",
+          "raw_text_redistributed": false,
+          "adapter_version": "1",
+          "cohort_deduplication": "not_independently_assessed"
+        },
+        "weeks": 8,
+        "sessions_per_week": 3,
+        "population": {
+          "sex": "male",
+          "min_age": 18,
+          "max_age": 35,
+          "training_months": 12,
+          "healthy": true
+        },
+        "context": {
+          "other_resistance_or_high_intensity_anaerobic": "excluded",
+          "supervision": "directly_supervised",
+          "between_exercise_rest": {
+            "status": "not_reported"
+          },
+          "warmup": {
+            "status": "not_reported"
+          },
+          "initial_load": {
+            "measurement": "exercise_specific_rm",
+            "reps": 30
+          }
+        },
+        "progression": {
+          "kind": "adjust_to_rm_range",
+          "target": {
+            "min": 25,
+            "max": 35
+          },
+          "kg_step": null,
+          "weekly_intent": "progressive_increase_within_target"
+        },
+        "spacing": {
+          "min_day_difference": 2,
+          "basis": "non_consecutive_days",
+          "minimum_hours": null
+        },
+        "order": {
+          "source_order": "not_explicitly_prescribed",
+          "presentation_order": "listed_order",
+          "user_choice_required": true
+        },
+        "exercises": [
+          {
+            "id": "barbell_bench_press",
+            "sets": 3,
+            "reps": {
+              "min": 25,
+              "max": 35
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 30
+            },
+            "rest": {
+              "seconds": 90,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "barbell_military_press",
+            "sets": 3,
+            "reps": {
+              "min": 25,
+              "max": 35
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 30
+            },
+            "rest": {
+              "seconds": 90,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "wide_grip_lat_pulldown",
+            "sets": 3,
+            "reps": {
+              "min": 25,
+              "max": 35
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 30
+            },
+            "rest": {
+              "seconds": 90,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "seated_cable_row",
+            "sets": 3,
+            "reps": {
+              "min": 25,
+              "max": 35
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 30
+            },
+            "rest": {
+              "seconds": 90,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "barbell_back_squat",
+            "sets": 3,
+            "reps": {
+              "min": 25,
+              "max": 35
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 30
+            },
+            "rest": {
+              "seconds": 90,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "machine_leg_press",
+            "sets": 3,
+            "reps": {
+              "min": 25,
+              "max": 35
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 30
+            },
+            "rest": {
+              "seconds": 90,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "machine_leg_extension",
+            "sets": 3,
+            "reps": {
+              "min": 25,
+              "max": 35
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 30
+            },
+            "rest": {
+              "seconds": 90,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          }
+        ],
+        "provenance": {
+          "weeks": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "b98b2ff5df321e479306d38a1ad7182faf10fb77c6b1bda4951a2a76f40094a0"
+            },
+            "policy_id": null,
+            "value_sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+          },
+          "sessions_per_week": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "b98b2ff5df321e479306d38a1ad7182faf10fb77c6b1bda4951a2a76f40094a0"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "population": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 1,
+              "matched_text_sha256": "4ea23fa8f1bc7a1de5c6238bef82f98ab86d3fbd6b6dc54c08d9e79987c96f83"
+            },
+            "policy_id": null,
+            "value_sha256": "9022191084b1a3a6bf051e08360e8bb0fc7ec2d3ce5ea021bc3b688b5b1dd58f"
+          },
+          "context": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "bff50c404a2a3aabddf5272d00040640d515c9d21166f76ce2ca1491520bc7cf"
+            },
+            "policy_id": null,
+            "value_sha256": "643e938985268b75ef9faf89307563d42deba5bb12072fe8298ffb0045081bac"
+          },
+          "progression": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "6dca972163617a1102c1111fe698d274091725ee59905d8dacacf0e55800899c"
+            },
+            "policy_id": null,
+            "value_sha256": "7529c61e19706ae380f7f22c803fe6b1b3b2989629f605902115b4efe690603b"
+          },
+          "spacing": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "52e6d7903a42d7375310ae93b0d7271330824eb1de3b3fa98cc6d146b867bc2e"
+            },
+            "policy_id": null,
+            "value_sha256": "88a41b16b47d1b995ad7e4a25e30a0d5bad52ed9744d93d068d59f78a6ca9880"
+          },
+          "order": {
+            "kind": "not_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": null,
+            "policy_id": null,
+            "value_sha256": "42c8c14653b5700bab5421cbc2d7b6663cf3fc73cbf00926365e6af333b55164"
+          },
+          "exercises.0.id": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "e5c785d665d654f27e682c1312997debb582bb55933ec3062c61f912b539b8a4"
+            },
+            "policy_id": null,
+            "value_sha256": "1c442922c239038c190a6405aa455199c865c9a1c60e91fc11b7a1e0ff006057"
+          },
+          "exercises.0.sets": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "1600fd47050ad345f8676161b2ca62af4d6273fb7894393ce4a2e2c1506e2505"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.0.reps": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 2,
+              "matched_text_sha256": "0fe63d5416ca4f12bcc9bbcf031fdc6bf40f7f6410c43c62ae401e9ce70794d4"
+            },
+            "policy_id": null,
+            "value_sha256": "69dfa587c03781e55a6f1ad8a8999a8d8bfa5212adbdeb9732544cfe842d1f6b"
+          },
+          "exercises.0.load": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "afd32dfee5c733863a34e721fd45b92125c6302e038a92d6b90c56f67a3b8095"
+            },
+            "policy_id": null,
+            "value_sha256": "06f7463a788349f71d66a4c3da20a1a15488eacf23d81587ed429469dab33b26"
+          },
+          "exercises.0.rest": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "3574c491f900f1ba8696ef1f47bc4a12febe7f5d57bf14d41fd0a76c4720a863"
+            },
+            "policy_id": null,
+            "value_sha256": "55190574b55b2ba8b0a77e3aa0e8f245cbcc56ce096c47438ae4f7d6d6c8b3ef"
+          },
+          "exercises.0.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "33ce8905ff7782fb5112d2b1072916ec7611f21a32db52ee003a5f3b556deb18"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.1.id": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "e5c785d665d654f27e682c1312997debb582bb55933ec3062c61f912b539b8a4"
+            },
+            "policy_id": null,
+            "value_sha256": "fb9fbe8867515c09ad5c495396e179a97922f17adb8b1c96a409582c3fe9a67d"
+          },
+          "exercises.1.sets": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "1600fd47050ad345f8676161b2ca62af4d6273fb7894393ce4a2e2c1506e2505"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.1.reps": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 2,
+              "matched_text_sha256": "0fe63d5416ca4f12bcc9bbcf031fdc6bf40f7f6410c43c62ae401e9ce70794d4"
+            },
+            "policy_id": null,
+            "value_sha256": "69dfa587c03781e55a6f1ad8a8999a8d8bfa5212adbdeb9732544cfe842d1f6b"
+          },
+          "exercises.1.load": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "afd32dfee5c733863a34e721fd45b92125c6302e038a92d6b90c56f67a3b8095"
+            },
+            "policy_id": null,
+            "value_sha256": "06f7463a788349f71d66a4c3da20a1a15488eacf23d81587ed429469dab33b26"
+          },
+          "exercises.1.rest": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "3574c491f900f1ba8696ef1f47bc4a12febe7f5d57bf14d41fd0a76c4720a863"
+            },
+            "policy_id": null,
+            "value_sha256": "55190574b55b2ba8b0a77e3aa0e8f245cbcc56ce096c47438ae4f7d6d6c8b3ef"
+          },
+          "exercises.1.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "33ce8905ff7782fb5112d2b1072916ec7611f21a32db52ee003a5f3b556deb18"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.2.id": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "e5c785d665d654f27e682c1312997debb582bb55933ec3062c61f912b539b8a4"
+            },
+            "policy_id": null,
+            "value_sha256": "934daf6e910298a94eb111eb42437d98b81369e8a02e0fde6131e8075881bed5"
+          },
+          "exercises.2.sets": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "1600fd47050ad345f8676161b2ca62af4d6273fb7894393ce4a2e2c1506e2505"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.2.reps": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 2,
+              "matched_text_sha256": "0fe63d5416ca4f12bcc9bbcf031fdc6bf40f7f6410c43c62ae401e9ce70794d4"
+            },
+            "policy_id": null,
+            "value_sha256": "69dfa587c03781e55a6f1ad8a8999a8d8bfa5212adbdeb9732544cfe842d1f6b"
+          },
+          "exercises.2.load": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "afd32dfee5c733863a34e721fd45b92125c6302e038a92d6b90c56f67a3b8095"
+            },
+            "policy_id": null,
+            "value_sha256": "06f7463a788349f71d66a4c3da20a1a15488eacf23d81587ed429469dab33b26"
+          },
+          "exercises.2.rest": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "3574c491f900f1ba8696ef1f47bc4a12febe7f5d57bf14d41fd0a76c4720a863"
+            },
+            "policy_id": null,
+            "value_sha256": "55190574b55b2ba8b0a77e3aa0e8f245cbcc56ce096c47438ae4f7d6d6c8b3ef"
+          },
+          "exercises.2.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "33ce8905ff7782fb5112d2b1072916ec7611f21a32db52ee003a5f3b556deb18"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.3.id": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "e5c785d665d654f27e682c1312997debb582bb55933ec3062c61f912b539b8a4"
+            },
+            "policy_id": null,
+            "value_sha256": "4a2960fdd1815d3629042a4e917467719738f9071c6735d36ad066cbe56427d5"
+          },
+          "exercises.3.sets": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "1600fd47050ad345f8676161b2ca62af4d6273fb7894393ce4a2e2c1506e2505"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.3.reps": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 2,
+              "matched_text_sha256": "0fe63d5416ca4f12bcc9bbcf031fdc6bf40f7f6410c43c62ae401e9ce70794d4"
+            },
+            "policy_id": null,
+            "value_sha256": "69dfa587c03781e55a6f1ad8a8999a8d8bfa5212adbdeb9732544cfe842d1f6b"
+          },
+          "exercises.3.load": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "afd32dfee5c733863a34e721fd45b92125c6302e038a92d6b90c56f67a3b8095"
+            },
+            "policy_id": null,
+            "value_sha256": "06f7463a788349f71d66a4c3da20a1a15488eacf23d81587ed429469dab33b26"
+          },
+          "exercises.3.rest": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "3574c491f900f1ba8696ef1f47bc4a12febe7f5d57bf14d41fd0a76c4720a863"
+            },
+            "policy_id": null,
+            "value_sha256": "55190574b55b2ba8b0a77e3aa0e8f245cbcc56ce096c47438ae4f7d6d6c8b3ef"
+          },
+          "exercises.3.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "33ce8905ff7782fb5112d2b1072916ec7611f21a32db52ee003a5f3b556deb18"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.4.id": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "e5c785d665d654f27e682c1312997debb582bb55933ec3062c61f912b539b8a4"
+            },
+            "policy_id": null,
+            "value_sha256": "40d4b9ee321594d517a4353b1c78a60c5bea6e91c577cc8e088ff8914670300b"
+          },
+          "exercises.4.sets": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "1600fd47050ad345f8676161b2ca62af4d6273fb7894393ce4a2e2c1506e2505"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.4.reps": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 2,
+              "matched_text_sha256": "0fe63d5416ca4f12bcc9bbcf031fdc6bf40f7f6410c43c62ae401e9ce70794d4"
+            },
+            "policy_id": null,
+            "value_sha256": "69dfa587c03781e55a6f1ad8a8999a8d8bfa5212adbdeb9732544cfe842d1f6b"
+          },
+          "exercises.4.load": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "afd32dfee5c733863a34e721fd45b92125c6302e038a92d6b90c56f67a3b8095"
+            },
+            "policy_id": null,
+            "value_sha256": "06f7463a788349f71d66a4c3da20a1a15488eacf23d81587ed429469dab33b26"
+          },
+          "exercises.4.rest": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "3574c491f900f1ba8696ef1f47bc4a12febe7f5d57bf14d41fd0a76c4720a863"
+            },
+            "policy_id": null,
+            "value_sha256": "55190574b55b2ba8b0a77e3aa0e8f245cbcc56ce096c47438ae4f7d6d6c8b3ef"
+          },
+          "exercises.4.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "33ce8905ff7782fb5112d2b1072916ec7611f21a32db52ee003a5f3b556deb18"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.5.id": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "e5c785d665d654f27e682c1312997debb582bb55933ec3062c61f912b539b8a4"
+            },
+            "policy_id": null,
+            "value_sha256": "5fc6a3628d471451b6ec40c90edca69734955080e46a6be1f63cabff40750c20"
+          },
+          "exercises.5.sets": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "1600fd47050ad345f8676161b2ca62af4d6273fb7894393ce4a2e2c1506e2505"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.5.reps": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 2,
+              "matched_text_sha256": "0fe63d5416ca4f12bcc9bbcf031fdc6bf40f7f6410c43c62ae401e9ce70794d4"
+            },
+            "policy_id": null,
+            "value_sha256": "69dfa587c03781e55a6f1ad8a8999a8d8bfa5212adbdeb9732544cfe842d1f6b"
+          },
+          "exercises.5.load": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "afd32dfee5c733863a34e721fd45b92125c6302e038a92d6b90c56f67a3b8095"
+            },
+            "policy_id": null,
+            "value_sha256": "06f7463a788349f71d66a4c3da20a1a15488eacf23d81587ed429469dab33b26"
+          },
+          "exercises.5.rest": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "3574c491f900f1ba8696ef1f47bc4a12febe7f5d57bf14d41fd0a76c4720a863"
+            },
+            "policy_id": null,
+            "value_sha256": "55190574b55b2ba8b0a77e3aa0e8f245cbcc56ce096c47438ae4f7d6d6c8b3ef"
+          },
+          "exercises.5.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "33ce8905ff7782fb5112d2b1072916ec7611f21a32db52ee003a5f3b556deb18"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.6.id": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "e5c785d665d654f27e682c1312997debb582bb55933ec3062c61f912b539b8a4"
+            },
+            "policy_id": null,
+            "value_sha256": "3b504b894624eb105ea469c73734fca6e3fc51cba4b1d4b394c450c3c4234af0"
+          },
+          "exercises.6.sets": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "1600fd47050ad345f8676161b2ca62af4d6273fb7894393ce4a2e2c1506e2505"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.6.reps": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 2,
+              "matched_text_sha256": "0fe63d5416ca4f12bcc9bbcf031fdc6bf40f7f6410c43c62ae401e9ce70794d4"
+            },
+            "policy_id": null,
+            "value_sha256": "69dfa587c03781e55a6f1ad8a8999a8d8bfa5212adbdeb9732544cfe842d1f6b"
+          },
+          "exercises.6.load": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "afd32dfee5c733863a34e721fd45b92125c6302e038a92d6b90c56f67a3b8095"
+            },
+            "policy_id": null,
+            "value_sha256": "06f7463a788349f71d66a4c3da20a1a15488eacf23d81587ed429469dab33b26"
+          },
+          "exercises.6.rest": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "3574c491f900f1ba8696ef1f47bc4a12febe7f5d57bf14d41fd0a76c4720a863"
+            },
+            "policy_id": null,
+            "value_sha256": "55190574b55b2ba8b0a77e3aa0e8f245cbcc56ce096c47438ae4f7d6d6c8b3ef"
+          },
+          "exercises.6.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "33ce8905ff7782fb5112d2b1072916ec7611f21a32db52ee003a5f3b556deb18"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          }
+        },
+        "applicability": "Recorded study population; not an individual outcome guarantee",
+        "independent_expert_review": false
+      },
+      "session_count": 24,
+      "working_set_count": 504,
+      "evidence_status": "SOURCE_STRUCTURED",
+      "scientific_approval": false,
+      "client_contract": "requires_schema_v2",
+      "chart_publishable": false,
+      "readiness": "REQUIRES_EXPLICIT_SETUP",
+      "required_setup": [
+        "exercise_specific_loads",
+        "warmup_choice",
+        "exercise_order",
+        "unreported_transition_rest"
+      ],
+      "explanation": "Source-based workload template; unreported execution choices must be explicitly supplied and labelled as product/user choices."
+    },
+    {
+      "schema_version": 2,
+      "engine_version": "source-programme-v2",
+      "programme_id": "PMC5003312-HIGH",
+      "programme_version": "f4120736047778cce86adc8a11e7088bff177e569cb4cb3c8165c69228dcf049",
+      "definition": {
+        "schema_version": 2,
+        "id": "PMC5003312-HIGH",
+        "arm": "HIGH",
+        "title": "전신 반복 최대 중량 · 8주",
+        "source": {
+          "pmcid": "PMC5003312",
+          "pmid": "27625750",
+          "sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5003312/",
+          "title": "A Comparison of Increases in Volume Load Over 8 Weeks of Low-Versus High-Load Resistance Training",
+          "license": "CC-BY-NC-4.0",
+          "raw_text_redistributed": false,
+          "adapter_version": "1",
+          "cohort_deduplication": "not_independently_assessed"
+        },
+        "weeks": 8,
+        "sessions_per_week": 3,
+        "population": {
+          "sex": "male",
+          "min_age": 18,
+          "max_age": 35,
+          "training_months": 12,
+          "healthy": true
+        },
+        "context": {
+          "other_resistance_or_high_intensity_anaerobic": "excluded",
+          "supervision": "directly_supervised",
+          "between_exercise_rest": {
+            "status": "not_reported"
+          },
+          "warmup": {
+            "status": "not_reported"
+          },
+          "initial_load": {
+            "measurement": "exercise_specific_rm",
+            "reps": 10
+          }
+        },
+        "progression": {
+          "kind": "adjust_to_rm_range",
+          "target": {
+            "min": 8,
+            "max": 12
+          },
+          "kg_step": null,
+          "weekly_intent": "progressive_increase_within_target"
+        },
+        "spacing": {
+          "min_day_difference": 2,
+          "basis": "non_consecutive_days",
+          "minimum_hours": null
+        },
+        "order": {
+          "source_order": "not_explicitly_prescribed",
+          "presentation_order": "listed_order",
+          "user_choice_required": true
+        },
+        "exercises": [
+          {
+            "id": "barbell_bench_press",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 12
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 10
+            },
+            "rest": {
+              "seconds": 90,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "barbell_military_press",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 12
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 10
+            },
+            "rest": {
+              "seconds": 90,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "wide_grip_lat_pulldown",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 12
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 10
+            },
+            "rest": {
+              "seconds": 90,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "seated_cable_row",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 12
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 10
+            },
+            "rest": {
+              "seconds": 90,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "barbell_back_squat",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 12
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 10
+            },
+            "rest": {
+              "seconds": 90,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "machine_leg_press",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 12
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 10
+            },
+            "rest": {
+              "seconds": 90,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "machine_leg_extension",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 12
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 10
+            },
+            "rest": {
+              "seconds": 90,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          }
+        ],
+        "provenance": {
+          "weeks": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "b98b2ff5df321e479306d38a1ad7182faf10fb77c6b1bda4951a2a76f40094a0"
+            },
+            "policy_id": null,
+            "value_sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+          },
+          "sessions_per_week": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "b98b2ff5df321e479306d38a1ad7182faf10fb77c6b1bda4951a2a76f40094a0"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "population": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 1,
+              "matched_text_sha256": "4ea23fa8f1bc7a1de5c6238bef82f98ab86d3fbd6b6dc54c08d9e79987c96f83"
+            },
+            "policy_id": null,
+            "value_sha256": "9022191084b1a3a6bf051e08360e8bb0fc7ec2d3ce5ea021bc3b688b5b1dd58f"
+          },
+          "context": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "bff50c404a2a3aabddf5272d00040640d515c9d21166f76ce2ca1491520bc7cf"
+            },
+            "policy_id": null,
+            "value_sha256": "94f57e85eaabe3ca99951ee935357880f179ebfc2b6f7fc11225e26aac07ffab"
+          },
+          "progression": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "6dca972163617a1102c1111fe698d274091725ee59905d8dacacf0e55800899c"
+            },
+            "policy_id": null,
+            "value_sha256": "0f179235c46343fc23281c7a1a6ba175df2ce1fd7b2402792e828271ba4e3ce4"
+          },
+          "spacing": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "52e6d7903a42d7375310ae93b0d7271330824eb1de3b3fa98cc6d146b867bc2e"
+            },
+            "policy_id": null,
+            "value_sha256": "88a41b16b47d1b995ad7e4a25e30a0d5bad52ed9744d93d068d59f78a6ca9880"
+          },
+          "order": {
+            "kind": "not_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": null,
+            "policy_id": null,
+            "value_sha256": "42c8c14653b5700bab5421cbc2d7b6663cf3fc73cbf00926365e6af333b55164"
+          },
+          "exercises.0.id": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "e5c785d665d654f27e682c1312997debb582bb55933ec3062c61f912b539b8a4"
+            },
+            "policy_id": null,
+            "value_sha256": "1c442922c239038c190a6405aa455199c865c9a1c60e91fc11b7a1e0ff006057"
+          },
+          "exercises.0.sets": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "1600fd47050ad345f8676161b2ca62af4d6273fb7894393ce4a2e2c1506e2505"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.0.reps": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 2,
+              "matched_text_sha256": "92d8b820c094252f12a3254c57741ac7f0e4f7e25f7c8e664b919585768195d2"
+            },
+            "policy_id": null,
+            "value_sha256": "5778804eaf04a3f481ea6a85a1fac8dc987c044377e183342587d2122b734771"
+          },
+          "exercises.0.load": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "859a7dc1bcfdeced75ecee1cf98c925a2609cf784ff1433caf04f0242dbdd1da"
+            },
+            "policy_id": null,
+            "value_sha256": "1a6808baf7a1482f4fd80e13fe9cf7689bfa01c4994ae1e85cef67fb0ce2d14a"
+          },
+          "exercises.0.rest": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "3574c491f900f1ba8696ef1f47bc4a12febe7f5d57bf14d41fd0a76c4720a863"
+            },
+            "policy_id": null,
+            "value_sha256": "55190574b55b2ba8b0a77e3aa0e8f245cbcc56ce096c47438ae4f7d6d6c8b3ef"
+          },
+          "exercises.0.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "33ce8905ff7782fb5112d2b1072916ec7611f21a32db52ee003a5f3b556deb18"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.1.id": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "e5c785d665d654f27e682c1312997debb582bb55933ec3062c61f912b539b8a4"
+            },
+            "policy_id": null,
+            "value_sha256": "fb9fbe8867515c09ad5c495396e179a97922f17adb8b1c96a409582c3fe9a67d"
+          },
+          "exercises.1.sets": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "1600fd47050ad345f8676161b2ca62af4d6273fb7894393ce4a2e2c1506e2505"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.1.reps": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 2,
+              "matched_text_sha256": "92d8b820c094252f12a3254c57741ac7f0e4f7e25f7c8e664b919585768195d2"
+            },
+            "policy_id": null,
+            "value_sha256": "5778804eaf04a3f481ea6a85a1fac8dc987c044377e183342587d2122b734771"
+          },
+          "exercises.1.load": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "859a7dc1bcfdeced75ecee1cf98c925a2609cf784ff1433caf04f0242dbdd1da"
+            },
+            "policy_id": null,
+            "value_sha256": "1a6808baf7a1482f4fd80e13fe9cf7689bfa01c4994ae1e85cef67fb0ce2d14a"
+          },
+          "exercises.1.rest": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "3574c491f900f1ba8696ef1f47bc4a12febe7f5d57bf14d41fd0a76c4720a863"
+            },
+            "policy_id": null,
+            "value_sha256": "55190574b55b2ba8b0a77e3aa0e8f245cbcc56ce096c47438ae4f7d6d6c8b3ef"
+          },
+          "exercises.1.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "33ce8905ff7782fb5112d2b1072916ec7611f21a32db52ee003a5f3b556deb18"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.2.id": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "e5c785d665d654f27e682c1312997debb582bb55933ec3062c61f912b539b8a4"
+            },
+            "policy_id": null,
+            "value_sha256": "934daf6e910298a94eb111eb42437d98b81369e8a02e0fde6131e8075881bed5"
+          },
+          "exercises.2.sets": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "1600fd47050ad345f8676161b2ca62af4d6273fb7894393ce4a2e2c1506e2505"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.2.reps": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 2,
+              "matched_text_sha256": "92d8b820c094252f12a3254c57741ac7f0e4f7e25f7c8e664b919585768195d2"
+            },
+            "policy_id": null,
+            "value_sha256": "5778804eaf04a3f481ea6a85a1fac8dc987c044377e183342587d2122b734771"
+          },
+          "exercises.2.load": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "859a7dc1bcfdeced75ecee1cf98c925a2609cf784ff1433caf04f0242dbdd1da"
+            },
+            "policy_id": null,
+            "value_sha256": "1a6808baf7a1482f4fd80e13fe9cf7689bfa01c4994ae1e85cef67fb0ce2d14a"
+          },
+          "exercises.2.rest": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "3574c491f900f1ba8696ef1f47bc4a12febe7f5d57bf14d41fd0a76c4720a863"
+            },
+            "policy_id": null,
+            "value_sha256": "55190574b55b2ba8b0a77e3aa0e8f245cbcc56ce096c47438ae4f7d6d6c8b3ef"
+          },
+          "exercises.2.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "33ce8905ff7782fb5112d2b1072916ec7611f21a32db52ee003a5f3b556deb18"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.3.id": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "e5c785d665d654f27e682c1312997debb582bb55933ec3062c61f912b539b8a4"
+            },
+            "policy_id": null,
+            "value_sha256": "4a2960fdd1815d3629042a4e917467719738f9071c6735d36ad066cbe56427d5"
+          },
+          "exercises.3.sets": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "1600fd47050ad345f8676161b2ca62af4d6273fb7894393ce4a2e2c1506e2505"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.3.reps": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 2,
+              "matched_text_sha256": "92d8b820c094252f12a3254c57741ac7f0e4f7e25f7c8e664b919585768195d2"
+            },
+            "policy_id": null,
+            "value_sha256": "5778804eaf04a3f481ea6a85a1fac8dc987c044377e183342587d2122b734771"
+          },
+          "exercises.3.load": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "859a7dc1bcfdeced75ecee1cf98c925a2609cf784ff1433caf04f0242dbdd1da"
+            },
+            "policy_id": null,
+            "value_sha256": "1a6808baf7a1482f4fd80e13fe9cf7689bfa01c4994ae1e85cef67fb0ce2d14a"
+          },
+          "exercises.3.rest": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "3574c491f900f1ba8696ef1f47bc4a12febe7f5d57bf14d41fd0a76c4720a863"
+            },
+            "policy_id": null,
+            "value_sha256": "55190574b55b2ba8b0a77e3aa0e8f245cbcc56ce096c47438ae4f7d6d6c8b3ef"
+          },
+          "exercises.3.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "33ce8905ff7782fb5112d2b1072916ec7611f21a32db52ee003a5f3b556deb18"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.4.id": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "e5c785d665d654f27e682c1312997debb582bb55933ec3062c61f912b539b8a4"
+            },
+            "policy_id": null,
+            "value_sha256": "40d4b9ee321594d517a4353b1c78a60c5bea6e91c577cc8e088ff8914670300b"
+          },
+          "exercises.4.sets": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "1600fd47050ad345f8676161b2ca62af4d6273fb7894393ce4a2e2c1506e2505"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.4.reps": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 2,
+              "matched_text_sha256": "92d8b820c094252f12a3254c57741ac7f0e4f7e25f7c8e664b919585768195d2"
+            },
+            "policy_id": null,
+            "value_sha256": "5778804eaf04a3f481ea6a85a1fac8dc987c044377e183342587d2122b734771"
+          },
+          "exercises.4.load": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "859a7dc1bcfdeced75ecee1cf98c925a2609cf784ff1433caf04f0242dbdd1da"
+            },
+            "policy_id": null,
+            "value_sha256": "1a6808baf7a1482f4fd80e13fe9cf7689bfa01c4994ae1e85cef67fb0ce2d14a"
+          },
+          "exercises.4.rest": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "3574c491f900f1ba8696ef1f47bc4a12febe7f5d57bf14d41fd0a76c4720a863"
+            },
+            "policy_id": null,
+            "value_sha256": "55190574b55b2ba8b0a77e3aa0e8f245cbcc56ce096c47438ae4f7d6d6c8b3ef"
+          },
+          "exercises.4.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "33ce8905ff7782fb5112d2b1072916ec7611f21a32db52ee003a5f3b556deb18"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.5.id": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "e5c785d665d654f27e682c1312997debb582bb55933ec3062c61f912b539b8a4"
+            },
+            "policy_id": null,
+            "value_sha256": "5fc6a3628d471451b6ec40c90edca69734955080e46a6be1f63cabff40750c20"
+          },
+          "exercises.5.sets": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "1600fd47050ad345f8676161b2ca62af4d6273fb7894393ce4a2e2c1506e2505"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.5.reps": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 2,
+              "matched_text_sha256": "92d8b820c094252f12a3254c57741ac7f0e4f7e25f7c8e664b919585768195d2"
+            },
+            "policy_id": null,
+            "value_sha256": "5778804eaf04a3f481ea6a85a1fac8dc987c044377e183342587d2122b734771"
+          },
+          "exercises.5.load": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "859a7dc1bcfdeced75ecee1cf98c925a2609cf784ff1433caf04f0242dbdd1da"
+            },
+            "policy_id": null,
+            "value_sha256": "1a6808baf7a1482f4fd80e13fe9cf7689bfa01c4994ae1e85cef67fb0ce2d14a"
+          },
+          "exercises.5.rest": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "3574c491f900f1ba8696ef1f47bc4a12febe7f5d57bf14d41fd0a76c4720a863"
+            },
+            "policy_id": null,
+            "value_sha256": "55190574b55b2ba8b0a77e3aa0e8f245cbcc56ce096c47438ae4f7d6d6c8b3ef"
+          },
+          "exercises.5.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "33ce8905ff7782fb5112d2b1072916ec7611f21a32db52ee003a5f3b556deb18"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.6.id": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "e5c785d665d654f27e682c1312997debb582bb55933ec3062c61f912b539b8a4"
+            },
+            "policy_id": null,
+            "value_sha256": "3b504b894624eb105ea469c73734fca6e3fc51cba4b1d4b394c450c3c4234af0"
+          },
+          "exercises.6.sets": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 1,
+              "matched_text_sha256": "1600fd47050ad345f8676161b2ca62af4d6273fb7894393ce4a2e2c1506e2505"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.6.reps": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172222",
+              "paragraph": 2,
+              "matched_text_sha256": "92d8b820c094252f12a3254c57741ac7f0e4f7e25f7c8e664b919585768195d2"
+            },
+            "policy_id": null,
+            "value_sha256": "5778804eaf04a3f481ea6a85a1fac8dc987c044377e183342587d2122b734771"
+          },
+          "exercises.6.load": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "859a7dc1bcfdeced75ecee1cf98c925a2609cf784ff1433caf04f0242dbdd1da"
+            },
+            "policy_id": null,
+            "value_sha256": "1a6808baf7a1482f4fd80e13fe9cf7689bfa01c4994ae1e85cef67fb0ce2d14a"
+          },
+          "exercises.6.rest": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "3574c491f900f1ba8696ef1f47bc4a12febe7f5d57bf14d41fd0a76c4720a863"
+            },
+            "policy_id": null,
+            "value_sha256": "55190574b55b2ba8b0a77e3aa0e8f245cbcc56ce096c47438ae4f7d6d6c8b3ef"
+          },
+          "exercises.6.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "dd55276e3ec14ae5d6b62872d9fbf5e62bd3b804e123c49eff66d95f2c649f74",
+            "locator": {
+              "section_id": "sec172223",
+              "paragraph": 2,
+              "matched_text_sha256": "33ce8905ff7782fb5112d2b1072916ec7611f21a32db52ee003a5f3b556deb18"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          }
+        },
+        "applicability": "Recorded study population; not an individual outcome guarantee",
+        "independent_expert_review": false
+      },
+      "session_count": 24,
+      "working_set_count": 504,
+      "evidence_status": "SOURCE_STRUCTURED",
+      "scientific_approval": false,
+      "client_contract": "requires_schema_v2",
+      "chart_publishable": false,
+      "readiness": "REQUIRES_EXPLICIT_SETUP",
+      "required_setup": [
+        "exercise_specific_loads",
+        "warmup_choice",
+        "exercise_order",
+        "unreported_transition_rest"
+      ],
+      "explanation": "Source-based workload template; unreported execution choices must be explicitly supplied and labelled as product/user choices."
+    },
+    {
+      "schema_version": 2,
+      "engine_version": "source-programme-v2",
+      "programme_id": "PMC6974452-TRAD",
+      "programme_version": "f1042ae4d822036de5be7abfbd0d3893763fac07d48d262105a37a2d30bba096",
+      "definition": {
+        "schema_version": 2,
+        "id": "PMC6974452-TRAD",
+        "arm": "TRAD",
+        "title": "전신 반복 최대 중량 · 8주",
+        "source": {
+          "pmcid": "PMC6974452",
+          "pmid": "32009980",
+          "sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6974452/",
+          "title": "To Flex or Rest: Does Adding No-Load Isometric Actions to the Inter-Set Rest Period in Resistance Training Enhance Muscular Adaptations? A Randomized-Controlled Trial",
+          "license": "CC-BY-4.0",
+          "raw_text_redistributed": false,
+          "adapter_version": "1",
+          "cohort_deduplication": "not_independently_assessed"
+        },
+        "weeks": 8,
+        "sessions_per_week": 3,
+        "population": {
+          "sex": "male",
+          "min_age": 18,
+          "max_age": 35,
+          "training_months": 12,
+          "healthy": true
+        },
+        "context": {
+          "other_resistance_or_high_intensity_anaerobic": "excluded",
+          "supervision": "directly_supervised",
+          "between_exercise_rest": {
+            "status": "not_reported"
+          },
+          "warmup": {
+            "status": "not_reported"
+          },
+          "initial_load": {
+            "measurement": "exercise_specific_rm",
+            "reps": 10
+          }
+        },
+        "progression": {
+          "kind": "adjust_to_rm_range",
+          "target": {
+            "min": 8,
+            "max": 12
+          },
+          "kg_step": null,
+          "weekly_intent": "progressive_increase_within_target"
+        },
+        "spacing": {
+          "min_day_difference": 2,
+          "basis": "non_consecutive_days",
+          "minimum_hours": 48
+        },
+        "order": {
+          "source_order": "not_explicitly_prescribed",
+          "presentation_order": "listed_order",
+          "user_choice_required": true
+        },
+        "exercises": [
+          {
+            "id": "barbell_bench_press",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 12
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 10
+            },
+            "rest": {
+              "seconds": 120,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "barbell_military_press",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 12
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 10
+            },
+            "rest": {
+              "seconds": 120,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "wide_grip_lat_pulldown",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 12
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 10
+            },
+            "rest": {
+              "seconds": 120,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "seated_cable_row",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 12
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 10
+            },
+            "rest": {
+              "seconds": 120,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "barbell_back_squat",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 12
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 10
+            },
+            "rest": {
+              "seconds": 120,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          },
+          {
+            "id": "machine_leg_press",
+            "sets": 3,
+            "reps": {
+              "min": 8,
+              "max": 12
+            },
+            "load": {
+              "kind": "repetition_maximum",
+              "failure": "momentary_concentric",
+              "initial_rm_test_reps": 10
+            },
+            "rest": {
+              "seconds": 120,
+              "operator": "eq"
+            },
+            "tempo": {
+              "concentric_seconds": 1,
+              "eccentric_seconds": 2,
+              "approximate": true
+            }
+          }
+        ],
+        "provenance": {
+          "weeks": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "b98b2ff5df321e479306d38a1ad7182faf10fb77c6b1bda4951a2a76f40094a0"
+            },
+            "policy_id": null,
+            "value_sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+          },
+          "sessions_per_week": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "b98b2ff5df321e479306d38a1ad7182faf10fb77c6b1bda4951a2a76f40094a0"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "population": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS1",
+              "paragraph": 1,
+              "matched_text_sha256": "1e434d99d1902bcea2139d9b58fc8eaf61b2b99bea78ed98af3791677234c4ac"
+            },
+            "policy_id": null,
+            "value_sha256": "9022191084b1a3a6bf051e08360e8bb0fc7ec2d3ce5ea021bc3b688b5b1dd58f"
+          },
+          "context": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 1,
+              "matched_text_sha256": "bff50c404a2a3aabddf5272d00040640d515c9d21166f76ce2ca1491520bc7cf"
+            },
+            "policy_id": null,
+            "value_sha256": "94f57e85eaabe3ca99951ee935357880f179ebfc2b6f7fc11225e26aac07ffab"
+          },
+          "progression": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "5208b54da31a90e52fb3a2893d71ae1200b0cae6ed01eb584028dae364834237"
+            },
+            "policy_id": null,
+            "value_sha256": "0f179235c46343fc23281c7a1a6ba175df2ce1fd7b2402792e828271ba4e3ce4"
+          },
+          "spacing": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "52e6d7903a42d7375310ae93b0d7271330824eb1de3b3fa98cc6d146b867bc2e"
+            },
+            "policy_id": null,
+            "value_sha256": "3e7b5a10d1d1f0358954dc93efb6e2061e5d0db1084b50e8ca20d7dd2603b299"
+          },
+          "order": {
+            "kind": "not_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": null,
+            "policy_id": null,
+            "value_sha256": "42c8c14653b5700bab5421cbc2d7b6663cf3fc73cbf00926365e6af333b55164"
+          },
+          "exercises.0.id": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 1,
+              "matched_text_sha256": "efe1fa1457890e68fe67c1141b63dea975b0475b814b35e0b2d716073a9322cb"
+            },
+            "policy_id": null,
+            "value_sha256": "1c442922c239038c190a6405aa455199c865c9a1c60e91fc11b7a1e0ff006057"
+          },
+          "exercises.0.sets": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "aa070c1c6bd4a269cfe793e50f7659bfdb94d99e0226b1acada037805b1df4d1"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.0.reps": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "99a979a9b5ba3d2e2d98be5f6d5f24fa6460b14541626320c1a448d6830fb69b"
+            },
+            "policy_id": null,
+            "value_sha256": "5778804eaf04a3f481ea6a85a1fac8dc987c044377e183342587d2122b734771"
+          },
+          "exercises.0.load": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "ed60aed8b10a9d979f15c46a454f30ee484b07de1910f26bb950927a9b00f298"
+            },
+            "policy_id": null,
+            "value_sha256": "1a6808baf7a1482f4fd80e13fe9cf7689bfa01c4994ae1e85cef67fb0ce2d14a"
+          },
+          "exercises.0.rest": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "e16f317cf925d5492e3429d07b0f13b8e363e73a9653006dd5abfdb238b8b4a7"
+            },
+            "policy_id": null,
+            "value_sha256": "b58bbf1c765c8e1cbd960f34aff4f8ed8640a11ebb882dd57dbfab2d11a47e89"
+          },
+          "exercises.0.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "e3387dae0247679baebd303630bf6c20b2b9271007f38c79e7079a074b9fbe11"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.1.id": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 1,
+              "matched_text_sha256": "efe1fa1457890e68fe67c1141b63dea975b0475b814b35e0b2d716073a9322cb"
+            },
+            "policy_id": null,
+            "value_sha256": "fb9fbe8867515c09ad5c495396e179a97922f17adb8b1c96a409582c3fe9a67d"
+          },
+          "exercises.1.sets": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "aa070c1c6bd4a269cfe793e50f7659bfdb94d99e0226b1acada037805b1df4d1"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.1.reps": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "99a979a9b5ba3d2e2d98be5f6d5f24fa6460b14541626320c1a448d6830fb69b"
+            },
+            "policy_id": null,
+            "value_sha256": "5778804eaf04a3f481ea6a85a1fac8dc987c044377e183342587d2122b734771"
+          },
+          "exercises.1.load": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "ed60aed8b10a9d979f15c46a454f30ee484b07de1910f26bb950927a9b00f298"
+            },
+            "policy_id": null,
+            "value_sha256": "1a6808baf7a1482f4fd80e13fe9cf7689bfa01c4994ae1e85cef67fb0ce2d14a"
+          },
+          "exercises.1.rest": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "e16f317cf925d5492e3429d07b0f13b8e363e73a9653006dd5abfdb238b8b4a7"
+            },
+            "policy_id": null,
+            "value_sha256": "b58bbf1c765c8e1cbd960f34aff4f8ed8640a11ebb882dd57dbfab2d11a47e89"
+          },
+          "exercises.1.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "e3387dae0247679baebd303630bf6c20b2b9271007f38c79e7079a074b9fbe11"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.2.id": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 1,
+              "matched_text_sha256": "efe1fa1457890e68fe67c1141b63dea975b0475b814b35e0b2d716073a9322cb"
+            },
+            "policy_id": null,
+            "value_sha256": "934daf6e910298a94eb111eb42437d98b81369e8a02e0fde6131e8075881bed5"
+          },
+          "exercises.2.sets": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "aa070c1c6bd4a269cfe793e50f7659bfdb94d99e0226b1acada037805b1df4d1"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.2.reps": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "99a979a9b5ba3d2e2d98be5f6d5f24fa6460b14541626320c1a448d6830fb69b"
+            },
+            "policy_id": null,
+            "value_sha256": "5778804eaf04a3f481ea6a85a1fac8dc987c044377e183342587d2122b734771"
+          },
+          "exercises.2.load": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "ed60aed8b10a9d979f15c46a454f30ee484b07de1910f26bb950927a9b00f298"
+            },
+            "policy_id": null,
+            "value_sha256": "1a6808baf7a1482f4fd80e13fe9cf7689bfa01c4994ae1e85cef67fb0ce2d14a"
+          },
+          "exercises.2.rest": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "e16f317cf925d5492e3429d07b0f13b8e363e73a9653006dd5abfdb238b8b4a7"
+            },
+            "policy_id": null,
+            "value_sha256": "b58bbf1c765c8e1cbd960f34aff4f8ed8640a11ebb882dd57dbfab2d11a47e89"
+          },
+          "exercises.2.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "e3387dae0247679baebd303630bf6c20b2b9271007f38c79e7079a074b9fbe11"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.3.id": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 1,
+              "matched_text_sha256": "efe1fa1457890e68fe67c1141b63dea975b0475b814b35e0b2d716073a9322cb"
+            },
+            "policy_id": null,
+            "value_sha256": "4a2960fdd1815d3629042a4e917467719738f9071c6735d36ad066cbe56427d5"
+          },
+          "exercises.3.sets": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "aa070c1c6bd4a269cfe793e50f7659bfdb94d99e0226b1acada037805b1df4d1"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.3.reps": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "99a979a9b5ba3d2e2d98be5f6d5f24fa6460b14541626320c1a448d6830fb69b"
+            },
+            "policy_id": null,
+            "value_sha256": "5778804eaf04a3f481ea6a85a1fac8dc987c044377e183342587d2122b734771"
+          },
+          "exercises.3.load": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "ed60aed8b10a9d979f15c46a454f30ee484b07de1910f26bb950927a9b00f298"
+            },
+            "policy_id": null,
+            "value_sha256": "1a6808baf7a1482f4fd80e13fe9cf7689bfa01c4994ae1e85cef67fb0ce2d14a"
+          },
+          "exercises.3.rest": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "e16f317cf925d5492e3429d07b0f13b8e363e73a9653006dd5abfdb238b8b4a7"
+            },
+            "policy_id": null,
+            "value_sha256": "b58bbf1c765c8e1cbd960f34aff4f8ed8640a11ebb882dd57dbfab2d11a47e89"
+          },
+          "exercises.3.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "e3387dae0247679baebd303630bf6c20b2b9271007f38c79e7079a074b9fbe11"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.4.id": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 1,
+              "matched_text_sha256": "efe1fa1457890e68fe67c1141b63dea975b0475b814b35e0b2d716073a9322cb"
+            },
+            "policy_id": null,
+            "value_sha256": "40d4b9ee321594d517a4353b1c78a60c5bea6e91c577cc8e088ff8914670300b"
+          },
+          "exercises.4.sets": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "aa070c1c6bd4a269cfe793e50f7659bfdb94d99e0226b1acada037805b1df4d1"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.4.reps": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "99a979a9b5ba3d2e2d98be5f6d5f24fa6460b14541626320c1a448d6830fb69b"
+            },
+            "policy_id": null,
+            "value_sha256": "5778804eaf04a3f481ea6a85a1fac8dc987c044377e183342587d2122b734771"
+          },
+          "exercises.4.load": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "ed60aed8b10a9d979f15c46a454f30ee484b07de1910f26bb950927a9b00f298"
+            },
+            "policy_id": null,
+            "value_sha256": "1a6808baf7a1482f4fd80e13fe9cf7689bfa01c4994ae1e85cef67fb0ce2d14a"
+          },
+          "exercises.4.rest": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "e16f317cf925d5492e3429d07b0f13b8e363e73a9653006dd5abfdb238b8b4a7"
+            },
+            "policy_id": null,
+            "value_sha256": "b58bbf1c765c8e1cbd960f34aff4f8ed8640a11ebb882dd57dbfab2d11a47e89"
+          },
+          "exercises.4.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "e3387dae0247679baebd303630bf6c20b2b9271007f38c79e7079a074b9fbe11"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          },
+          "exercises.5.id": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 1,
+              "matched_text_sha256": "efe1fa1457890e68fe67c1141b63dea975b0475b814b35e0b2d716073a9322cb"
+            },
+            "policy_id": null,
+            "value_sha256": "5fc6a3628d471451b6ec40c90edca69734955080e46a6be1f63cabff40750c20"
+          },
+          "exercises.5.sets": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "aa070c1c6bd4a269cfe793e50f7659bfdb94d99e0226b1acada037805b1df4d1"
+            },
+            "policy_id": null,
+            "value_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+          },
+          "exercises.5.reps": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "99a979a9b5ba3d2e2d98be5f6d5f24fa6460b14541626320c1a448d6830fb69b"
+            },
+            "policy_id": null,
+            "value_sha256": "5778804eaf04a3f481ea6a85a1fac8dc987c044377e183342587d2122b734771"
+          },
+          "exercises.5.load": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "ed60aed8b10a9d979f15c46a454f30ee484b07de1910f26bb950927a9b00f298"
+            },
+            "policy_id": null,
+            "value_sha256": "1a6808baf7a1482f4fd80e13fe9cf7689bfa01c4994ae1e85cef67fb0ce2d14a"
+          },
+          "exercises.5.rest": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "e16f317cf925d5492e3429d07b0f13b8e363e73a9653006dd5abfdb238b8b4a7"
+            },
+            "policy_id": null,
+            "value_sha256": "b58bbf1c765c8e1cbd960f34aff4f8ed8640a11ebb882dd57dbfab2d11a47e89"
+          },
+          "exercises.5.tempo": {
+            "kind": "source_reported",
+            "source_sha256": "53086cee6dfa9229cec15ea7f408dbe8ac73e20b5b02ce89fb7170ca96c2a829",
+            "locator": {
+              "section_id": "S2.SS2",
+              "paragraph": 2,
+              "matched_text_sha256": "e3387dae0247679baebd303630bf6c20b2b9271007f38c79e7079a074b9fbe11"
+            },
+            "policy_id": null,
+            "value_sha256": "6466fbb77f446c02a8b13e5c4b086e71a1802fb69e74bc49df33ce087b09c395"
+          }
+        },
+        "applicability": "Recorded study population; not an individual outcome guarantee",
+        "independent_expert_review": false
+      },
+      "session_count": 24,
+      "working_set_count": 432,
+      "evidence_status": "SOURCE_STRUCTURED",
+      "scientific_approval": false,
+      "client_contract": "requires_schema_v2",
+      "chart_publishable": false,
+      "readiness": "REQUIRES_EXPLICIT_SETUP",
+      "required_setup": [
+        "exercise_specific_loads",
+        "warmup_choice",
+        "exercise_order",
+        "unreported_transition_rest"
+      ],
+      "explanation": "Source-based workload template; unreported execution choices must be explicitly supplied and labelled as product/user choices."
+    }
+  ],
+  "failures": [],
+  "source_count": 3,
+  "programme_count": 5,
+  "scientific_approval": false,
+  "excluded_arms": [
+    {
+      "pmcid": "PMC6974452",
+      "arm": "ISO",
+      "reason": "Post-set isometric intervention requires a separate event contract; not silently omitted."
+    }
+  ]
+}

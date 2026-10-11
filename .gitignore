@@ -11,3 +11,9 @@ supabase/.temp/
 data/research/**/sources/
 
 data/research/**/import.sql
+
+data/research/engine-sources/
+
+data/research/engine/catalog-v2.json
+
+data/research/source-build/
