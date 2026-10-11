@@ -30,9 +30,26 @@ enum MassUnit: String, CaseIterable, Codable {
 struct CatalogResponse: Decodable {
     let schemaVersion: Int
     let items: [TrainingProtocol]
+    var metadata: CatalogMetadata? = nil
     enum CodingKeys: String, CodingKey {
-        case schemaVersion = "schema_version", items
+        case schemaVersion = "schema_version", items, metadata
     }
+}
+struct CatalogMetadata: Decodable {
+    let candidates: Int
+    let requested: Int
+    let awaitingReview: Int
+    let checkedAt: String
+    enum CodingKeys: String, CodingKey {
+        case candidates, requested
+        case awaitingReview = "awaiting_review"
+        case checkedAt = "checked_at"
+    }
+}
+enum ResearchCatalogConfiguration {
+    static let projectURL = URL(string: "https://gttvyfeyrnuspnnphuzk.supabase.co")!
+    // Public client key; private candidate tables are not accessible to this role.
+    static let publishableKey = "sb_publishable_ghbVxjHXJQDYh7CbvA-y5A_5qhNpSIv"
 }
 struct TrainingProtocol: Decodable, Identifiable {
     let id: String
@@ -42,6 +59,18 @@ struct TrainingProtocol: Decodable, Identifiable {
     let runnable: Bool
     let description: String
     let sessions: [TrainingSession]
+    var sourceType: String? = nil
+    var sourceDigest: String? = nil
+    var releaseID: String? = nil
+    enum CodingKeys: String, CodingKey {
+        case id, version, title, status, runnable, description, sessions
+        case sourceType = "source_type", sourceDigest = "source_sha256", releaseID = "release_id"
+    }
+    var isPublishedResearch: Bool {
+        runnable && status == "PUBLISHED_PROTOCOL" && sourceType == "RESEARCH"
+        && version > 0 && !(releaseID ?? "").isEmpty && !sessions.isEmpty
+        && (sourceDigest?.range(of: "^[a-f0-9]{64}$", options: .regularExpression) != nil)
+    }
 }
 struct TrainingSession: Decodable, Identifiable {
     let id: String

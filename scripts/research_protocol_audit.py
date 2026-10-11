@@ -2,6 +2,7 @@
 """Source-linked arm/protocol/outcome review packets; never auto-publish."""
 import argparse
 import collections
+import hashlib
 import json
 import re
 import time
@@ -63,7 +64,8 @@ def review_packet(p,xml):
             if re.search(r'\b1\s?RM\b',row[0] if row else '',re.I) and re.search(r'\b(?:kg|BP|BS|DL|squat|deadlift)\b',row[0],re.I):
                 outcomes.append({'source':{'pmcid':p['pmcid'],'table_id':table['table_id'],'row_index_zero_based':index},'cells':row,'numeric_verification':'pending_group_header_and_uncertainty_review'})
     missing=[key for key,val in fields.items() if val['status']=='not_found']
-    return {'pmid':p['pmid'],'pmcid':p['pmcid'],'title':p['title'],'source_url':source,'field_evidence':fields,'missing_evidence_fields':missing,'tables':tables,'candidate_outcome_rows':outcomes,'runnable':False,'chart_publishable':False,'human_review_required':True,'protocol_decision':'BLOCKED','chart_decision':'BLOCKED','reason':'Keyword/table evidence is not complete per-arm, per-session verified prescription or chart-safe outcome mapping.'}
+    digest=hashlib.sha256(xml.encode('utf-8') if isinstance(xml,str) else xml).hexdigest()
+    return {'pmid':p['pmid'],'pmcid':p['pmcid'],'title':p['title'],'source_url':source,'source_sha256':digest,'field_evidence':fields,'missing_evidence_fields':missing,'tables':tables,'candidate_outcome_rows':outcomes,'runnable':False,'chart_publishable':False,'human_review_required':True,'protocol_decision':'BLOCKED','chart_decision':'BLOCKED','reason':'Keyword/table evidence is not complete per-arm, per-session verified prescription or chart-safe outcome mapping.'}
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--input',default='data/research/oa_candidates_v2.json');ap.add_argument('--output',default='data/research/protocol_audit.json');a=ap.parse_args()

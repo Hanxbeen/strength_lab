@@ -46,10 +46,16 @@ assert "ISC License" in brand and "Cole Bemis" in brand
 # Enabled CTA white text contrast against the shared blue token.
 def linear(x):
     return x / 12.92 if x <= 0.04045 else ((x + 0.055) / 1.055) ** 2.4
-luminance = sum(c * linear(v) for c, v in zip((.2126, .7152, .0722), (.12, .34, .85)))
-contrast = 1.05 / (luminance + .05)
-assert contrast >= 4.5
-print(f"PASS: navigation, unit labels, component tokens, 10 vector assets, CTA contrast {contrast:.2f}:1")
+tokens = json.loads((ROOT / 'design-tokens/tokens.json').read_text())
+def luminance(hex_color):
+    rgb = [int(hex_color[i:i+2], 16) / 255 for i in (1, 3, 5)]
+    return sum(c * linear(v) for c,v in zip((.2126,.7152,.0722),rgb))
+ratios = []
+for background, foreground in zip(tokens['colors']['accent'],tokens['colors']['onAccent']):
+    light,dark = sorted([luminance(background),luminance(foreground)],reverse=True)
+    ratios.append((light+.05)/(dark+.05))
+assert min(ratios) >= 4.5
+print(f"PASS: navigation, unit labels, component tokens, 10 vector assets, CTA contrast light/dark {ratios[0]:.2f}/{ratios[1]:.2f}:1")
 
 try:
     import tree_sitter

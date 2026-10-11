@@ -1,30 +1,30 @@
 # 무게무게 네이티브 디자인 파운데이션
 
-승인된 운동 흐름을 SwiftUI 컴포넌트로 구현한다. 토큰의 단일 출처는 `apps/ios/MugeMuge/BrandUI.swift`이며, 기존 HTML 시안의 수치와 앱 실행 검증을 구분한다.
+승인된 운동 흐름을 네이티브 컴포넌트로 구현한다. 토큰의 단일 출처는 `design-tokens/tokens.json`이다. `scripts/generate_design_tokens.py`가 `BrandUI.swift`의 MugeStyle을 생성하며 `--check`로 불일치를 차단한다. 출처와 보정 사항은 `docs/DESIGN_SYSTEM.md`에 기록한다.
 
 ## 역할과 토큰
 
 | 역할 | 구현 |
 |---|---|
-| 텍스트 | 시스템 primary, 배경과 함께 밝기 모드에 대응 |
-| 강조 | MugeStyle.accent, sRGB (0.12, 0.34, 0.85). 화면에서 직접 색 지정 금지 |
-| 보조 텍스트 | 시스템 secondary |
-| 화면·카드 배경 | systemGroupedBackground / secondarySystemGroupedBackground |
-| 강조 위 텍스트 | 흰색. 강조색과 계산 대비 6.16:1. 밝은/어두운 모드 동일 |
-| 비활성 버튼 | tertiarySystemFill + secondary. 활성 강조색의 투명도 조절로 대신하지 않음 |
+| 텍스트 | ink: #19212C / #F2F4F8 |
+| 강조 | accent: #216EE6 / #70A9FF. 화면에서 직접 색 지정 금지 |
+| 보조 텍스트 | muted: #647080 / #AEB8C7 |
+| 화면·카드 배경 | canvas: #FFFFFF / #17191F, surface: #F5F6F8 / #242731 |
+| 강조 위 텍스트 | onAccent: #FFFFFF / #102542. 계산 대비 라이트 4.73:1, 다크 6.45:1 |
+| 비활성 버튼 | disabledSurface / disabledInk. 활성 강조색의 투명도 조절로 대신하지 않음 |
 | 간격 | 4 / 8 / 12 / 16 / 20 / 24 / 32pt |
 | 화면·카드 안쪽 여백 | 20pt |
-| 입력·버튼·카드 반경 | 12 / 16 / 24pt |
+| 입력·버튼·카드 반경 | 12 / 17 / 22pt |
 | 최소 주요 조작 영역 | 48pt |
 | 주요 버튼 높이 | 최소 56pt. 큰 글씨에서는 내용에 맞춰 확장 |
-| 화면 제목 | 시스템 largeTitle, bold |
-| 섹션·카드 제목 | title2 / title3, bold |
+| 화면 제목 | 시스템 title, bold, Dynamic Type |
+| 섹션·카드 제목 | title3/bold / headline/semibold |
 | 본문·설명·주석 | body / subheadline / footnote |
 | 통계·입력·타이머 숫자 | ScaledMetric + monospacedDigit |
 
 ## 컴포넌트
 
-- `MugeCard`: 동일한 여백·배경·테두리·반경을 적용한다.
+- `MugeCard`: 동일한 여백·배경·반경을 적용한다. 승인안의 부드러운 보조 표면을 사용하며 불필요한 테두리를 넣지 않는다.
 - `MugeSectionTitle`: 제목을 VoiceOver 헤더로 노출하고 설명은 여러 줄을 허용한다.
 - `MugePrimaryButtonStyle`: 화면 전체 폭, 최소 높이, 눌림·비활성 상태를 한 곳에서 관리한다.
 - `MugeSecondaryButtonStyle`: 휴식 조절 버튼의 최소 조작 영역과 상태 표현을 공유한다.

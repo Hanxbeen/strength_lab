@@ -1,6 +1,7 @@
 """Read-only research catalog API; never serve review queue as published content."""
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from .catalog import public_catalog, preview_catalog
+from .repository import CatalogUnavailable, database_catalog
 
 app = FastAPI(title="MugeMuge API", version="0.1.0")
 
@@ -10,8 +11,11 @@ def health():
 
 @app.get("/v1/protocols")
 def protocols():
-    # Production publisher is not implemented. Fail closed rather than expose candidates.
-    return {"schema_version": 1, "items": public_catalog([])}
+    try:
+        return database_catalog()
+    except CatalogUnavailable:
+        # A DB outage is not an empty catalog and must remain distinguishable in the app.
+        raise HTTPException(status_code=503, detail="루틴을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.")
 
 @app.get("/v1/demo-protocols")
 def demos():

@@ -6,3 +6,4 @@ apps/ios/.build/
 apps/ios/build/
 apps/ios/*.xcworkspace/xcuserdata/
 apps/ios/*.xcodeproj/xcuserdata/
+supabase/.temp/

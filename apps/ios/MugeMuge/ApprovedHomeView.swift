@@ -73,7 +73,7 @@ private struct TrainingHome: View {
                                 .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                             Button("다시 불러오기") { Task { await catalog.refresh() } }
                             Button("기록을 남기고 종료") { confirmsUnavailableFinish = true }
-                            if let finishError { Text(finishError).foregroundStyle(.red) }
+                            if let finishError { Text(finishError).foregroundStyle(MugeStyle.danger) }
                         }
                     }
                 }
@@ -183,7 +183,7 @@ private struct MetricTile: View {
     var body: some View {
         VStack(alignment: .leading, spacing: MugeStyle.Space.sm) {
             Text(value).mugeNumber()
-            Text(label).font(.caption).foregroundStyle(.secondary)
+            Text(label).font(.caption).foregroundStyle(MugeStyle.muted)
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             .padding(MugeStyle.Space.page)
             .frame(minHeight: 118)
@@ -222,6 +222,10 @@ private struct RoutineLibrary: View {
                     MugeCard {
                         LilaRiveView(size: 88).frame(maxWidth: .infinity)
                         Text("공개할 루틴을 준비 중이에요").font(MugeStyle.TypeStyle.section)
+                        if let metadata = catalog.metadata {
+                            Text("논문 후보 \(metadata.candidates)편 · 검토 대기 \(metadata.awaitingReview)편")
+                                .font(MugeStyle.TypeStyle.action)
+                        }
                         Text("논문과 운동 구성을 검토한 루틴만 여기에 표시해요. 기록 연습은 홈에서 시작할 수 있어요.")
                             .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                     }
@@ -252,7 +256,7 @@ private struct RoutineCard: View {
             Text(item.status == "DEMO_ONLY"
                  ? "스쿼트부터 시작하는 오늘의 기록. 한 세트씩 운동 흐름을 익혀보세요."
                  : "운동 구성을 살펴보고 내 기록에 맞는 시작 중량을 확인해요.")
-                .font(.subheadline).foregroundStyle(.secondary)
+                .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
             HStack {
                 Text("\(item.sessions.count)개 구성")
                 Spacer()
@@ -269,13 +273,13 @@ private struct RoutineOverview: View {
             VStack(alignment: .leading, spacing: MugeStyle.Space.section) {
                 Text(TrainingCopy.routine(item)).font(MugeStyle.TypeStyle.hero)
                 Text(item.status == "DEMO_ONLY" ? "실제 운동 기록으로 이어지는 체험용 구성" : "시작하기 전에 운동 구성을 확인하세요.")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(MugeStyle.muted)
                 MugeCard {
-                    Text(item.status == "DEMO_ONLY" ? "기록 연습 · 논문 루틴 아님" : "운동 구성").font(.headline)
+                    Text(item.status == "DEMO_ONLY" ? "기록 연습 · 논문 루틴 아님" : "운동 구성").font(MugeStyle.TypeStyle.action)
                     Text(item.status == "DEMO_ONLY"
                          ? "기록과 휴식 흐름을 확인하는 예시입니다. 외부 루틴을 논문 검증까지 마친 결과로 표시하지 않습니다."
                          : "공개 상태를 확인한 루틴입니다. 개인에게 최적이라는 의미는 아니며, 운동 경험과 당일 상태를 함께 고려하세요.")
-                        .font(.subheadline).foregroundStyle(.secondary)
+                        .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                 }
                 ForEach(item.sessions) { session in
                     MugeCard {
@@ -285,9 +289,9 @@ private struct RoutineOverview: View {
                                 Text(String(format: "%02d", index + 1))
                                     .font(.title2.bold().monospacedDigit()).foregroundStyle(.tertiary)
                                 VStack(alignment: .leading, spacing: MugeStyle.Space.xs) {
-                                    Text(TrainingCopy.exercise(exercise.id)).font(.headline)
+                                    Text(TrainingCopy.exercise(exercise.id)).font(MugeStyle.TypeStyle.action)
                                     Text("\(exercise.sets)세트 × \(exercise.reps)회 · 휴식 \(exercise.restSeconds)초")
-                                        .font(.caption).foregroundStyle(.secondary)
+                                        .font(.caption).foregroundStyle(MugeStyle.muted)
                                 }
                                 Spacer()
                             }.padding(.vertical, 5)
@@ -299,9 +303,9 @@ private struct RoutineOverview: View {
                 }
                 NavigationLink { ResearchNotes() } label: {
                     MugeCard {
-                        Text("구성에 참고할 수 있는 연구").font(.headline)
+                        Text("구성에 참고할 수 있는 연구").font(MugeStyle.TypeStyle.action)
                         Text("높은 중량과 여러 세트, 휴식 시간에 관한 연구를 읽어보세요. 이 구성 자체의 검증 결과와는 구분합니다.")
-                            .font(.subheadline).foregroundStyle(.secondary)
+                            .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                         Text("연구 요약과 원문 보기 →").font(.footnote.bold())
                     }
                 }.buttonStyle(.plain)
@@ -314,47 +318,47 @@ private struct ResearchNotes: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: MugeStyle.Space.section) {
-                Text("왜 이렇게\n운동할까요?").font(.system(size: 34, weight: .black)).tracking(-1)
+                Text("왜 이렇게\n운동할까요?").font(MugeStyle.TypeStyle.hero)
                 Text("연구는 선택의 근거예요. 한 사람에게 맞는 완성된 정답은 아니에요.")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(MugeStyle.muted)
                 MugeCard {
-                    Text("01  무게와 세트").font(.caption.bold()).foregroundStyle(.secondary)
+                    Text("01  무게와 세트").font(.caption.bold()).foregroundStyle(MugeStyle.muted)
                     Text("힘을 키울 때와\n근육을 키울 때").font(MugeStyle.TypeStyle.section)
                     Text("2023년 체계적 문헌고찰과 네트워크 메타분석은 다양한 저항 운동 구성을 비교했어요. 높은 중량은 근력 향상에서, 여러 세트는 근비대에서 유리한 경향을 보였어요.")
-                        .font(.subheadline)
+                        .font(MugeStyle.TypeStyle.detail)
                     Text("근력 연구 178편 · 근비대 연구 119편").font(.caption.bold())
-                    Text("“높은 부하(1회 최대 중량의 80% 초과) 처방에서 근력 증가가 가장 컸다.”").font(.subheadline).italic()
-                    Text("논문 초록의 한국어 번역 인용 · 모든 사람에게 최대 중량의 80% 이상을 권하는 의미는 아닙니다.").font(.caption).foregroundStyle(.secondary)
+                    Text("“높은 부하(1회 최대 중량의 80% 초과) 처방에서 근력 증가가 가장 컸다.”").font(MugeStyle.TypeStyle.detail).italic()
+                    Text("논문 초록의 한국어 번역 인용 · 모든 사람에게 최대 중량의 80% 이상을 권하는 의미는 아닙니다.").font(.caption).foregroundStyle(MugeStyle.muted)
                     Text("다양한 참가자의 평균 결과입니다. 특정 세트 수나 중량 비율이 모든 사람에게 최적이라는 뜻은 아니에요.")
-                        .font(.footnote).foregroundStyle(.secondary)
+                        .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
                     Link("논문 원문 열기", destination: URL(string: "https://pubmed.ncbi.nlm.nih.gov/37414459/")!)
                         .font(.subheadline.bold())
                 }
                 MugeCard {
-                    Text("02  세트 사이 휴식").font(.caption.bold()).foregroundStyle(.secondary)
+                    Text("02  세트 사이 휴식").font(.caption.bold()).foregroundStyle(MugeStyle.muted)
                     Text("조금 더 쉬면\n다음 세트가 달라질까요?").font(MugeStyle.TypeStyle.section)
                     Text("2024년 메타분석에서는 60초보다 긴 휴식에 작은 근비대 이점이 있을 가능성을 제시했어요. 90초를 넘겨 더 쉴 때의 추가 이점은 명확하지 않았어요.")
-                        .font(.subheadline)
-                    Text("“세트 사이 90초를 넘겨 쉴 때 근비대에서 뚜렷한 차이를 발견하지 못했다.”").font(.subheadline).italic()
-                    Text("논문 초록의 한국어 번역 인용").font(.caption).foregroundStyle(.secondary)
-                    Text("효과의 크기와 불확실성").font(.headline)
+                        .font(MugeStyle.TypeStyle.detail)
+                    Text("“세트 사이 90초를 넘겨 쉴 때 근비대에서 뚜렷한 차이를 발견하지 못했다.”").font(MugeStyle.TypeStyle.detail).italic()
+                    Text("논문 초록의 한국어 번역 인용").font(.caption).foregroundStyle(MugeStyle.muted)
+                    Text("효과의 크기와 불확실성").font(MugeStyle.TypeStyle.action)
                     Chart {
                         RuleMark(xStart: .value("하한", -0.27), xEnd: .value("상한", 0.51), y: .value("부위", "팔"))
                         PointMark(x: .value("효과", 0.13), y: .value("부위", "팔")).symbolSize(70)
                         RuleMark(xStart: .value("하한", -0.13), xEnd: .value("상한", 0.43), y: .value("부위", "허벅지"))
                         PointMark(x: .value("효과", 0.17), y: .value("부위", "허벅지")).symbolSize(70)
-                        RuleMark(x: .value("차이 없음", 0)).lineStyle(StrokeStyle(lineWidth: 1, dash: [4, 4])).foregroundStyle(.secondary)
+                        RuleMark(x: .value("차이 없음", 0)).lineStyle(StrokeStyle(lineWidth: 1, dash: [4, 4])).foregroundStyle(MugeStyle.muted)
                     }.chartXScale(domain: -0.35...0.6).frame(height: 130).foregroundStyle(MugeStyle.ink)
                         .accessibilityLabel("긴 휴식과 짧은 휴식의 표준화 효과. 팔 0.13, 구간 마이너스 0.27에서 0.51. 허벅지 0.17, 구간 마이너스 0.13에서 0.43. 두 구간 모두 0을 포함합니다.")
                     Text("점은 추정 효과, 선은 95% 신용구간입니다. 두 구간 모두 0을 포함해 차이가 없을 가능성도 남아 있어요. 오른쪽이 긴 휴식에 유리하며, 근육 증가율을 뜻하지 않습니다.")
-                        .font(.footnote).foregroundStyle(.secondary)
+                        .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
                     Link("논문 원문 열기", destination: URL(string: "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2024.1429789/full")!)
                         .font(.subheadline.bold())
                 }
                 MugeCard {
-                    Text("앱에 적용할 때의 기준").font(.headline)
+                    Text("앱에 적용할 때의 기준").font(MugeStyle.TypeStyle.action)
                     Text("연구 원칙 → 운동 구성 검토 → 개인 기록 확인 순서로 구분합니다. 현재 체험 루틴은 이 전체 검증을 통과한 논문 기반 처방이 아닙니다. 중량 제안도 시작점이며, 통증이나 자세 무너짐이 있으면 중단하세요.")
-                        .font(.subheadline).foregroundStyle(.secondary)
+                        .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                 }
             }.padding(MugeStyle.Space.page)
         }.background(MugeStyle.canvas).navigationTitle("운동의 근거").navigationBarTitleDisplayMode(.inline)
@@ -391,12 +395,12 @@ private struct WorkoutHistoryList: View {
                     NavigationLink { WorkoutHistoryDetail(workout: workout) } label: {
                         MugeCard {
                             HStack {
-                                Text(workout.startedAt, format: .dateTime.month().day().weekday()).font(.headline)
+                                Text(workout.startedAt, format: .dateTime.month().day().weekday()).font(MugeStyle.TypeStyle.action)
                                 Spacer()
                                 MugeIcon(name: "chevron-right")
                             }
                             Text("운동 기록").font(MugeStyle.TypeStyle.card)
-                            Text("\(workout.setIDs.count)세트 · 기록 살펴보기").font(.subheadline).foregroundStyle(.secondary)
+                            Text("\(workout.setIDs.count)세트 · 기록 살펴보기").font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                         }
                     }.buttonStyle(.plain)
                 }
@@ -428,7 +432,7 @@ private struct WorkoutHistoryDetail: View {
                         HStack {
                             Text(TrainingCopy.exercise(set.exerciseID))
                             Spacer()
-                            Text("\(unit.label(set.weightKg)) × \(set.reps)회").foregroundStyle(.secondary)
+                            Text("\(unit.label(set.weightKg)) × \(set.reps)회").foregroundStyle(MugeStyle.muted)
                         }
                     }.foregroundStyle(MugeStyle.ink)
                 }
@@ -469,12 +473,12 @@ private struct TrainingGrowth: View {
                     }
                 }
                 MugeCard {
-                    Text("반복 기록으로 본 추정 최대 중량").font(.headline)
+                    Text("반복 기록으로 본 추정 최대 중량").font(MugeStyle.TypeStyle.action)
                     if let value = StrengthMetrics.bestEstimatedOneRepMax(records) {
                         HStack(alignment: .firstTextBaseline, spacing: MugeStyle.Space.xs) {
                             Text(unit.number(value))
                                 .mugeNumber(size: 44)
-                            Text(unit.rawValue).foregroundStyle(.secondary)
+                            Text(unit.rawValue).foregroundStyle(MugeStyle.muted)
                         }
                         Chart(records) { record in
                             if let estimate = StrengthMetrics.estimatedOneRepMax(weightKg: record.weightKg, reps: record.reps) {
@@ -485,7 +489,7 @@ private struct TrainingGrowth: View {
                         Text("아직 추정할 기록이 없어요").font(MugeStyle.TypeStyle.card)
                     }
                     Text("1~10회 반복 기록으로 계산한 추정치예요. 실제로 한 번 들어 올린 최대 중량과 구분하세요.")
-                        .font(.footnote).foregroundStyle(.secondary)
+                        .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
                 }
                 MugeMetricRow {
                     MetricTile(value: "\(records.count)", label: "이 종목의 세트")
@@ -524,7 +528,7 @@ private struct TrainingSettings: View {
                 Button("처음 안내 다시 보기") { showsIntroduction = true }
                 NavigationLink("운동의 근거") { ResearchNotes() }
                 Text("릴라는 시작과 준비, 운동을 마친 순간에 함께해요. 운동과 휴식 중에는 기록과 타이머에 집중할 수 있어요.")
-                    .font(.subheadline).foregroundStyle(.secondary)
+                    .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
             }
         }.navigationTitle("설정")
             .fullScreenCover(isPresented: $showsIntroduction) { TrainingIntroduction() }

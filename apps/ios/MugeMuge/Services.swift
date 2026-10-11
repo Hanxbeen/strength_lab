@@ -349,6 +349,7 @@ final class WorkoutStore: ObservableObject {
 
 @MainActor
 final class CatalogStore: ObservableObject {
+    @Published private(set) var metadata: CatalogMetadata?
     @Published private(set) var isLoading = false
     @Published private(set) var protocols: [TrainingProtocol] = []
     @Published private(set) var demo: [TrainingProtocol] = []
@@ -365,28 +366,44 @@ final class CatalogStore: ObservableObject {
         guard !isLoading else { return }
         isLoading = true
         defer { isLoading = false }
-        guard let baseURL else {
+        demo = Self.bundledDemo()
+        if let baseURL, !(baseURL.scheme == "https" || (baseURL.host == "127.0.0.1" && baseURL.scheme == "http")) {
             protocols = []
-            demo = Self.bundledDemo()
-            error = nil
-            return
-        }
-        guard baseURL.scheme == "https" || (baseURL.host == "127.0.0.1" && baseURL.scheme == "http") else {
+            metadata = nil
             error = "HTTPS API 주소가 필요합니다."
             return
         }
         do {
-            async let published = load("/v1/protocols", baseURL: baseURL)
-            async let samples = load("/v1/demo-protocols", baseURL: baseURL)
-            let (catalog, preview) = try await (published, samples)
-            protocols = catalog.items.filter { $0.runnable && $0.status == "PUBLISHED_PROTOCOL" }
-            demo = preview.items.filter { $0.status == "DEMO_ONLY" && !$0.runnable }
+            let catalog: CatalogResponse
+            if let baseURL {
+                catalog = try await load("/v1/protocols", baseURL: baseURL)
+            } else {
+                catalog = try await loadDatabaseCatalog()
+            }
+            protocols = catalog.items.filter(\.isPublishedResearch)
+            metadata = catalog.metadata
             error = nil
         } catch {
             protocols = []
+            metadata = nil
             demo = Self.bundledDemo()
             self.error = "서버 연결에 실패했습니다. 체험 루틴과 기존 기록은 오프라인에서 이용할 수 있습니다."
         }
+    }
+
+    private func loadDatabaseCatalog() async throws -> CatalogResponse {
+        let url = ResearchCatalogConfiguration.projectURL.appendingPathComponent("rest/v1/rpc/research_catalog")
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = Data("{}".utf8)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(ResearchCatalogConfiguration.publishableKey, forHTTPHeaderField: "apikey")
+        request.timeoutInterval = 12
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw URLError(.badServerResponse) }
+        let catalog = try JSONDecoder().decode(CatalogResponse.self, from: data)
+        guard catalog.schemaVersion == 1 else { throw URLError(.cannotParseResponse) }
+        return catalog
     }
 
     private func load(_ path: String, baseURL: URL) async throws -> CatalogResponse {

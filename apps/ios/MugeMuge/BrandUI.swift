@@ -51,17 +51,29 @@ enum MugeThirdPartyNotices {
 }
 
 /// Shared presentation foundations. Screen code depends on semantic roles.
+// BEGIN GENERATED DESIGN TOKENS
+// Source: design-tokens/tokens.json; run scripts/generate_design_tokens.py
 enum MugeStyle {
-    static let ink = Color.primary
-    static let accent = Color(red: 0.12, green: 0.34, blue: 0.85)
-    static let canvas = Color(uiColor: .systemGroupedBackground)
-    static let surface = Color(uiColor: .secondarySystemGroupedBackground)
-    static let muted = Color.secondary
-    static let border = Color.primary.opacity(0.07)
-    static let onAccent = Color.white
-    static let disabledSurface = Color(uiColor: .tertiarySystemFill)
-    static let disabledInk = Color.secondary
-
+    private static func adaptive(_ light: UInt32, _ dark: UInt32) -> Color {
+        Color(uiColor: UIColor { trait in
+            let value = trait.userInterfaceStyle == .dark ? dark : light
+            return UIColor(red: CGFloat((value >> 16) & 255) / 255,
+                           green: CGFloat((value >> 8) & 255) / 255,
+                           blue: CGFloat(value & 255) / 255, alpha: 1)
+        })
+    }
+    static let canvas = adaptive(0xFFFFFF, 0x17191F)
+    static let surface = adaptive(0xF5F6F8, 0x242731)
+    static let ink = adaptive(0x19212C, 0xF2F4F8)
+    static let muted = adaptive(0x647080, 0xAEB8C7)
+    static let border = adaptive(0xE9EDF2, 0x353B47)
+    static let accent = adaptive(0x216EE6, 0x70A9FF)
+    static let onAccent = adaptive(0xFFFFFF, 0x102542)
+    static let accentSurface = adaptive(0xEEF5FF, 0x22344E)
+    static let success = adaptive(0x16846B, 0x70D8B5)
+    static let danger = adaptive(0xC34848, 0xFF9898)
+    static let disabledSurface = adaptive(0xE2E6EC, 0x363C48)
+    static let disabledInk = adaptive(0x626C78, 0xAEB5C1)
     enum Space {
         static let xs: CGFloat = 4
         static let sm: CGFloat = 8
@@ -73,29 +85,33 @@ enum MugeStyle {
     }
     enum Radius {
         static let field: CGFloat = 12
-        static let control: CGFloat = 16
-        static let card: CGFloat = 24
+        static let control: CGFloat = 17
+        static let card: CGFloat = 22
     }
     enum TypeStyle {
-        static let hero = Font.largeTitle.weight(.bold)
-        static let section = Font.title2.weight(.bold)
-        static let card = Font.title3.weight(.bold)
-        static let action = Font.headline
-        static let body = Font.body
-        static let detail = Font.subheadline
-        static let note = Font.footnote
+        static let hero = Font.title.weight(.bold)
+        static let section = Font.title3.weight(.bold)
+        static let card = Font.headline.weight(.semibold)
+        static let action = Font.headline.weight(.semibold)
+        static let body = Font.body.weight(.regular)
+        static let detail = Font.subheadline.weight(.regular)
+        static let note = Font.footnote.weight(.regular)
     }
     static let minimumTarget: CGFloat = 48
     static let actionHeight: CGFloat = 56
-    static let inputNumberSize: CGFloat = 48
+    static let inputNumberSize: CGFloat = 52
+    static let metricNumberSize: CGFloat = 34
+    static let timerNumberSize: CGFloat = 82
+    static let iconSize: CGFloat = 24
 }
+// END GENERATED DESIGN TOKENS
 
 /// Numeric display retains the approved hierarchy while honoring Dynamic Type.
 private struct MugeNumberStyle: ViewModifier {
     @ScaledMetric(relativeTo: .largeTitle) private var size: CGFloat = 34
     init(size: CGFloat) { _size = ScaledMetric(wrappedValue: size, relativeTo: .largeTitle) }
     func body(content: Content) -> some View {
-        content.font(.system(size: size, weight: .bold, design: .rounded)).monospacedDigit()
+        content.font(.system(size: size, weight: .bold, design: .default)).monospacedDigit()
     }
 }
 
@@ -135,8 +151,8 @@ struct MugeCard<Content: View>: View {
         VStack(alignment: .leading, spacing: MugeStyle.Space.lg) { content }
             .padding(MugeStyle.Space.page)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .foregroundStyle(MugeStyle.ink)
             .background(MugeStyle.surface, in: RoundedRectangle(cornerRadius: MugeStyle.Radius.card, style: .continuous))
-            .overlay(RoundedRectangle(cornerRadius: MugeStyle.Radius.card).strokeBorder(MugeStyle.border))
     }
 }
 
@@ -199,7 +215,7 @@ struct MugeIcon: View {
     let name: String
     var body: some View {
         Image("lucide-" + name).renderingMode(.template).resizable()
-            .scaledToFit().frame(width: 24, height: 24).accessibilityHidden(true)
+            .scaledToFit().frame(width: MugeStyle.iconSize, height: MugeStyle.iconSize).accessibilityHidden(true)
     }
 }
 
@@ -243,7 +259,7 @@ struct MugeMassInput: View {
             }.buttonStyle(MugeSecondaryButtonStyle())
             if !text.isEmpty && !valid {
                 Text("0보다 \(allowsZero ? "작지 않은" : "큰") \(unit.label(2000)) 이하의 값을 입력해 주세요.")
-                    .font(MugeStyle.TypeStyle.note).foregroundStyle(.red)
+                    .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.danger)
             }
         }
     }

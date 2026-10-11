@@ -24,6 +24,9 @@ def review_item(p):
 
 def create(data):
     items=[review_item(p) for p in data['papers']]
+    for item, packet in zip(items, data['papers']):
+        item['source_url'] = packet.get('source_url')
+        item['source_sha256'] = packet.get('source_sha256')
     return {'schema_version':1,'total':len(items),'approved_protocols':0,'approved_charts':0,'required_review_fields':list(REQUIRED),'papers':items}
 
 def main():

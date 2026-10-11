@@ -60,7 +60,7 @@ struct StrengthSetupView: View {
                             .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                     }
                 }
-                if let error { Text(error).font(MugeStyle.TypeStyle.note).foregroundStyle(.red) }
+                if let error { Text(error).font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.danger) }
             }.padding(MugeStyle.Space.page)
         }
         .background(MugeStyle.canvas).navigationTitle("최대 중량")
@@ -144,7 +144,7 @@ struct StrengthReferenceView: View {
                         VStack(alignment: .leading, spacing: MugeStyle.Space.sm) {
                             Text("최대 중량 확인").font(MugeStyle.TypeStyle.hero)
                             Text("기록이 있으면 입력하고, 없다면 추정부터 시작해요.")
-                                .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                                .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                         }
                         Spacer(minLength: 0)
                         LilaRiveView(size: 90)
@@ -162,7 +162,7 @@ struct StrengthReferenceView: View {
                 else if mode == 1 { estimateCard }
                 else { assessment }
                 if let message {
-                    Text(message).font(.subheadline).foregroundStyle(MugeStyle.ink)
+                    Text(message).font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.ink)
                         .accessibilityIdentifier("strength.feedback")
                 }
             }.padding(MugeStyle.Space.page)
@@ -179,7 +179,7 @@ struct StrengthReferenceView: View {
         MugeCard {
             Text("실제로 성공한 한 번의 무게").font(MugeStyle.TypeStyle.card)
             Text("보조자의 도움 없이 바른 자세로 한 번 들어 올린 기록을 입력해요. 추정치는 이곳에 저장하지 않아요.")
-                .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
             weightField("성공한 무게", text: $weight)
             MugePrimaryButton(title: "최대 중량 저장하기") {
                 guard let value = number(weight) else { return }
@@ -190,7 +190,7 @@ struct StrengthReferenceView: View {
             }.disabled(number(weight) == nil)
             if let latest = workouts.measuredMaxes.filter({ $0.exerciseID == exercise }).max(by: { $0.measuredAt < $1.measuredAt }) {
                 Text("최근 기록 · \(unit.label(latest.weightKg))")
-                    .font(.footnote).foregroundStyle(MugeStyle.muted)
+                    .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
             }
         }
     }
@@ -199,7 +199,7 @@ struct StrengthReferenceView: View {
         MugeCard {
             Text("이미 해 본 세트로 추정하기").font(MugeStyle.TypeStyle.card)
             Text("정확한 자세로 수행한 3~10회 기록을 입력하세요. 추정을 위해 새로 한계까지 운동할 필요는 없어요.")
-                .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
             weightField("사용한 무게", text: $weight)
             HStack {
                 Text("반복 횟수")
@@ -207,13 +207,13 @@ struct StrengthReferenceView: View {
                     .accessibilityLabel("반복 횟수, 3회부터 10회")
             }.frame(minHeight: MugeStyle.minimumTarget).padding(MugeStyle.Space.md).background(MugeStyle.canvas, in: RoundedRectangle(cornerRadius: MugeStyle.Radius.field))
             if let estimated {
-                Text("추정 최대 중량").font(.subheadline)
+                Text("추정 최대 중량").font(MugeStyle.TypeStyle.detail)
                 Text(unit.label(estimated)).font(MugeStyle.TypeStyle.hero).monospacedDigit()
                 Text("계산식: 무게 × (1 + 반복 횟수 ÷ 30)")
                     .font(.caption).foregroundStyle(MugeStyle.muted)
             }
             Text("추정값은 실제 측정 기록과 달라요. 이 화면에서만 계산하며 실제 최대 중량이나 운동 세트로 저장하지 않아요. 이 숫자를 바로 들어 올리라는 뜻이 아니에요.")
-                .font(.footnote).foregroundStyle(MugeStyle.muted)
+                .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
         }
     }
 
@@ -231,7 +231,7 @@ struct StrengthReferenceView: View {
         MugeCard {
             Text("측정 전에, 안전부터").font(MugeStyle.TypeStyle.card)
             Text("처음 배우는 동작이거나 혼자 안전하게 실패할 수 없는 환경이라면 오늘은 측정하지 마세요. 지도자와 함께 준비하거나 기존 기록으로 추정할 수 있어요.")
-                .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
             Toggle("이 동작을 익혔고 자세를 유지할 수 있어요", isOn: $experienced)
             Toggle("통증·어지럼증이 없고 컨디션이 괜찮아요", isOn: $comfortable)
             Toggle("보조자와 안전 장비 등 실패에 대비했어요", isOn: $protected)
@@ -250,12 +250,12 @@ struct StrengthReferenceView: View {
             Text("\(exerciseName) · 자세 확인").font(MugeStyle.TypeStyle.section)
             ForEach(Array(techniqueSteps.enumerated()), id: \.offset) { index, line in
                 HStack(alignment: .top, spacing: MugeStyle.Space.md) {
-                    Text("\(index + 1)").font(.headline).frame(width: 26)
-                    Text(line).font(.body)
+                    Text("\(index + 1)").font(MugeStyle.TypeStyle.action).frame(width: 26)
+                    Text(line).font(MugeStyle.TypeStyle.body)
                 }
             }
             Text("통증, 어지럼증, 자세 붕괴가 있으면 즉시 중단하세요. 이 짧은 안내는 대면 지도를 대신하지 않아요.")
-                .font(.footnote).foregroundStyle(MugeStyle.muted)
+                .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
             MugePrimaryButton(title: "준비 세트 시작하기") {
                 warmupIndex = 0
                 restUntil = nil
@@ -283,7 +283,7 @@ struct StrengthReferenceView: View {
                 Text("\(unit.label((number(referenceWeight) ?? 0) * warmupFractions[warmupIndex])) · \(warmupRepetitions[warmupIndex])회")
                     .font(MugeStyle.TypeStyle.hero)
                 Text("기준 무게의 \(formatted(warmupFractions[warmupIndex] * 100))% 예시예요. 실제 장비 단위와 컨디션에 맞춰 낮추거나 지도자와 조정하세요. 준비 세트는 운동 기록에 자동 저장하지 않아요.")
-                    .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                    .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                 if let deadline = restUntil {
                     TimelineView(.periodic(from: .now, by: 1)) { context in
                         let remaining = max(0, Int(ceil(deadline.timeIntervalSince(context.date))))
@@ -302,9 +302,9 @@ struct StrengthReferenceView: View {
                 Button("통증이 있거나 오늘은 중단하기") { finish("준비 중 측정을 중단했어요.") }
             }
             MugeCard {
-                Text("이 순서는 어디에서 왔나요?").font(.headline)
+                Text("이 순서는 어디에서 왔나요?").font(MugeStyle.TypeStyle.action)
                 Text("마카릴라 등(2022)의 훈련 경험이 있는 남성 17명 연구에서 사용한 점진적 준비 절차를 참고했어요. 준비 방식 중 무엇이 최적인지 비교한 연구는 아니며, 개인에게 검증된 처방도 아니에요. 표시되는 준비 비율과 휴식 시간은 앱의 안내 예시예요.")
-                    .font(.footnote).foregroundStyle(MugeStyle.muted)
+                    .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
                 Link("연구 원문 보기", destination: URL(string: "https://doi.org/10.2478/hukin-2022-0046")!)
             }
         }
@@ -314,12 +314,12 @@ struct StrengthReferenceView: View {
         MugeCard {
             Text("한 번의 시도, 정확하게").font(MugeStyle.TypeStyle.section)
             Text("무게는 직접 정하세요. 성공해도 자동으로 증량하지 않아요. 무리한 추가 시도보다 안전하게 마무리하는 것이 우선이에요.")
-                .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
             if let deadline = restUntil {
                 TimelineView(.periodic(from: .now, by: 1)) { context in
                     let remaining = max(0, Int(ceil(deadline.timeIntervalSince(context.date))))
                     Text(remaining > 0 ? "다음 시도 전 회복 · \(remaining / 60)분 \(remaining % 60)초" : "충분히 회복했는지 확인하세요")
-                        .font(.headline).monospacedDigit()
+                        .font(MugeStyle.TypeStyle.action).monospacedDigit()
                 }
             }
             weightField("이번에 시도한 무게", text: $attemptWeight)
@@ -350,7 +350,7 @@ struct StrengthReferenceView: View {
             Button("더 시도하지 않고 결과 확인") { finish("오늘의 측정을 마쳤어요.") }
             if !attemptNotes.isEmpty {
                 Divider()
-                ForEach(Array(attemptNotes.enumerated()), id: \.offset) { _, note in Text(note).font(.subheadline) }
+                ForEach(Array(attemptNotes.enumerated()), id: \.offset) { _, note in Text(note).font(MugeStyle.TypeStyle.detail) }
             }
         }
     }
@@ -360,19 +360,19 @@ struct StrengthReferenceView: View {
             MugeAdaptiveRow {
                 VStack(alignment: .leading, spacing: MugeStyle.Space.sm) {
                     Text("오늘의 기준을 확인했어요").font(MugeStyle.TypeStyle.section)
-                    Text(endingReason).font(.subheadline).foregroundStyle(MugeStyle.muted)
+                    Text(endingReason).font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                 }
                 LilaRiveView(size: 88)
             }
             if let bestSuccess {
                 Text("\(exerciseName) · \(unit.label(bestSuccess))").font(.title.bold())
                 Text("이번 측정에서 성공한 가장 높은 무게를 이미 저장했어요. 화면을 나가거나 이후 시도에 실패해도 기록은 유지돼요.")
-                    .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                    .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                 Label("성공 기록 저장 완료", image: "lucide-check")
-                    .font(.headline)
+                    .font(MugeStyle.TypeStyle.action)
             } else {
                 Text("성공한 시도가 없어 최대 중량은 저장하지 않아요.")
-                    .font(.subheadline)
+                    .font(MugeStyle.TypeStyle.detail)
             }
             Button("최대 중량 관리로 돌아가기") { resetGuide() }
         }
@@ -380,7 +380,7 @@ struct StrengthReferenceView: View {
 
     private func weightField(_ title: String, text: Binding<String>) -> some View {
         HStack {
-            Text(title).font(.subheadline)
+            Text(title).font(MugeStyle.TypeStyle.detail)
             TextField(unit.rawValue, text: text)
                 .keyboardType(.decimalPad).multilineTextAlignment(.trailing)
                 .accessibilityLabel(title + ", " + unit.rawValue)

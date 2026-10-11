@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "count": 3,
+  "warning": "Excerpts are search hints, not verified prescriptions, group outcomes or numeric source provenance. Human review mandatory.",
+  "papers": [
+    {
+      "pmid": "38816857",
+      "pmcid": "PMC11140948",
+      "title": "Comparison of resistance training using barbell half squats and trap bar deadlifts on maximal strength, power performance, and lean mass in recreationally active females: an eight-week randomised trial.",
+      "tier": "direct_sbd_longitudinal_candidate",
+      "evidence_hints": {
+        "sbd_methods": [
+          {
+            "section": "Training protocol",
+            "excerpt": "ice a week for 8 weeks. The DG were instructed to perform four sets of four repetitions of trap bar deadlifts, while the SG performed the same number of sets and repetitions with barbell half squats. The load was initially set at 85% of pre-test 1RM. Particip",
+            "matched_term": "deadlifts"
+          }
+        ],
+        "duration_methods": [
+          {
+            "section": "Training protocol",
+            "excerpt": "After baseline-testing, participants attended non-supervised training twice a week for 8 weeks. The DG were instructed to perform four sets of four repetitions of trap bar deadlifts, while the SG performed the same number of sets and repetition",
+            "matched_term": "8 weeks"
+          }
+        ],
+        "program_methods": [
+          {
+            "section": "Training protocol",
+            "excerpt": "s attended non-supervised training twice a week for 8 weeks. The DG were instructed to perform four sets of four repetitions of trap bar deadlifts, while the SG performed the same number of sets and repetitions with barbell half squats. The load was init",
+            "matched_term": "sets"
+          }
+        ],
+        "one_rm_results": [
+          {
+            "section": "Results",
+            "excerpt": "e LLM analyses due to equipment error. There were no significant differences between the groups for 1RM in either barbell half squat ( p = 0.059) or trap bar deadlift ( p = 0.146; Table 2 ). Furthermore, we observed no between group differences for chan",
+            "matched_term": "1RM"
+          }
+        ],
+        "acute_title": false
+      },
+      "methods_sections": 1,
+      "results_sections": 1,
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false,
+      "protocol_gate": "blocked_missing_field_level_verification",
+      "outcome_gate": "blocked_missing_arm_level_numeric_verification",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11140948/fullTextXML"
+    },
+    {
+      "pmid": "33846516",
+      "pmcid": "PMC8041766",
+      "title": "The effect of resistance training set configuration on strength and muscular performance adaptations in male powerlifters.",
+      "tier": "direct_sbd_longitudinal_candidate",
+      "evidence_hints": {
+        "sbd_methods": [
+          {
+            "section": "Training program",
+            "excerpt": "All subjects (CS, TS, and CG) participated in the same powerlifting training for 80 to 90 min, two days per week (on Sunday and Wednesday), which included 4 to 5 sets of the bench press, back squat, and deadlift exerc",
+            "matched_term": "powerlifting"
+          }
+        ],
+        "duration_methods": [
+          {
+            "section": "Training program",
+            "excerpt": "The RT program is presented in Table 4 . Table 4 Resistance training program. Set 1 Set 2 Set 3 Set 4 Week Set type Cluster × Reps %1RM Cluster rest Rest (s) Cluster × Reps %1RM Cluster rest Rest (s) Cluster × Reps %1RM Cluster rest Rest (s) Cluster × Reps",
+            "matched_term": "4 Week"
+          }
+        ],
+        "program_methods": [
+          {
+            "section": "Training program",
+            "excerpt": "fting training for 80 to 90 min, two days per week (on Sunday and Wednesday), which included 4 to 5 sets of the bench press, back squat, and deadlift exercise with 60 to 95% of 1RM. The CS and TS groups participated in an additional three RT sessions per",
+            "matched_term": "sets"
+          }
+        ],
+        "one_rm_results": [
+          {
+            "section": "Results",
+            "excerpt": "e 1RMs for each lift. Characteristic CS (n = 8) TS (n = 8) CG (n = 8) Mean ± SD Mean ± SD Mean ± SD 1RM BP (kg) Before 105.4 ± 11.8 95.4 ± 10.3 110.7 ± 11.2 After 121.0 ± 12.4* 122.3 ± 10.7* 113.1 ± 11.7 1RM BP/BW (Ratio) Before 1.34 ± 0.81 1.22 ± 0.52 ",
+            "matched_term": "1RM"
+          }
+        ],
+        "acute_title": false
+      },
+      "methods_sections": 1,
+      "results_sections": 1,
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false,
+      "protocol_gate": "blocked_missing_field_level_verification",
+      "outcome_gate": "blocked_missing_arm_level_numeric_verification",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8041766/fullTextXML"
+    },
+    {
+      "pmid": "32269656",
+      "pmcid": "PMC7126254",
+      "title": "The Effects of the Movement Tempo on the One-Repetition Maximum Bench Press Results.",
+      "tier": "supporting_or_unverified",
+      "evidence_hints": {
+        "sbd_methods": [],
+        "duration_methods": [],
+        "program_methods": [],
+        "one_rm_results": [
+          {
+            "section": "Results",
+            "excerpt": "The ANOVA revealed a statistically significant main effect of the movement tempo on 1RM values ( p < 0.01; Table 1 ). The post-hoc tests showed that the maximal load in the 1RM test was significantly greater during the 2/0/V/0, as well a",
+            "matched_term": "1RM"
+          }
+        ],
+        "acute_title": false
+      },
+      "methods_sections": 0,
+      "results_sections": 1,
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false,
+      "protocol_gate": "blocked_missing_field_level_verification",
+      "outcome_gate": "blocked_missing_arm_level_numeric_verification",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7126254/fullTextXML"
+    }
+  ]
+}

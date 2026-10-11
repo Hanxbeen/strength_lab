@@ -57,7 +57,7 @@ struct GuidedWorkoutView: View {
                     preparation
                 }
                 if let error {
-                    Text(error).font(.footnote).foregroundStyle(.red)
+                    Text(error).font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.danger)
                         .accessibilityLabel("저장 오류. \(error)")
                 }
             }
@@ -111,18 +111,18 @@ struct GuidedWorkoutView: View {
             }
             if item.status == "DEMO_ONLY" {
                 Text("기록 연습 · 논문 루틴 아님")
-                    .font(.footnote).foregroundStyle(MugeStyle.muted)
+                    .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
             }
             ForEach(session.exercises) { movement in
                 MugeCard {
                     Text(localName(movement)).font(MugeStyle.TypeStyle.card)
                     Text("\(movement.sets)세트 · \(movement.reps)회 · 휴식 \(movement.restSeconds)초")
-                        .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                        .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                     MugeMassInput(title: "시작 무게", text: weightBinding(movement.id), unit: unit, allowsZero: true)
                 }
             }
             Text("준비 운동을 마치고, 기구와 주변 공간을 확인하세요. 목표 횟수보다 안정적인 자세가 우선이에요.")
-                .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
             Button("이 중량으로 운동 시작") {
                 guard readyToStart else { return }
                 if workouts.start(protocolID: item.id, version: item.version, sessionID: session.id, title: session.title) {
@@ -163,13 +163,13 @@ struct GuidedWorkoutView: View {
                         VStack(alignment: .leading) {
                             Text("중량 · \(unit.rawValue)").font(.caption).foregroundStyle(MugeStyle.muted)
                             TextField("중량", text: weightBinding(exercise.id))
-                                .keyboardType(.decimalPad).mugeNumber(size: 38)
+                                .keyboardType(.decimalPad).mugeNumber(size: MugeStyle.inputNumberSize)
                                 .accessibilityLabel("이번 세트 중량, \(unit.rawValue)")
                         }
                         VStack(alignment: .leading) {
                             Text("반복 · 회").font(.caption).foregroundStyle(MugeStyle.muted)
                             TextField("횟수", text: $repetitions)
-                                .keyboardType(.numberPad).mugeNumber(size: 38)
+                                .keyboardType(.numberPad).mugeNumber(size: MugeStyle.inputNumberSize)
                                 .accessibilityLabel("이번 세트 반복 횟수")
                         }
                     }
@@ -177,7 +177,7 @@ struct GuidedWorkoutView: View {
                 let records = activeRecords.filter { $0.exerciseID == exercise.id }
                 if !records.isEmpty {
                     MugeCard {
-                        Text("오늘 입력한 기록").font(.headline)
+                        Text("오늘 입력한 기록").font(MugeStyle.TypeStyle.action)
                         ForEach(Array(records.enumerated()), id: \.element.id) { index, record in
                             Button { editingSet = record } label: {
                                 HStack {
@@ -197,7 +197,7 @@ struct GuidedWorkoutView: View {
                     Button("휴식 화면 열기") { showRest = true }.frame(maxWidth: .infinity)
                 }
                 Text("통증이나 어지러움이 느껴지면 즉시 중단하세요.")
-                    .font(.footnote).foregroundStyle(MugeStyle.muted)
+                    .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
             }
         }
     }
@@ -223,12 +223,12 @@ struct GuidedWorkoutView: View {
                 let records = activeRecords.filter { $0.exerciseID == movement.id }
                 if !records.isEmpty {
                     MugeCard {
-                        Text(localName(movement)).font(.headline)
+                        Text(localName(movement)).font(MugeStyle.TypeStyle.action)
                         ForEach(records) { record in
                             HStack {
                                 Text("\(unit.label(record.weightKg)) × \(record.reps)회")
                                 Spacer()
-                            }.font(.subheadline)
+                            }.font(MugeStyle.TypeStyle.detail)
                         }
                     }
                 }
@@ -326,13 +326,13 @@ private struct WorkoutRestScreen: View {
                 Spacer(minLength: MugeStyle.Space.lg)
                 Text(paused ? "타이머 일시정지" : seconds > 0 ? "휴식" : "권장 시간이 지났어요")
                     .font(MugeStyle.TypeStyle.section)
-                Text(exerciseName).font(.subheadline).foregroundStyle(MugeStyle.muted)
+                Text(exerciseName).font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                 Text(String(format: "%02d:%02d", seconds / 60, seconds % 60))
-                    .mugeNumber(size: 82)
+                    .mugeNumber(size: MugeStyle.timerNumberSize)
                     .monospacedDigit().minimumScaleFactor(0.5).lineLimit(1)
                     .accessibilityLabel("남은 휴식 \(seconds / 60)분 \(seconds % 60)초")
                 Text("호흡을 고르고, 준비가 되면 이어가세요.")
-                    .font(.subheadline).foregroundStyle(MugeStyle.muted)
+                    .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                 HStack(spacing: MugeStyle.Space.lg) {
                     Button("+30초") { perform { workouts.adjustRest(by: 30) } }
                     Button("+1분") { perform { workouts.adjustRest(by: 60) } }
@@ -344,7 +344,7 @@ private struct WorkoutRestScreen: View {
                 .buttonStyle(MugeSecondaryButtonStyle())
                 .disabled(!paused && seconds == 0)
                 Spacer(minLength: MugeStyle.Space.lg)
-                if let error { Text(error).font(.footnote).foregroundStyle(.red) }
+                if let error { Text(error).font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.danger) }
                 Button("다음 세트") {
                     if workouts.endRest() { dismiss() }
                     else { error = workouts.error ?? "휴식 종료를 저장하지 못했어요." }
