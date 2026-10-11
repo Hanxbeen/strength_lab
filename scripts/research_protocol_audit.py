@@ -71,7 +71,11 @@ def main():
     ap=argparse.ArgumentParser();ap.add_argument('--input',default='data/research/oa_candidates_v2.json');ap.add_argument('--output',default='data/research/protocol_audit.json');a=ap.parse_args()
     source=json.loads(Path(a.input).read_text());papers=[]
     for p in source['papers']:
-        try:row=review_packet(p,get(BASE+p['pmcid']+'/fullTextXML'))
+        try:
+            raw=get(BASE+p['pmcid']+'/fullTextXML')
+            row=review_packet(p,raw)
+            cache=Path(a.output).parent/'sources';cache.mkdir(parents=True,exist_ok=True)
+            (cache/(p['pmcid']+'.xml')).write_bytes(raw)
         except Exception as exc:row={'pmid':p['pmid'],'error_type':type(exc).__name__,'runnable':False,'chart_publishable':False,'protocol_decision':'BLOCKED','chart_decision':'BLOCKED'}
         papers.append(row);print(p['pmid'],row['protocol_decision'],'fields',len(row.get('field_evidence',{})),'outcome_rows',len(row.get('candidate_outcome_rows',[])),flush=True);time.sleep(.35)
     result={'schema_version':1,'total':len(papers),'runnable_count':sum(p['runnable'] for p in papers),'chart_count':sum(p['chart_publishable'] for p in papers),'notes':'Review packet only. Exact original table cells retained for human mapping, no inferred outcomes or prescriptions.','papers':papers}

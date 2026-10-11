@@ -22,6 +22,13 @@ def database_catalog():
             raise ValueError('Unsupported catalog response')
         if not all(isinstance(record, dict) for record in value['items']):
             raise ValueError('Malformed catalog records')
-        return {'schema_version': 1, 'items': public_catalog(value['items']), 'metadata': value.get('metadata')}
+        result = {'schema_version': 1, 'items': public_catalog(value['items']), 'metadata': value.get('metadata')}
+        if 'studies' in value:
+            studies = value['studies']
+            if not isinstance(studies, list) or any(not isinstance(s, dict) or s.get('runnable') is not False
+                    or s.get('decision') not in ('NOT_RUNNABLE', 'SOURCE_ERROR') for s in studies):
+                raise ValueError('Malformed study assessments')
+            result['studies'] = studies
+        return result
     except (urllib.error.URLError, ValueError, TypeError, KeyError) as error:
         raise CatalogUnavailable('Catalog database request failed') from error

@@ -30,19 +30,43 @@ enum MassUnit: String, CaseIterable, Codable {
 struct CatalogResponse: Decodable {
     let schemaVersion: Int
     let items: [TrainingProtocol]
+    var studies: [ResearchStudy]? = nil
     var metadata: CatalogMetadata? = nil
     enum CodingKeys: String, CodingKey {
-        case schemaVersion = "schema_version", items, metadata
+        case schemaVersion = "schema_version", items, metadata, studies
     }
+}
+struct ResearchStudy: Decodable, Identifiable {
+    let pmid: String
+    let title: String
+    let sourceURL: URL
+    let decision: String
+    let runnable: Bool
+    let reasons: [ResearchReason]
+    var id: String { pmid }
+    enum CodingKeys: String, CodingKey {
+        case pmid, title, decision, runnable, reasons
+        case sourceURL = "source_url"
+    }
+    var isReadOnly: Bool {
+        !runnable && ["NOT_RUNNABLE", "SOURCE_ERROR"].contains(decision)
+        && sourceURL.scheme == "https" && sourceURL.host == "pubmed.ncbi.nlm.nih.gov"
+    }
+}
+struct ResearchReason: Decodable {
+    let code: String
+    let message: String
 }
 struct CatalogMetadata: Decodable {
     let candidates: Int
     let requested: Int
     let awaitingReview: Int
+    var automaticallyChecked: Int? = nil
     let checkedAt: String
     enum CodingKeys: String, CodingKey {
         case candidates, requested
         case awaitingReview = "awaiting_review"
+        case automaticallyChecked = "automatically_checked"
         case checkedAt = "checked_at"
     }
 }

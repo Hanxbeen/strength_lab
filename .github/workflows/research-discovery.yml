@@ -1,13 +1,17 @@
-name: Research discovery (review only)
+name: Research source checks and database import
 on:
   workflow_dispatch:
   schedule:
     - cron: '17 3 * * 1'
 permissions:
   contents: read
+concurrency:
+  group: research-database-import
+  cancel-in-progress: false
 jobs:
   discover:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -15,24 +19,15 @@ jobs:
           python-version: '3.11'
       - name: Unit tests
         run: python -m unittest discover -s tests -v
-      - name: Verify curated source-cell regression against pinned reference
-        run: python -m scripts.research_gold_eval
-      - name: Batch OA metadata and strict SBD candidate screening
-        run: python -m scripts.research_oa_v2 --pool 100 --limit 20
-      - name: Audit Methods and Results evidence locations
-        run: python -m scripts.research_evidence_gate --input data/research/oa_candidates_v2.json --output data/research/evidence_audit.json
-      - name: Extract source-located protocol fields and outcome table cells
-        run: python -m scripts.research_protocol_audit --input data/research/oa_candidates_v2.json --output data/research/protocol_audit.json
-      - name: Build blocked human review queue
-        run: python -m scripts.research_review_queue --input data/research/protocol_audit.json --output data/research/review_queue.json
-      - name: Validate no unreviewed study is published
-        run: |
-          python -c "import json; x=json.load(open('data/research/review_queue.json')); assert x['approved_protocols']==0 and x['approved_charts']==0; assert all(not p['runnable'] and not p['chart_publishable'] for p in x['papers'])"
-      - name: Enforce signed release gate
-        run: python -m scripts.research_release_gate
-      - name: Upload review-only metadata
+      - name: Discover, assess sources and persist one transaction
+        env:
+          RESEARCH_DATABASE_URL: ${{ secrets.RESEARCH_DATABASE_URL }}
+        run: python -m scripts.research_pipeline --directory data/research/current --persist --limit 20 --pool 100
+      - name: Retain assessment artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: research-candidates
-          path: data/research/*.json
+          name: research-assessments
+          path: data/research/current/*.json
+          if-no-files-found: ignore
           retention-days: 30

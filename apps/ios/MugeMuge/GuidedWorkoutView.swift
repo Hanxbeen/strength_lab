@@ -150,7 +150,7 @@ struct GuidedWorkoutView: View {
             }
             ProgressView(value: Double(activeRecords.count),
                          total: Double(max(1, session.exercises.reduce(0) { $0 + $1.sets })))
-                .tint(MugeStyle.accent)
+                .tint(MugeStyle.tint)
             if let exercise {
                 MugeSectionTitle(title: localName(exercise),
                                  subtitle: "\(exerciseIndex + 1)번째 운동 · 목표 \(exercise.reps)회")

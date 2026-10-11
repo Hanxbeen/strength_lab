@@ -36,5 +36,23 @@ class ResearchStoreTests(unittest.TestCase):
     def test_reject_overwriting_signed_review(self):
         data=self.fixture();data['review_queue']['papers'][0]['status']='approved'
         with self.assertRaises(ValueError):build_sql(data)
+    def automatic(self):
+        data=self.fixture()
+        data['automatic_assessment']={'papers':[{'pmid':'123','source_sha256':'a'*64,
+            'decision':'NOT_RUNNABLE','runnable':False,'chart_publishable':False,
+            'validator_version':'test','reasons':[{'code':'MISSING_PRESCRIPTION'}]}]}
+        return data
+    def test_automatic_result_is_stored_with_no_human_wait(self):
+        _,sql=build_sql(self.automatic(),'2026-10-11T00:00:00Z')
+        self.assertIn("'auto_blocked'",sql)
+        self.assertIn('INSERT INTO public.research_assessments',sql)
+        self.assertIn("'2026-10-11T00:00:00Z',20,1,0)",sql)
+        self.assertNotIn('INSERT INTO public.research_protocol_versions',sql)
+    def test_automatic_result_cannot_claim_runnable(self):
+        data=self.automatic();data['automatic_assessment']['papers'][0]['runnable']=True
+        with self.assertRaises(ValueError):build_sql(data)
+    def test_automatic_result_must_match_digest(self):
+        data=self.automatic();data['automatic_assessment']['papers'][0]['source_sha256']='b'*64
+        with self.assertRaises(ValueError):build_sql(data)
 
 if __name__=='__main__':unittest.main()

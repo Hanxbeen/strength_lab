@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "validator_version": "runner-compatibility-v1",
+  "papers": [
+    {
+      "pmid": "38816857",
+      "pmcid": "PMC11140948",
+      "title": "Comparison of resistance training using barbell half squats and trap bar deadlifts on maximal strength, power performance, and lean mass in recreationally active females: an eight-week randomised trial.",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/38816857/",
+      "source_sha256": "d2cca85b325acd35a02d6292e1b15b2f91aa8a69c57b97099884622e75208f2f",
+      "validator_version": "runner-compatibility-v1",
+      "decision": "NOT_RUNNABLE",
+      "runnable": false,
+      "chart_publishable": false,
+      "reasons": [
+        {
+          "code": "UNSUPPORTED_EXERCISES",
+          "message": "이 연구에 포함된 보조 운동을 아직 지원하지 않아요."
+        },
+        {
+          "code": "MISSING_PRESCRIPTION",
+          "message": "주차·운동·중량·휴식의 전체 구성을 원문에서 확정하지 못했어요."
+        }
+      ]
+    },
+    {
+      "pmid": "33846516",
+      "pmcid": "PMC8041766",
+      "title": "The effect of resistance training set configuration on strength and muscular performance adaptations in male powerlifters.",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/33846516/",
+      "source_sha256": "04da4c664542cf25c04741b2a9a26aa46c90e8d94929f30c4108b26682e25034",
+      "validator_version": "runner-compatibility-v1",
+      "decision": "NOT_RUNNABLE",
+      "runnable": false,
+      "chart_publishable": false,
+      "reasons": [
+        {
+          "code": "VARIABLE_SET_PRESCRIPTION",
+          "message": "세트별로 다른 횟수와 중량을 아직 실행기에 반영할 수 없어요."
+        },
+        {
+          "code": "CLUSTER_REST",
+          "message": "세트 안에서 나누어 쉬는 운동 방식을 아직 지원하지 않아요."
+        },
+        {
+          "code": "MISSING_PRESCRIPTION",
+          "message": "주차·운동·중량·휴식의 전체 구성을 원문에서 확정하지 못했어요."
+        }
+      ]
+    },
+    {
+      "pmid": "32269656",
+      "pmcid": "PMC7126254",
+      "title": "The Effects of the Movement Tempo on the One-Repetition Maximum Bench Press Results.",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/32269656/",
+      "source_sha256": "b7cbd57f94aa5c245886c39ca30e20a3ab1d358767b9cf241989403d18f3feb6",
+      "validator_version": "runner-compatibility-v1",
+      "decision": "NOT_RUNNABLE",
+      "runnable": false,
+      "chart_publishable": false,
+      "reasons": [
+        {
+          "code": "NOT_TRAINING_PROGRAM",
+          "message": "장기 운동 루틴이 아닌 측정 조건을 비교한 연구예요."
+        }
+      ]
+    }
+  ],
+  "automatically_checked": 3,
+  "runnable_count": 0,
+  "scope": "Source integrity and current app compatibility. Not scientific validity or automatic prescription extraction."
+}

@@ -43,7 +43,7 @@ for path in svgs:
     assert metadata["properties"]["template-rendering-intent"] == "template"
 assert "ISC License" in brand and "Cole Bemis" in brand
 
-# Enabled CTA white text contrast against the shared blue token.
+# Enabled CTA white text contrast against the shared charcoal token.
 def linear(x):
     return x / 12.92 if x <= 0.04045 else ((x + 0.055) / 1.055) ** 2.4
 tokens = json.loads((ROOT / 'design-tokens/tokens.json').read_text())

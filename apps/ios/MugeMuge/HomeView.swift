@@ -145,7 +145,7 @@ struct HomeView: View {
             }
             .tabItem { Label("데이터", systemImage: "externaldrive") }
         }
-        .tint(MugeStyle.accent)
+        .tint(MugeStyle.tint)
         .task { await catalog.refresh() }
     }
 }
@@ -253,7 +253,7 @@ struct ExerciseView: View {
                     }
                     ProgressView(value: Double(min(currentSessionSetCount, exercise.sets)),
                                  total: Double(max(exercise.sets, 1)))
-                        .tint(MugeStyle.accent)
+                        .tint(MugeStyle.tint)
                     if !isCurrentSession {
                         Label("먼저 루틴에서 이 세션을 시작해주세요.", systemImage: "info.circle")
                             .font(.caption).foregroundStyle(MugeStyle.muted)

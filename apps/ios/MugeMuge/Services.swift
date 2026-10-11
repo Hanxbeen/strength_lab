@@ -351,6 +351,7 @@ final class WorkoutStore: ObservableObject {
 final class CatalogStore: ObservableObject {
     @Published private(set) var metadata: CatalogMetadata?
     @Published private(set) var isLoading = false
+    @Published private(set) var studies: [ResearchStudy] = []
     @Published private(set) var protocols: [TrainingProtocol] = []
     @Published private(set) var demo: [TrainingProtocol] = []
     @Published private(set) var error: String?
@@ -369,6 +370,7 @@ final class CatalogStore: ObservableObject {
         demo = Self.bundledDemo()
         if let baseURL, !(baseURL.scheme == "https" || (baseURL.host == "127.0.0.1" && baseURL.scheme == "http")) {
             protocols = []
+            studies = []
             metadata = nil
             error = "HTTPS API 주소가 필요합니다."
             return
@@ -381,10 +383,12 @@ final class CatalogStore: ObservableObject {
                 catalog = try await loadDatabaseCatalog()
             }
             protocols = catalog.items.filter(\.isPublishedResearch)
+            studies = (catalog.studies ?? []).filter(\.isReadOnly)
             metadata = catalog.metadata
             error = nil
         } catch {
             protocols = []
+            studies = []
             metadata = nil
             demo = Self.bundledDemo()
             self.error = "서버 연결에 실패했습니다. 체험 루틴과 기존 기록은 오프라인에서 이용할 수 있습니다."

@@ -7,6 +7,14 @@ import Foundation
         assert(catalog.metadata?.candidates == 3)
         assert(catalog.metadata?.awaitingReview == 3)
         assert(catalog.items.isEmpty)
+        assert(catalog.studies == nil)
+        let studyJSON = Data(#"{"schema_version":1,"items":[],"studies":[{"pmid":"123","title":"Source","source_url":"https://pubmed.ncbi.nlm.nih.gov/123/","decision":"NOT_RUNNABLE","runnable":false,"reasons":[{"code":"MISSING_PRESCRIPTION","message":"Incomplete"}]}]}"#.utf8)
+        let studyCatalog = try JSONDecoder().decode(CatalogResponse.self, from: studyJSON)
+        assert(studyCatalog.studies?.count == 1)
+        assert(studyCatalog.studies?.first?.isReadOnly == true)
+        let forged = Data(String(decoding: studyJSON, as: UTF8.self).replacingOccurrences(of: "\"runnable\":false", with: "\"runnable\":true").utf8)
+        let forgedCatalog = try JSONDecoder().decode(CatalogResponse.self, from: forged)
+        assert(forgedCatalog.studies?.first?.isReadOnly == false)
         var json: [String: Any] = ["id":"test", "version":1,"title":"Test", "status":"PUBLISHED_PROTOCOL", "runnable":true, "description":"fixture", "sessions":[["id":"s","title":"S","exercises":[["id":"squat","name":"Squat","sets":3,"reps":5,"rest_seconds":180]]]], "source_type":"RESEARCH", "release_id":UUID().uuidString, "source_sha256":String(repeating:"a",count:64)]
         func decode(_ value: [String: Any]) throws -> TrainingProtocol {
             try JSONDecoder().decode(TrainingProtocol.self, from: JSONSerialization.data(withJSONObject:value))

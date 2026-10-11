@@ -23,5 +23,16 @@ class CatalogRepositoryTests(unittest.TestCase):
             self.assertEqual(database_catalog()['items'],[])
     def test_unsupported_schema_is_error(self):
         with self.environment(),patch('urllib.request.urlopen',return_value=io.BytesIO(b'{"schema_version":2,"items":[]}')),self.assertRaises(CatalogUnavailable):database_catalog()
+    def test_read_only_studies_are_returned_separately(self):
+        study={'pmid':'123','decision':'NOT_RUNNABLE','runnable':False}
+        value={'schema_version':1,'items':[],'studies':[study]}
+        with self.environment(),patch('urllib.request.urlopen',return_value=io.BytesIO(json.dumps(value).encode())):
+            response=database_catalog()
+            self.assertEqual(response['studies'],[study])
+            self.assertEqual(response['items'],[])
+    def test_runnable_claim_in_study_is_rejected(self):
+        value={'schema_version':1,'items':[],'studies':[{'decision':'NOT_RUNNABLE','runnable':True}]}
+        with self.environment(),patch('urllib.request.urlopen',return_value=io.BytesIO(json.dumps(value).encode())),self.assertRaises(CatalogUnavailable):
+            database_catalog()
 
 if __name__=='__main__':unittest.main()

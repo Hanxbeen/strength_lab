@@ -4,23 +4,9 @@
 
 ## 역할과 토큰
 
-| 역할 | 구현 |
-|---|---|
-| 텍스트 | ink: #19212C / #F2F4F8 |
-| 강조 | accent: #216EE6 / #70A9FF. 화면에서 직접 색 지정 금지 |
-| 보조 텍스트 | muted: #647080 / #AEB8C7 |
-| 화면·카드 배경 | canvas: #FFFFFF / #17191F, surface: #F5F6F8 / #242731 |
-| 강조 위 텍스트 | onAccent: #FFFFFF / #102542. 계산 대비 라이트 4.73:1, 다크 6.45:1 |
-| 비활성 버튼 | disabledSurface / disabledInk. 활성 강조색의 투명도 조절로 대신하지 않음 |
-| 간격 | 4 / 8 / 12 / 16 / 20 / 24 / 32pt |
-| 화면·카드 안쪽 여백 | 20pt |
-| 입력·버튼·카드 반경 | 12 / 17 / 22pt |
-| 최소 주요 조작 영역 | 48pt |
-| 주요 버튼 높이 | 최소 56pt. 큰 글씨에서는 내용에 맞춰 확장 |
-| 화면 제목 | 시스템 title, bold, Dynamic Type |
-| 섹션·카드 제목 | title3/bold / headline/semibold |
-| 본문·설명·주석 | body / subheadline / footnote |
-| 통계·입력·타이머 숫자 | ScaledMetric + monospacedDigit |
+2026-10-11 첨부 캡처와 차콜 브랜드 지시에 따라 갱신했다. 수치는 `design-tokens/tokens.json`을 따른다.
+디자인 출처·화면 간격·타이포 역할·다크 모드·버튼 터치 영역은 `docs/DESIGN_SYSTEM.md`에 명시한다.
+화면 여백12 / 카드 안쪽20 / 카드 간격12 / 반경24pt. 주요 버튼50pt, 차콜 #2A2A2A.
 
 ## 컴포넌트
 
@@ -32,7 +18,7 @@
 - `MugeAdaptiveRow`: 제목·캐릭터, 운동 입력, 완료 지표를 접근성 글자 크기에서 세로로 전환한다.
 - `mugeNumber`: 시스템 글자 크기 설정에 따라 숫자를 확대한다.
 - `MugeMassInput`: 직접 입력·±조절·범위 오류를 동일하게 표시한다. kg/lb는 MassUnit에서만 변환한다.
-- `MugeNavigationLabel`: 라벨과 Lucide chevron을 가진 48pt 이상 탐색 행이다.
+- `MugeNavigationLabel`: 라벨과 Lucide chevron을 가진 44pt 이상 탐색 행이다.
 - `MugeIcon`: Lucide의 24px/2px 둥근 선 SVG를 template 자산으로 사용한다.
 
 ## 아이콘 출처

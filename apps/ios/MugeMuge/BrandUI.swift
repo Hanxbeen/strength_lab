@@ -62,47 +62,53 @@ enum MugeStyle {
                            blue: CGFloat(value & 255) / 255, alpha: 1)
         })
     }
-    static let canvas = adaptive(0xFFFFFF, 0x17191F)
-    static let surface = adaptive(0xF5F6F8, 0x242731)
-    static let ink = adaptive(0x19212C, 0xF2F4F8)
-    static let muted = adaptive(0x647080, 0xAEB8C7)
-    static let border = adaptive(0xE9EDF2, 0x353B47)
-    static let accent = adaptive(0x216EE6, 0x70A9FF)
-    static let onAccent = adaptive(0xFFFFFF, 0x102542)
-    static let accentSurface = adaptive(0xEEF5FF, 0x22344E)
+    static let canvas = adaptive(0xF2F4F6, 0x171719)
+    static let surface = adaptive(0xFFFFFF, 0x242426)
+    static let ink = adaptive(0x191F28, 0xF2F4F6)
+    static let muted = adaptive(0x6B7684, 0xB0B8C1)
+    static let border = adaptive(0xE5E8EB, 0x39393D)
+    static let accent = adaptive(0x2A2A2A, 0x2A2A2A)
+    static let onAccent = adaptive(0xFFFFFF, 0xFFFFFF)
+    static let accentSurface = adaptive(0xF2F4F6, 0x343437)
     static let success = adaptive(0x16846B, 0x70D8B5)
     static let danger = adaptive(0xC34848, 0xFF9898)
     static let disabledSurface = adaptive(0xE2E6EC, 0x363C48)
     static let disabledInk = adaptive(0x626C78, 0xAEB5C1)
+    static let controlSurface = adaptive(0xF2F4F6, 0x343437)
+    static let tint = adaptive(0x2A2A2A, 0xF2F4F6)
     enum Space {
         static let xs: CGFloat = 4
         static let sm: CGFloat = 8
         static let md: CGFloat = 12
         static let lg: CGFloat = 16
-        static let page: CGFloat = 20
-        static let section: CGFloat = 24
+        static let page: CGFloat = 12
+        static let section: CGFloat = 12
         static let xl: CGFloat = 32
+        static let card: CGFloat = 20
     }
     enum Radius {
         static let field: CGFloat = 12
-        static let control: CGFloat = 17
-        static let card: CGFloat = 22
+        static let control: CGFloat = 14
+        static let card: CGFloat = 24
+        static let compact: CGFloat = 10
     }
     enum TypeStyle {
-        static let hero = Font.title.weight(.bold)
-        static let section = Font.title3.weight(.bold)
+        static let hero = Font.title2.weight(.bold)
+        static let section = Font.headline.weight(.bold)
         static let card = Font.headline.weight(.semibold)
-        static let action = Font.headline.weight(.semibold)
-        static let body = Font.body.weight(.regular)
+        static let action = Font.callout.weight(.semibold)
+        static let body = Font.callout.weight(.regular)
         static let detail = Font.subheadline.weight(.regular)
         static let note = Font.footnote.weight(.regular)
+        static let compact = Font.footnote.weight(.semibold)
     }
-    static let minimumTarget: CGFloat = 48
-    static let actionHeight: CGFloat = 56
-    static let inputNumberSize: CGFloat = 52
-    static let metricNumberSize: CGFloat = 34
+    static let minimumTarget: CGFloat = 44
+    static let actionHeight: CGFloat = 50
+    static let inputNumberSize: CGFloat = 44
+    static let metricNumberSize: CGFloat = 26
     static let timerNumberSize: CGFloat = 82
     static let iconSize: CGFloat = 24
+    static let compactHeight: CGFloat = 32
 }
 // END GENERATED DESIGN TOKENS
 
@@ -116,7 +122,7 @@ private struct MugeNumberStyle: ViewModifier {
 }
 
 extension View {
-    func mugeNumber(size: CGFloat = 34) -> some View { modifier(MugeNumberStyle(size: size)) }
+    func mugeNumber(size: CGFloat = MugeStyle.metricNumberSize) -> some View { modifier(MugeNumberStyle(size: size)) }
 }
 
 /// Reflows related content without shrinking text at accessibility sizes.
@@ -149,7 +155,7 @@ struct MugeCard<Content: View>: View {
     @ViewBuilder let content: Content
     var body: some View {
         VStack(alignment: .leading, spacing: MugeStyle.Space.lg) { content }
-            .padding(MugeStyle.Space.page)
+            .padding(MugeStyle.Space.card)
             .frame(maxWidth: .infinity, alignment: .leading)
             .foregroundStyle(MugeStyle.ink)
             .background(MugeStyle.surface, in: RoundedRectangle(cornerRadius: MugeStyle.Radius.card, style: .continuous))
@@ -177,7 +183,7 @@ struct MugePrimaryButtonStyle: ButtonStyle {
             .font(MugeStyle.TypeStyle.action)
             .multilineTextAlignment(.center)
             .padding(.horizontal, MugeStyle.Space.lg)
-            .padding(.vertical, MugeStyle.Space.lg)
+            .padding(.vertical, MugeStyle.Space.md)
             .frame(maxWidth: .infinity, minHeight: MugeStyle.actionHeight)
             .foregroundStyle(isEnabled ? MugeStyle.onAccent : MugeStyle.disabledInk)
             .background(isEnabled ? MugeStyle.accent : MugeStyle.disabledSurface, in: RoundedRectangle(cornerRadius: MugeStyle.Radius.control, style: .continuous))
@@ -186,19 +192,21 @@ struct MugePrimaryButtonStyle: ButtonStyle {
     }
 }
 
+/// Compact visual size with a separate 44pt minimum interaction area.
 struct MugeSecondaryButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(MugeStyle.TypeStyle.action)
+            .font(MugeStyle.TypeStyle.compact)
             .multilineTextAlignment(.center)
-            .padding(.horizontal, MugeStyle.Space.lg)
-            .padding(.vertical, MugeStyle.Space.md)
-            .frame(minHeight: MugeStyle.minimumTarget)
-            .foregroundStyle(MugeStyle.ink)
-            .background(MugeStyle.surface, in: RoundedRectangle(cornerRadius: MugeStyle.Radius.control))
-            .contentShape(RoundedRectangle(cornerRadius: MugeStyle.Radius.control))
-            .opacity(isEnabled ? (configuration.isPressed ? 0.65 : 1) : 0.4)
+            .padding(.horizontal, MugeStyle.Space.md)
+            .padding(.vertical, MugeStyle.Space.sm)
+            .frame(minHeight: MugeStyle.compactHeight)
+            .foregroundStyle(isEnabled ? MugeStyle.ink : MugeStyle.disabledInk)
+            .background(MugeStyle.controlSurface, in: RoundedRectangle(cornerRadius: MugeStyle.Radius.compact))
+            .frame(minWidth: MugeStyle.minimumTarget, minHeight: MugeStyle.minimumTarget)
+            .contentShape(Rectangle())
+            .opacity(configuration.isPressed && isEnabled ? 0.65 : 1)
     }
 }
 

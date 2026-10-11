@@ -1,0 +1,471 @@
+{
+  "schema_version": 2,
+  "retrieved_ids": 500,
+  "pool_candidates": 100,
+  "title_gate_candidates": 9,
+  "selected": 3,
+  "requested": 20,
+  "complete": false,
+  "warning": "Title gate is conservative and misses relevant papers. No source-level training prescription or result has been approved.",
+  "audit": [
+    {
+      "pmid": "41723227",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "41762201",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "41832049",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "41872733",
+      "decision": "no_open_xml_metadata"
+    },
+    {
+      "pmid": "42155066",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "42186479",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "42318260",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "42340141",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "42458937",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "42644110",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "42678372",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "42713318",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "39109891",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "39266729",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "39924706",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "40267419",
+      "decision": "no_open_xml_metadata"
+    },
+    {
+      "pmid": "40299706",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "40325759",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "40469860",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "40512632",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "40594656",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "40717194",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "40728831",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "40936773",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "41018898",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "41113618",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "41210082",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "37871642",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "38167650",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "38816857",
+      "decision": "open_xml_verified"
+    },
+    {
+      "pmid": "38875405",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "39067184",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "39169050",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "39498804",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "35916876",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "36812922",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "37086038",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "37440417",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "37967946",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "32881839",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "33634677",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "33655812",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "33871234",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "33969958",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "35112815",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "35682140",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "35916746",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "36193438",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "36360629",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "31425456",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "32957077",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "33547265",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "33662923",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "33846516",
+      "decision": "open_xml_verified"
+    },
+    {
+      "pmid": "34033625",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "34260860",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "34639560",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "34831529",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "34882729",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "30844983",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "30946276",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "31197508",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "32269656",
+      "decision": "open_xml_verified"
+    },
+    {
+      "pmid": "32276452",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "32390725",
+      "decision": "no_open_xml_metadata"
+    },
+    {
+      "pmid": "32516094",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "32932233",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "33110607",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "33327405",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "30080424",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "30153194",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "30660559",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "31079555",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "32009980",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "28604135",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "28902118",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "29017017",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "29257792",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "29324578",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "29577974",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "29589111",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "29768643",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "27465633",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "27618386",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "27787464",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "27820725",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "28129275",
+      "decision": "no_open_xml_metadata"
+    },
+    {
+      "pmid": "28392264",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "28662531",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "26990723",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "27042312",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "27232978",
+      "decision": "no_open_xml_metadata"
+    },
+    {
+      "pmid": "27744584",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "27801598",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "24662235",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "25154701",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "25436635",
+      "decision": "insufficient_title_specificity"
+    },
+    {
+      "pmid": "25627646",
+      "decision": "excluded_off_topic_or_acute"
+    },
+    {
+      "pmid": "24662234",
+      "decision": "no_open_xml_metadata"
+    },
+    {
+      "pmid": "24714538",
+      "decision": "insufficient_title_specificity"
+    }
+  ],
+  "papers": [
+    {
+      "pmid": "38816857",
+      "doi": "10.1186/s13102-024-00911-8",
+      "title": "Comparison of resistance training using barbell half squats and trap bar deadlifts on maximal strength, power performance, and lean mass in recreationally active females: an eight-week randomised trial.",
+      "year": "2024",
+      "abstract": "The aim of this study was to investigate the effect of high load resistance training using barbell half squats compared with trap bar deadlifts on maximal strength, power performance, and lean mass in recreationally active females. Twenty-two recreationally active female participants (age: 26.9 ± 7.7 yrs.; height: 166.0 ± 5.1 cm; weight: 68.6 ± 9.9 kg) were randomly assigned to either a barbell half squat group (SG: n = 10) or trap bar deadlift group (DG: n = 12). Training consisted of twice-weekly sessions for eight weeks. Both groups completed one-repetition maximum (1RM) testing for both barbell half squat and trap bar deadlift groups. Countermovement jump (CMJ) and sprint performance were also assessed. Total body (TBLM) and leg lean mass (LLM) were measured with dual-energy x-ray absorptiometry. Between-group differences were analysed using analysis of covariance. SG tended to improve 1RM half squat (21.0 ± 11.5 kg vs. 13.1 ± 7.5 kg) more than DG (mean difference (MD): 8.0 kg, 95% CI: -0.36 - 16.3 kg). A similar pattern in favour of DG (18.4 ± 11.2 vs. 11.7 ± 8.1 kg) compared to SG was observed (MD: 6.5 kg, 95% CI: -2.5 - 15.6 kg). No between-group differences for sprint, jump or lean body mass changes was observed. For groups combined, the following changes in CMJ (2.0 ± 2.4 cm), 5-m sprint (-0.020 ± 0.039 s), 15-m sprint (-0.055 ± 0.230 s), TBLM (0.84 ± 1.12 kg), and LLM (0.27 ± 0.59 kg) was observed. An exercise intervention consisting of half squats or trap bar deadlift were associated with improved muscle strength, power, and lean mass. Our findings suggests that in recreationally active females, exercise selection is less of a concern provided that heavy loads are applied, and relevant muscle groups are targeted.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "pending_manual_review",
+      "outcome_status": "pending_manual_review",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38816857/",
+      "pmcid": "PMC11140948",
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11140948/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "33846516",
+      "doi": "10.1038/s41598-021-87372-y",
+      "title": "The effect of resistance training set configuration on strength and muscular performance adaptations in male powerlifters.",
+      "year": "2021",
+      "abstract": "The purpose of this study was to determine the effects of different set configurations on strength and muscular performance adaptations after an 8-week resistance training program. Twenty-four male powerlifters participated in this study and were randomly assigned to one of two resistance training groups: (1) cluster sets (CS: n = 8), (2), traditional sets (TS: n = 8), and a control group (CG: n = 8). All powerlifters were evaluated for thigh and arm circumference, upper and lower body impulsive activities, and 1 repetition maximum (1RM) in the back squat, bench press, and deadlift prior to and after the 8-week training intervention. After training, both the CS and TS groups increased arm and thigh circumferences and decreased body fat. The CS group resulted in greater increases in upper and lower body impulsive activities than the TS group, respectively. In addition, the CS and TS groups indicated similar changes in 1RM bench press, back squat, and deadlift following the 8 weeks training intervention. These results suggest that cluster sets induce adaptive changes that favor impulsive activities in powerlifters.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "pending_manual_review",
+      "outcome_status": "pending_manual_review",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/33846516/",
+      "pmcid": "PMC8041766",
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8041766/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    },
+    {
+      "pmid": "32269656",
+      "doi": "10.2478/hukin-2020-0001",
+      "title": "The Effects of the Movement Tempo on the One-Repetition Maximum Bench Press Results.",
+      "year": "2020",
+      "abstract": "Different tempos of movement can be used during resistance training, but programming them is often a trial-and-error practice, as changing the speed at which the exercise is performed does not always correspond with the tempo at which the 1-repetition-maximum occurred. Therefore, the aim of this study was to determine the effect of different movement tempos during the bench press (BP) exercise on the one-repetition maximum (1RM) load. Ninety men (age = 25.8 ± 5.3 years, body mass = 80.2 ± 14.9 kg), with a minimum one year of resistance training experience took part in the study. Using a randomized crossover design, each participant completed the BP 1RM test with five different movement tempos: V/0/V/0, 2/0/V/0, 5/0/V/0, 8/0/V/0 and 10/0/V/0. Repeated measures ANOVA compared the differences between the 1RM at each tempo. The 1RM load was significantly greater during V/0/V/0 and 2/0/V/0 compared to 5/0/V/0, 8/0/V/0, and 10/0/V/0 (p < 0.01). Furthermore, the 1RM load was significantly greater during 5/0/V/0 compared to 8/0/V/0 and 10/0/V/0 (p < 0.01), but there were no differences between either V/0/V/0 and 2/0/V/0 (p = 0.92) or between 8/0/V/0 and 10/0/V/0 (p = 0.08). Therefore, different movement tempos used during training should be accompanied by their own tempo-specific 1RM testing, as slower eccentric phases significantly decrease maximal concentric performance. Furthermore, 1RM test procedures should include information about the movement tempo used during the test protocol. In addition, the standardization of the tempo should be taken into account in investigations that use the 1 RM test to assess the effects of any treatment on maximal muscle strength.",
+      "score": 4,
+      "status": "metadata_candidate",
+      "protocol_status": "pending_manual_review",
+      "outcome_status": "pending_manual_review",
+      "reason": "Full text, arm-specific prescription, progression and numerical outcomes not independently verified",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/32269656/",
+      "pmcid": "PMC7126254",
+      "full_text_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7126254/fullTextXML",
+      "full_text_status": "open_xml_accessible",
+      "runnable": false,
+      "chart_publishable": false,
+      "relation_publishable": false
+    }
+  ]
+}

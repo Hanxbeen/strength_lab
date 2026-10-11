@@ -32,7 +32,7 @@ struct ApprovedHomeView: View {
             NavigationStack { TrainingHistory() }
                 .tabItem { Label("기록", image: "lucide-chart-no-axes-column-increasing") }
         }
-        .tint(MugeStyle.accent)
+        .tint(MugeStyle.tint)
         .onAppear { showIntroduction = !onboardingCompleted }
         .fullScreenCover(isPresented: $showIntroduction) { TrainingIntroduction() }
         .task { await catalog.refresh() }
@@ -110,8 +110,11 @@ private struct TrainingHome: View {
                     }
                 }
                 if workouts.active == nil {
-                    NavigationLink { RoutineLibrary() } label: { Text("루틴 보기") }
-                        .buttonStyle(MugePrimaryButtonStyle())
+                    NavigationLink { RoutineLibrary() } label: {
+                        MugeCard {
+                            MugeNavigationLabel(title: "오늘 할 운동 찾기", icon: "dumbbell")
+                        }
+                    }.buttonStyle(.plain)
                 }
                 if let recent = workouts.history.max(by: { $0.startedAt < $1.startedAt }) {
                     NavigationLink { WorkoutHistoryDetail(workout: recent) } label: {
@@ -170,7 +173,7 @@ private struct TrainingHome: View {
               let previous = workouts.measuredMaxes.filter({
                   $0.exerciseID == id && $0.measuredAt < monthStart && $0.weightKg > 0
               }).max(by: { $0.measuredAt < $1.measuredAt }) else {
-            return "기록일 \(latest.measuredAt.formatted(date: .abbreviated, time: .omitted)) · 지난달 비교 자료 없음"
+            return "기록일 \(latest.measuredAt.formatted(date: .abbreviated, time: .omitted))"
         }
         let change = (latest.weightKg - previous.weightKg) / previous.weightKg * 100
         return "지난달 대비 \(change > 0 ? "+" : "")\(change.formatted(.number.precision(.fractionLength(1))))% · \(previous.measuredAt.formatted(date: .abbreviated, time: .omitted)) → \(latest.measuredAt.formatted(date: .abbreviated, time: .omitted))"
@@ -185,8 +188,8 @@ private struct MetricTile: View {
             Text(value).mugeNumber()
             Text(label).font(.caption).foregroundStyle(MugeStyle.muted)
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            .padding(MugeStyle.Space.page)
-            .frame(minHeight: 118)
+            .padding(MugeStyle.Space.card)
+            .frame(minHeight: 100)
             .background(MugeStyle.surface, in: RoundedRectangle(cornerRadius: MugeStyle.Radius.card))
             .accessibilityElement(children: .combine)
     }
@@ -211,33 +214,86 @@ private struct RoutineLibrary: View {
             VStack(alignment: .leading, spacing: MugeStyle.Space.section) {
                 if catalog.isLoading {
                     ProgressView("루틴을 불러오고 있어요").frame(maxWidth: .infinity)
-                } else if let error = catalog.error {
+                } else if catalog.error != nil {
                     MugeCard {
                         Text("루틴을 불러오지 못했어요").font(MugeStyle.TypeStyle.section)
-                        Text(error).font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                         Button("다시 시도") { Task { await catalog.refresh() } }
-                            .buttonStyle(MugePrimaryButtonStyle())
-                    }
-                } else if catalog.protocols.isEmpty {
-                    MugeCard {
-                        LilaRiveView(size: 88).frame(maxWidth: .infinity)
-                        Text("공개할 루틴을 준비 중이에요").font(MugeStyle.TypeStyle.section)
-                        if let metadata = catalog.metadata {
-                            Text("논문 후보 \(metadata.candidates)편 · 검토 대기 \(metadata.awaitingReview)편")
-                                .font(MugeStyle.TypeStyle.action)
-                        }
-                        Text("논문과 운동 구성을 검토한 루틴만 여기에 표시해요. 기록 연습은 홈에서 시작할 수 있어요.")
-                            .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                            .buttonStyle(MugeSecondaryButtonStyle())
                     }
                 } else {
-                    ForEach(catalog.protocols) { item in
-                        NavigationLink { RoutineOverview(item: item) } label: { RoutineCard(item: item) }
-                            .buttonStyle(.plain)
+                    if catalog.protocols.isEmpty {
+                        MugeCard {
+                            Text("아직 시작할 수 있는 루틴이 없어요").font(MugeStyle.TypeStyle.section)
+                            Text("운동 구성을 그대로 따라 할 수 있는 루틴만 제공해요.")
+                                .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                        }
+                    } else {
+                        ForEach(catalog.protocols) { item in
+                            NavigationLink { RoutineOverview(item: item) } label: { RoutineCard(item: item) }
+                                .buttonStyle(.plain)
+                        }
+                    }
+                    if !catalog.studies.isEmpty {
+                        MugeCard {
+                            Text("운동 연구").font(MugeStyle.TypeStyle.section)
+                            Text("연구 내용과 원문을 살펴보세요.")
+                                .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                            ForEach(Array(catalog.studies.enumerated()), id: \.element.id) { index, study in
+                                if index > 0 { Divider() }
+                                NavigationLink { ResearchStudyDetail(study: study) } label: {
+                                    HStack(spacing: MugeStyle.Space.md) {
+                                        VStack(alignment: .leading, spacing: MugeStyle.Space.xs) {
+                                            Text(study.displayTitle).font(MugeStyle.TypeStyle.card)
+                                            Text("연구 자료 · 운동 시작 불가")
+                                                .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
+                                        }
+                                        Spacer()
+                                        MugeIcon(name: "chevron-right").foregroundStyle(MugeStyle.muted)
+                                    }.frame(minHeight: MugeStyle.minimumTarget)
+                                }.buttonStyle(.plain)
+                            }
+                        }
                     }
                 }
             }.padding(MugeStyle.Space.page)
         }.background(MugeStyle.canvas).navigationTitle("루틴")
             .refreshable { await catalog.refresh() }
+    }
+}
+
+private extension ResearchStudy {
+    var displayTitle: String {
+        switch pmid {
+        case "38816857": return "스쿼트와 트랩바 데드리프트"
+        case "33846516": return "세트 구성에 따른 근력 변화"
+        case "32269656": return "벤치프레스 속도와 최대 중량"
+        default: return title
+        }
+    }
+}
+
+private struct ResearchStudyDetail: View {
+    let study: ResearchStudy
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: MugeStyle.Space.section) {
+                MugeCard {
+                    Text(study.displayTitle).font(MugeStyle.TypeStyle.hero)
+                    Text(study.title).font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                    Link("논문 원문 보기", destination: study.sourceURL)
+                        .buttonStyle(MugeSecondaryButtonStyle())
+                }
+                MugeCard {
+                    Text("이 연구로 바로 운동할 수 없는 이유").font(MugeStyle.TypeStyle.section)
+                    ForEach(study.reasons, id: \.code) { reason in
+                        Text(reason.message).font(MugeStyle.TypeStyle.detail)
+                    }
+                    Text("원문과 앱에서 실행할 수 있는 운동 구성을 자동으로 확인한 결과예요. 연구의 효과를 검증했다는 뜻은 아니에요.")
+                        .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
+                }
+            }.padding(MugeStyle.Space.page)
+        }.background(MugeStyle.canvas).navigationTitle("연구 살펴보기")
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
 

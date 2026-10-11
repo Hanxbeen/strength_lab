@@ -8,6 +8,8 @@ import Foundation
         precondition(catalog.error == nil, catalog.error ?? "")
         precondition(catalog.metadata != nil, "Expected a persisted batch summary")
         precondition(catalog.protocols.allSatisfy(\.isPublishedResearch))
-        print("Live DB catalog: candidates=\(catalog.metadata!.candidates), awaiting=\(catalog.metadata!.awaitingReview), published=\(catalog.protocols.count)")
+        precondition(catalog.studies.allSatisfy(\.isReadOnly))
+        precondition(catalog.studies.count == catalog.metadata?.automaticallyChecked)
+        print("Live DB catalog: candidates=\(catalog.metadata!.candidates), awaiting=\(catalog.metadata!.awaitingReview), studies=\(catalog.studies.count), published=\(catalog.protocols.count)")
     }
 }
