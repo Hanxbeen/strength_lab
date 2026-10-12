@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "approved_at": "2026-10-12",
+  "status": "approved-design-master",
+  "master": "lila-levels-approved.png",
+  "sha256": "aa75360b9311e42885d6913f581fa6b6ab9332cc92a4456f1a0158cfa8a1c3ac",
+  "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "fur_base": "#2A2A2A",
+  "runtime_assets_exported": false
+}
