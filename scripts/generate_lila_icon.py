@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """LEGACY flat SVG-style icon generator; NOT the approved 3D Lila icon.
 
-Production icon comes from scripts/generate_lila_poster_icon.py.
+Production icon comes from scripts/export_app_icon.py. This legacy renderer writes a preview only.
 Generate the native iOS Lila face icon (transparent-free 1024px PNG).
 Self-contained Pillow renderer; avoids screen captures and trademarked assets.
 """
@@ -131,7 +131,7 @@ eyes.ellipse((566,444,589,505),fill=(27,29,29,255))
 eyes.ellipse((495,566,508,579),fill=(37,36,35,255))
 eyes.ellipse((518,566,531,579),fill=(37,36,35,255))
 
-out=Path(__file__).resolve().parent.parent/'apps/ios/MugeMuge/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png'
+out=Path(__file__).resolve().parent.parent/'assets/lila/legacy-preview/AppIcon.png'
 out.parent.mkdir(parents=True,exist_ok=True)
 im.convert('RGB').save(out,optimize=True)
 print(f"ICON={out} SIZE={out.stat().st_size} px={im.size}")
