@@ -4,7 +4,8 @@ from datetime import datetime
 from decimal import Decimal
 from .core import InvalidProgramme, digest, number, instantiate_session, progression
 
-POLICY = 'execution-ledger-v1'
+POLICY = 'execution-ledger-v2'
+from .execution_facts import pain_reported, short_interset_rests
 REASONS = {'fatigue', 'pain', 'time', 'equipment', 'interruption', 'other'}
 
 def require(condition, code):
@@ -62,6 +63,16 @@ def guide(code, text, actions, basis='product_policy', evidence=None):
 
 def replay(workout, events):
     """Strict state machine. Rest uses elapsed wall time; pauses never erase physical recovery."""
+    if workout['policy_version'] == 'execution-ledger-v1':
+        from .workout_legacy_v1 import replay as legacy_replay
+        result = legacy_replay(workout, events)
+        result['historical_guides'] = result['guides']
+        result['guides'] = [guide('LEGACY_READ_ONLY', '기존 버전 운동이에요. 기록을 확인하거나 종료할 수 있어요.',
+                                  ['finish'] if result['state'] not in ('completed','stopped') else [])]
+        result['next_set_id'] = None
+        result['legacy_read_only'] = True
+        result['migration_notice'] = '기존 계산 버전 기록이에요. 종료와 열람만 지원해요.'
+        return result
     require(workout['policy_version'] == POLICY, 'UNSUPPORTED_POLICY')
     require(len(events) <= 2000, 'EVENT_LIMIT')
     rows = copy.deepcopy(workout['session']['sets'])
@@ -115,6 +126,8 @@ def replay(workout, events):
                 current['changes'].append({'event_id': eid, 'at': event['at'], 'from_kg': current['selected_weight_kg'],
                                            'to_kg': value, 'reason': event['reason']})
                 current['selected_weight_kg'] = value
+                if event['reason'] == 'pain':
+                    paused_from = state; state = 'paused'
                 continue
             if kind == 'skip_set':
                 require(event.get('reason') in REASONS, 'SKIP_REASON_REQUIRED')
@@ -148,9 +161,9 @@ def replay(workout, events):
     current = rows[cursor] if cursor < len(rows) else None
     if state == 'paused':
         guides.append(guide('PAUSED', '운동을 멈췄어요. 계속할지, 여기서 마칠지 선택해 주세요.', ['resume', 'finish']))
-    if any(r.get('reason') == 'pain' or (r.get('actual') or {}).get('reason') == 'pain' for r in rows):
+    if pain_reported(rows):
         guides.append(guide('PAIN_REPORTED', '통증이 기록됐어요. 앱은 통증에 맞는 중량이나 재개 여부를 판단하지 않아요.', ['finish']))
-    if rest:
+    if rest and state == 'resting':
         guides.append(guide('RESTING', '휴식 중이에요. 일찍 끝내면 실제 쉰 시간이 따로 기록돼요.', ['rest_end', 'pause', 'finish']))
     if state == 'active' and current:
         guides.append(guide('NEXT_SET', '중량을 확인하고 수행한 횟수를 기록해 주세요. 어렵다면 중량을 바꾸거나 건너뛸 수 있어요.', ['change_load', 'set_result', 'skip_set', 'pause', 'finish']))
@@ -158,7 +171,7 @@ def replay(workout, events):
         guides.append(guide('READY_TO_FINISH', '모든 세트를 기록했어요. 운동을 마쳐 주세요.', ['finish']))
     if state in ('completed', 'stopped'):
         guides.append(guide('SAVED_RESULT', '수행한 세트와 건너뛴 세트를 구분해 기록했어요. 미완료 분량을 다음 운동에 자동으로 더하지 않아요.', []))
-    if any(r['shortfall_seconds'] > 0 for r in rests):
+    if short_interset_rests(rests):
         guides.append(guide('REST_SHORTFALL', '목표보다 짧게 쉰 구간이 있어요. 기록 비교이며, 운동 효과나 다음 중량을 단정하는 기준은 아니에요.', []))
     chart = []; achieved = 0; planned = 0
     for row in rows:
@@ -171,7 +184,7 @@ def replay(workout, events):
                       'reps_shortfall': max(0, target - completed) if row['status'] != 'pending' else None,
                       'weight_delta_kg': actual['weight_kg'] - row['weight_kg'] if actual else None})
     recorded = [r for r in rows if r['actual']]
-    if recorded and state not in ('completed', 'stopped'):
+    if recorded and state not in ('completed', 'stopped', 'paused') and not pain_reported(rows):
         last = recorded[-1]; actual = last['actual']
         # The bounded half-squat/deadlift rule must never leak into accessory RIR movements.
         if actual.get('reason') != 'pain' and current and current['exercise_id'] == last['exercise_id'] and last['load']['kind'] == 'initial_percent_1rm':
@@ -195,7 +208,10 @@ def replay(workout, events):
             'summary': {'planned_sets': len(rows), 'recorded_sets': len(recorded),
                         'skipped_sets': sum(r['status'] == 'skipped' for r in rows),
                         'not_attempted_sets': sum(r['status'] == 'not_attempted' for r in rows),
-                        'minimum_reps_completion_percent': round(100 * achieved / planned, 2),
+                        'minimum_reps_completion_percent': None if any(r['status']=='pending' for r in rows) else round(100 * achieved / planned, 2),
+                        'minimum_reps_completion_bounds_percent': [round(100 * achieved / planned, 2), round(100 * (achieved + sum(r['reps']['min'] for r in rows if r['status']=='pending')) / planned, 2)],
+                        'unknown_sets': sum(r['status']=='pending' for r in rows),
+                        'metric_version': 'minimum-reps-v2',
                         'definition': 'Sum of per-set reps capped at prescribed minimum / planned minimum reps. Not strength gain or scientific adherence.',
-                        'rest_shortfall_seconds': sum(r['shortfall_seconds'] for r in rests),
+                        'rest_shortfall_seconds': sum(r['shortfall_seconds'] for r in short_interset_rests(rests)),
                         'chart': chart, 'growth_prediction': None}}

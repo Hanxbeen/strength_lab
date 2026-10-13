@@ -4,6 +4,8 @@ from decimal import Decimal, ROUND_HALF_UP
 from .core import digest, number, InvalidProgramme
 from .workout import require, timestamp, max_record, POLICY
 
+from .execution_facts import pain_reported
+
 ENGINE = 'helms-2018-v1'
 SOURCE_ID = '10.3389/fphys.2018.00247'
 EXERCISES = ('barbell_back_squat', 'barbell_bench_press')
@@ -130,7 +132,7 @@ def enrich(snapshot, execution):
                        'growth_prediction':None}
     current=next((r for r in result['sets'] if r['id']==result['next_set_id']),None)
     performed=[r for r in result['sets'] if r['actual']]
-    if current and performed and result['state'] in ('active','resting') and not any((r.get('actual') or {}).get('reason') == 'pain' or r.get('reason') == 'pain' for r in result['sets']):
+    if current and performed and result['state'] in ('active','resting') and not pain_reported(result['sets']) and not result.get('legacy_read_only'):
         last=performed[-1]
         if last['exercise_id']==current['exercise_id'] and result['sets'].index(current)>0 and result['sets'][result['sets'].index(current)-1]['id']==last['id']:
             decision=adjustment(context['arm'],last['actual'],last['reps']['min'],context['target']['rpe_range'])

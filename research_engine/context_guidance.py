@@ -1,8 +1,9 @@
 """Non-prescriptive, versioned research interpretation attached to actual records."""
 from .core import digest
 from .workout import require
+from .execution_facts import pain_reported, short_interset_rests
 
-POLICY = 'context-guidance-v1'
+POLICY = 'context-guidance-v2'
 TOPICS = ('rest', 'volume', 'deload')
 
 def validate_packet(packet):
@@ -27,11 +28,10 @@ def explain(execution, packet, topic='auto'):
     require(topic in ('auto',) + TOPICS, 'UNKNOWN_CONTEXT_TOPIC')
     rows = execution['sets']
     completed_rests = execution['rests']
-    short_rests = [dict(r) for r in completed_rests if r['shortfall_seconds'] > 0
-                   and r.get('kind') == 'between_sets' and r.get('outcome') == 'skipped']
+    short_rests = short_interset_rests(completed_rests)
     attempted = [r for r in rows if r.get('actual') and r['status'] == 'recorded']
     below = [r['id'] for r in attempted if r['actual']['reps'] < r['reps']['min']]
-    pain = any(r.get('reason') == 'pain' or (r.get('actual') or {}).get('reason') == 'pain' for r in rows)
+    pain = pain_reported(rows)
     selected = ([topic] if topic != 'auto' else (['rest'] if short_rests else []))
     facts = {
         'recorded_sets': len(attempted), 'below_minimum_rep_set_ids': below,
@@ -42,7 +42,7 @@ def explain(execution, packet, topic='auto'):
         'pain_reported': pain,
     }
     cards = []
-    if not pain:
+    if not pain and not execution.get('legacy_read_only'):
         for source in packet['sources']:
             if source['topic'] not in selected: continue
             cards.append({

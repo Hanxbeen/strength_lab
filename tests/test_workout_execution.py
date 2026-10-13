@@ -38,6 +38,43 @@ class WorkoutTests(unittest.TestCase):
     def result(self, second=10, **kw):
         return self.event('set_result',second,set_id=self.first,reps=kw.pop('reps',4),**kw)
 
+    def test_pain_change_pauses_until_explicit_resume(self):
+        change=self.event('change_load',1,set_id=self.first,value=80,unit='kg',reason='pain')
+        value=replay(self.snapshot,[change])
+        self.assertEqual(value['state'],'paused')
+        self.assertIn('PAIN_REPORTED',[g['code'] for g in value['guides']])
+        self.assertNotIn('NEXT_SET',[g['code'] for g in value['guides']])
+        with self.assertRaisesRegex(InvalidProgramme,'SET_NOT_AVAILABLE'):
+            replay(self.snapshot,[change,self.result()])
+        value=replay(self.snapshot,[change,self.event('resume',2),self.result(reps=2,reason='fatigue')])
+        self.assertNotIn('SOURCE_DECREASE_RANGE',[g['code'] for g in value['guides']])
+
+    def test_interrupted_rest_is_not_interset_shortfall(self):
+        value=replay(self.snapshot,[self.result(),self.event('finish',20,reason='time')])
+        self.assertEqual(value['summary']['rest_shortfall_seconds'],0)
+        self.assertNotIn('REST_SHORTFALL',[g['code'] for g in value['guides']])
+        self.assertGreater(value['rests'][0]['shortfall_seconds'],0)
+
+    def test_pending_is_unknown_and_finish_is_confirmed(self):
+        summary=replay(self.snapshot,[])['summary']
+        self.assertIsNone(summary['minimum_reps_completion_percent'])
+        self.assertEqual(summary['minimum_reps_completion_bounds_percent'],[0,100])
+        summary=replay(self.snapshot,[self.event('finish',1,reason='time')])['summary']
+        self.assertEqual(summary['minimum_reps_completion_percent'],0)
+        self.assertEqual(summary['unknown_sets'],0)
+
+    def test_legacy_results_preserved_and_only_finish_allowed(self):
+        from research_engine.workout_legacy_v1 import replay as old_replay
+        old=copy.deepcopy(self.snapshot);old['policy_version']='execution-ledger-v1'
+        self.assertEqual(replay(old,[])['summary'],old_replay(old,[])['summary'])
+        with tempfile.TemporaryDirectory() as folder:
+            db=WorkoutStore(Path(folder)/'old.sqlite');db.create('a','old',old)
+            with self.assertRaisesRegex(Conflict,'LEGACY'):
+                db.append('a','old',0,self.result())
+            out=db.append('a','old',0,self.event('finish',1,reason='time'))
+            self.assertEqual(out['execution']['state'],'stopped')
+            self.assertTrue(out['execution']['legacy_read_only'])
+
     def test_max_snapshot_survives_edits(self):
         self.record['value']=150
         self.assertEqual(replay(self.snapshot,[])['sets'][0]['weight_kg'],85)

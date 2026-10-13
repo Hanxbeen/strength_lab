@@ -3,7 +3,7 @@ import json
 import os
 import urllib.request
 import urllib.error
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 from .repository import CatalogUnavailable
 from .workout_api import owner, store, execute
@@ -29,6 +29,12 @@ def catalog():
         return result
     except (OSError,ValueError,KeyError,TypeError) as e:raise CatalogUnavailable('Evidence catalog unavailable') from e
 
+def require_internal_preview(user):
+    # Server-owned allowlist; request acknowledgement is not release authorization.
+    allowed = {x.strip() for x in os.environ.get('COACHING_PREVIEW_OWNER_IDS','').split(',') if x.strip()}
+    if user not in allowed:
+        raise HTTPException(403, detail='RESEARCH_PREVIEW_NOT_RELEASED')
+
 class InstanceInput(BaseModel):
     id:str=Field(min_length=1,max_length=100)
     source_id:str
@@ -52,6 +58,7 @@ def programmes(user=Depends(owner)):
 
 @router.post('/programme-instances')
 def create(request:InstanceInput,user=Depends(owner),db=Depends(store)):
+    require_internal_preview(user)
     def action():
         source=next((x for x in catalog()['items'] if x['source_id']==request.source_id and x['version']==request.source_version),None)
         if source is None:raise InvalidProgramme('SOURCE_VERSION_UNAVAILABLE')
@@ -85,6 +92,7 @@ def start(instance_id:str,request:SessionInput,user=Depends(owner),db=Depends(st
                 initial={r['exercise_id']:r['weight_kg'] for r in prior['snapshot']['session']['sets']}
                 require(initial==request.initial_rpe_loads_kg,'START_REQUEST_CONFLICT')
             return db.get(user,request.workout_id)
+        require_internal_preview(user)
         matching=next((x for x in catalog()['items'] if x['source_id']==value['source']['id']
                        and x['version']==digest(value['source'])),None)
         require(matching is not None and matching['status']=='research_preview','SOURCE_UNAVAILABLE_OR_SUSPENDED')

@@ -69,6 +69,8 @@ class CoachingAPITests(unittest.TestCase):
         CoachingTests.setUp(self)
         self.tmp=tempfile.TemporaryDirectory();self.db=WorkoutStore(Path(self.tmp.name)/'test.sqlite')
         self.user='owner-a'
+        env=patch.dict('os.environ',COACHING_PREVIEW_OWNER_IDS='owner-a')
+        env.start();self.addCleanup(env.stop)
         app.dependency_overrides[owner]=lambda:self.user
         app.dependency_overrides[store]=lambda:self.db
         self.client=TestClient(app)
@@ -89,6 +91,19 @@ class CoachingAPITests(unittest.TestCase):
         response=self.client.post('/v3/programme-instances/i1/workouts',json=self.request)
         self.assertEqual(response.status_code,200,response.text)
         return response.json()
+    def test_preview_allowlist_does_not_follow_user_acknowledgement(self):
+        from backend.coaching_api import require_internal_preview
+        from fastapi import HTTPException
+        with patch.dict('os.environ',COACHING_PREVIEW_OWNER_IDS=''):
+            with self.assertRaises(HTTPException) as error:
+                require_internal_preview(self.user)
+            self.assertEqual(error.exception.status_code,403)
+        self.start()
+        with patch.dict('os.environ',COACHING_PREVIEW_OWNER_IDS=''):
+            self.assertEqual(self.client.post('/v3/programme-instances/i1/workouts',json=self.request).status_code,200)
+            request={**self.request,'day':2,'workout_id':'w2'}
+            self.assertEqual(self.client.post('/v3/programme-instances/i1/workouts',json=request).status_code,403)
+
     def test_record_rest_adjustment_reload_and_owner_isolation(self):
         result=self.start('RPEG');sid=result['execution']['sets'][0]['id']
         event={'id':'e1','type':'set_result','at':'2026-10-12T09:01:00Z','set_id':sid,

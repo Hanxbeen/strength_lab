@@ -84,6 +84,8 @@ class WorkoutStore:
             if old is not None:
                 if digest(old) != digest(event): raise Conflict('EVENT_ID_CONFLICT')
             else:
+                if snapshot['policy_version'] == 'execution-ledger-v1' and event.get('type') != 'finish':
+                    raise Conflict('LEGACY_WORKOUT_READ_OR_FINISH_ONLY')
                 if expected_revision != row[2]: raise Conflict('STALE_REVISION')
                 events.append(event)
                 result = replay(snapshot, events)
