@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "id": "context-evidence-20261013",
+  "scientific_approval": false,
+  "review_status": "extracted_pending_independent_review",
+  "sources": [
+    {
+      "id": "rest-2016",
+      "pmid": "26605807",
+      "doi": "10.1519/JSC.0000000000001272",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26605807/",
+      "title": "Longer Interset Rest Periods Enhance Muscle Strength and Hypertrophy in Resistance-Trained Men",
+      "review_extent": "abstract_only",
+      "locator": "Abstract",
+      "topic": "rest",
+      "population": "21 young resistance-trained men",
+      "design": "8-week randomized comparison; 1 vs 3 minute interset rest",
+      "finding": "This trial reported greater squat and bench strength gains with 3-minute rest than 1-minute rest.",
+      "limitations": [
+        "Full methods and attrition not yet reviewed",
+        "Does not establish 3 minutes as a universal optimum",
+        "Does not quantify an individual growth penalty for shortening one rest"
+      ],
+      "guidance_ko": "휴식을 짧게 줄이면 수행에 영향을 줄 수 있어요. 우선 현재 루틴이 정한 휴식과 실제로 쉰 시간을 비교해 주세요.",
+      "prescription_changes_allowed": false,
+      "correction_review": "pending"
+    },
+    {
+      "id": "volume-2019",
+      "pmid": "30153194",
+      "pmcid": "PMC6303131",
+      "doi": "10.1249/MSS.0000000000001764",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6303131/",
+      "title": "Resistance Training Volume Enhances Muscle Hypertrophy but Not Strength in Trained Men",
+      "review_extent": "methods_results_limitations_fulltext",
+      "locator": "Subjects; RT Procedures; Results; Limitations",
+      "topic": "volume",
+      "population": "45 recruited resistance-trained men; 34 completed",
+      "design": "8 weeks, 3 sessions/week, 1 vs 3 vs 5 sets per exercise",
+      "finding": "No statistically significant between-group squat or bench strength differences; some hypertrophy outcomes favored higher volume.",
+      "statistics": {
+        "squat_group_p": 0.22,
+        "bench_group_p": 0.15
+      },
+      "limitations": [
+        "Not proof that volumes are equivalent",
+        "Small completer sample and outcome-specific missing data",
+        "Does not validate increasing sets to resolve an individual plateau",
+        "Hypertrophy findings are not direct proof of greater powerlifting strength"
+      ],
+      "rights": {
+        "fulltext_license": "CC BY-NC-ND 4.0",
+        "fulltext_redistributed": false
+      },
+      "guidance_ko": "세트를 더 한다고 중량이 반드시 더 빨리 늘지는 않아요. 목표 횟수·중량·휴식을 먼저 확인하고 훈련량 변경은 별도로 판단해 주세요.",
+      "prescription_changes_allowed": false,
+      "correction_review": "pending"
+    },
+    {
+      "id": "deload-2024",
+      "pmid": "38274324",
+      "pmcid": "PMC10809978",
+      "doi": "10.7717/peerj.16777",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10809978/",
+      "title": "Gaining more from doing less? The effects of a one-week deload period during supervised resistance training on muscular adaptations",
+      "review_extent": "methods_results_limitations_fulltext",
+      "locator": "Resistance training procedures; Results/Table 3; Limitations",
+      "topic": "deload",
+      "population": "50 randomized, 39 completed; trained adults, 29 men and 10 women among completers",
+      "design": "9 weeks; complete resistance-training cessation in week 5 vs continuous training",
+      "finding": "No clear hypertrophy benefit; strength estimates favored continuous training but uncertainty intervals included zero.",
+      "statistics": {
+        "outcome": "Smith-machine squat 1RM",
+        "kind": "univariate_group_difference",
+        "estimate_kg": -3.6,
+        "interval_kind": "95_percent_credible_interval",
+        "interval_kg": [
+          -10.4,
+          3.2
+        ],
+        "posterior_probability_favoring_cessation": 0.149
+      },
+      "limitations": [
+        "Complete cessation is not reduced-load or reduced-volume deload",
+        "Does not establish an optimal response to an individual plateau",
+        "Smith-machine outcomes do not directly establish SBD competition changes",
+        "Unsupervised upper-body adherence uncertain; lower-body outcomes assessed",
+        "No individual benefit/harm probability is calculated"
+      ],
+      "guidance_ko": "이 연구만으로 정체 때마다 일주일 쉬라고 정할 수는 없어요. 완전 휴식과 훈련량을 줄이는 디로드도 구분해야 해요.",
+      "prescription_changes_allowed": false,
+      "correction_review": "pending"
+    }
+  ]
+}
