@@ -1,0 +1,271 @@
+{
+  "collected_at": "2026-10-13T02:09:47.210855+00:00",
+  "status": "candidate_mapping",
+  "reports": [
+    {
+      "query": "DOI:10.3389/fphys.2018.00247",
+      "query_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.3389%2Ffphys.2018.00247&format=json&resultType=core&pageSize=5&cursorMark=%2A",
+      "pmid": "29628895",
+      "pmcid": "PMC5877330",
+      "doi": "10.3389/fphys.2018.00247",
+      "title": "RPE vs. Percentage 1RM Loading in Periodized Programs Matched for Sets and Repetitions.",
+      "year": "2018",
+      "publication_types": [
+        "research-article",
+        "Journal Article"
+      ],
+      "question_ids": [
+        "Q02",
+        "Q03",
+        "Q11"
+      ],
+      "purpose": "Load adjustment and prior-week history",
+      "review_status": "metadata_verified",
+      "scientific_approval": false,
+      "correction_status": "not_yet_reviewed",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/29628895/"
+    },
+    {
+      "query": "DOI:10.1519/JSC.0000000000001272",
+      "query_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1519%2FJSC.0000000000001272&format=json&resultType=core&pageSize=5&cursorMark=%2A",
+      "pmid": "26605807",
+      "pmcid": null,
+      "doi": "10.1519/jsc.0000000000001272",
+      "title": "Longer Interset Rest Periods Enhance Muscle Strength and Hypertrophy in Resistance-Trained Men.",
+      "year": "2016",
+      "publication_types": [
+        "Randomized Controlled Trial",
+        "Journal Article"
+      ],
+      "question_ids": [
+        "Q04"
+      ],
+      "purpose": "1 vs 3 minute interset rest",
+      "review_status": "metadata_verified",
+      "scientific_approval": false,
+      "correction_status": "not_yet_reviewed",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/26605807/"
+    },
+    {
+      "query": "DOI:10.1186/s40798-020-00260-z",
+      "query_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1186%2Fs40798-020-00260-z&format=json&resultType=core&pageSize=5&cursorMark=%2A",
+      "pmid": "32681399",
+      "pmcid": "PMC7367986",
+      "doi": "10.1186/s40798-020-00260-z",
+      "title": "Test-Retest Reliability of the One-Repetition Maximum (1RM) Strength Assessment: a Systematic Review.",
+      "year": "2020",
+      "publication_types": [
+        "review-article",
+        "Review",
+        "Journal Article"
+      ],
+      "question_ids": [
+        "Q01"
+      ],
+      "purpose": "1RM repeatability synthesis; not an estimation formula",
+      "review_status": "metadata_verified",
+      "scientific_approval": false,
+      "correction_status": "not_yet_reviewed",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/32681399/"
+    },
+    {
+      "query": "DOI:10.1136/bjsports-2023-106807",
+      "query_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1136%2Fbjsports-2023-106807&format=json&resultType=core&pageSize=5&cursorMark=%2A",
+      "pmid": "37414459",
+      "pmcid": "PMC10579494",
+      "doi": "10.1136/bjsports-2023-106807",
+      "title": "Resistance training prescription for muscle strength and hypertrophy in healthy adults: a systematic review and Bayesian network meta-analysis.",
+      "year": "2023",
+      "publication_types": [
+        "research-article",
+        "Systematic Review",
+        "Network Meta-Analysis",
+        "Journal Article"
+      ],
+      "question_ids": [
+        "Q02",
+        "Q06"
+      ],
+      "purpose": "Prescription synthesis; not one executable programme",
+      "review_status": "metadata_verified",
+      "scientific_approval": false,
+      "correction_status": "not_yet_reviewed",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/37414459/"
+    },
+    {
+      "query": "DOI:10.1519/JSC.0000000000003164",
+      "query_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1519%2FJSC.0000000000003164&format=json&resultType=core&pageSize=5&cursorMark=%2A",
+      "pmid": "31009432",
+      "pmcid": null,
+      "doi": "10.1519/jsc.0000000000003164",
+      "title": "Autoregulation by \"Repetitions in Reserve\" Leads to Greater Improvements in Strength Over a 12-Week Training Program Than Fixed Loading.",
+      "year": "2021",
+      "publication_types": [
+        "Journal Article"
+      ],
+      "question_ids": [
+        "Q03"
+      ],
+      "purpose": "RIR vs fixed loading; compare with Helms null between-group result",
+      "review_status": "metadata_verified",
+      "scientific_approval": false,
+      "correction_status": "not_yet_reviewed",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/31009432/"
+    },
+    {
+      "query": "DOI:10.1249/MSS.0000000000001764",
+      "query_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1249%2FMSS.0000000000001764&format=json&resultType=core&pageSize=5&cursorMark=%2A",
+      "pmid": "30153194",
+      "pmcid": "PMC6303131",
+      "doi": "10.1249/mss.0000000000001764",
+      "title": "Resistance Training Volume Enhances Muscle Hypertrophy but Not Strength in Trained Men.",
+      "year": "2019",
+      "publication_types": [
+        "Research Support, Non-U.S. Gov't",
+        "research-article",
+        "Randomized Controlled Trial",
+        "Journal Article"
+      ],
+      "question_ids": [
+        "Q02",
+        "Q06"
+      ],
+      "purpose": "Volume and hypertrophy vs strength distinction",
+      "review_status": "metadata_verified",
+      "scientific_approval": false,
+      "correction_status": "not_yet_reviewed",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/30153194/"
+    },
+    {
+      "query": "EXT_ID:36136596 AND SRC:MED",
+      "query_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A36136596+AND+SRC%3AMED&format=json&resultType=core&pageSize=5&cursorMark=%2A",
+      "pmid": "36136596",
+      "pmcid": null,
+      "doi": "10.1249/mss.0000000000003000",
+      "title": "Sustained Sleep Restriction Reduces Resistance Exercise Quality and Quantity in Females.",
+      "year": "2022",
+      "publication_types": [
+        "Research Support, Non-U.S. Gov't",
+        "Randomized Controlled Trial",
+        "Journal Article"
+      ],
+      "question_ids": [
+        "Q07"
+      ],
+      "purpose": "Sleep restriction experiment; not a sleep-to-load formula",
+      "review_status": "metadata_verified",
+      "scientific_approval": false,
+      "correction_status": "not_yet_reviewed",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/36136596/"
+    },
+    {
+      "query": "EXT_ID:38274324 AND SRC:MED",
+      "query_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A38274324+AND+SRC%3AMED&format=json&resultType=core&pageSize=5&cursorMark=%2A",
+      "pmid": "38274324",
+      "pmcid": "PMC10809978",
+      "doi": "10.7717/peerj.16777",
+      "title": "Gaining more from doing less? The effects of a one-week deload period during supervised resistance training on muscular adaptations.",
+      "year": "2024",
+      "publication_types": [
+        "Research Support, Non-U.S. Gov't",
+        "research-article",
+        "Randomized Controlled Trial",
+        "Journal Article"
+      ],
+      "question_ids": [
+        "Q08"
+      ],
+      "purpose": "Deload randomized study; counter automatic universal deload claims",
+      "review_status": "metadata_verified",
+      "scientific_approval": false,
+      "correction_status": "not_yet_reviewed",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/38274324/"
+    },
+    {
+      "query": "EXT_ID:37639652 AND SRC:MED",
+      "query_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A37639652+AND+SRC%3AMED&format=json&resultType=core&pageSize=5&cursorMark=%2A",
+      "pmid": "37639652",
+      "pmcid": null,
+      "doi": "10.1519/jsc.0000000000004564",
+      "title": "Two Days Versus Four Days of Training Cessation Following a Step-Taper in Powerlifters.",
+      "year": "2023",
+      "publication_types": [
+        "Journal Article"
+      ],
+      "question_ids": [
+        "Q09"
+      ],
+      "purpose": "2 vs 4 days cessation; strength-athlete trial",
+      "review_status": "metadata_verified",
+      "scientific_approval": false,
+      "correction_status": "not_yet_reviewed",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/37639652/"
+    },
+    {
+      "query": "EXT_ID:32917000 AND SRC:MED",
+      "query_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A32917000+AND+SRC%3AMED&format=json&resultType=core&pageSize=5&cursorMark=%2A",
+      "pmid": "32917000",
+      "pmcid": "PMC7552788",
+      "doi": "10.3390/sports8090125",
+      "title": "Tapering and Peaking Maximal Strength for Powerlifting Performance: A Review.",
+      "year": "2020",
+      "publication_types": [
+        "review-article",
+        "Review",
+        "Journal Article"
+      ],
+      "question_ids": [
+        "Q09"
+      ],
+      "purpose": "Powerlifting taper review and reference tracing",
+      "review_status": "metadata_verified",
+      "scientific_approval": false,
+      "correction_status": "not_yet_reviewed",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/32917000/"
+    },
+    {
+      "query": "EXT_ID:28129275 AND SRC:MED",
+      "query_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A28129275+AND+SRC%3AMED&format=json&resultType=core&pageSize=5&cursorMark=%2A",
+      "pmid": "28129275",
+      "pmcid": null,
+      "doi": "10.1519/jsc.0000000000001500",
+      "title": "Comparison of Powerlifting Performance in Trained Men Using Traditional and Flexible Daily Undulating Periodization.",
+      "year": "2017",
+      "publication_types": [
+        "Randomized Controlled Trial",
+        "Journal Article"
+      ],
+      "question_ids": [
+        "Q02"
+      ],
+      "purpose": "Flexible vs traditional DUP; linked erratum must be resolved",
+      "review_status": "metadata_verified",
+      "scientific_approval": false,
+      "correction_status": "not_yet_reviewed",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/28129275/"
+    },
+    {
+      "query": "EXT_ID:28328723 AND SRC:MED",
+      "query_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A28328723+AND+SRC%3AMED&format=json&resultType=core&pageSize=5&cursorMark=%2A",
+      "pmid": "28328723",
+      "pmcid": null,
+      "doi": "10.1519/jsc.0000000000001850",
+      "title": "Comparison of Powerlifting Performance in Trained Men Using Traditional and Flexible Daily Undulating Periodization: Erratum.",
+      "year": "2017",
+      "publication_types": [
+        "Published Erratum",
+        "Journal Article"
+      ],
+      "question_ids": [
+        "Q02"
+      ],
+      "purpose": "Erratum for PMID28129275; not independent efficacy evidence",
+      "review_status": "metadata_verified",
+      "scientific_approval": false,
+      "correction_status": "not_yet_reviewed",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/28328723/"
+    }
+  ],
+  "failures": [],
+  "note": "Purposive foundational leads. No comprehensive review or clinical approval claimed."
+}

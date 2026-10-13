@@ -55,3 +55,6 @@ def prepare_source_session(request: SessionPreparation):
         raise HTTPException(status_code=503,detail='원문 운동 구성을 불러오지 못했어요.')
     except (InvalidProgramme,TypeError,KeyError) as error:
         raise HTTPException(status_code=422,detail=str(error))
+
+from .coaching_api import router as coaching_router
+app.include_router(coaching_router)

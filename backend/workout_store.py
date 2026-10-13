@@ -8,7 +8,15 @@ import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
 from research_engine.core import InvalidProgramme, digest
-from research_engine.workout import max_record, replay
+from research_engine.workout import max_record, replay as base_replay
+
+def replay(snapshot, events):
+    result = base_replay(snapshot, events)
+    if snapshot.get("coaching"):
+        from research_engine.coaching import enrich
+        return enrich(snapshot, result)
+    return result
+
 
 class Conflict(ValueError):
     pass

@@ -126,10 +126,12 @@ def replay(workout, events):
                 require(reason is None or reason in REASONS, 'INVALID_REASON')
                 rir = event.get('rir')
                 require(rir is None or number(rir, 0, 10), 'INVALID_RIR')
+                rpe = event.get('rpe')
+                require(rpe is None or (number(rpe, 1, 10) and rpe * 2 == int(rpe * 2)), 'INVALID_RPE')
                 require(event.get('failure') in (None, 'momentary_concentric', 'technical', 'not_reached'), 'INVALID_FAILURE')
                 require(reps >= current['reps']['min'] or reason in REASONS, 'SHORTFALL_REASON_REQUIRED')
                 current.update(status='recorded', actual={'reps': reps, 'weight_kg': current['selected_weight_kg'],
-                               'rir': rir, 'failure': event.get('failure'), 'reason': reason, 'at': event['at']})
+                               'rir': rir, 'rpe': rpe, 'failure': event.get('failure'), 'reason': reason, 'at': event['at']})
             cursor += 1
             if kind == 'set_result' and cursor < len(rows):
                 transition = rows[cursor]['exercise_id'] != current['exercise_id']
