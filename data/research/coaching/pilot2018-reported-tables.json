@@ -1,0 +1,3954 @@
+{
+  "schema_version": 1,
+  "doi": "10.3390/sports6030086",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6162635/",
+  "source_sha256": "d3b91266b5f34e143d1c0864c2d33473b440dd789dd19c1e847f3c39a4b79bb1",
+  "attribution": "Androulakis-Korakakis et al. (2018), Sports 6(3):86",
+  "license": "CC-BY-4.0",
+  "data_role": "reported_table_cells_not_prescriptions",
+  "scientific_approval": false,
+  "release_status": "not_released",
+  "tables": [
+    {
+      "source_locator": "sports-06-00086-t001",
+      "caption": "PER Group Training Session Ranges.",
+      "rows": [
+        [
+          {
+            "text": "Session Ranges",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 7",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 8",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 9",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 10",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "SQ",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Working set range",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "4–6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "7–8",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6–7",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "7–8",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "5–6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "5–6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "4–5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6–7",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "4–5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3–5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Repetition range",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1–2",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "%1RM range",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "75–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–80%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–90%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–90%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–93%",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Sessions",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "BP",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Working set range",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6–15",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "7–8",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "7–9",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "7–8",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6–7",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "7–11",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "8–10",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "7–9",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3–5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3–5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Repetition range",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3–4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3–4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1–4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1–7",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1–3",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "%1RM range",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–90%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "55–90%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–90%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–93%",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Sessions",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "DL",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Sets",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "8",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "8",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Repetitions range",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2–3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1–2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "%1RM range",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–80%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–85%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–80%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–80%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–90%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–80%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70–90%",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "70%",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Sessions",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ]
+      ]
+    },
+    {
+      "source_locator": "sports-06-00086-t002",
+      "caption": "MAX Group Training Session Ranges.",
+      "rows": [
+        [
+          {
+            "text": "Session Ranges",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 7",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 8",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 9",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Week 10",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "SQ",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Working set range",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Repetition range",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "RPE range",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Sessions",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "BP",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Working set range",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Repetition range",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "RPE range",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Sessions",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "DL",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Sets",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Repetitions",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "RPE",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9–9.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Sessions",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ]
+      ]
+    },
+    {
+      "source_locator": "sports-06-00086-t003",
+      "caption": "Training Characteristics.",
+      "rows": [
+        [
+          {
+            "text": "Training Outcome",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "MAX (n = 5)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "PER (n = 3)",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Total training sessions",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "26.4 ± 2.0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "30 ± 0",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "SQ",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Total sessions",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "18 ± 0.8",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "18.3 ± 2.8",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Total volume (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3138 ± 612",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "37,609 ± 6561",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Average RPE",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9.1 ± 0.10",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "8.6 ± 0.08",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "BP",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Total sessions",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "25.8 ± 2.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "30 ± 0",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Total volume (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3002 ± 609.4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "55,655.6 ± 9897.8",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Average RPE",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9.2 ± 0.155",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "8.4 ± 0.254",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "DL",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Total sessions",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9.6 ± 0.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "10 ± 0",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Total volume (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1790 ± 373",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "19,433 ± 2646",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Average RPE",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "8.9 ± 0.4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "8.4 ± 0.1",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ]
+      ]
+    },
+    {
+      "source_locator": "sports-06-00086-t004",
+      "caption": "Individual Powerlifting Characteristics (PER group).",
+      "rows": [
+        [
+          {
+            "text": "Characteristic",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Participant 1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Participant 2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Participant 3",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "SQ",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "200",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "175",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "175",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Post 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "205",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "175",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "180",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post 1RM Δ (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post 1RM Δ (%)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2.8",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "BP",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "145",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "120",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "140",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Post 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "147.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "120",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "140",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post 1RM Δ (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post 1RM Δ (%)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1.7",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "DL",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "230",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "165",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "200",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Post 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "235",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "165",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "230",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post 1RM Δ (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "30",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post 1RM Δ (%)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2.1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "14",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Total",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "575",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "460",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "515",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Post (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "587",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "460",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "550",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post 1RM Δ (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "12.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "35",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post 1RM Δ (%)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ]
+      ]
+    },
+    {
+      "source_locator": "sports-06-00086-t005",
+      "caption": "Individual Powerlifting Characteristics (MAX group).",
+      "rows": [
+        [
+          {
+            "text": "Characteristic",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Participant 1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Participant 2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Participant 3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Participant 4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "Participant 5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "SQ",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "145",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "210",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "145",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "215",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "155",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Peri 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "155",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "217.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "145",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "217.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "155",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Post 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "155",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "210",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "150",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "215",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "155",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post 1RM Δ (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "10",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post 1RM Δ (%)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6.6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Peri 1RM Δ (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "10",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "7.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Peri 1RM Δ (%)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6.6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1.1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Week of Peri 1RM",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "8",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "7",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "BP",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "100",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "135",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "120",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "132.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "92.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Peri 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "100",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "142.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "120",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "135",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "92.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Post 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "100",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "140",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "112.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "117.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "82.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post 1RM Δ (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−7.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−15",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−10",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post 1RM Δ (%)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−6.4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−12",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−11.4",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Peri 1RM Δ (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "7.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre Peri 1RM Δ (%)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "5.4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1.8",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Week of Peri 1RM",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "DL",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "160",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "230",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "160",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "240",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "155",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Peri 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "175",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "240",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "180",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "246",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "150",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Post 1RM (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "170",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "250",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "160",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "235",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "145",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post 1RM Δ (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "10",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "20",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−10",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post 1RM Δ (%)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "8.3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "0",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−2.1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−6.6",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Peri 1RM Δ (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "15",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "10",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "20",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Peri 1RM Δ (%)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "4.2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "11.7",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2.4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−3.2",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Week of Peri 1RM",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "9",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "7",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Total",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "405",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "575",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "425",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "587.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "402.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Peri (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "420",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "600",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "445",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "598.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "397.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Post (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "425",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "600",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "422.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "567.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "382.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post Δ (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "20",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "25",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−2.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−20",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−20",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Post Δ (%)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "4.8",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "4.2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−0.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−3.4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Peri Δ (kg)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "15",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "25",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "20",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "11",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "Pre-Peri Δ (%)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "4.2",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "4.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1.8",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "−1.2",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ]
+      ]
+    },
+    {
+      "source_locator": "sports-06-00086-t006",
+      "caption": "Questionnaire responses.",
+      "rows": [
+        [
+          {
+            "text": "Question",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "MAX (n = 5)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "PER (n = 3)",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "How enjoyable was the training protocol that you were assigned to?",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.8 ± 0.4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.6 ± 1.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "How easy was it to adhere to your training protocol?",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.4 ± 1.3",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.6 ± 0.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "How manageable was the workload of your training sessions?",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.6 ± 0.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.3 ± 0.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "How effective was your training protocol in covering your training needs?",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.2 ± 0.8",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.6 ± 1.1",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "How likely are you to use the same or a similar training protocol in the future?",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3 ± 0.7",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.6 ± 1.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "How much did the training protocol impact current or past injuries?",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "1.3 ± 0.57",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "How effective was the training protocol on optimising performance for competition day?",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2.8 ± 0.4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "4.3 ± 0.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "How much did exogenous factors (stress, lack of sleep) affect your performance on competition day?",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.8 ± 1.6",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "2.6 ± 1.1",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "How effective was the coach’s involvement in improving performance during the training sessions?",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "4.2 ± 1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.6 ± 0.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "How accurately did you follow the protocol’s guidelines (eg: RPE or load/reps assigned)?",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "4",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3 ± 1.7",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "How helpful was the RPE familiarisation period? (the weeks prior to the study)",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.8 ± 1",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.3 ± 0.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ],
+        [
+          {
+            "text": "How confident were you at utilising the RPE scale during training sessions?",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.6 ± 0.5",
+            "rowspan": 1,
+            "colspan": 1
+          },
+          {
+            "text": "3.6 ± 1.5",
+            "rowspan": 1,
+            "colspan": 1
+          }
+        ]
+      ]
+    }
+  ],
+  "limitations": [
+    "Weekly ranges must not be expanded into invented daily prescriptions.",
+    "Week 10 MAX deadlift frequency conflicts between narrative and Table 2.",
+    "MAX participant 4 total change has conflicting signs in results prose and Table 5.",
+    "PER participant 1 post total precision differs from sum of component lifts.",
+    "Individual outcomes are not personal growth forecasts.",
+    "Supplement download returned a verification page, not a ZIP."
+  ]
+}
