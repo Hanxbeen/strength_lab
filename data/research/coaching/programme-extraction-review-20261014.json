@@ -1,0 +1,115 @@
+{
+  "reviewed_at": "2026-10-14",
+  "status": "partial_source_review",
+  "scientific_approval": false,
+  "release_status": "not_released",
+  "scope": "Programme extraction work queue, not prescriptions",
+  "reports": [
+    {
+      "doi": "10.1519/JSC.0000000000001500",
+      "pmid": "28129275",
+      "role": "sbd_programme_candidate",
+      "title": "Traditional and flexible daily undulating periodization",
+      "existing_candidate": true,
+      "source_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/28129275/",
+        "https://journals.lww.com/nsca-jscr/fulltext/2017/02000/comparison_of_powerlifting_performance_in_trained.1.aspx",
+        "https://digitalcommons.usf.edu/cgi/viewcontent.cgi?article=6657&context=etd"
+      ],
+      "verified_metadata": {
+        "weeks": 9,
+        "arms": [
+          "DUP",
+          "FDUP"
+        ],
+        "participants": 25,
+        "exercises": [
+          "squat",
+          "bench_press",
+          "deadlift"
+        ]
+      },
+      "programme_extraction_status": "journal_abstract_and_thesis_lead_only",
+      "priority_reason": "Whole SBD and schedule flexibility address gaps in current SB-only source",
+      "correction": {
+        "pmid": "28328723",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28328723/",
+        "retrieved_notice_scope": "author name correction; no prescription change stated in retrieved notice",
+        "status": "notice_text_retrieved"
+      },
+      "next": [
+        "Read thesis methods/tables in full",
+        "Reconcile thesis with journal and correction; do not count as independent study",
+        "Extract all weeks, assistance, plus-set progression, rest, taper and evaluation",
+        "Record unreported rules as null"
+      ]
+    },
+    {
+      "doi": "10.3390/sports6030086",
+      "pmid": "30158433",
+      "pmcid": "PMC6162635",
+      "role": "sbd_competition_programme_candidate",
+      "existing_candidate": true,
+      "source_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC6162635/"
+      ],
+      "programme_extraction_status": "partial_methods_review",
+      "verified_fields": {
+        "locator": "Methods 2.1–2.5; Tables 1–2",
+        "training_weeks": 10,
+        "design": "nonrandomized pilot",
+        "enrolled": 10,
+        "arms": [
+          "PER",
+          "MAX"
+        ],
+        "per": {
+          "days_per_week": 3,
+          "squat_days": [
+            1,
+            3
+          ],
+          "bench_days": [
+            1,
+            2,
+            3
+          ],
+          "deadlift_days": [
+            2
+          ],
+          "accessory_exercises": false,
+          "rpe_ceiling": 9
+        },
+        "max": {
+          "working_sets": 1,
+          "repetitions": 1,
+          "target_rpe": [
+            9,
+            9.5
+          ],
+          "accessory_exercises": false
+        },
+        "assessment": "baseline competition-like 1RM and national competition results"
+      },
+      "blocking_issues": [
+        {
+          "code": "SUPPLEMENT_REQUIRED",
+          "detail": "Table 1 lists ranges, not complete day/set prescriptions; obtain supplement before compilation"
+        },
+        {
+          "code": "SOURCE_CONFLICT",
+          "detail": "Week 10 MAX deadlift frequency: narrative says one session, Table 2 says two; must resolve rather than choose silently"
+        },
+        {
+          "code": "LIMITED_DESIGN",
+          "detail": "Small nonrandomized pilot; mixed individual outcomes; cannot use as general beginner default"
+        },
+        {
+          "code": "INCOMPLETE_FULLTEXT_REVIEW",
+          "detail": "Retrieved text ends during data analysis; remaining results/discussion and corrections not yet fully reviewed"
+        }
+      ],
+      "priority_reason": "Covers SBD and competition preparation; useful comparison including negative individual outcomes; not proof of general optimality"
+    }
+  ]
+}
