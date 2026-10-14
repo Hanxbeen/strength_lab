@@ -1,13 +1,8 @@
-name: Research source checks and database import
+name: Evidence discovery only
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '17 3 * * 1'
 permissions:
   contents: read
-concurrency:
-  group: research-database-import
-  cancel-in-progress: false
 jobs:
   discover:
     runs-on: ubuntu-latest
@@ -17,23 +12,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install pinned test dependencies
-        run: python -m pip install -r requirements-test.txt
-      - name: Fetch required source fixtures
-        run: python -m research_engine.run --directory data/research/source-build
-      - name: Required tests including source integration
-        env:
-          RESEARCH_ENGINE_SOURCE_DIR: data/research/source-build/sources
-        run: python -m scripts.verify_tests
-      - name: Discover, assess sources and persist one transaction
-        env:
-          RESEARCH_DATABASE_URL: ${{ secrets.RESEARCH_DATABASE_URL }}
-        run: python -m scripts.research_pipeline --directory data/research/current --persist --limit 20 --pool 100
-      - name: Retain assessment artifacts
+      - name: Collect bounded candidates without publication
+        run: python -m scripts.coaching_corpus --output data/research/current/discovery.json --pages 1
+      - name: Retain discovery log
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: research-assessments
-          path: data/research/current/*.json
-          if-no-files-found: ignore
+          name: evidence-discovery
+          path: data/research/current/discovery.json
+          if-no-files-found: error
           retention-days: 30

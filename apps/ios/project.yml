@@ -34,3 +34,25 @@ targets:
           DEVELOPMENT_TEAM: C7C4WB633C
         Release:
           CODE_SIGN_ENTITLEMENTS: MugeMuge/MugeMuge.entitlements
+  MugeMugeUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: UITests
+    dependencies:
+      - target: MugeMuge
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        DEVELOPMENT_TEAM: C7C4WB633C
+        CODE_SIGN_STYLE: Automatic
+        TEST_TARGET_NAME: MugeMuge
+
+schemes:
+  MugeMuge:
+    build:
+      targets:
+        MugeMuge: all
+    test:
+      targets:
+        - MugeMugeUITests

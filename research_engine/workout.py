@@ -79,6 +79,7 @@ def replay(workout, events):
     for row in rows:
         row.update(status='pending', selected_weight_kg=row['weight_kg'], actual=None, changes=[])
     state = 'active'; cursor = 0; rest = None; rests = []; seen = {}; paused_from = None
+    reason_reports = {}; event_targets = {}
     last_time = timestamp(workout['started_at']); guides = []
     def close_rest(at, outcome):
         nonlocal rest
@@ -96,8 +97,26 @@ def replay(workout, events):
             continue
         seen[eid] = fingerprint
         at = timestamp(event.get('at')); require(at >= last_time, 'EVENT_TIME_ORDER'); last_time = at
+        kind = event.get('type')
+        if kind == 'reason_record':
+            from .reasons import validate as validate_reason
+            target=event.get('target_event_id')
+            require(target in event_targets, 'REASON_TARGET_NOT_FOUND')
+            old=reason_reports.get(target)
+            require(event.get('supersedes_event_id') == (old['event_id'] if old else None), 'REASON_REVISION_CONFLICT')
+            report={**validate_reason(event.get('response')), 'event_id':eid, 'recorded_at':event['at'],
+                    'target_event_id':target,'supersedes_event_id':event.get('supersedes_event_id')}
+            reason_reports[target]=report
+            target_row=next((r for r in rows if r['id']==event_targets[target]),None)
+            if target_row is not None:
+                target_row.setdefault('reason_reports',{})[target]=report
+            if 'pain_discomfort' in report['reason_codes'] and state in ('active','resting'):
+                paused_from=state;state='paused'
+            continue
         require(state not in ('completed', 'stopped'), 'WORKOUT_CLOSED')
-        kind = event.get('type'); current = rows[cursor] if cursor < len(rows) else None
+        current = rows[cursor] if cursor < len(rows) else None
+        if kind in ('change_load','set_result','skip_set','finish'):
+            event_targets[eid]=current['id'] if current and kind!='finish' else None
         if kind == 'pause':
             require(state in ('active', 'resting'), 'CANNOT_PAUSE')
             paused_from = state; state = 'paused'
@@ -142,7 +161,7 @@ def replay(workout, events):
                 rpe = event.get('rpe')
                 require(rpe is None or (number(rpe, 1, 10) and rpe * 2 == int(rpe * 2)), 'INVALID_RPE')
                 require(event.get('failure') in (None, 'momentary_concentric', 'technical', 'not_reached'), 'INVALID_FAILURE')
-                require(reps >= current['reps']['min'] or reason in REASONS, 'SHORTFALL_REASON_REQUIRED')
+                # A missing explanation must never prevent saving actual repetitions.
                 current.update(status='recorded', actual={'reps': reps, 'weight_kg': current['selected_weight_kg'],
                                'rir': rir, 'rpe': rpe, 'failure': event.get('failure'), 'reason': reason, 'at': event['at']})
             cursor += 1
@@ -205,6 +224,7 @@ def replay(workout, events):
             'source': workout['source'], 'max_records': workout['max_records'], 'sets': rows,
             'next_set_id': current['id'] if current and state not in ('completed', 'stopped') else None,
             'active_rest': rest, 'rests': rests, 'rest_count': len(rests), 'guides': guides,
+            'reason_reports': reason_reports,
             'summary': {'planned_sets': len(rows), 'recorded_sets': len(recorded),
                         'skipped_sets': sum(r['status'] == 'skipped' for r in rows),
                         'not_attempted_sets': sum(r['status'] == 'not_attempted' for r in rows),

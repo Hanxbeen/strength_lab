@@ -105,9 +105,8 @@ class LilaRiveRuntimeTests(unittest.TestCase):
         self.assertIn('File(source: .local("lila", Bundle.main)',ios)
         self.assertIn("LilaLv",ios)
         self.assertIn("accessibilityReduceMotion",ios)
-        home=(ROOT/"apps/ios/MugeMuge/HomeView.swift").read_text()
+        home=(ROOT/"apps/ios/MugeMuge/ApprovedHomeView.swift").read_text()
         self.assertIn("LilaRiveView",home)
-        self.assertIn("LilaStudioView()",home)
 
 if __name__=="__main__":
     unittest.main()

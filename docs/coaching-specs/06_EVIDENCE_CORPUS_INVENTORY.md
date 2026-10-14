@@ -7,7 +7,7 @@
 
 ## 문서 회수
 SERVICE_PRINCIPLES 0.2, EVD/RUN/PER/OPS 0.2, AUDIT 0.1을 현재 문서 내용으로 회수했다. 기존 저장소에 없던 여섯 문서를 이 폴더에 보존한다. 설계안이라는 원래 상태를 유지하며 임의 승인하지 않는다.
-기존 docs/RESEARCH_ENGINE_ADVERSARIAL_REVIEW.md는 1a82ca0 시점이다. 당시 항상 runnable=false 지적을 이후 v2 엔진에도 그대로 적용하면 안 된다. SOURCE_ENGINE_V2.md와 seed-definitions가 별도 성공 경로를 보여준다.
+Git 이력의 RESEARCH_ENGINE_ADVERSARIAL_REVIEW.md는 1a82ca0 시점이다(현재 작업 트리에서는 제거). 당시 항상 runnable=false 지적을 이후 v2 엔진에도 그대로 적용하면 안 된다. SOURCE_ENGINE_V2.md와 seed-definitions가 별도 성공 경로를 보여준다.
 
 ## 저장소 자료의 실제 구분
 | 경로 | 관찰 | 의미 |

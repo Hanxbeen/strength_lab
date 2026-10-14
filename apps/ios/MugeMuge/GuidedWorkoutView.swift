@@ -15,6 +15,7 @@ struct GuidedWorkoutView: View {
     @State private var showRest = false
     @State private var showStop = false
     @State private var editingSet: LoggedSet?
+    @State private var reasonTarget: WorkoutChange?
     @State private var error: String?
     @State private var completed: ActiveWorkout?
     @State private var stoppedEarly = false
@@ -74,7 +75,7 @@ struct GuidedWorkoutView: View {
                         Button("세트 완료") { saveSet(exercise) }
                             .buttonStyle(MugePrimaryButtonStyle())
                             .disabled(validWeight(weights[exercise.id] ?? "") == nil
-                                      || !(1...100).contains(Int(repetitions) ?? 0))
+                                      || !(0...100).contains(Int(repetitions) ?? -1) || workouts.active?.painPaused == true || editedWeights.contains(exercise.id))
                     } else if allSetsCompleted {
                         Button("오늘 운동 마무리") { finish(early: false) }
                             .buttonStyle(MugePrimaryButtonStyle())
@@ -89,6 +90,7 @@ struct GuidedWorkoutView: View {
         }
         .onAppear(perform: prepare)
         .sheet(item: $editingSet) { EditSetSheet(set: $0) }
+        .sheet(item: $reasonTarget) { WorkoutReasonSheet(target: $0).environmentObject(workouts) }
         .fullScreenCover(isPresented: $showRest, onDismiss: {
             if let exercise, count(for: exercise.id) >= exercise.sets { moveToNextExercise() }
         }) {
@@ -113,6 +115,7 @@ struct GuidedWorkoutView: View {
                 Text("기록 연습 · 논문 루틴 아님")
                     .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
             }
+            previousReference
             ForEach(session.exercises) { movement in
                 MugeCard {
                     Text(localName(movement)).font(MugeStyle.TypeStyle.card)
@@ -125,8 +128,9 @@ struct GuidedWorkoutView: View {
                 .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
             Button("이 중량으로 운동 시작") {
                 guard readyToStart else { return }
-                if workouts.start(protocolID: item.id, version: item.version, sessionID: session.id, title: session.title) {
+                if workouts.start(protocolID: item.id, version: item.version, sessionID: session.id, title: session.title, initialWeights: weights.compactMapValues { validWeight($0) }) {
                     exerciseIndex = 0
+                    originalWeights = weights.compactMapValues { validWeight($0) }; editedWeights = []
                     repetitions = String(session.exercises.first?.reps ?? 5)
                     error = nil
                 } else { error = workouts.error ?? "운동을 시작하지 못했어요. 다시 확인해주세요." }
@@ -174,6 +178,19 @@ struct GuidedWorkoutView: View {
                         }
                     }
                 }
+                if editedWeights.contains(exercise.id) {
+                    Button("이번 세트 중량 적용") { applyWeight(exercise) }
+                        .buttonStyle(MugeSecondaryButtonStyle())
+                        .disabled(validWeight(weights[exercise.id] ?? "") == nil)
+                }
+                if workouts.active?.painPaused == true {
+                    MugeCard {
+                        Text("통증·불편함을 기록해 일시정지했어요.").font(MugeStyle.TypeStyle.action)
+                        Button("기록을 남기고 종료") { finish(early: true) }.buttonStyle(MugePrimaryButtonStyle())
+                        Button("직접 계속하기 선택") { _ = workouts.resumeAfterPain() }.buttonStyle(MugeSecondaryButtonStyle())
+                    }
+                }
+                reasonHistory(workouts.active?.changes ?? [])
                 let records = activeRecords.filter { $0.exerciseID == exercise.id }
                 if !records.isEmpty {
                     MugeCard {
@@ -228,10 +245,20 @@ struct GuidedWorkoutView: View {
                             HStack {
                                 Text("\(unit.label(record.weightKg)) × \(record.reps)회")
                                 Spacer()
+                                if let target = record.targetWeightKg {
+                                    Text("시작 " + unit.label(target)).foregroundStyle(MugeStyle.muted)
+                                }
                             }.font(MugeStyle.TypeStyle.detail)
                         }
                     }
                 }
+            }
+            let latest = workouts.history.first { $0.id == finished.id } ?? finished
+            reasonHistory(latest.changes ?? [])
+            ForEach(latest.restRecords ?? []) { rest in
+                Text("휴식 " + String(Int(rest.elapsedSeconds)) + "초 · 목표 " + String(rest.targetSeconds) + "초" +
+                     (rest.outcome == "interrupted" ? " · 운동 종료" : ""))
+                    .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
             }
             Button("운동 화면 닫기") { dismiss() }.buttonStyle(MugePrimaryButtonStyle())
         }
@@ -251,7 +278,14 @@ struct GuidedWorkoutView: View {
             if let recent {
                 originalWeights[movement.id] = recent.weightKg
                 weights[movement.id] = unit.input(recent.weightKg)
+            } else if let initial = workouts.active?.initialWeights?[movement.id], matchesActive {
+                originalWeights[movement.id] = initial; weights[movement.id] = unit.input(initial)
             } else { weights[movement.id] = "" }
+            if matchesActive, let change = workouts.active?.changes?.last(where: {
+                $0.kind == "load" && $0.exerciseID == movement.id && $0.setOrdinal == count(for: movement.id) + 1
+            }), let value = change.toKg {
+                originalWeights[movement.id] = value; weights[movement.id] = unit.input(value)
+            }
         }
         if matchesActive {
             exerciseIndex = session.exercises.firstIndex { count(for: $0.id) < $0.sets }
@@ -260,6 +294,52 @@ struct GuidedWorkoutView: View {
         }
         repetitions = String(exercise?.reps ?? 5)
     }
+    private func applyWeight(_ exercise: TrainingExercise) {
+        guard let value = validWeight(weights[exercise.id] ?? "") else { return }
+        let previous = originalWeights[exercise.id] ?? value
+        guard let id = workouts.recordChange(exerciseID: exercise.id, ordinal: count(for: exercise.id) + 1,
+                                             kind: "load", fromKg: previous, toKg: value) else {
+            error = "중량 변경을 저장하지 못했어요."; return
+        }
+        originalWeights[exercise.id] = value; editedWeights.remove(exercise.id)
+        reasonTarget = workouts.change(id: id)
+    }
+
+    @ViewBuilder private func reasonHistory(_ changes: [WorkoutChange]) -> some View {
+        ForEach(changes) { change in
+            Button { reasonTarget = change } label: {
+                VStack(alignment: .leading, spacing: MugeStyle.Space.xs) {
+                    Text(change.kind == "load" ? "중량 변경" : change.kind == "finish" ? "운동 종료" : "목표 횟수 미달")
+                    if let from = change.fromKg, let to = change.toKg { Text(unit.label(from) + " → " + unit.label(to)) }
+                    Text(change.latestReport.map { $0.reasonCodes.isEmpty ? "사유 미입력" :
+                        $0.reasonCodes.map(\.title).joined(separator: " · ") } ?? "사유 남기기")
+                        .foregroundStyle(MugeStyle.muted)
+                }.font(MugeStyle.TypeStyle.detail).frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.vertical, MugeStyle.Space.sm)
+            }.buttonStyle(.plain)
+        }
+    }
+
+    @ViewBuilder private var previousReference: some View {
+        if let previous = workouts.previousWorkout(protocolID: item.id, version: item.version, sessionID: session.id) {
+            MugeCard {
+                Text("지난 운동 참고").font(MugeStyle.TypeStyle.card)
+                Text("같은 루틴·회차의 기록이에요. 몸 상태와 수행 조건은 다를 수 있어요.")
+                    .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
+                ForEach(session.exercises) { movement in
+                    if let record = workouts.logs.last(where: { previous.setIDs.contains($0.id) && $0.exerciseID == movement.id }) {
+                        Text(localName(movement) + " · " + unit.label(record.weightKg) + " × " + String(record.reps) + "회")
+                        Button("이 중량 직접 선택") {
+                            weights[movement.id] = unit.input(record.weightKg)
+                            originalWeights[movement.id] = record.weightKg
+                        }.buttonStyle(MugeSecondaryButtonStyle())
+                    }
+                }
+                reasonHistory(previous.changes ?? [])
+            }
+        }
+    }
+
     private func latestMax(for id: String) -> MeasuredMax? {
         workouts.measuredMaxes.filter { $0.exerciseID == id }.max { $0.measuredAt < $1.measuredAt }
     }
@@ -273,13 +353,20 @@ struct GuidedWorkoutView: View {
     private func saveSet(_ exercise: TrainingExercise) {
         guard matchesActive, count(for: exercise.id) < exercise.sets,
               let weight = validWeight(weights[exercise.id] ?? ""),
-              let reps = Int(repetitions), (1...100).contains(reps) else { return }
+              let reps = Int(repetitions), (0...100).contains(reps), workouts.active?.painPaused != true else { return }
         let canonical = editedWeights.contains(exercise.id) ? weight : (originalWeights[exercise.id] ?? weight)
         let remainingSets = session.exercises.reduce(0) { $0 + max(0, $1.sets - count(for: $1.id)) }
         if workouts.completeSet(exerciseID: exercise.id, weightKg: canonical, reps: reps,
                                 protocolID: item.id, version: item.version, sessionID: session.id,
-                                restSeconds: remainingSets > 1 ? exercise.restSeconds : 0) != nil {
+                                restSeconds: remainingSets > 1 ? exercise.restSeconds : 0, targetReps: exercise.reps) != nil {
             error = nil
+            if reps < exercise.reps {
+                _ = workouts.recordChange(exerciseID: exercise.id, ordinal: count(for: exercise.id), kind: "shortfall")
+            }
+            if let initial = workouts.active?.initialWeights?[exercise.id] {
+                originalWeights[exercise.id] = initial; weights[exercise.id] = unit.input(initial)
+            }
+            editedWeights.remove(exercise.id)
             showRest = remainingSets > 1 && exercise.restSeconds > 0
         } else { error = workouts.error ?? "세트를 저장하지 못했어요. 기록을 확인한 뒤 다시 시도해주세요." }
     }
@@ -290,10 +377,12 @@ struct GuidedWorkoutView: View {
     }
     private func finish(early: Bool) {
         guard matchesActive, let active = workouts.active else { return }
+        let reasonID = early ? workouts.recordChange(exerciseID: nil, ordinal: nil, kind: "finish") : nil
         if workouts.finish() {
             completed = workouts.history.first { $0.id == active.id }
             stoppedEarly = early
             error = nil
+            if let reasonID { reasonTarget = workouts.change(id: reasonID) }
         } else { error = workouts.error ?? "운동 종료를 저장하지 못했어요. 다시 시도해주세요." }
     }
     private func number(_ value: Double) -> String { String(format: "%g", value) }

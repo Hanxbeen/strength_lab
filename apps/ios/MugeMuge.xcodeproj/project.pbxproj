@@ -7,19 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04C05F88D64036C356C23EEE /* WorkoutReasonSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF326C29AE2BBCD362E24EE /* WorkoutReasonSheet.swift */; };
 		0B23ACBA556F234DE0144654 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50C3D9EBFC46A557B4E3556 /* Models.swift */; };
+		0CAA66D77327DCE1174514FA /* RecordMaintenanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD2E482B99A47AD79C7155F /* RecordMaintenanceView.swift */; };
 		1FB75BAFC37ACD416C5858E6 /* MugeMascot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7982630AB09572CCC9E04F6A /* MugeMascot.swift */; };
 		2E77BC668202584B256799ED /* TrainingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19401CE421EA9BB3C3247D7E /* TrainingState.swift */; };
 		33623D38E614D9AD85752167 /* CloudMerge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1500B8521141D46032C62 /* CloudMerge.swift */; };
-		46EA9522149F5F6E3F115CCB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */; };
 		470D61ACD79D26128639B537 /* StrengthSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582D5B32629D0B570FD5A8F1 /* StrengthSetupView.swift */; };
 		4FE523099F1EC19C115412E5 /* CloudAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E744A319CEA1DCD087DD588 /* CloudAccountView.swift */; };
+		67CD990AC25A2A9EE77C352E /* ReasonFlowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1CE31B579F1B44E4B8677C /* ReasonFlowUITests.swift */; };
 		7918A417D55792A2FEF02DA2 /* demo-catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = D572A0A487D87B6E13722EBB /* demo-catalog.json */; };
 		79901ACD16B9D74A3FD7E1A8 /* ApprovedHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E9F0A3257FF80C10101CDD /* ApprovedHomeView.swift */; };
 		7DA4C4E50DB53841E9E80D68 /* CloudAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07375A476AB1E5577D26D23C /* CloudAuth.swift */; };
 		818D6109FA6BD74AE38C69A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E921D81DFFD49ED96A27D /* Assets.xcassets */; };
 		8FDFB5B3F32E1239CC65E045 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DAE7A055551BEC23579F96 /* Services.swift */; };
 		9269CD76BCC84AA4192FDBE4 /* CloudTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6DC524ED31912C1513BC54 /* CloudTransport.swift */; };
+		A0A3C969960DC7C9ACD64E57 /* WorkoutReasons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77184C0A63D2DA884927E9F7 /* WorkoutReasons.swift */; };
 		A3C16BF9E09A3C02DE8E17A4 /* StrengthMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7587D144FA81489AC657AF /* StrengthMetrics.swift */; };
 		AAE69B3A60EC25C845B53DCF /* MugeMugeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */; };
 		B28DDD5FFEC862FF38AC3D20 /* CloudThreeWayMerge.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA16D5385563895CF99ED96B /* CloudThreeWayMerge.swift */; };
@@ -32,20 +35,33 @@
 		FA90F1448175EB9D4AB9F72C /* LilaRiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5195BA454957DEBAF2686CAF /* LilaRiveView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		494A6C5C4B133A1A809BF61E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97A06FC9A14229CBE5D9A790 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43C6BFD7658BF30830AC1D80;
+			remoteInfo = MugeMuge;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		07375A476AB1E5577D26D23C /* CloudAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAuth.swift; sourceTree = "<group>"; };
 		0B0BD92E7F331AC2FB098A97 /* lila.riv */ = {isa = PBXFileReference; path = lila.riv; sourceTree = "<group>"; };
-		0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		19401CE421EA9BB3C3247D7E /* TrainingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingState.swift; sourceTree = "<group>"; };
+		3AD2E482B99A47AD79C7155F /* RecordMaintenanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMaintenanceView.swift; sourceTree = "<group>"; };
 		5195BA454957DEBAF2686CAF /* LilaRiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilaRiveView.swift; sourceTree = "<group>"; };
 		51E9F0A3257FF80C10101CDD /* ApprovedHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedHomeView.swift; sourceTree = "<group>"; };
 		567114F31B2F49212A4C684D /* RiveRuntimePackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RiveRuntimePackage; path = RiveRuntimePackage; sourceTree = SOURCE_ROOT; };
 		582D5B32629D0B570FD5A8F1 /* StrengthSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrengthSetupView.swift; sourceTree = "<group>"; };
 		583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugeMugeApp.swift; sourceTree = "<group>"; };
+		5F1CE31B579F1B44E4B8677C /* ReasonFlowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonFlowUITests.swift; sourceTree = "<group>"; };
 		604C1EA0AECEB9A6B8CB3594 /* MugeMugeDevelopment.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MugeMugeDevelopment.entitlements; sourceTree = "<group>"; };
 		6F7587D144FA81489AC657AF /* StrengthMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrengthMetrics.swift; sourceTree = "<group>"; };
+		77184C0A63D2DA884927E9F7 /* WorkoutReasons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutReasons.swift; sourceTree = "<group>"; };
 		7982630AB09572CCC9E04F6A /* MugeMascot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MugeMascot.swift; sourceTree = "<group>"; };
 		7E744A319CEA1DCD087DD588 /* CloudAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAccountView.swift; sourceTree = "<group>"; };
+		7EF326C29AE2BBCD362E24EE /* WorkoutReasonSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutReasonSheet.swift; sourceTree = "<group>"; };
 		9E23B881405602BC5A2D5937 /* CloudSyncPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSyncPlan.swift; sourceTree = "<group>"; };
 		A2A7ECE819FBCF711F3CA8E4 /* GuidedWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedWorkoutView.swift; sourceTree = "<group>"; };
 		C50C3D9EBFC46A557B4E3556 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -59,6 +75,7 @@
 		ED6DC524ED31912C1513BC54 /* CloudTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudTransport.swift; sourceTree = "<group>"; };
 		FAD1500B8521141D46032C62 /* CloudMerge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudMerge.swift; sourceTree = "<group>"; };
 		FBA53A123DA4073A23074D2B /* LilaStudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilaStudioView.swift; sourceTree = "<group>"; };
+		FE3ABE0C4D0FB593059F3DE1 /* MugeMugeUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MugeMugeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				E3A254024E9A0EDAC4CE8EDA /* MugeMuge.app */,
+				FE3ABE0C4D0FB593059F3DE1 /* MugeMugeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,7 +129,6 @@
 				EA16D5385563895CF99ED96B /* CloudThreeWayMerge.swift */,
 				ED6DC524ED31912C1513BC54 /* CloudTransport.swift */,
 				A2A7ECE819FBCF711F3CA8E4 /* GuidedWorkoutView.swift */,
-				0EDD99D84B9FDC7387B7EB80 /* HomeView.swift */,
 				5195BA454957DEBAF2686CAF /* LilaRiveView.swift */,
 				FBA53A123DA4073A23074D2B /* LilaStudioView.swift */,
 				C50C3D9EBFC46A557B4E3556 /* Models.swift */,
@@ -119,10 +136,13 @@
 				D86AAC36109BD955C8A0A463 /* MugeMuge.entitlements */,
 				583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */,
 				604C1EA0AECEB9A6B8CB3594 /* MugeMugeDevelopment.entitlements */,
+				3AD2E482B99A47AD79C7155F /* RecordMaintenanceView.swift */,
 				D6DAE7A055551BEC23579F96 /* Services.swift */,
 				6F7587D144FA81489AC657AF /* StrengthMetrics.swift */,
 				582D5B32629D0B570FD5A8F1 /* StrengthSetupView.swift */,
 				19401CE421EA9BB3C3247D7E /* TrainingState.swift */,
+				77184C0A63D2DA884927E9F7 /* WorkoutReasons.swift */,
+				7EF326C29AE2BBCD362E24EE /* WorkoutReasonSheet.swift */,
 				5A803A1E5CEDD180AC05237A /* Resources */,
 			);
 			path = MugeMuge;
@@ -133,8 +153,17 @@
 			children = (
 				BE919EE16B9D1754E21D57AF /* MugeMuge */,
 				283E3243CE01B5B6247B5F8A /* Packages */,
+				C60D79204D5918CE7E3C3DE0 /* UITests */,
 				085076B71184001A4BF2EA09 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		C60D79204D5918CE7E3C3DE0 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				5F1CE31B579F1B44E4B8677C /* ReasonFlowUITests.swift */,
+			);
+			path = UITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +189,24 @@
 			productReference = E3A254024E9A0EDAC4CE8EDA /* MugeMuge.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4A8E524528151DA150EC0A7D /* MugeMugeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D708B323271633E82DED707 /* Build configuration list for PBXNativeTarget "MugeMugeUITests" */;
+			buildPhases = (
+				08DF9DF1C52A67382CA937DF /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D9B6639168CD114C5E8E6B62 /* PBXTargetDependency */,
+			);
+			name = MugeMugeUITests;
+			packageProductDependencies = (
+			);
+			productName = MugeMugeUITests;
+			productReference = FE3ABE0C4D0FB593059F3DE1 /* MugeMugeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -171,6 +218,11 @@
 				TargetAttributes = {
 					43C6BFD7658BF30830AC1D80 = {
 						ProvisioningStyle = Automatic;
+					};
+					4A8E524528151DA150EC0A7D = {
+						DevelopmentTeam = C7C4WB633C;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 43C6BFD7658BF30830AC1D80;
 					};
 				};
 			};
@@ -192,6 +244,7 @@
 			projectRoot = "";
 			targets = (
 				43C6BFD7658BF30830AC1D80 /* MugeMuge */,
+				4A8E524528151DA150EC0A7D /* MugeMugeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -210,6 +263,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		08DF9DF1C52A67382CA937DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67CD990AC25A2A9EE77C352E /* ReasonFlowUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FC6FF2C8C4E53769863DEA9F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,20 +284,30 @@
 				B28DDD5FFEC862FF38AC3D20 /* CloudThreeWayMerge.swift in Sources */,
 				9269CD76BCC84AA4192FDBE4 /* CloudTransport.swift in Sources */,
 				CF91AB864F6CDAB7B681CD92 /* GuidedWorkoutView.swift in Sources */,
-				46EA9522149F5F6E3F115CCB /* HomeView.swift in Sources */,
 				FA90F1448175EB9D4AB9F72C /* LilaRiveView.swift in Sources */,
 				C853A510FAB500B0654518F2 /* LilaStudioView.swift in Sources */,
 				0B23ACBA556F234DE0144654 /* Models.swift in Sources */,
 				1FB75BAFC37ACD416C5858E6 /* MugeMascot.swift in Sources */,
 				AAE69B3A60EC25C845B53DCF /* MugeMugeApp.swift in Sources */,
+				0CAA66D77327DCE1174514FA /* RecordMaintenanceView.swift in Sources */,
 				8FDFB5B3F32E1239CC65E045 /* Services.swift in Sources */,
 				A3C16BF9E09A3C02DE8E17A4 /* StrengthMetrics.swift in Sources */,
 				470D61ACD79D26128639B537 /* StrengthSetupView.swift in Sources */,
 				2E77BC668202584B256799ED /* TrainingState.swift in Sources */,
+				04C05F88D64036C356C23EEE /* WorkoutReasonSheet.swift in Sources */,
+				A0A3C969960DC7C9ACD64E57 /* WorkoutReasons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D9B6639168CD114C5E8E6B62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43C6BFD7658BF30830AC1D80 /* MugeMuge */;
+			targetProxy = 494A6C5C4B133A1A809BF61E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2BE8A47EA28A0BA0043E93A9 /* Release */ = {
@@ -348,6 +419,25 @@
 			};
 			name = Debug;
 		};
+		804849A0D3CE5CBC6F017ACA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C7C4WB633C;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.mugemuge.MugeMugeUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MugeMuge;
+			};
+			name = Release;
+		};
 		8EEB3C20BFCA2FB3FC277919 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -405,9 +495,37 @@
 			};
 			name = Release;
 		};
+		F47F6B171C75597C61AF1782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C7C4WB633C;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.mugemuge.MugeMugeUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MugeMuge;
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0D708B323271633E82DED707 /* Build configuration list for PBXNativeTarget "MugeMugeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F47F6B171C75597C61AF1782 /* Debug */,
+				804849A0D3CE5CBC6F017ACA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		67AFAA1C86E889915E0CB363 /* Build configuration list for PBXProject "MugeMuge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

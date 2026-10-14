@@ -9,6 +9,13 @@ struct ActiveWorkout: Codable, Identifiable {
     let startedAt: Date
     var finishedAt: Date?
     var setIDs: [UUID]
+    var initialWeights: [String: Double]?
+    var changes: [WorkoutChange]?
+    var painPaused: Bool?
+    var restStartedAt: Date?
+    var restTargetSeconds: Int?
+    var restAfterSetID: UUID?
+    var restRecords: [WorkoutRestRecord]?
     var restUntil: Date?
     var restPausedRemaining: TimeInterval?
 

@@ -1,3 +1,5 @@
+> 호환 구현/과거 설계 기록. 현재 운영·공개 상태와 작업 순서는 [CURRENT.md](CURRENT.md)를 따른다. 이 문서만으로 배치 또는 처방 공개를 활성화하지 않는다.
+
 # Source-linked workout execution v2
 
 ## Implemented scope

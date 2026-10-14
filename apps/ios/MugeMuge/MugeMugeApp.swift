@@ -2,7 +2,15 @@ import SwiftUI
 
 @main
 struct MugeMugeApp: App {
-    @StateObject private var workouts = WorkoutStore()
+    @StateObject private var workouts: WorkoutStore = {
+        #if DEBUG
+        if let name = ProcessInfo.processInfo.environment["MUGEMUGE_UI_TEST_FILE"],
+           name.hasPrefix("ui-test-"), !name.contains("/") {
+            return WorkoutStore(filename: name)
+        }
+        #endif
+        return WorkoutStore()
+    }()
     @StateObject private var catalog = CatalogStore()
     @StateObject private var cloudAuth = CloudAuth()
 
@@ -14,8 +22,16 @@ struct MugeMugeApp: App {
                 .environmentObject(workouts)
                 .environmentObject(catalog)
                 .environmentObject(cloudAuth)
-                .onAppear { _ = workouts.switchAccount(cloudAuth.userID) }
+                .onAppear {
+                    #if DEBUG
+                    if ProcessInfo.processInfo.environment["MUGEMUGE_UI_TEST_FILE"] != nil { return }
+                    #endif
+                    _ = workouts.switchAccount(cloudAuth.userID)
+                }
                 .onChange(of: cloudAuth.userID) { _, userID in
+                    #if DEBUG
+                    if ProcessInfo.processInfo.environment["MUGEMUGE_UI_TEST_FILE"] != nil { return }
+                    #endif
                     _ = workouts.switchAccount(userID)
                 }
         }

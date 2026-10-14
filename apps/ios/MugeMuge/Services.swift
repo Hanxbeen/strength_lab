@@ -182,13 +182,17 @@ final class WorkoutStore: ObservableObject {
         let ids = value.logs.map(\.id)
         guard Set(ids).count == ids.count,
               value.logs.allSatisfy({ !$0.exerciseID.isEmpty && $0.weightKg.isFinite &&
-                  (0...2000).contains($0.weightKg) && (1...100).contains($0.reps) }),
+                  (0...2000).contains($0.weightKg) && (0...100).contains($0.reps) }),
               value.measuredMaxes.allSatisfy({ $0.weightKg.isFinite && (0...2000).contains($0.weightKg) }),
               value.history.allSatisfy({ $0.finishedAt != nil }) else { return false }
         let validIDs = Set(ids)
         let allWorkouts = value.history + (value.active.map { [$0] } ?? [])
         return allWorkouts.allSatisfy {
             $0.protocolVersion > 0 && !$0.protocolID.isEmpty &&
+            ($0.initialWeights?.allSatisfy { !$0.key.isEmpty && $0.value.isFinite && (0...2000).contains($0.value) } ?? true) &&
+            ($0.changes?.allSatisfy { $0.isValid } ?? true) &&
+            Set(($0.changes ?? []).map(\.id)).count == ($0.changes ?? []).count &&
+            ($0.restRecords?.allSatisfy { (0...3600).contains($0.targetSeconds) && $0.endedAt >= $0.startedAt && ["ended", "interrupted"].contains($0.outcome) } ?? true) &&
             ($0.restPausedRemaining.map { $0.isFinite && (0...3600).contains($0) } ?? true) &&
             !($0.restUntil != nil && $0.restPausedRemaining != nil) &&
             $0.setIDs.allSatisfy { validIDs.contains($0) }
@@ -198,17 +202,28 @@ final class WorkoutStore: ObservableObject {
     @discardableResult
     func completeSet(exerciseID: String, weightKg: Double, reps: Int,
                      protocolID: String, version: Int, sessionID: String,
-                     restSeconds: Int, requestID: UUID = UUID()) -> UUID? {
+                     restSeconds: Int, requestID: UUID = UUID(), targetReps: Int? = nil) -> UUID? {
         guard pendingSetToken == nil else { return nil }
         pendingSetToken = requestID
         defer { pendingSetToken = nil }
-        guard var workout = active, workout.protocolID == protocolID,
+        guard var workout = active, workout.painPaused != true, workout.protocolID == protocolID,
               workout.protocolVersion == version, workout.sessionID == sessionID,
               !exerciseID.isEmpty, weightKg >= 0, weightKg <= 2000,
-              weightKg.isFinite, (1...100).contains(reps),
+              weightKg.isFinite, (0...100).contains(reps),
               (0...3600).contains(restSeconds) else { return nil }
-        let entry = LoggedSet(exerciseID: exerciseID, weightKg: weightKg, reps: reps)
+        if workout.setIDs.contains(requestID) {
+            guard let saved = logs.first(where: { $0.id == requestID }),
+                  saved.exerciseID == exerciseID, saved.weightKg == weightKg, saved.reps == reps else { return nil }
+            return requestID
+        }
+        var entry = LoggedSet(exerciseID: exerciseID, weightKg: weightKg, reps: reps)
+        entry.id = requestID
+        entry.targetWeightKg = workout.initialWeights?[exerciseID]
+        entry.targetReps = targetReps
         workout.setIDs.append(entry.id)
+        workout.restStartedAt = restSeconds > 0 ? Date() : nil
+        workout.restTargetSeconds = restSeconds > 0 ? restSeconds : nil
+        workout.restAfterSetID = restSeconds > 0 ? entry.id : nil
         workout.restUntil = restSeconds > 0 ? Date().addingTimeInterval(TimeInterval(restSeconds)) : nil
         workout.restPausedRemaining = nil
         var next = snapshot
@@ -256,6 +271,7 @@ final class WorkoutStore: ObservableObject {
     @discardableResult
     func endRest() -> Bool {
         guard var workout = active else { return false }
+        closeRest(&workout, outcome: "ended")
         workout.restUntil = nil
         workout.restPausedRemaining = nil
         var next = snapshot
@@ -266,7 +282,7 @@ final class WorkoutStore: ObservableObject {
     @discardableResult
     func updateSet(id: UUID, weightKg: Double, reps: Int) -> Bool {
         guard weightKg >= 0, weightKg <= 2000, weightKg.isFinite,
-              (1...100).contains(reps) else { return false }
+              (0...100).contains(reps) else { return false }
         var next = snapshot
         guard let index = next.logs.firstIndex(where: { $0.id == id }) else { return false }
         next.logs[index].weightKg = weightKg
@@ -291,17 +307,20 @@ final class WorkoutStore: ObservableObject {
     }
 
     @discardableResult
-    func start(protocolID: String, version: Int, sessionID: String, title: String) -> Bool {
+    func start(protocolID: String, version: Int, sessionID: String, title: String, initialWeights: [String: Double] = [:]) -> Bool {
         guard active == nil, !protocolID.isEmpty, version > 0, !sessionID.isEmpty else { return false }
         var next = snapshot
         next.active = ActiveWorkout(protocolID: protocolID, protocolVersion: version,
                                     sessionID: sessionID, title: title)
+        next.active?.initialWeights = initialWeights
         return persist(next)
     }
 
     @discardableResult
     func finish() -> Bool {
         guard var workout = active else { return false }
+        closeRest(&workout, outcome: "interrupted")
+        workout.restUntil = nil; workout.restPausedRemaining = nil
         workout.finishedAt = Date()
         var next = snapshot
         next.active = nil
@@ -324,6 +343,83 @@ final class WorkoutStore: ObservableObject {
         var next = snapshot
         next.measuredMaxes.append(MeasuredMax(exerciseID: exerciseID, weightKg: weightKg, measuredAt: Date()))
         return persist(next)
+    }
+
+    private func closeRest(_ workout: inout ActiveWorkout, outcome: String) {
+        if let started = workout.restStartedAt, let target = workout.restTargetSeconds,
+           let setID = workout.restAfterSetID {
+            var records = workout.restRecords ?? []
+            records.append(WorkoutRestRecord(id: UUID(), afterSetID: setID, targetSeconds: target,
+                                             startedAt: started, endedAt: Date(), outcome: outcome))
+            workout.restRecords = records
+        }
+        workout.restStartedAt = nil; workout.restTargetSeconds = nil; workout.restAfterSetID = nil
+    }
+
+    @discardableResult
+    func recordChange(exerciseID: String?, ordinal: Int?, kind: String,
+                      fromKg: Double? = nil, toKg: Double? = nil, requestID: UUID = UUID()) -> UUID? {
+        guard var workout = active, ["load", "finish", "shortfall"].contains(kind) else { return nil }
+        if let saved = (workout.changes ?? []).first(where: { $0.id == requestID }) {
+            return saved.exerciseID == exerciseID && saved.setOrdinal == ordinal && saved.kind == kind &&
+                saved.fromKg == fromKg && saved.toKg == toKg ? requestID : nil
+        }
+        if kind == "load" {
+            guard let fromKg, let toKg, fromKg.isFinite, toKg.isFinite,
+                  (0...2000).contains(fromKg), (0...2000).contains(toKg),
+                  let ordinal, ordinal > 0, exerciseID?.isEmpty == false else { return nil }
+        }
+        var changes = workout.changes ?? []
+        changes.append(WorkoutChange(id: requestID, exerciseID: exerciseID, setOrdinal: ordinal,
+                                     kind: kind, fromKg: fromKg, toKg: toKg, recordedAt: Date(), reports: []))
+        workout.changes = changes
+        var next = snapshot; next.active = workout
+        return persist(next) ? requestID : nil
+    }
+
+    func change(id: UUID) -> WorkoutChange? {
+        (history + (active.map { [$0] } ?? [])).flatMap { $0.changes ?? [] }.first { $0.id == id }
+    }
+
+    @discardableResult
+    func recordReason(target: UUID, codes: [WorkoutReason], status: ReasonResponseStatus,
+                      supersedes: UUID?, requestID: UUID = UUID()) -> Bool {
+        var next = snapshot
+        func applyReport(_ workout: inout ActiveWorkout) -> Bool {
+            guard var changes = workout.changes,
+                  let index = changes.firstIndex(where: { $0.id == target }) else { return false }
+            if let previous = changes[index].reports.first(where: { $0.id == requestID }) {
+                return previous.reasonCodes == codes && previous.responseStatus == status &&
+                    previous.supersedesEventID == supersedes
+            }
+            guard changes[index].latestReport?.id == supersedes else { return false }
+            let report = WorkoutReasonReport(target: target, previous: supersedes, codes: codes,
+                                             status: status, id: requestID)
+            guard report.isValid else { return false }
+            changes[index].reports.append(report)
+            workout.changes = changes
+            if codes.contains(.painDiscomfort), workout.finishedAt == nil { workout.painPaused = true }
+            return true
+        }
+        if var workout = next.active, (workout.changes ?? []).contains(where: { $0.id == target }) {
+            guard applyReport(&workout) else { return false }; next.active = workout
+        } else if let index = next.history.firstIndex(where: { ($0.changes ?? []).contains(where: { $0.id == target }) }) {
+            guard applyReport(&next.history[index]) else { return false }
+        } else { return false }
+        return persist(next)
+    }
+
+    @discardableResult
+    func resumeAfterPain() -> Bool {
+        guard var workout = active, workout.painPaused == true else { return false }
+        workout.painPaused = false
+        var next = snapshot; next.active = workout
+        return persist(next)
+    }
+
+    func previousWorkout(protocolID: String, version: Int, sessionID: String) -> ActiveWorkout? {
+        history.filter { $0.protocolID == protocolID && $0.protocolVersion == version && $0.sessionID == sessionID }
+            .max { $0.startedAt < $1.startedAt }
     }
 
     /// A review screen saves all entered lifts in one transaction, never a partial success.

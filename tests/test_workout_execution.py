@@ -100,8 +100,10 @@ class WorkoutTests(unittest.TestCase):
         self.assertEqual((chart['target_weight_kg'],chart['actual_weight_kg'],chart['reps_shortfall']),(85,80,1))
         self.assertEqual(len(value['sets'][0]['changes']),1)
 
-    def test_shortfall_needs_reason(self):
-        with self.assertRaisesRegex(InvalidProgramme,'SHORTFALL'):replay(self.snapshot,[self.result(reps=0)])
+    def test_shortfall_without_reason_still_saves_fact(self):
+        result=replay(self.snapshot,[self.result(reps=0)])
+        self.assertEqual(result['sets'][0]['actual']['reps'],0)
+        self.assertIsNone(result['sets'][0]['actual']['reason'])
 
     def test_rest_cannot_complete_early(self):
         with self.assertRaisesRegex(InvalidProgramme,'REST_NOT_ELAPSED'):

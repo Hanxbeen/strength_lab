@@ -118,4 +118,6 @@ struct LoggedSet: Codable, Identifiable {
     var weightKg: Double
     var reps: Int
     var performedAt: Date = Date()
+    var targetWeightKg: Double?
+    var targetReps: Int?
 }

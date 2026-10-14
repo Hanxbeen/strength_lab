@@ -89,4 +89,4 @@ xcodebuild -project MugeMuge.xcodeproj -scheme MugeMuge \
 
 역사적 SVG/도형 버전은 `scripts/generate_lila_rive_rml.py`와 `assets/lila/rive_import/`에 비교용으로만 존재한다. 생산 빌드는 반드시 포스터 원본에서 생성한다.
 
-**사용자 파일 보호**: `docs/UX_WIREFRAME.html` 수정/삭제/커밋 금지.
+**과거 작업 기록**: 당시 보호했던 UX_WIREFRAME.html은 2026-10-14 사용자 요청에 따른 폐기 문서 정리로 제거했다. 현재 기준은 CURRENT.md다.

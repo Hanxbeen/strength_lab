@@ -1,23 +1,12 @@
-# Strength Lab
+# 무게무게
+파워리프팅의 훈련 선택과 실제 수행 기록을 연결하는 iOS 앱.
 
-스포츠과학 연구를 실제 근력 훈련 프로토콜로 바꾸고, 사용자의 1RM 변화를 측정하는 앱입니다.
+## 먼저 읽기
+- [현재 상태와 작업 기준](docs/CURRENT.md) — 세션을 이어갈 때의 단일 진입점
+- [서비스 원칙](docs/coaching-specs/SERVICE_PRINCIPLES.md)
+- [실행 계획](docs/coaching-specs/09_STRATEGY_RESET.md)
+- [iOS 개발](apps/ios/README.md)
 
-**Brand:** 무게무게
-
-> 논문으로 고르고, 바벨로 검증한다.
-
-## Product
-
-- Evidence-based strength training
-- Squat / Bench Press / Deadlift
-- Training experiments
-- Actual 1RM / e1RM tracking
-- Strength progression
-
-## Documents
-
-- [Product RFP](./docs/RFP.md)
-
-## Status
-
-현재 제품 요구사항과 연구 기준을 정의하는 단계입니다.
+연구 미리보기는 과학적 승인이나 사용자 공개 처방이 아니다.
+iOS 기록 기능과 Python 연구 실행기의 연결 상태는 CURRENT.md에 구분해 기록한다.
+과거 시안과 폐기된 문서는 Git 이력에서 확인할 수 있다.

@@ -470,6 +470,8 @@ private struct WorkoutHistoryDetail: View {
     let workout: ActiveWorkout
     @EnvironmentObject private var workouts: WorkoutStore
     @State private var editing: LoggedSet?
+    @State private var reasonTarget: WorkoutChange?
+    private var current: ActiveWorkout { workouts.history.first { $0.id == workout.id } ?? workout }
     private var records: [LoggedSet] {
         workouts.logs.filter { workout.setIDs.contains($0.id) }
     }
@@ -479,8 +481,26 @@ private struct WorkoutHistoryDetail: View {
                 LabeledContent("날짜", value: workout.startedAt.formatted(date: .abbreviated, time: .shortened))
                 LabeledContent("기록한 세트", value: "\(records.count)세트")
                 LabeledContent("총중량", value: unit.label(StrengthMetrics.volume(records)))
-                Text("이 기록에는 원래 계획·실제 휴식 비교 자료가 없어요.")
+                Text(current.initialWeights == nil ? "이전 기록에는 원래 계획·실제 휴식 비교 자료가 없어요." : "시작 중량과 실제 수행을 구분해 저장했어요.")
                     .font(MugeStyle.TypeStyle.note).foregroundStyle(MugeStyle.muted)
+            }
+            Section("변경 사유 · 눌러서 수정") {
+                ForEach(current.changes ?? []) { change in
+                    Button { reasonTarget = change } label: {
+                        VStack(alignment: .leading) {
+                            Text(change.kind == "load" ? "중량 변경" : change.kind == "finish" ? "운동 종료" : "반복 미달")
+                            if let from = change.fromKg, let to = change.toKg { Text(unit.label(from) + " → " + unit.label(to)) }
+                            Text(change.latestReport?.reasonCodes.map(\.title).joined(separator: " · ") ?? "사유 남기기")
+                                .foregroundStyle(MugeStyle.muted)
+                        }
+                    }.foregroundStyle(MugeStyle.ink)
+                }
+            }
+            Section("휴식 기록") {
+                ForEach(current.restRecords ?? []) { rest in
+                    LabeledContent(rest.outcome == "interrupted" ? "종료된 휴식" : "세트 후 휴식",
+                                   value: String(Int(rest.elapsedSeconds)) + "초 / 목표 " + String(rest.targetSeconds) + "초")
+                }
             }
             Section("세트 기록 · 눌러서 수정") {
                 ForEach(records) { set in
@@ -495,6 +515,7 @@ private struct WorkoutHistoryDetail: View {
             }
         }.navigationTitle("운동 기록")
             .sheet(item: $editing) { EditSetSheet(set: $0) }
+            .sheet(item: $reasonTarget) { WorkoutReasonSheet(target: $0).environmentObject(workouts) }
     }
 }
 
