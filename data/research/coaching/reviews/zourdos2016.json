@@ -1,0 +1,1682 @@
+{
+  "schema_version": "curated-sbd-source-review-v1",
+  "id": "zourdos2016-dup-review",
+  "reviewed_on": "2026-10-15",
+  "status": "source_facts_only",
+  "scientific_approval": false,
+  "executable": false,
+  "sources": {
+    "journal": {
+      "doi": "10.1519/JSC.0000000000001165",
+      "year": 2016,
+      "url": "https://journals.lww.com/nsca-jscr/fulltext/2016/03000/modified_daily_undulating_periodization_model.24.aspx",
+      "identity_verified_against": "publisher DOI, title, authors and journal issue"
+    },
+    "thesis": {
+      "year": 2012,
+      "url": "https://repository.lib.fsu.edu/islandora/object/fsu%3A183214",
+      "download_url": "https://liftvault.com/wp-content/uploads/2017/07/Daily-Undulating-Periodization-Research-Zourdos-et-al-2012-LiftVault.com_.pdf",
+      "sha256": "68d60dc6fef46cf7d3189c63d7504ff80afe2b0df10a988f49f792d4fd70983d",
+      "copyright": "author copyright; full PDF not redistributed in repository"
+    }
+  },
+  "locators": {
+    "thesis_table5": {
+      "report": "thesis",
+      "printed_pages": [
+        50,
+        51
+      ],
+      "pdf_pages_one_based": [
+        65,
+        66
+      ],
+      "method": "visual_table_and_extracted_text_checked"
+    },
+    "journal_training_protocol": {
+      "report": "journal",
+      "section": "Training Protocol"
+    }
+  },
+  "evidence_relationship": {
+    "independent_study_count_claimed": 1,
+    "assessment": "Treat thesis and journal as linked reports, not independent replication; same sample size, protocol and descriptive characteristics. Exact cohort identity not independently confirmed.",
+    "conflict": "Thesis recruitment mentions 2011/2012 teams; journal also mentions 2013. Do not merge participant-level data."
+  },
+  "population": {
+    "source": "journal Subjects",
+    "sex": "male",
+    "analyzed": 18,
+    "arm_n": {
+      "HSP": 9,
+      "HPS": 9
+    },
+    "screened": 26,
+    "started": 20,
+    "noncompletion": 2,
+    "noncompletion_reason": "noncompliance; >2 missed sessions",
+    "training_years_min": 5,
+    "structured_training_years_min": 1,
+    "prior_sessions_per_week_min": 3,
+    "minimum_1rm_bodyweight_ratios": {
+      "barbell_back_squat": 2,
+      "barbell_bench_press": 1.25,
+      "barbell_deadlift": 2
+    },
+    "application": "experienced powerlifters; not evidence for a beginner default or an app eligibility rule"
+  },
+  "protocol": {
+    "training_weeks": 6,
+    "study_weeks_including_testing": 8,
+    "sessions_per_week": 3,
+    "spacing": "nonconsecutive days",
+    "weekly_exercise_frequency": {
+      "barbell_back_squat": 3,
+      "barbell_bench_press": 3,
+      "barbell_deadlift": 1
+    },
+    "rows": [
+      {
+        "id": "w1-H-barbell_back_squat",
+        "training_week": 1,
+        "session_kind": "H",
+        "exercise_id": "barbell_back_squat",
+        "sets": 5,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 8,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 75,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w1-H-barbell_bench_press",
+        "training_week": 1,
+        "session_kind": "H",
+        "exercise_id": "barbell_bench_press",
+        "sets": 5,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 8,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 75,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w1-S-barbell_back_squat",
+        "training_week": 1,
+        "session_kind": "S",
+        "exercise_id": "barbell_back_squat",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 85,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w1-S-barbell_bench_press",
+        "training_week": 1,
+        "session_kind": "S",
+        "exercise_id": "barbell_bench_press",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 85,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w1-S-barbell_deadlift",
+        "training_week": 1,
+        "session_kind": "S",
+        "exercise_id": "barbell_deadlift",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 85,
+          "reference_exercise": "barbell_deadlift",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w1-P-barbell_back_squat",
+        "training_week": 1,
+        "session_kind": "P",
+        "exercise_id": "barbell_back_squat",
+        "sets": 5,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 1,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 80,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w1-P-barbell_bench_press",
+        "training_week": 1,
+        "session_kind": "P",
+        "exercise_id": "barbell_bench_press",
+        "sets": 5,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 1,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 80,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w2-H-barbell_back_squat",
+        "training_week": 2,
+        "session_kind": "H",
+        "exercise_id": "barbell_back_squat",
+        "sets": 5,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 8,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "individually_adjusted",
+          "percent": null,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": [
+            0,
+            5,
+            10
+          ]
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w2-H-barbell_bench_press",
+        "training_week": 2,
+        "session_kind": "H",
+        "exercise_id": "barbell_bench_press",
+        "sets": 5,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 8,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "individually_adjusted",
+          "percent": null,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": [
+            0,
+            5,
+            10
+          ]
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w2-S-barbell_back_squat",
+        "training_week": 2,
+        "session_kind": "S",
+        "exercise_id": "barbell_back_squat",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 87.5,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w2-S-barbell_bench_press",
+        "training_week": 2,
+        "session_kind": "S",
+        "exercise_id": "barbell_bench_press",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 87.5,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w2-S-barbell_deadlift",
+        "training_week": 2,
+        "session_kind": "S",
+        "exercise_id": "barbell_deadlift",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 87.5,
+          "reference_exercise": "barbell_deadlift",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w2-P-barbell_back_squat",
+        "training_week": 2,
+        "session_kind": "P",
+        "exercise_id": "barbell_back_squat",
+        "sets": 5,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 1,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 80,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": [
+          "power_week_typo"
+        ]
+      },
+      {
+        "id": "w2-P-barbell_bench_press",
+        "training_week": 2,
+        "session_kind": "P",
+        "exercise_id": "barbell_bench_press",
+        "sets": 5,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 1,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 80,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": [
+          "power_week_typo"
+        ]
+      },
+      {
+        "id": "w3-H-barbell_back_squat",
+        "training_week": 3,
+        "session_kind": "H",
+        "exercise_id": "barbell_back_squat",
+        "sets": 4,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 8,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "individually_adjusted",
+          "percent": null,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": [
+            0,
+            5,
+            10
+          ]
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w3-H-barbell_bench_press",
+        "training_week": 3,
+        "session_kind": "H",
+        "exercise_id": "barbell_bench_press",
+        "sets": 4,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 8,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "individually_adjusted",
+          "percent": null,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": [
+            0,
+            5,
+            10
+          ]
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w3-S-barbell_back_squat",
+        "training_week": 3,
+        "session_kind": "S",
+        "exercise_id": "barbell_back_squat",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 90,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w3-S-barbell_bench_press",
+        "training_week": 3,
+        "session_kind": "S",
+        "exercise_id": "barbell_bench_press",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 90,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w3-S-barbell_deadlift",
+        "training_week": 3,
+        "session_kind": "S",
+        "exercise_id": "barbell_deadlift",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 90,
+          "reference_exercise": "barbell_deadlift",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w3-P-barbell_back_squat",
+        "training_week": 3,
+        "session_kind": "P",
+        "exercise_id": "barbell_back_squat",
+        "sets": 4,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 1,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 85,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": [
+          "power_week_typo"
+        ]
+      },
+      {
+        "id": "w3-P-barbell_bench_press",
+        "training_week": 3,
+        "session_kind": "P",
+        "exercise_id": "barbell_bench_press",
+        "sets": 4,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 1,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 85,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": [
+          "power_week_typo"
+        ]
+      },
+      {
+        "id": "w4-H-barbell_back_squat",
+        "training_week": 4,
+        "session_kind": "H",
+        "exercise_id": "barbell_back_squat",
+        "sets": 4,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 8,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "individually_adjusted",
+          "percent": null,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": [
+            0,
+            5,
+            10
+          ]
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w4-H-barbell_bench_press",
+        "training_week": 4,
+        "session_kind": "H",
+        "exercise_id": "barbell_bench_press",
+        "sets": 4,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 8,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "individually_adjusted",
+          "percent": null,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": [
+            0,
+            5,
+            10
+          ]
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w4-S-barbell_back_squat",
+        "training_week": 4,
+        "session_kind": "S",
+        "exercise_id": "barbell_back_squat",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 90,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w4-S-barbell_bench_press",
+        "training_week": 4,
+        "session_kind": "S",
+        "exercise_id": "barbell_bench_press",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 90,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w4-S-barbell_deadlift",
+        "training_week": 4,
+        "session_kind": "S",
+        "exercise_id": "barbell_deadlift",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 90,
+          "reference_exercise": "barbell_deadlift",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w4-P-barbell_back_squat",
+        "training_week": 4,
+        "session_kind": "P",
+        "exercise_id": "barbell_back_squat",
+        "sets": 4,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 1,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 85,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": [
+          "power_week_typo"
+        ]
+      },
+      {
+        "id": "w4-P-barbell_bench_press",
+        "training_week": 4,
+        "session_kind": "P",
+        "exercise_id": "barbell_bench_press",
+        "sets": 4,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 1,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 85,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": [
+          "power_week_typo"
+        ]
+      },
+      {
+        "id": "w5-H-barbell_back_squat",
+        "training_week": 5,
+        "session_kind": "H",
+        "exercise_id": "barbell_back_squat",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 8,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "individually_adjusted",
+          "percent": null,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": [
+            0,
+            5,
+            10
+          ]
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w5-H-barbell_bench_press",
+        "training_week": 5,
+        "session_kind": "H",
+        "exercise_id": "barbell_bench_press",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 8,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "individually_adjusted",
+          "percent": null,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": [
+            0,
+            5,
+            10
+          ]
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w5-S-barbell_back_squat",
+        "training_week": 5,
+        "session_kind": "S",
+        "exercise_id": "barbell_back_squat",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 92.5,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w5-S-barbell_bench_press",
+        "training_week": 5,
+        "session_kind": "S",
+        "exercise_id": "barbell_bench_press",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 92.5,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w5-S-barbell_deadlift",
+        "training_week": 5,
+        "session_kind": "S",
+        "exercise_id": "barbell_deadlift",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 92.5,
+          "reference_exercise": "barbell_deadlift",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w5-P-barbell_back_squat",
+        "training_week": 5,
+        "session_kind": "P",
+        "exercise_id": "barbell_back_squat",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 1,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 90,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w5-P-barbell_bench_press",
+        "training_week": 5,
+        "session_kind": "P",
+        "exercise_id": "barbell_bench_press",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 1,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 90,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w6-H-barbell_back_squat",
+        "training_week": 6,
+        "session_kind": "H",
+        "exercise_id": "barbell_back_squat",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 8,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "individually_adjusted",
+          "percent": null,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": [
+            0,
+            5,
+            10
+          ]
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w6-H-barbell_bench_press",
+        "training_week": 6,
+        "session_kind": "H",
+        "exercise_id": "barbell_bench_press",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 8,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "individually_adjusted",
+          "percent": null,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": [
+            0,
+            5,
+            10
+          ]
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w6-S-barbell_back_squat",
+        "training_week": 6,
+        "session_kind": "S",
+        "exercise_id": "barbell_back_squat",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 95,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w6-S-barbell_bench_press",
+        "training_week": 6,
+        "session_kind": "S",
+        "exercise_id": "barbell_bench_press",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 95,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w6-S-barbell_deadlift",
+        "training_week": 6,
+        "session_kind": "S",
+        "exercise_id": "barbell_deadlift",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "to_failure",
+          "value": null,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 95,
+          "reference_exercise": "barbell_deadlift",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w6-P-barbell_back_squat",
+        "training_week": 6,
+        "session_kind": "P",
+        "exercise_id": "barbell_back_squat",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 1,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 90,
+          "reference_exercise": "barbell_back_squat",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      },
+      {
+        "id": "w6-P-barbell_bench_press",
+        "training_week": 6,
+        "session_kind": "P",
+        "exercise_id": "barbell_bench_press",
+        "sets": 3,
+        "set_role": "working",
+        "reps": {
+          "kind": "fixed",
+          "value": 1,
+          "rpe_target": null
+        },
+        "load": {
+          "kind": "percent_1rm",
+          "percent": 90,
+          "reference_exercise": "barbell_bench_press",
+          "adjustment_rule": null,
+          "reported_change_options_lb": null
+        },
+        "training_rest_seconds": null,
+        "provenance": {
+          "kind": "source_reported",
+          "table": "thesis_table5",
+          "methods": "journal_training_protocol"
+        },
+        "conflict_ids": []
+      }
+    ],
+    "arms": {
+      "HSP": {
+        "sessions": [
+          {
+            "training_week": 1,
+            "ordinal": 1,
+            "kind": "H",
+            "row_ids": [
+              "w1-H-barbell_back_squat",
+              "w1-H-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 1,
+            "ordinal": 2,
+            "kind": "S",
+            "row_ids": [
+              "w1-S-barbell_back_squat",
+              "w1-S-barbell_bench_press",
+              "w1-S-barbell_deadlift"
+            ]
+          },
+          {
+            "training_week": 1,
+            "ordinal": 3,
+            "kind": "P",
+            "row_ids": [
+              "w1-P-barbell_back_squat",
+              "w1-P-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 2,
+            "ordinal": 1,
+            "kind": "H",
+            "row_ids": [
+              "w2-H-barbell_back_squat",
+              "w2-H-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 2,
+            "ordinal": 2,
+            "kind": "S",
+            "row_ids": [
+              "w2-S-barbell_back_squat",
+              "w2-S-barbell_bench_press",
+              "w2-S-barbell_deadlift"
+            ]
+          },
+          {
+            "training_week": 2,
+            "ordinal": 3,
+            "kind": "P",
+            "row_ids": [
+              "w2-P-barbell_back_squat",
+              "w2-P-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 3,
+            "ordinal": 1,
+            "kind": "H",
+            "row_ids": [
+              "w3-H-barbell_back_squat",
+              "w3-H-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 3,
+            "ordinal": 2,
+            "kind": "S",
+            "row_ids": [
+              "w3-S-barbell_back_squat",
+              "w3-S-barbell_bench_press",
+              "w3-S-barbell_deadlift"
+            ]
+          },
+          {
+            "training_week": 3,
+            "ordinal": 3,
+            "kind": "P",
+            "row_ids": [
+              "w3-P-barbell_back_squat",
+              "w3-P-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 4,
+            "ordinal": 1,
+            "kind": "H",
+            "row_ids": [
+              "w4-H-barbell_back_squat",
+              "w4-H-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 4,
+            "ordinal": 2,
+            "kind": "S",
+            "row_ids": [
+              "w4-S-barbell_back_squat",
+              "w4-S-barbell_bench_press",
+              "w4-S-barbell_deadlift"
+            ]
+          },
+          {
+            "training_week": 4,
+            "ordinal": 3,
+            "kind": "P",
+            "row_ids": [
+              "w4-P-barbell_back_squat",
+              "w4-P-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 5,
+            "ordinal": 1,
+            "kind": "H",
+            "row_ids": [
+              "w5-H-barbell_back_squat",
+              "w5-H-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 5,
+            "ordinal": 2,
+            "kind": "S",
+            "row_ids": [
+              "w5-S-barbell_back_squat",
+              "w5-S-barbell_bench_press",
+              "w5-S-barbell_deadlift"
+            ]
+          },
+          {
+            "training_week": 5,
+            "ordinal": 3,
+            "kind": "P",
+            "row_ids": [
+              "w5-P-barbell_back_squat",
+              "w5-P-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 6,
+            "ordinal": 1,
+            "kind": "H",
+            "row_ids": [
+              "w6-H-barbell_back_squat",
+              "w6-H-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 6,
+            "ordinal": 2,
+            "kind": "S",
+            "row_ids": [
+              "w6-S-barbell_back_squat",
+              "w6-S-barbell_bench_press",
+              "w6-S-barbell_deadlift"
+            ]
+          },
+          {
+            "training_week": 6,
+            "ordinal": 3,
+            "kind": "P",
+            "row_ids": [
+              "w6-P-barbell_back_squat",
+              "w6-P-barbell_bench_press"
+            ]
+          }
+        ],
+        "source_locator": "journal Experimental Approach to the Problem",
+        "public_eligible": false,
+        "automatic_prescription_complete": false
+      },
+      "HPS": {
+        "sessions": [
+          {
+            "training_week": 1,
+            "ordinal": 1,
+            "kind": "H",
+            "row_ids": [
+              "w1-H-barbell_back_squat",
+              "w1-H-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 1,
+            "ordinal": 2,
+            "kind": "P",
+            "row_ids": [
+              "w1-P-barbell_back_squat",
+              "w1-P-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 1,
+            "ordinal": 3,
+            "kind": "S",
+            "row_ids": [
+              "w1-S-barbell_back_squat",
+              "w1-S-barbell_bench_press",
+              "w1-S-barbell_deadlift"
+            ]
+          },
+          {
+            "training_week": 2,
+            "ordinal": 1,
+            "kind": "H",
+            "row_ids": [
+              "w2-H-barbell_back_squat",
+              "w2-H-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 2,
+            "ordinal": 2,
+            "kind": "P",
+            "row_ids": [
+              "w2-P-barbell_back_squat",
+              "w2-P-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 2,
+            "ordinal": 3,
+            "kind": "S",
+            "row_ids": [
+              "w2-S-barbell_back_squat",
+              "w2-S-barbell_bench_press",
+              "w2-S-barbell_deadlift"
+            ]
+          },
+          {
+            "training_week": 3,
+            "ordinal": 1,
+            "kind": "H",
+            "row_ids": [
+              "w3-H-barbell_back_squat",
+              "w3-H-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 3,
+            "ordinal": 2,
+            "kind": "P",
+            "row_ids": [
+              "w3-P-barbell_back_squat",
+              "w3-P-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 3,
+            "ordinal": 3,
+            "kind": "S",
+            "row_ids": [
+              "w3-S-barbell_back_squat",
+              "w3-S-barbell_bench_press",
+              "w3-S-barbell_deadlift"
+            ]
+          },
+          {
+            "training_week": 4,
+            "ordinal": 1,
+            "kind": "H",
+            "row_ids": [
+              "w4-H-barbell_back_squat",
+              "w4-H-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 4,
+            "ordinal": 2,
+            "kind": "P",
+            "row_ids": [
+              "w4-P-barbell_back_squat",
+              "w4-P-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 4,
+            "ordinal": 3,
+            "kind": "S",
+            "row_ids": [
+              "w4-S-barbell_back_squat",
+              "w4-S-barbell_bench_press",
+              "w4-S-barbell_deadlift"
+            ]
+          },
+          {
+            "training_week": 5,
+            "ordinal": 1,
+            "kind": "H",
+            "row_ids": [
+              "w5-H-barbell_back_squat",
+              "w5-H-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 5,
+            "ordinal": 2,
+            "kind": "P",
+            "row_ids": [
+              "w5-P-barbell_back_squat",
+              "w5-P-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 5,
+            "ordinal": 3,
+            "kind": "S",
+            "row_ids": [
+              "w5-S-barbell_back_squat",
+              "w5-S-barbell_bench_press",
+              "w5-S-barbell_deadlift"
+            ]
+          },
+          {
+            "training_week": 6,
+            "ordinal": 1,
+            "kind": "H",
+            "row_ids": [
+              "w6-H-barbell_back_squat",
+              "w6-H-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 6,
+            "ordinal": 2,
+            "kind": "P",
+            "row_ids": [
+              "w6-P-barbell_back_squat",
+              "w6-P-barbell_bench_press"
+            ]
+          },
+          {
+            "training_week": 6,
+            "ordinal": 3,
+            "kind": "S",
+            "row_ids": [
+              "w6-S-barbell_back_squat",
+              "w6-S-barbell_bench_press",
+              "w6-S-barbell_deadlift"
+            ]
+          }
+        ],
+        "source_locator": "journal Experimental Approach to the Problem",
+        "public_eligible": false,
+        "automatic_prescription_complete": false
+      }
+    },
+    "warmup": null,
+    "training_rest": null,
+    "missed_session_rule": null,
+    "failed_rep_adjustment": null,
+    "next_cycle_rule": null,
+    "controls": [
+      "Researcher supervision and lift standards",
+      "30 g whey before and after sessions",
+      "Replicated prior-day dietary intake",
+      "No additional structured exercise"
+    ],
+    "control_note": "Study context, not a product supplement recommendation or evidence that each control causes benefit."
+  },
+  "conflicts": [
+    {
+      "id": "power_week_typo",
+      "reported": "Methods put 80% in weeks1-2 and 85% in weeks2-3; omit week4.",
+      "table_fact": "Table5 puts 80% in weeks1-2 and 85% in weeks3-4.",
+      "handling": "Preserve both; structured rows transcribe table, not a verified author correction."
+    },
+    {
+      "id": "thesis_table6_caption",
+      "reported": "Both original and switched order are labelled HSP in caption.",
+      "handling": "Arm order comes from explicit journal Methods and thesis pp46-47, not the caption."
+    }
+  ],
+  "limitations": [
+    "Small experienced male sample; no inactive/usual-training control",
+    "Not a comparison proving this is optimal for all users",
+    "Training to failure cannot be silently replaced with RPE9-9.5",
+    "Journal reference14 (Mann2010) alone does not identify which adjustment thresholds were used here"
+  ],
+  "unresolved_decisions": [
+    {
+      "id": "hypertrophy_adjustment",
+      "scope": "weeks2-6 squat and bench",
+      "known": "reported choices: same load, +5 lb, +10 lb",
+      "missing": "performance threshold and input set selecting each choice",
+      "automatic_fallback": null
+    },
+    {
+      "id": "execution_choices",
+      "scope": "warmup, rest, equipment rounding, load-reference refresh",
+      "missing": "complete operational rules in retrieved training methods",
+      "automatic_fallback": null
+    },
+    {
+      "id": "failure_and_reentry",
+      "scope": "incomplete work, pain, long absence, subsequent cycle",
+      "missing": "research-based response rules for this protocol",
+      "automatic_fallback": null
+    }
+  ],
+  "publication_check": {
+    "correction_status": "not_fully_verified",
+    "note": "A targeted search did not establish an authoritative correction; absence of a result is not clearance."
+  },
+  "adoption": {
+    "decision": "retain_as_experienced_lifter_candidate",
+    "default_basic_sbd": false,
+    "runtime_adapter": null,
+    "db_imported": false,
+    "next_action": "Specify and review explicit user/product choices for missing decisions before any execution adapter; continue basic-SBD applicability review."
+  }
+}
