@@ -1,0 +1,403 @@
+{
+  "id": "metd2021-sbd-v1",
+  "adapter_version": "metd-2021-v1",
+  "title": "SBD 6주 저용량 훈련 · 연구 미리보기",
+  "review_status": "source_extracted",
+  "scientific_approval": false,
+  "publication_status": "internal_preview",
+  "exercises": [
+    "barbell_back_squat",
+    "barbell_bench_press",
+    "barbell_deadlift"
+  ],
+  "citation": {
+    "doi": "10.3389/fspor.2021.713655",
+    "pmcid": "PMC8435792",
+    "pmid": "34527944",
+    "title": "The Minimum Effective Training Dose Required for 1RM Strength in Powerlifters",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8435792/",
+    "license": "CC BY",
+    "attribution": "Androulakis-Korakakis et al., Frontiers in Sports and Active Living (2021)",
+    "source_sha256": "ec922473ddd0107354830afe5d0ae545b3e6f964fe7b98f3cdaf9f2b4e326bf6"
+  },
+  "protocol": {
+    "weeks": 6,
+    "days_per_week": 3,
+    "weekly_days": [
+      "Monday",
+      "Wednesday",
+      "Friday"
+    ],
+    "sessions": [
+      {
+        "week": 1,
+        "day": 1,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 1,
+        "day": 2,
+        "exercises": [
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 1,
+        "day": 3,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 2,
+        "day": 1,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 2,
+        "day": 2,
+        "exercises": [
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 2,
+        "day": 3,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 3,
+        "day": 1,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 3,
+        "day": 2,
+        "exercises": [
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 3,
+        "day": 3,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 4,
+        "day": 1,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 4,
+        "day": 2,
+        "exercises": [
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 4,
+        "day": 3,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 5,
+        "day": 1,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 5,
+        "day": 2,
+        "exercises": [
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 5,
+        "day": 3,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 6,
+        "day": 1,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 6,
+        "day": 2,
+        "exercises": [
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ],
+        "locator": "sec36"
+      },
+      {
+        "week": 6,
+        "day": 3,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press"
+        ],
+        "locator": "sec36"
+      }
+    ],
+    "arms": {
+      "MAX": {
+        "studies": [
+          3
+        ],
+        "working_sets": 1,
+        "reps": {
+          "kind": "fixed",
+          "value": 1
+        },
+        "load": {
+          "kind": "self_selected_rpe",
+          "rpe": [
+            9,
+            9.5
+          ]
+        },
+        "locator": "sec37"
+      },
+      "MAX_BOFF": {
+        "studies": [
+          3,
+          4
+        ],
+        "working_sets": 3,
+        "reps": {
+          "kind": "fixed",
+          "value": 1
+        },
+        "load": {
+          "kind": "self_selected_rpe",
+          "rpe": [
+            9,
+            9.5
+          ]
+        },
+        "backoff": {
+          "sets": 2,
+          "reps": 3,
+          "percent_actual_single_load": 80,
+          "rpe_target": null
+        },
+        "locator": "sec38"
+      },
+      "AMRAP": {
+        "studies": [
+          4
+        ],
+        "working_sets": 1,
+        "reps": {
+          "kind": "until_rpe",
+          "rpe": [
+            9,
+            9.5
+          ]
+        },
+        "load": {
+          "kind": "percentage_1rm",
+          "percent": 70
+        },
+        "warmup": {
+          "sets": [
+            {
+              "percent": 40,
+              "reps": 5
+            },
+            {
+              "percent": 50,
+              "reps": 5
+            },
+            {
+              "percent": 60,
+              "reps": 5
+            }
+          ],
+          "locator": "sec36"
+        },
+        "locator": "sec39"
+      }
+    },
+    "training_rest_seconds": null,
+    "rest_status": "not_specified_in_retrieved_training_methods",
+    "accessory_exercises": [],
+    "automatic_progression": null,
+    "failure_load_formula": null,
+    "testing": {
+      "pre_days_before_training": 7,
+      "post_days_after_training": 5,
+      "attempts_per_lift": 3,
+      "between_attempts_seconds_approx": 300,
+      "between_lifts_seconds_approx": [
+        900,
+        1200
+      ],
+      "locator": "sec35",
+      "not_training_rest": true
+    }
+  },
+  "protocol_sha256": "4c006a44a8c82ee8a503ac41b61f0e2afd8681ebfc2ae7e1fe9c5a85658a5797",
+  "source_sections": {
+    "sec32": {
+      "title": "Design and Approach to the Problem",
+      "text": "Studies 3 and 4 manipulated training dose to explore the effect of low volume, “daily max” training on 1RM strength in intermediate-advanced PL athletes. Study 3 compared a group following a protocol consisting of “daily max” high load single repetitions at RPE 9-9.5 versus a group following the same protocol with the addition of 2 “back-off” sets of three repetitions at 80% of the load used for the “daily max” single repetitions. “Daily max” refers to a near-maximal single repetition. A “daily max” single repetition can often be thought of as a powerlifter's “daily” 1RM which often differs from their tested 1RM. Study 4 compared a “daily max + back-off sets” protocol to a protocol where participants performed “as-many-repetitions-as-possible” (AMRAP) using 70% 1RM until they reached an RPE of 9-9.5. AMRAP sets instruct the athlete to perform as many repetitions as possible until reaching momentary, volitional failure or a prescribed RPE value. Aside from being a training tool, the use of AMRAP sets can often serve as a performance test for PL athletes, allowing them to compare the amount of repetitions achieved with their previous AMRAP, thus gauging progress. Using quasi-randomized trial designs, three different “daily max” training protocols were compared in two studies using competitive and non-competitive PL athletes. Each training protocol was performed over a training period covering a 6 weeks cycle with 1 week pre-training intervention and 1 week post-training intervention dedicated to 1RM strength testing. When including the 1RM testing weeks the total length of each study was 8 weeks. Approval by the relevant ethics committee at Solent University was obtained (Health, Exercise and Sport Science Ethics Committee reference  andrp2018 )."
+    },
+    "sec33": {
+      "title": "Participants",
+      "text": "During the early planning stages, prior to the survey and semi-structured interview studies, sample size was determined based upon traditional a priori power analysis (using G * Power) to ensure sufficient power to detect at least a large within-group effect in highly trained participants based upon thresholds from Rhea ( 2004 ). This suggested at least eight participants per group were required. We also considered what would be required for detecting a large between-group effect in an analysis of covariance design with baseline covariate adjustment for a large effect which suggested at least 26 per group. However, following the initial calculations, sample size was re-determined based on resource constraints and thus, was convenience-based and justified based on feasibility expectations given the authors' knowledge of the accessibility of the sample population (Lakens,  2021 ). Thus, we tried to recruit as many PL athletes as possible over the period of the lead author's PhD, which these studies were a part of. To aid this, recruitment was conducted over two sites: Southampton, UK and Patras, Greece. A total of 32 (16 participants per study, eight participants per group, four groups in total) male PL athletes, with at least two years of PL experience and at least four years of resistance training experience, were recruited. As research around PL training methods started receiving more attention by the scientific community in the last years, the concept of autoregulation in PL has been examined (Helms et al.,  2018 ). Autoregulation using the RPE scale, based on repetitions in reserve (RIR), has been researched in the context of being utilized as a means of self-selecting training-loads. Autoregulation is a very common concept among PL athletes as it allows them to quantify their effort and appropriately select loads based on their readiness, rather than following a prescribed load and repetition scheme based on % 1RM (Helms et al.,  2018 ). All participants were required to be raw PL athletes, have at least one year of RPE-based training experience using the RIR scale, and to not have followed any low-volume “daily max” training in the 12 weeks preceding the training intervention. Unfortunately, training facility closures due to the COVID-19 pandemic resulted in seven participants having to stop training while participating in study 4 and thus 25 participants remained for data analysis."
+    },
+    "sec34": {
+      "title": "Group Assignment",
+      "text": "The group assignment process was quasi-randomized. Justification for this was in part due to the desire to try to approximately match strength levels between groups given the small samples used and the potential for baseline imbalances in a factor prognostic likely to influence the outcomes. However, it was also due to knowledge of the population being recruited and that there is, in our experience, reluctance to take part in studies where training to be performed will be completely randomly allocated, even if only for short periods. Thus, we adopted an approach that we felt balanced these concerns. Participants were classified based on their strength level by a second researcher and PL coach working with the athletes and were then randomly assigned to a group by the lead researcher who was blinded regarding the participants' identity. Participants' strength was determined by their Wilks score. The classifications used were the following: participants with a Wilks score from 300 to 340 were classified as class 1, participants with a Wilks score of 350–400 were classified as class 2, participants with a Wilks score of 410–450 were classified as class 3, participants with a Wilks score of 460–500 were classified as class 4 and lastly, participants with a Wilks score of 510–550 were classified as class 5. The final sample sizes and characteristics of participants in each group can be seen in  Table 8 ."
+    },
+    "sec35": {
+      "title": "Testing",
+      "text": "All participants underwent 1RM testing 7 days prior and 5 days after the 6-week training intervention. The 1RM testing was performed in a competition-like setting, requiring participants to test their SQ, BP, and DL 1RM all on the same day, with three attempts allowed for each powerlift. Participants were allowed to decrease load if they missed on a first attempt and testing sessions were overseen by an experienced investigator who, when necessary, aided in attempt selection. Participants were required to warm-up by gradually increasing the load and decreasing repetitions as they approached a load ~10% lighter than their desired first attempt. Participants had ~5 min of rest between attempts and ~15–20 min of rest between each powerlift. This testing approach, which is similar to that employed by Androulakis-Korakakis et al. ( 2018 ) who used an actual competition, was intended to lend ecological validity to the outcome measures."
+    },
+    "sec36": {
+      "title": "Training",
+      "text": "After the testing week, participants began their assigned training intervention over a 6-week period. Training sessions were completed at different training facilities in Southampton, UK and Patras, Greece. Most sessions were overseen by the lead researcher with some being overseen by one of the other researchers. In the case where a session could not be overseen by any researcher (for logistic reasons due to scheduling issues), participants were required to film all their working sets and return these as evidence to the lead researcher. In studies 3 and 4, two intervention groups were examined: “daily max” (MAX) and “daily max + back off sets” (MAX+boff). Albeit not directly examining the effect of AMRAP sets on 1RM strength using moderate loads, the results of the literature review chapter demonstrated that significant 1RM increases may be possible with higher repetitions sets utilizing loads as low as 70% 1RM. After preliminary examination of the results from study 3, we opted in study 4 to take forward and collect additional data for the MAX+boff intervention again, and also to include an additional group based on previous meta-analysis exploring the METD in trained participants (Androulakis-Korakakis et al.,  2019 ): the AMRAP group. All three interventions were performed with a 2-3-1 SQ-BP-DL frequency, performing the SQ on days one and three, the BP on all three days and the DL on day two. The training days of all training protocols were Monday (day 1), Wednesday (day 2), and Friday (day 3). Further, no additional sets or exercises were performed during the 6 weeks training intervention by any group. The warm-up procedure for all the participants of the MAX and MAX+boff groups was similar to the warm-up during the testing procedure as they gradually increased the load and decreased repetitions as they approached their “daily max” set. The AMRAP group performed sets of five repetitions with 40, 50, and 60% of their 1RM before their main set with a load corresponding to 70% 1RM which was performed to an RPE 9-9.5."
+    },
+    "sec37": {
+      "title": "MAX Group",
+      "text": "The training protocol that the MAX group followed consisted of one set of a single repetition at RPE 9-9.5 for three training sessions per week. The PL athletes self-selected a load they believed enabled them to reach an RPE of 9-9.5, meaning they could either do one more repetition or they could not do more reps but could possibly do slightly more load (Helms et al.,  2016 )."
+    },
+    "sec38": {
+      "title": "MAX+boff Group",
+      "text": "The training protocol that the MAX+boff group followed was the same as the MAX group, but with the addition of the performance of two “back-off” sets of three repetitions at 80% of the load they had lifted for their “daily max” single repetition."
+    },
+    "sec39": {
+      "title": "AMRAP Group",
+      "text": "The training protocol that the AMRAP group followed consisted of one AMRAP set using 70% 1RM until RPE 9-9.5 was reached. The PL athletes performed as many repetitions as they believed enabled them to reach an RPE of 9-9.5."
+    },
+    "sec40": {
+      "title": "RPE",
+      "text": "Participants' RPE scores (Helms et al.,  2016 ) were recorded for all their working sets, including back-off sets, during all the training sessions of the intervention."
+    },
+    "sec41": {
+      "title": "Muscle Soreness",
+      "text": "Muscle soreness was assessed using the six point Likert scale of muscle soreness from Vickers ( 2001 ) 24 h after each training session. Participants were asked to note their muscle soreness score on a spreadsheet that was provided to them at the start of the study. The muscle soreness scale can be found in the  Supplementary Material ."
+    },
+    "sec42": {
+      "title": "Enjoyment, Adherence, and Perceived Effectiveness",
+      "text": "The effect of all protocols on training enjoyment, adherence, and perceived effectiveness were assessed using a questionnaire similar to that used by Androulakis-Korakakis et al. ( 2018 ). The questionnaire can be found in the  Supplementary Material ."
+    },
+    "sec43": {
+      "title": "Data Analysis",
+      "text": "These studies were not pre-registered and further, given the nature of the area and the constraints described, we have considered all analysis and results to be exploratory in nature. Despite initially considering the application of frequentist Neyman-Pearson null hypothesis significance testing (which also informed our initial a priori power analysis), we ultimately decided that this work was not yet at a stage to permit such testing. We further considered the extensive criticism directed at the dichotomisation of the existence of effects utilizing such a framework (Amrhein et al.,  2019a ; McShane et al.,  2019 ). Thus, we opted to take an estimation based approach instead (Gardner and Altman,  1986 ; Cumming,  2013 ), based within a Bayesian framework (Kruschke and Liddell,  2017 ) which has been suggested as a worthwhile approach in sport science where samples and effects are often both small (Mengersen et al.,  2016 ). For all analyses effect estimates and their precision, along with conclusions based upon them, were interpreted continuously and probabilistically, considering data quality, plausibility of effect, and previous literature, all within the context of each outcome (Amrhein et al.,  2019b ; McShane et al.,  2019 ). We adopted the Bayesian approach of determining a “ROPE” (Region of Practical Equivalence); we utilised the survey data from study 2 to determine the range values that participants considered as meaningful changes in outcomes (we utilise the terminology “ROPE” throughout but note that strictly speaking the manner in which we use this is not exactly equivalent to the traditional threshold based approach, nor are we using it as a band of effects considered to be practically equivalent to a null effect). In addition to this “subjective” ROPE, we also include analysis in the  Supplementary Materials  using an “objective” ROPE which was determined from modelling of the open powerlifting dataset ( https://www.openpowerlifting.org/ ) to determine the increase in SQ, BP, DL, and PL total bests to result in an increase of one position in yearly rankings within weight classes. Lastly, we note that any inferential statistics from the analyses of datasets generated from the participants sampled should be treated as highly unstable local descriptions of the relations between our model assumptions and data to acknowledge the inherent uncertainty in drawing generalised inferences from single samples (Amrhein et al.,  2019b ). All analysis was conducted in R (v 4.0.2; R Core Team,  https://www.r-project.org/ ) and all data and code are available in the  Supplementary Materials  ( https://osf.io/fm2bh/ ). Descriptive statistics (means and standard deviations) were calculated across sessions and are reported for SQ, BP, and DL for RPE across sets, next-day muscle soreness and also for training enjoyment measures. Bayesian regression models described below were all fit using the “brms” package (Bürkner,  2017 ,  2018 ) with posterior draws taken using “tidybayes” (Kay,  2020 ) and “emmeans” (Lenth,  2020 ). All data visualisations were made using “ggplot2” (Wickham,  2016 ), and “patchwork” (Pedersen,  2020 ). Within the visualisations we note the model specification in Pinheiro-Bates-modified Wilkinson-Rogers notation (Wilkinson and Rogers,  1973 ; Pinheiro and Bates,  2001 ) for reference. First, for determination of our “ROPE,” we fit a simple intercept only model, to the responses to the survey data described in study 2 for each outcome (SQ, BP, DL, and PL total). For each of the four Monte Carlo Markov Chains 1,000 warmup and 1,000 sampling iterations were used. Uninformed default priors were used for this model. Draws were taken from the posterior distribution ( n  = 4,000) for the model intercept term in order to construct a probability density function for the ROPE. This was in order to incorporate the uncertainty in our ROPE into our modelling approach, i.e., that different individuals had different responses as to what they considered a meaningful change. We then conducted analysis of both intervention arms within both studies. For the analysis within each study we fit an analysis of covariance (ANCOVA) model on the change score in outcomes (i.e., post minus pre scores) as the dependent variable, and with adjustment for the pre scores as a covariate, In study 3, we set an informed prior on the intercept which was coded to represent the mean for the MAX group. Our informed prior was set based upon the means and standard deviations for pre-peri change scores reported using the “daily max” approach piloted by Androulakis-Korakakis et al. ( 2018 ). In study 4, we set an informed prior on the intercept which was coded to represent the mean for the MAX+boff group. In this case the informed prior was set based upon the means and standard deviations for the change scores of the MAX+boff group in study 3. We similarly used four Monte Carlo Markov Chains with 1,000 warmup and 1,000 sampling iterations. Draws were taken from the posterior distributions ( n  = 4,000) for the estimated marginal means of each group within each study in order to construct a probability density function for each. We then considered the effects in the following probabilistic frames. First we calculated the mode and the 95% highest density interval (HDI) from the posterior probability density functions for each group effect estimate. These gave us the most probable value of the parameter, in addition to the range over which there was a 95% probability that the parameter lay within. Next we assessed discrimination between each group and the ROPE using the area under the receiver operating characteristic curve (AUC). This was performed using the “ROCit” package (Khan and Brandenburger,  2020 ). Because AUC is an indicator of discriminability it can be interpreted as the probability that a randomly sampled intervention group effect draw is superior to a randomly sampled ROPE draw. Lastly, we looked at identifiability as the overlap (using a custom built function; see analysis code) in each groups distribution with the ROPE distribution wherein the overlap can be interpreted as the probability that a randomly sampled intervention group effect draw is “equivalent” to a randomly sampled ROPE draw. Thus, we had point estimates of effect magnitudes with their uncertainty, a probability that a given intervention group effect was larger than the ROPE, and also a probability that a given intervention group effect was “equivalent” to the ROPE. As a final analysis, and given both the current scarcity of data on this type of training and the small group sizes in these studies, we examined a combined model examining the effects of the three “daily max” groups (i.e., MAX group from study 3, and the MAX+boff groups from studies 3 and 4) similar to an internal “meta-analysis” (Goh et al.,  2016 ). This was a multilevel extension of the ANCOVA models employed within studies yet with the removal of the condition coefficient. The resulting mixed-effects model, in Pinheiro-Bates-modified Wilkinson-Rogers notation (Wilkinson and Rogers,  1973 ; Pinheiro and Bates,  2001 ) for brevity's sake, was, Thus, this model was intended to provide an overall analysis of “daily max” type training broadly speaking. As with the within study models, we calculated mode and 95% HDI, AUC, and overlap with the ROPE."
+    },
+    "sec44": {
+      "title": "Results",
+      "text": "Within study 3, analysis suggested that for SQ and BP both MAX and MAX+boff conditions likely produced increases in 1RM strength ( Figures 1A,B ), though DL estimates were far less certain as evidenced by the wider 95%HDI in both groups ( Figure 1C ). The MAX+boff group appeared to produce increases in DL 1RM strength but, with a sizable portion of the posterior probability distribution encompassing decreases, the MAX group effects were less clearly positive. For both groups, PL total appeared to increase ( Figure 1D ). The pattern of results are largely similar across the SQ, BP, and DL, and so focusing on the PL total outcome: the MAX group had a posterior probability distribution modal increase of 11.4 kg (95% HDI, 0.8–19.5 kg) with the AUC suggesting only a 6.3% probability of increases greater than the ROPE and 13.3% probability of increases within the ROPE, while the MAX+boff had a posterior probability distribution modal increase of 33.7 kg (95% HDI, 24.3–44.1 kg) with the AUC suggesting a 99.6% probability of increases greater than the ROPE and 1.1% probability of increases within the ROP. Study 4 showed a similar pattern of results with respect to the SQ, BP, and DL, with the latter exhibiting far less precision with respect to estimates of change. Again, analysis suggested that for SQ and BP both MAX+boff and AMRAP conditions likely produced increases in 1RM strength ( Figures 2A,B ) which appeared far more similar in distribution than the comparison of MAX and MAX+boff effects in study 3. Further, while the MAX+boff group again appeared to produce increases in DL 1RM strength, the AMRAP group exhibited a sizable portion of the posterior probability distribution encompassing decreases with effects appearing far less clearly positive ( Figure 2C ). However, both groups' PL total appeared to increase ( Figure 2D ). Within study 4, and with incorporation of the prior for the MAX+boff from study 3, the MAX+boff group in this study demonstrated lower estimates of PL total change having a posterior probability distribution modal increase of 26.8 kg (95% HDI, 17.3–41.6 kg) with the AUC suggesting only a slightly reduced but still reasonably high 98.1% probability of increases greater than the ROPE and 6% probability of increases within the ROPE. The AMRAP group exhibited a posterior probability distribution modal increase of 15.3 kg (95% HDI, 3.4–31.3 kg) with the AUC suggesting a 41.4% probability of increases greater than the ROPE and 26.7% probability of increases within the ROPE. Finally, the internal “meta-analysis” across the combined “daily max” groups (MAX and both MAX+boff groups) suggested likely positive increases across SQ, BP, and DL ( Figures 3A–C ). PL total change exhibited a posterior probability distribution modal increase of 19.6 kg (95% HDI, 10.7–31.6 kg) with the AUC suggesting a reasonably high 77.1% probability of increases greater than the ROPE and 28.2% probability of increases within the ROPE ( Figure 3D ). Across all studies and groups, the results were broadly similar when compared to the “objective” ROPE (see  Supplementary Materials ). This was primarily due to the similarity in ROPE distributions for “objective” and “subjective” [e.g., for PL total modal increases (95% HDI) were: “objective” = 16.1 kg (14.3–18.5 kg); “subjective” = 17.5 kg (15.3–19.4 kg);  https://osf.io/anwku/ ]. Descriptive data suggested that across groups, average RPEs attained during main working sets were similar and met the levels prescribed (i.e., 9-9.5 pts). Further, back off sets for the MAX+boff groups were lower with respect to RPE (~6–7). Muscle soreness levels were relatively low across all groups, though slightly higher by ~1 for the AMRAP group.  Table 9  reports the means and standard deviations for these outcomes. The participants' responses to the post-intervention training questionnaire can be found in  Supplementary Material ."
+    },
+    "sec45": {
+      "title": "Discussion",
+      "text": "Studies 3 and 4 explored variations of “daily max” type training, such as employed by Androulakis-Korakakis et al. ( 2018 ) and also with the inclusion of additional volume through addition of “back off” sets, as well as an AMRAP (“as many reps as possible”) type approach based off a previous review exploring the METD in trained persons (Androulakis-Korakakis et al.,  2019 ). Due to the inherent difficulty of performing intervention studies in PL athletes, it was anticipated that sample sizes would be low, and thus study 2 was conducted to aid in interpretation of the meaningfulness of effects in a probabilistic Bayesian inference manner. In study 3, though the MAX group appeared likely to produce increases in PL total, these had a low probability of either meeting (13.3%) or exceeding (6.3%) a meaningful change, according to the criteria for “meaningful change” established in study 2. In study 4, the AMRAP group exhibited a 41.4% chance of exceeding a meaningful change with a 26% chance of meeting a meaningful change. However, in both study 3 and 4, the MAX+boff group experienced strength increases that had a high probability (study 3 99.6%, updated to 98% in study 4) of exceeding what PL coaches and athletes considered a meaningful change. As mentioned above, the pilot study that employed the exact same protocol as the MAX group by Androulakis-Korakakis et al. ( 2018 ) found that 4 out of 5 PL athletes managed to increase their peri-training intervention total by 15, 25, 20, and 11 kg, respectively. However, only 2 of those 5 PL athletes experienced potentially meaningful increases during competition, increasing their PL total by 20 and 25 kg, while the other three participants experienced performance decreases. Despite “practicing the test” by training with near maximal loads (Dankel et al.,  2017 ,  2020 ; Mattocks et al.,  2017 ; Buckner et al.,  2021 ), the extremely low training volume used in the MAX group may not be enough to allow for experienced PL athletes to make meaningful progress in 6 weeks and may potentially lead to deleterious effects after longer periods of training (though these decreases may also have been due to attempt selection on the day of competition). It is important to note that results from study 3 suggest training with a few heavy single repetitions per week may still yield strength increases, yet the probability that these would be enough to be considered meaningful is low. However, in some cases such changes may be deemed meaningful if we consider that some interview respondents noted that any change in 1RM strength in experienced athletes may be important. After inclusion of study 3's results as prior, study 4 revealed a final updated probability of 6% that MAX+boff would produce a meaningful change, and 98% probability that this change would in fact exceed what is considered meaningful. This suggests the addition of only two sets consisting of three repetitions with ~2–4 RIR following heavy single sets can lead to meaningful strength increases. Despite being a seemingly small addition, boff sets amounted to the MAX+boff group increasing their overall SQ, BP, and DL training volume by an additional 12, 18, and 6 weekly repetitions, respectively. When compared to the MAX group, the MAX+boff group performed 600% more volume. However, despite this, the MAX+boff intervention is still a relatively low training dose and may reflect the METD, especially when considering that traditional training approaches can represent ~1,000–1,800% more training volume than a “daily max” approach (Androulakis-Korakakis et al.,  2018 ). Aside from a possibly greater overall stimulus, the added training volume from the back-off sets may have contributed to the participants' overall 1RM improvement by adding to the skill component of 1RM strength by providing extra practice of the powerlifts. Additionally, previous research examining the METD looked at the literature exploring the effects of single versus multiple sets has found that in certain cases, multiple sets per week can produce greater 1RM strength increases than just 1 set performed a few times per week (Androulakis-Korakakis et al.,  2019 ); though the relationship between volume and strength is trivial to small (Ralston et al.,  2017 ). It is important to note that most of the low volume groups included in the systematic review and meta-analysis by Androulakis-Korakakis et al. ( 2019 ), aside from the group in Ogasawara et al. ( 2013 ), were performing a similar, or higher, number of weekly repetitions for the SQ and BP when compared to the MAX+boff group in study 3 and 4. All the low volume groups identified in the systematic review and meta-analysis by Androulakis-Korakakis et al. ( 2019 ) achieved significant 1RM strength increases, indicating that suboptimal, but still meaningful 1RM strength increases are possible with lower volumes of training. Indeed, as noted, study 4 compared a group using the same protocol as the MAX+boff group with a group following an AMRAP “daily max” approach following recommendations from Androulakis-Korakakis et al. ( 2019 ). This involved using a load corresponding to 70% of the participants 1RM for “as many repetitions as possible;” which, in this case, was not to momentary failure such as defined by Steele et al. ( 2017 ), but based on typical application by PL athletes, i.e., until reaching RPE 9-9.5 allowing one more repetition or slightly more load (Helms et al.,  2016 ). The aim of including the AMRAP group was to explore the effect of moderate-load higher repetition “daily max” sets on 1RM strength, to understand whether PL athletes can utilize lighter loads when training with a METD approach. As previously mentioned, utilizing light to moderate loads can elicit significant strength increases, but when assessing strength  via  a 1RM test, heavier loads may result in greater strength increases (Lasevicius et al.,  2018 ; Fisher et al.,  2020 ; Schoenfeld et al.,  2021 ). Interestingly, despite the AMRAP group performing more training volume than the MAX+boff group, they were unable to attain similar strength increases as the MAX+boff group. Indeed, similarly to the MAX group in study 3, the AMRAP group may still yield strength increases, yet the probability that these would be enough to be considered meaningful is low. Though again we note that, in some cases such changes may be deemed meaningful considering the responses of some interviewees. The results of the AMRAP group may also be a result of the training proficiency of the participants. The participants were all PL athletes with years of RT experience as well as a few years of solely focusing on increasing their 1RM strength. Possibly due to their high level and specific training experience, the AMRAP group was not able to increase strength similarly to other “trained” populations who have been observed to progress using moderate to light loads for higher repetitions (Lasevicius et al.,  2018 ). It is important to note that similarly to the results of study 4, the group in the Lasevicius et al. ( 2018 ) study that utilized heavier loads (80% 1RM) managed to increase their 1RM strength more than the lighter load conditions. Finally, the speculation that strength is better gained by lifters with more training experience when using higher percentages of 1RM is also supported by previous meta-analyses (Rhea et al.,  2003 ; Peterson et al.,  2005 ). In addition to the strength gains, it is worth considering the practical application of the approaches explored by considering other self-report outcomes. In both studies (3 and 4), all groups scored relatively low in terms of muscle soreness with the highest soreness score being in the AMRAP group with a score of 2.1 ± 0.3 out of five. The relatively low training volumes across all groups may explain the low soreness scores as previous research investigating the effect of high-volume training protocols on muscle soreness has found significant increases in muscle soreness following high-volume muscle damaging resistance exercise (Sikorski et al.,  2013 )."
+    }
+  },
+  "study_context": {
+    "design": "two small quasi-randomized exploratory interventions; not preregistered",
+    "recruited": 32,
+    "analyzed": 25,
+    "withdrawals": {
+      "count": 7,
+      "reason": "COVID-19 facility closures in study 4"
+    },
+    "study3": {
+      "MAX": 8,
+      "MAX_BOFF": 8
+    },
+    "study4": {
+      "MAX_BOFF": 5,
+      "AMRAP": 4
+    },
+    "population": {
+      "sex": "male",
+      "resistance_training_years_min": 4,
+      "powerlifting_years_min": 2,
+      "rpe_training_years_min": 1,
+      "raw_powerlifting": true,
+      "no_daily_max_previous_weeks": 12
+    },
+    "supervision": "researcher supervision or video submission of working sets",
+    "rpe_recorded": "all working sets including backoff",
+    "soreness": "24 h later; six-point scale; not a load-adjustment rule",
+    "result_interpretation": "Exploratory model favored additional backoff work; single-only gains were less likely to meet elicited meaningful-change criteria. Not individual success probabilities or proof of an optimal minimum dose.",
+    "limits": [
+      "Small convenience samples",
+      "No usual-training control",
+      "Survey-derived meaningful-change thresholds",
+      "Study 4 uses study 3 results as prior: not independent confirmation",
+      "High effort and experienced participants: not a beginner default"
+    ],
+    "correction_check": "not_independently_completed"
+  },
+  "adaptations": [
+    "User-selected training rest: testing rest is not copied into training",
+    "User-selected progressive warmup for MAX arms; exact warmup loads not reported",
+    "Equipment rounding is product policy",
+    "Calendar shifts and minimum 48 h spacing are product policy",
+    "No researcher supervision or soreness questionnaire reproduced",
+    "AMRAP 70% uses frozen baseline: no unreported recalibration",
+    "Backoff target resolves from recorded completed single; missing single requires explicit user load or skipping"
+  ],
+  "not_supported": [
+    "Automatic RPE-to-load prediction",
+    "Automatic plateau or pain prescription",
+    "Unreviewed public release"
+  ]
+}

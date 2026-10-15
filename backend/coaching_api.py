@@ -19,7 +19,7 @@ def catalog():
     base=os.environ.get('SUPABASE_URL','').rstrip('/')
     key=os.environ.get('SUPABASE_PUBLISHABLE_KEY','')
     if not base.startswith('https://') or not key:raise CatalogUnavailable('Database not configured')
-    req=urllib.request.Request(base+'/rest/v1/rpc/coaching_programme_catalog',data=b'{}',method='POST',
+    req=urllib.request.Request(base+'/rest/v1/rpc/coaching_programme_catalog_v2',data=b'{}',method='POST',
         headers={'apikey':key,'Content-Type':'application/json'})
     try:
         with urllib.request.urlopen(req,timeout=10) as response:result=json.load(response)
@@ -92,7 +92,9 @@ def start(instance_id:str,request:SessionInput,user=Depends(owner),db=Depends(st
         if prior:
             require(prior['workout_id']==request.workout_id,'SESSION_ALREADY_STARTED')
             require(prior['snapshot']['started_at']==request.started_at,'START_REQUEST_CONFLICT')
-            if value['arm']=='RPEG':
+            if value['source'].get('adapter_version')=='metd-2021-v1':
+                require(prior['snapshot']['coaching']['initial_rpe_loads_kg']==request.initial_rpe_loads_kg,'START_REQUEST_CONFLICT')
+            elif value['arm']=='RPEG':
                 initial={r['exercise_id']:r['weight_kg'] for r in prior['snapshot']['session']['sets']}
                 require(initial==request.initial_rpe_loads_kg,'START_REQUEST_CONFLICT')
             else:

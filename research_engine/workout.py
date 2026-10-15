@@ -5,6 +5,7 @@ from decimal import Decimal
 from .core import InvalidProgramme, digest, number, instantiate_session, progression
 
 POLICY = 'execution-ledger-v2'
+DEPENDENT_POLICY = 'execution-ledger-v3'
 from .execution_facts import pain_reported, short_interset_rests
 REASONS = {'fatigue', 'pain', 'time', 'equipment', 'interruption', 'other'}
 
@@ -73,7 +74,7 @@ def replay(workout, events):
         result['legacy_read_only'] = True
         result['migration_notice'] = '기존 계산 버전 기록이에요. 종료와 열람만 지원해요.'
         return result
-    require(workout['policy_version'] == POLICY, 'UNSUPPORTED_POLICY')
+    require(workout['policy_version'] in (POLICY, DEPENDENT_POLICY), 'UNSUPPORTED_POLICY')
     require(len(events) <= 2000, 'EVENT_LIMIT')
     rows = copy.deepcopy(workout['session']['sets'])
     for row in rows:
@@ -81,6 +82,21 @@ def replay(workout, events):
     state = 'active'; cursor = 0; rest = None; rests = []; seen = {}; paused_from = None
     reason_reports = {}; event_targets = {}
     last_time = timestamp(workout['started_at']); guides = []
+    def resolve_dependencies():
+        if workout['policy_version'] != DEPENDENT_POLICY:return
+        from .coaching import rounded
+        for row in rows:
+            dependency=row.get('load',{})
+            if dependency.get('kind')!='percent_actual_set':continue
+            parent=next((r for r in rows if r['id']==dependency['set_id']),None)
+            actual=parent.get('actual') if parent else None
+            available=actual is not None and actual['reps']==1 and actual['weight_kg']>0
+            raw=actual['weight_kg']*dependency['percent']/100 if available else None
+            row['unrounded_weight_kg']=raw
+            representable=available and raw>=dependency['equipment_step_kg']/2
+            row['weight_kg']=rounded(raw,dependency['equipment_step_kg']) if representable else None
+            row['load_resolution']='actual_single' if representable else 'source_single_unavailable' if not available else 'below_equipment_minimum'
+            if not row['changes']:row['selected_weight_kg']=row['weight_kg']
     def close_rest(at, outcome):
         nonlocal rest
         if rest is not None:
@@ -114,6 +130,7 @@ def replay(workout, events):
                 paused_from=state;state='paused'
             continue
         require(state not in ('completed', 'stopped'), 'WORKOUT_CLOSED')
+        resolve_dependencies()
         current = rows[cursor] if cursor < len(rows) else None
         if kind in ('change_load','set_result','skip_set','finish'):
             event_targets[eid]=current['id'] if current and kind!='finish' else None
@@ -152,6 +169,7 @@ def replay(workout, events):
                 require(event.get('reason') in REASONS, 'SKIP_REASON_REQUIRED')
                 current.update(status='skipped', reason=event['reason'])
             else:
+                require(current['selected_weight_kg'] is not None, 'SOURCE_LOAD_UNAVAILABLE_SELECT_OR_SKIP')
                 reps = event.get('reps')
                 require(type(reps) == int and 0 <= reps <= 100, 'INVALID_REPS')
                 reason = event.get('reason')
@@ -177,6 +195,7 @@ def replay(workout, events):
                 paused_from = state; state = 'paused'
         else:
             raise InvalidProgramme('UNKNOWN_EVENT_TYPE')
+    resolve_dependencies()
     current = rows[cursor] if cursor < len(rows) else None
     if state == 'paused':
         guides.append(guide('PAUSED', '운동을 멈췄어요. 계속할지, 여기서 마칠지 선택해 주세요.', ['resume', 'finish']))
@@ -186,6 +205,8 @@ def replay(workout, events):
         guides.append(guide('RESTING', '휴식 중이에요. 일찍 끝내면 실제 쉰 시간이 따로 기록돼요.', ['rest_end', 'pause', 'finish']))
     if state == 'active' and current:
         guides.append(guide('NEXT_SET', '중량을 확인하고 수행한 횟수를 기록해 주세요. 어렵다면 중량을 바꾸거나 건너뛸 수 있어요.', ['change_load', 'set_result', 'skip_set', 'pause', 'finish']))
+        if current['selected_weight_kg'] is None:
+            guides[-1]=guide('SOURCE_LOAD_UNAVAILABLE', '기준 단일 반복이 없어 백오프 중량을 계산하지 못했어요. 중량을 직접 선택하거나 건너뛰어 주세요.', ['change_load','skip_set','finish'])
     if state == 'active' and current is None:
         guides.append(guide('READY_TO_FINISH', '모든 세트를 기록했어요. 운동을 마쳐 주세요.', ['finish']))
     if state in ('completed', 'stopped'):
@@ -194,14 +215,14 @@ def replay(workout, events):
         guides.append(guide('REST_SHORTFALL', '목표보다 짧게 쉰 구간이 있어요. 기록 비교이며, 운동 효과나 다음 중량을 단정하는 기준은 아니에요.', []))
     chart = []; achieved = 0; planned = 0
     for row in rows:
-        actual = row['actual']; target = row['reps']['min']; planned += target
+        actual = row['actual']; target = row['reps']['min']; planned += target or 0
         completed = actual['reps'] if actual else 0
-        achieved += min(completed, target)
+        achieved += min(completed, target) if target is not None else 0
         chart.append({'set_id': row['id'], 'exercise_id': row['exercise_id'], 'status': row['status'],
                       'target_reps': row['reps'], 'actual_reps': completed if actual else None,
                       'target_weight_kg': row['weight_kg'], 'actual_weight_kg': actual['weight_kg'] if actual else None,
-                      'reps_shortfall': max(0, target - completed) if row['status'] != 'pending' else None,
-                      'weight_delta_kg': actual['weight_kg'] - row['weight_kg'] if actual else None})
+                      'reps_shortfall': max(0, target - completed) if target is not None and row['status'] != 'pending' else None,
+                      'weight_delta_kg': actual['weight_kg'] - row['weight_kg'] if actual and row['weight_kg'] is not None else None})
     recorded = [r for r in rows if r['actual']]
     if recorded and state not in ('completed', 'stopped', 'paused') and not pain_reported(rows):
         last = recorded[-1]; actual = last['actual']
@@ -219,7 +240,11 @@ def replay(workout, events):
         elif actual.get('reason') != 'pain' and last['load']['kind'] == 'repetition_maximum':
             guides.append(guide('RM_TARGET', '기록한 반복수와 반복 종료 사유를 확인해 주세요. 원문만으로 다음 중량을 정확히 계산할 수는 없어요.',
                                 [], 'source_reported', workout['definition']['provenance']['progression']))
-    return {'schema_version': 2, 'policy_version': POLICY, 'state': state, 'revision': len(seen),
+    open_repetition_targets=any(r['reps']['min'] is None for r in rows)
+    if workout['policy_version']==DEPENDENT_POLICY:
+        for item in guides:
+            if item['policy_version'] is not None:item['policy_version']=DEPENDENT_POLICY
+    return {'schema_version': 2, 'policy_version': workout['policy_version'], 'state': state, 'revision': len(seen),
             'programme_id': workout['programme_id'], 'programme_version': workout['programme_version'],
             'source': workout['source'], 'max_records': workout['max_records'], 'sets': rows,
             'next_set_id': current['id'] if current and state not in ('completed', 'stopped') else None,
@@ -228,10 +253,10 @@ def replay(workout, events):
             'summary': {'planned_sets': len(rows), 'recorded_sets': len(recorded),
                         'skipped_sets': sum(r['status'] == 'skipped' for r in rows),
                         'not_attempted_sets': sum(r['status'] == 'not_attempted' for r in rows),
-                        'minimum_reps_completion_percent': None if any(r['status']=='pending' for r in rows) else round(100 * achieved / planned, 2),
-                        'minimum_reps_completion_bounds_percent': [round(100 * achieved / planned, 2), round(100 * (achieved + sum(r['reps']['min'] for r in rows if r['status']=='pending')) / planned, 2)],
+                        'minimum_reps_completion_percent': None if open_repetition_targets or not planned or any(r['status']=='pending' for r in rows) else round(100 * achieved / planned, 2),
+                        'minimum_reps_completion_bounds_percent': None if open_repetition_targets or not planned else [round(100 * achieved / planned, 2), round(100 * (achieved + sum(r['reps']['min'] for r in rows if r['status']=='pending')) / planned, 2)],
                         'unknown_sets': sum(r['status']=='pending' for r in rows),
-                        'metric_version': 'minimum-reps-v2',
-                        'definition': 'Sum of per-set reps capped at prescribed minimum / planned minimum reps. Not strength gain or scientific adherence.',
+                        'metric_version': 'effort-target-no-rep-ratio-v1' if open_repetition_targets else 'minimum-reps-v2',
+                        'definition': 'No aggregate repetition ratio for effort-terminated sets.' if open_repetition_targets else 'Sum of per-set reps capped at prescribed minimum / planned minimum reps. Not strength gain or scientific adherence.',
                         'rest_shortfall_seconds': sum(r['shortfall_seconds'] for r in short_interset_rests(rests)),
                         'chart': chart, 'growth_prediction': None}}

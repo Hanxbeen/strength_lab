@@ -1,11 +1,12 @@
 """Finite version dispatch; no generated prescription rules."""
-from . import coaching,sbd
+from . import coaching,sbd,metd
 from .workout import require
 
 def adapter(source):
     version=source.get('adapter_version')
     if version==coaching.ENGINE:return coaching
     if version==sbd.ENGINE:return sbd
+    if version==metd.ENGINE:return metd
     require(False,'UNSUPPORTED_SOURCE')
 
 def validate_source(source):return adapter(source).validate_source(source)
