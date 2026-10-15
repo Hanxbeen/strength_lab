@@ -37,6 +37,35 @@ def require_internal_preview(user):
     if user not in allowed:
         raise HTTPException(403, detail='RESEARCH_PREVIEW_NOT_RELEASED')
 
+class ReadinessInput(BaseModel):
+    source_id:str
+    source_version:str
+    arm:str
+    created_at:str
+    profile:dict=Field(default_factory=dict)
+    setup:dict=Field(default_factory=dict)
+    max_record_ids:dict[str,str]=Field(default_factory=dict)
+
+@router.post('/programme-readiness')
+def readiness(request:ReadinessInput,user=Depends(owner),db=Depends(store)):
+    from .programme_readiness import preview
+    def action():
+        source=next((x for x in catalog()['items'] if x['source_id']==request.source_id and x['version']==request.source_version),None)
+        if source is None:raise InvalidProgramme('SOURCE_VERSION_UNAVAILABLE')
+        require(source['status']=='research_preview','SOURCE_SUSPENDED')
+        allowed={x.strip() for x in os.environ.get('COACHING_PREVIEW_OWNER_IDS','').split(',') if x.strip()}
+        return preview(source['definition'],request.dict(),db.maxes(user),user in allowed)
+    return execute(action)
+
+@router.get('/programme-instances/{instance_id}/next-session')
+def next_programme_session(instance_id:str,at:str,user=Depends(owner),db=Depends(store)):
+    from .programme_readiness import next_session
+    from .programme_evaluation import list_evaluations
+    def action():
+        instance=coaching_store.instance(db,user,instance_id)
+        return next_session(instance,coaching_store.history(db,user,instance_id),list_evaluations(db,user,instance_id),at)
+    return execute(action)
+
 class InstanceInput(BaseModel):
     id:str=Field(min_length=1,max_length=100)
     source_id:str

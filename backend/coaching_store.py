@@ -3,6 +3,7 @@ import json
 from research_engine.core import digest
 from research_engine.workout import replay, timestamp, require
 from research_engine.programme_dispatch import enrich
+from research_engine.programme_schedule import selected as schedule_selected,index as schedule_index
 from .workout_store import Conflict
 
 def initialize(db):
@@ -44,7 +45,8 @@ def history(db,user,id):
 
 def start(db,user,id,wid,week,day,snapshot):
     initialize(db);replay(snapshot,[])
-    ordinal=(week-1)*3+day
+    schedule=schedule_selected(snapshot['source'],snapshot.get('schedule_policy'))
+    ordinal=schedule_index(schedule,week,day)+1
     with db.connect() as c:
         c.execute('BEGIN IMMEDIATE')
         old=c.execute('SELECT w.id,w.snapshot FROM coaching_sessions s JOIN execution_workouts w ON w.owner=s.owner AND w.id=s.workout_id WHERE s.owner=? AND s.instance_id=? AND s.week=? AND s.day=?',(user,id,week,day)).fetchone()
@@ -57,7 +59,7 @@ def start(db,user,id,wid,week,day,snapshot):
             if len(prior)!=ordinal-1:raise Conflict('SEQUENTIAL_SESSION_REQUIRED')
             if prior:
                 first=json.loads(prior[0][2])
-                nominal_days=(week-1)*7+(day-1)*2
+                nominal_days=(week-1)*7+schedule['day_offsets'][str(day)]
                 require((timestamp(snapshot['started_at'])-timestamp(first['started_at'])).total_seconds()>=nominal_days*86400,
                         'SOURCE_SCHEDULE_COMPRESSED')
             for pw,pd,ps,pe in prior:
@@ -67,7 +69,7 @@ def start(db,user,id,wid,week,day,snapshot):
                 last=json.loads(prior[-1][2]);events=json.loads(prior[-1][3])
                 require(timestamp(snapshot['started_at'])>=timestamp(events[-1]['at']), 'SESSION_TIME_ORDER')
                 # A 48-hour minimum is a conservative product policy, not a quoted research threshold.
-                require((timestamp(snapshot['started_at'])-timestamp(last['started_at'])).total_seconds()>=172800,
+                require((timestamp(snapshot['started_at'])-timestamp(last['started_at'])).total_seconds()>=schedule['minimum_start_interval_seconds'],
                         'NONCONSECUTIVE_DAYS_REQUIRED')
             if c.execute('SELECT 1 FROM execution_workouts WHERE owner=? AND id=?',(user,wid)).fetchone():raise Conflict('WORKOUT_ID_CONFLICT')
             c.execute('INSERT INTO execution_workouts VALUES(?,?,?,?,0)',(user,wid,json.dumps(snapshot),'[]'))
