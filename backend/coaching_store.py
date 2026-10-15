@@ -2,7 +2,7 @@
 import json
 from research_engine.core import digest
 from research_engine.workout import replay, timestamp, require
-from research_engine.coaching import enrich
+from research_engine.programme_dispatch import enrich
 from .workout_store import Conflict
 
 def initialize(db):
@@ -13,6 +13,10 @@ def initialize(db):
         CREATE TABLE IF NOT EXISTS coaching_sessions(
           owner TEXT NOT NULL,instance_id TEXT NOT NULL,week INTEGER NOT NULL,day INTEGER NOT NULL,
           workout_id TEXT NOT NULL,PRIMARY KEY(owner,instance_id,week,day),UNIQUE(owner,workout_id));
+        CREATE TABLE IF NOT EXISTS coaching_evaluations(
+          owner TEXT NOT NULL,instance_id TEXT NOT NULL,id TEXT NOT NULL,revision INTEGER NOT NULL,
+          fingerprint TEXT NOT NULL,payload TEXT NOT NULL,at TEXT NOT NULL,
+          PRIMARY KEY(owner,instance_id,id),UNIQUE(owner,instance_id,revision));
         """)
 
 def instance(db,user,id):
@@ -47,6 +51,8 @@ def start(db,user,id,wid,week,day,snapshot):
         if old:
             if old[0]!=wid or digest(json.loads(old[1]))!=digest(snapshot):raise Conflict('SESSION_ALREADY_STARTED')
         else:
+            if c.execute('SELECT 1 FROM coaching_evaluations WHERE owner=? AND instance_id=?',(user,id)).fetchone():
+                raise Conflict('PROGRAMME_CLOSED')
             prior=c.execute('SELECT s.week,s.day,w.snapshot,w.events FROM coaching_sessions s JOIN execution_workouts w ON w.owner=s.owner AND w.id=s.workout_id WHERE s.owner=? AND s.instance_id=? ORDER BY s.week,s.day',(user,id)).fetchall()
             if len(prior)!=ordinal-1:raise Conflict('SEQUENTIAL_SESSION_REQUIRED')
             if prior:

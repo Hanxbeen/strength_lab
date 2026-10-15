@@ -1,5 +1,6 @@
 """Database-backed research programmes. Explicit source selection, never automatic enrollment."""
 import json
+from typing import Optional
 import os
 import urllib.request
 import urllib.error
@@ -8,7 +9,7 @@ from pydantic import BaseModel, Field
 from .repository import CatalogUnavailable
 from .workout_api import owner, store, execute
 from . import coaching_store
-from research_engine.coaching import validate_source, make_instance, prepare, EXERCISES
+from research_engine.programme_dispatch import validate_source, make_instance, prepare, exercises
 from research_engine.core import digest, InvalidProgramme
 from research_engine.workout import require
 
@@ -18,11 +19,12 @@ def catalog():
     base=os.environ.get('SUPABASE_URL','').rstrip('/')
     key=os.environ.get('SUPABASE_PUBLISHABLE_KEY','')
     if not base.startswith('https://') or not key:raise CatalogUnavailable('Database not configured')
-    req=urllib.request.Request(base+'/rest/v1/rpc/coaching_source_catalog',data=b'{}',method='POST',
+    req=urllib.request.Request(base+'/rest/v1/rpc/coaching_programme_catalog',data=b'{}',method='POST',
         headers={'apikey':key,'Content-Type':'application/json'})
     try:
         with urllib.request.urlopen(req,timeout=10) as response:result=json.load(response)
         if result.get('schema_version')!=3 or not isinstance(result.get('items'),list):raise ValueError('Schema')
+        result['items']=[item for item in result['items'] if item.get('status')=='research_preview']
         for item in result['items']:
             if item['version']!=digest(item['definition']):raise ValueError('Version')
             validate_source(item['definition'])
@@ -47,7 +49,7 @@ class InstanceInput(BaseModel):
 
 class SessionInput(BaseModel):
     workout_id:str=Field(min_length=1,max_length=100)
-    week:int=Field(ge=1,le=8)
+    week:int=Field(ge=1,le=10)
     day:int=Field(ge=1,le=3)
     started_at:str
     initial_rpe_loads_kg:dict[str,float]=Field(default_factory=dict)
@@ -63,7 +65,7 @@ def create(request:InstanceInput,user=Depends(owner),db=Depends(store)):
         source=next((x for x in catalog()['items'] if x['source_id']==request.source_id and x['version']==request.source_version),None)
         if source is None:raise InvalidProgramme('SOURCE_VERSION_UNAVAILABLE')
         require(source['status']=='research_preview','SOURCE_SUSPENDED')
-        require(set(request.max_record_ids)==set(EXERCISES),'MAX_REFERENCES_REQUIRED')
+        require(set(request.max_record_ids)==set(exercises(source['definition'])),'MAX_REFERENCES_REQUIRED')
         records=db.maxes(user);selected=[]
         for eid,rid in request.max_record_ids.items():
             record=next((r for r in records if r['id']==rid and r['exercise_id']==eid),None)
@@ -74,7 +76,9 @@ def create(request:InstanceInput,user=Depends(owner),db=Depends(store)):
 
 @router.get('/programme-instances/{instance_id}')
 def get(instance_id:str,user=Depends(owner),db=Depends(store)):
+    from .programme_evaluation import list_evaluations
     return execute(lambda:{'instance_id':instance_id,'instance':coaching_store.instance(db,user,instance_id),
+                           'evaluations':list_evaluations(db,user,instance_id),
                            'history':[{k:v for k,v in h.items() if k not in ('snapshot','events')}
                                       for h in coaching_store.history(db,user,instance_id)]})
 
@@ -91,6 +95,8 @@ def start(instance_id:str,request:SessionInput,user=Depends(owner),db=Depends(st
             if value['arm']=='RPEG':
                 initial={r['exercise_id']:r['weight_kg'] for r in prior['snapshot']['session']['sets']}
                 require(initial==request.initial_rpe_loads_kg,'START_REQUEST_CONFLICT')
+            else:
+                require(not request.initial_rpe_loads_kg,'START_REQUEST_CONFLICT')
             return db.get(user,request.workout_id)
         require_internal_preview(user)
         matching=next((x for x in catalog()['items'] if x['source_id']==value['source']['id']
@@ -99,3 +105,16 @@ def start(instance_id:str,request:SessionInput,user=Depends(owner),db=Depends(st
         snapshot=prepare(value,request.week,request.day,request.started_at,history,request.initial_rpe_loads_kg)
         return coaching_store.start(db,user,instance_id,request.workout_id,request.week,request.day,snapshot)
     return execute(action)
+
+class EvaluationInput(BaseModel):
+    id:str=Field(min_length=1,max_length=100)
+    at:str
+    outcome:str
+    supersedes_id:Optional[str]=None
+    post_max_record_ids:dict[str,str]=Field(default_factory=dict)
+    comparison_conditions:dict[str,str]=Field(default_factory=dict)
+
+@router.post('/programme-instances/{instance_id}/evaluations')
+def evaluate(instance_id:str,request:EvaluationInput,user=Depends(owner),db=Depends(store)):
+    from .programme_evaluation import evaluate as operation
+    return execute(lambda:operation(db,user,instance_id,request.model_dump()))

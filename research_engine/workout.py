@@ -171,7 +171,7 @@ def replay(workout, events):
                           else current['rest_after']['seconds'])
                 rest = {'after_set_id': current['id'], 'started_at': event['at'], 'target_seconds': target,
                         'kind': 'between_exercises' if transition else 'between_sets',
-                        'basis': 'explicit_setup' if transition else 'source_reported'}
+                        'basis': 'explicit_setup' if transition else current['rest_after'].get('basis','source_reported')}
                 state = 'resting'
             if event.get('reason') == 'pain':
                 paused_from = state; state = 'paused'
