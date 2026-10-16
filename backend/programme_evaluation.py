@@ -47,14 +47,15 @@ def evaluate(db,user,instance_id,request):
         if request['outcome']=='completed':require(len(sessions)==planned,'PROGRAMME_NOT_FINISHED')
         baselines={r['exercise_id']:r for r in instance['max_records']};lifts=[]
         for eid in exercises(source):
-            base=baselines[eid];rid=request['post_max_record_ids'].get(eid);post=None;status='not_measured'
+            base=baselines.get(eid);rid=request['post_max_record_ids'].get(eid);post=None;status='not_measured'
             condition=request['comparison_conditions'].get(eid,'unknown')
             if rid:
                 row=c.execute('SELECT payload FROM execution_maxes WHERE owner=? AND id=?',(user,rid)).fetchone()
                 require(row is not None,'POST_MAX_NOT_FOUND');post=json.loads(row[0])
                 require(post['exercise_id']==eid,'POST_MAX_EXERCISE_MISMATCH')
                 require(last_at<=timestamp(post['measured_at'])<=at,'POST_MAX_TIME_INVALID')
-                status='estimated' if post['kind']!='measured' else ('comparable' if condition=='same' else 'conditions_'+condition)
+                status=('baseline_not_recorded' if base is None else 'estimated' if post['kind']!='measured' else 'baseline_estimated' if base['kind']!='measured'
+                        else ('comparable' if condition=='same' else 'conditions_'+condition))
             delta=post['weight_kg']-base['weight_kg'] if status=='comparable' else None
             lifts.append({'exercise_id':eid,'baseline':base,'post':post,'comparison_conditions':condition,
                 'conditions_basis':'user_self_report','status':status,'delta_kg':delta,

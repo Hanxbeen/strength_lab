@@ -78,10 +78,11 @@ class InstanceInput(BaseModel):
 
 class SessionInput(BaseModel):
     workout_id:str=Field(min_length=1,max_length=100)
-    week:int=Field(ge=1,le=10)
+    week:int=Field(ge=1,le=12)
     day:int=Field(ge=1,le=3)
     started_at:str
     initial_rpe_loads_kg:dict[str,float]=Field(default_factory=dict)
+    initial_loads_kg:dict[str,float]=Field(default_factory=dict)
 
 @router.get('/research-programmes')
 def programmes(user=Depends(owner)):
@@ -94,7 +95,9 @@ def create(request:InstanceInput,user=Depends(owner),db=Depends(store)):
         source=next((x for x in catalog()['items'] if x['source_id']==request.source_id and x['version']==request.source_version),None)
         if source is None:raise InvalidProgramme('SOURCE_VERSION_UNAVAILABLE')
         require(source['status']=='research_preview','SOURCE_SUSPENDED')
-        require(set(request.max_record_ids)==set(exercises(source['definition'])),'MAX_REFERENCES_REQUIRED')
+        expected=set(exercises(source['definition']))
+        require(set(request.max_record_ids)<=expected if source['definition'].get('adapter_version')=='novice-sbd-choice-v1'
+                else set(request.max_record_ids)==expected,'MAX_REFERENCES_REQUIRED')
         records=db.maxes(user);selected=[]
         for eid,rid in request.max_record_ids.items():
             record=next((r for r in records if r['id']==rid and r['exercise_id']==eid),None)
@@ -116,12 +119,17 @@ def start(instance_id:str,request:SessionInput,user=Depends(owner),db=Depends(st
     def action():
         value=coaching_store.instance(db,user,instance_id)
         history=coaching_store.history(db,user,instance_id)
+        novice=value['source'].get('adapter_version')=='novice-sbd-choice-v1'
+        require(not request.initial_rpe_loads_kg if novice else not request.initial_loads_kg,'UNEXPECTED_LOAD_INPUT')
+        loads=request.initial_loads_kg if novice else request.initial_rpe_loads_kg
         # Retry an existing request without re-reading a mutable current catalogue.
         prior=next((h for h in history if h['week']==request.week and h['day']==request.day),None)
         if prior:
             require(prior['workout_id']==request.workout_id,'SESSION_ALREADY_STARTED')
             require(prior['snapshot']['started_at']==request.started_at,'START_REQUEST_CONFLICT')
-            if value['source'].get('adapter_version')=='metd-2021-v1':
+            if novice:
+                require(prior['snapshot']['coaching']['initial_loads_kg']==loads,'START_REQUEST_CONFLICT')
+            elif value['source'].get('adapter_version')=='metd-2021-v1':
                 require(prior['snapshot']['coaching']['initial_rpe_loads_kg']==request.initial_rpe_loads_kg,'START_REQUEST_CONFLICT')
             elif value['arm']=='RPEG':
                 initial={r['exercise_id']:r['weight_kg'] for r in prior['snapshot']['session']['sets']}
@@ -133,7 +141,7 @@ def start(instance_id:str,request:SessionInput,user=Depends(owner),db=Depends(st
         matching=next((x for x in catalog()['items'] if x['source_id']==value['source']['id']
                        and x['version']==digest(value['source'])),None)
         require(matching is not None and matching['status']=='research_preview','SOURCE_UNAVAILABLE_OR_SUSPENDED')
-        snapshot=prepare(value,request.week,request.day,request.started_at,history,request.initial_rpe_loads_kg)
+        snapshot=prepare(value,request.week,request.day,request.started_at,history,loads)
         return coaching_store.start(db,user,instance_id,request.workout_id,request.week,request.day,snapshot)
     return execute(action)
 

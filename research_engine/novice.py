@@ -1,0 +1,122 @@
+"""Internal SBD omission prototype; explicit loads, never an approved novice prescription."""
+import copy
+from .core import digest, number
+from .coaching import rounded
+from .workout import require, timestamp, max_record, POLICY
+from .sbd import EXERCISES, enrich as reference_enrich
+from .execution_facts import pain_reported
+
+ENGINE = 'novice-sbd-choice-v1'
+ARM = 'SBD_2D_OMISSION'
+ADAPTATION = 'petrizzo_ohp_omitted_2d_v1'
+
+
+def definition():
+    return {
+        'id': 'novice-sbd-choice-v1', 'adapter_version': ENGINE,
+        'title': 'SBD 주 2회 · 직접 중량 선택 조정안',
+        'scientific_approval': False, 'review_status': 'internal_product_prototype',
+        'publication_status': 'internal_preview', 'exercises': list(EXERCISES),
+        'evidence': {'url': 'https://www.asep.org/asep/asep/JEPonlineOCTOBER2018_Petrizzo.pdf',
+                     'locator': 'Procedures, pp. 86-87',
+                     'review': 'reviews/novice-sbd-20261016.json',
+                     'outcome_scope': 'squat_progression_sustainability_not_sbd_efficacy'},
+        'adaptations': [
+            {'id': ADAPTATION, 'basis': 'product_policy',
+             'change': 'Choose two weekly sessions; omit OHP without replacing it; bench on day 1, deadlift on day 2.',
+             'limitation': 'Reduced total training dose. This exact SBD-only programme was not studied.'},
+            {'id': 'explicit_load_choice_v1', 'basis': 'user_choice',
+             'change': 'Every session requires explicit working loads; 1RM records are comparison references only.',
+             'limitation': 'Not a substitute for the source supervised 5RM assessment or real-time coaching. No unsupervised safety claim.'},
+        ],
+        'protocol': {'weeks': 12, 'days_per_week': 2,
+            'sessions': [{'week': w, 'day': d, 'exercises': list(EXERCISES[:2] if d == 1 else (EXERCISES[0], EXERCISES[2]))}
+                         for w in range(1, 13) for d in (1, 2)],
+            'working_sets': {EXERCISES[0]: 3, EXERCISES[1]: 3, EXERCISES[2]: 1}, 'reps': 5,
+            'automatic_load_adjustment': None,
+            'source_stop_rule': 'Original study ended at 12 weeks or inability to sustain chosen squat progression.',
+            'product_stop_rule': 'User can stop earlier; no automatic reset, deload, or stalled classification.'}}
+
+
+def validate_source(source):
+    require(source == definition(), 'UNSUPPORTED_NOVICE_DEFINITION')
+
+
+def make_instance(source, arm, profile, records, setup, at):
+    validate_source(source); timestamp(at)
+    require(arm == ARM, 'UNKNOWN_ARM')
+    require(number(profile.get('age'), 18, 100) and profile.get('independent_sbd') is True,
+            'EXPERIENCED_ADULT_REVIEW_SCOPE_REQUIRED')
+    require(setup.get('mode') == 'user_selected_source' and setup.get('accept_scope_limits') is True
+            and setup.get('accept_adaptations') is True and setup.get('adaptation_id') == ADAPTATION,
+            'EXPLICIT_SBD_ADAPTATION_REQUIRED')
+    values = [max_record(r) for r in records]
+    require(len(values) == len({r['exercise_id'] for r in values}) and
+            {r['exercise_id'] for r in values} <= set(EXERCISES), 'INVALID_OPTIONAL_MAX_REFERENCES')
+    for r in values:
+        require(timestamp(r['measured_at']) <= timestamp(at), 'BASELINE_TIME_INVALID')
+    # References may be estimated: they do not prescribe this prototype's working loads.
+    for key in ('rest_seconds', 'between_exercise_rest_seconds'):
+        require(type(setup.get(key)) is int and 1 <= setup[key] <= 3600, 'EXPLICIT_REST_REQUIRED')
+    require(isinstance(setup.get('warmup'), str) and bool(setup['warmup'].strip()), 'EXPLICIT_WARMUP_REQUIRED')
+    rounded(100, setup.get('equipment_step_kg'))
+    return {'engine_version': ENGINE, 'source': copy.deepcopy(source), 'arm': arm,
+            'profile': copy.deepcopy(profile), 'max_records': values, 'setup': copy.deepcopy(setup),
+            'created_at': at, 'programme_version': digest({'source': source, 'arm': arm, 'engine': ENGINE}),
+            'adaptations': copy.deepcopy(source['adaptations'])}
+
+
+def previous_reference(history, eid):
+    prior = next((h for h in reversed(history) if any(r['exercise_id'] == eid for r in h['execution']['sets'])), None)
+    if prior is None:
+        return {'exercise_id': eid, 'status': 'no_history', 'automatic_load_kg': None}
+    rows = [r for r in prior['execution']['sets'] if r['exercise_id'] == eid]
+    pain = pain_reported(prior['execution']['sets'])
+    completed = all(r['actual'] is not None and r['actual']['reps'] == 5 and
+                    r['actual']['weight_kg'] == r['weight_kg'] and not r['changes'] for r in rows)
+    status = ('pain_context_required' if pain else 'previous_session_not_completed'
+              if prior['execution']['state'] != 'completed' else
+              'selected_plan_completed' if completed else 'changed_or_incomplete')
+    return {'exercise_id': eid, 'workout_id': prior['workout_id'],
+            'history_events_sha256': digest(prior['events']), 'status': status,
+            'sets': copy.deepcopy(rows), 'rests': copy.deepcopy(prior['execution']['rests']),
+            'automatic_load_kg': None,
+            'basis': 'observed_execution_not_progression_or_safety_approval'}
+
+
+def prepare(instance, week, day, at, history, initial_loads=None):
+    require(type(week) is int and type(day) is int and 1 <= week <= 12 and day in (1, 2), 'INVALID_SESSION')
+    require(timestamp(at) >= timestamp(instance['created_at']), 'BEFORE_INSTANCE')
+    target = instance['source']['protocol']['sessions'][(week - 1) * 2 + day - 1]
+    setup = instance['setup']; loads = initial_loads or {}; step = setup['equipment_step_kg']
+    require(set(loads) == set(target['exercises']), 'EXPLICIT_SESSION_LOADS_REQUIRED')
+    rows = []
+    for eid in target['exercises']:
+        weight = loads[eid]
+        require(number(weight, .1, 2000) and abs(rounded(weight, step) - weight) < 1e-8, 'INVALID_SESSION_LOAD')
+        for n in range(instance['source']['protocol']['working_sets'][eid]):
+            rows.append({'id': eid + ':' + str(n + 1), 'exercise_id': eid, 'set': len(rows) + 1,
+                'reps': {'min': 5, 'max': 5}, 'weight_kg': weight,
+                'load': {'kind': 'explicit_user_choice', 'basis': 'user_choice'},
+                'tempo': {'kind': 'not_encoded'}, 'set_role': 'working',
+                'source_locator': 'Petrizzo2018 Procedures pp.86-87; SBD omission is product adaptation',
+                'rest_after': {'operator': 'eq', 'seconds': setup['rest_seconds'], 'basis': 'user_choice'}})
+    rows[-1]['rest_after'] = None
+    return {'schema_version': 2, 'policy_version': POLICY, 'programme_id': instance['source']['id'],
+        'programme_version': instance['programme_version'], 'source': copy.deepcopy(instance['source']),
+        'definition': {'progression': {'kind': 'coaching_source'}, 'provenance': {}},
+        'session': {'sets': rows, 'user_choices': {'between_exercise_rest_seconds': setup['between_exercise_rest_seconds']}},
+        'max_records': copy.deepcopy(instance['max_records']), 'started_at': at,
+        'coaching': {'engine': ENGINE, 'week': week, 'day': day, 'arm': ARM,
+            'target': copy.deepcopy(target), 'initial_loads_kg': copy.deepcopy(loads),
+            'adaptations': copy.deepcopy(instance['adaptations']), 'setup': copy.deepcopy(setup),
+            'equipment_step_kg': step,
+            'previous_exercises': [previous_reference(history, eid) for eid in target['exercises']],
+            'decisions': [{'exercise_id': eid, 'selected_kg': loads[eid], 'basis': 'user_choice',
+                           'automatically_applied': False} for eid in target['exercises']]}}
+
+
+def enrich(snapshot, result):
+    result = reference_enrich(snapshot, result)
+    result['coaching']['application'] = 'internal_sbd_omission_prototype_not_validated_novice_prescription'
+    return result
