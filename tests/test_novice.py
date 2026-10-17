@@ -50,6 +50,58 @@ class NoviceTests(unittest.TestCase):
             send('set_result', set_id=row['id'], reps=5)
         send('finish')
         return dict(workout_id='prior', week=1, day=1, snapshot=snap, execution=replay(snap, events), events=events)
+    def test_first_load_guidance_without_max_is_not_a_prescription(self):
+        self.records = []
+        inputs = novice.session_inputs(self.instance(), novice.EXERCISES[:2], [])
+        self.assertEqual(len(inputs['load_selection']), 2)
+        for item in inputs['load_selection']:
+            self.assertEqual(item['status'], 'no_history')
+            self.assertIsNone(item['input']['default_value'])
+            self.assertIsNone(item['recommended_load_kg'])
+            self.assertFalse(item['one_rm_test_required'])
+            self.assertIn('seek_load_selection_help', item['actions'])
+
+    def test_success_does_not_create_increment_or_copy_load(self):
+        before = self.completed()
+        inputs = novice.session_inputs(self.instance(), novice.EXERCISES[:2], [before])
+        self.assertTrue(all(x['status'] == 'selected_plan_completed' for x in inputs['load_selection']))
+        for item in inputs['load_selection']:
+            self.assertFalse(item['automatic_progression'])
+            self.assertIsNone(item['recommended_increment_kg'])
+            self.assertIsNone(item['input']['default_value'])
+            self.assertEqual(item['reference_events_sha256'], digest(before['events']))
+
+    def test_changed_sets_not_averaged_into_next_load(self):
+        prior = self.completed(changed=True)
+        inputs = novice.session_inputs(self.instance(), novice.EXERCISES, [prior])
+        self.assertEqual([x['status'] for x in inputs['load_selection']],
+                         ['changed_or_incomplete', 'selected_plan_completed', 'no_history'])
+        rows = inputs['previous_exercises'][0]['sets']
+        self.assertEqual([r['actual']['weight_kg'] for r in rows], [35, 40, 40])
+        self.assertIsNone(inputs['load_selection'][0]['recommended_load_kg'])
+
+    def test_stopped_and_missing_not_failure_or_completed(self):
+        prior = self.completed()
+        prior['execution']['state'] = 'stopped'
+        prior['execution']['sets'][0]['actual'] = None
+        inputs = novice.session_inputs(self.instance(), novice.EXERCISES[:2], [prior])
+        self.assertEqual(inputs['load_selection'][0]['status'], 'previous_session_not_completed')
+        self.assertIsNone(inputs['previous_exercises'][0]['sets'][0]['actual'])
+
+    def test_pain_navigation_and_frozen_selection_context(self):
+        prior = self.completed(pain=True)
+        snap = self.snapshot(d=2, history=[prior])
+        context = snap['coaching']['load_selection_context']
+        item = context['load_selection'][0]
+        self.assertEqual(item['status'], 'pain_context_required')
+        self.assertNotIn('enter_working_load', item['actions'])
+        self.assertIn('review_current_discomfort', item['actions'])
+        self.assertFalse(item['current_readiness_assessed'])
+        frozen = copy.deepcopy(context)
+        prior['execution']['sets'][0]['actual']['weight_kg'] = 999
+        self.assertEqual(context, frozen)
+        self.assertEqual(snap['coaching']['decisions'][0]['basis'], 'user_choice')
+
     def test_definition_counts_and_no_ohp_substitution(self):
         novice.validate_source(self.source)
         self.assertEqual(len(self.source['protocol']['sessions']), 24)
@@ -153,6 +205,12 @@ class NoviceAPITests(unittest.TestCase):
                         self.assertEqual(client.post('/v3/programme-instances', json=request).status_code, 403)
                     post('/v3/programme-instances', request)
                     base = '/v3/programme-instances/prototype'
+                    first = client.get(base+'/next-session', params={'at': fixture.at})
+                    self.assertEqual(first.status_code, 200, first.text)
+                    guidance = first.json()['session_inputs']['load_selection']
+                    self.assertEqual([x['status'] for x in guidance], ['no_history', 'no_history'])
+                    for item in guidance:
+                        self.assertIsNone(item['recommended_load_kg'])
                     for session in source['protocol']['sessions']:
                         w, d = session['week'], session['day']
                         at = datetime.fromisoformat(fixture.at.replace('Z', '+00:00')) + timedelta(days=(w-1)*7+(d-1)*2)
@@ -164,6 +222,8 @@ class NoviceAPITests(unittest.TestCase):
                             self.assertEqual(ready.status_code, 200, ready.text)
                             self.assertEqual(ready.json()['session_inputs']['previous_exercises'][0]['workout_id'], 'w1d1')
                             self.assertEqual(ready.json()['session_inputs']['required_field'], 'initial_loads_kg')
+                            self.assertEqual([x['status'] for x in ready.json()['session_inputs']['load_selection']],
+                                             ['selected_plan_completed', 'no_history'])
                         ex = post(base+'/workouts', payload)['execution']
                         self.assertEqual(post(base+'/workouts', payload)['execution'], ex)
                         bad = copy.deepcopy(payload); bad['initial_loads_kg'][novice.EXERCISES[0]] = 45

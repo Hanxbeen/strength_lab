@@ -78,12 +78,9 @@ def next_session(instance,history,evaluations,at):
         return {**result,'state':'awaiting_evaluation','next_actions':['evaluate_programme'],'next_session':None}
     target=schedule['sessions'][len(history)]
     if instance['source'].get('adapter_version')=='novice-sbd-choice-v1':
-        from research_engine.novice import previous_reference
+        from research_engine.novice import session_inputs
         source_session=instance['source']['protocol']['sessions'][len(history)]
-        result['session_inputs']={'required_field':'initial_loads_kg',
-            'exercise_ids':source_session['exercises'],
-            'previous_exercises':[previous_reference(history,eid) for eid in source_session['exercises']],
-            'selection_basis':'user_choice_not_automatic_prescription'}
+        result['session_inputs']=session_inputs(instance,source_session['exercises'],history)
     available=timestamp(instance['created_at'])
     elapsed=None
     if history:

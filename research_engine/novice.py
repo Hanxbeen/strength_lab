@@ -84,6 +84,48 @@ def previous_reference(history, eid):
             'basis': 'observed_execution_not_progression_or_safety_approval'}
 
 
+def load_selection(reference, equipment_step_kg):
+    """Product navigation, not a source-derived load/progression prescription."""
+    status = reference['status']
+    messages = {
+        'no_history': '이 종목의 이전 기록이 없어요. 알고 있는 작업 중량을 직접 입력하거나 중량 선택 도움을 받아 주세요.',
+        'selected_plan_completed': '지난 목표를 수행했어요. 기록을 참고해 오늘 중량을 선택해 주세요. 자동 증량 기준은 아니에요.',
+        'changed_or_incomplete': '지난 목표와 실제 수행이 달랐어요. 세트별 중량과 횟수를 확인하고 오늘 중량을 선택해 주세요.',
+        'previous_session_not_completed': '지난 운동은 중단됐어요. 기록하지 않은 세트는 실패로 판단하지 않아요.',
+        'pain_context_required': '지난 운동에 통증·불편함 기록이 있어요. 현재 상태를 먼저 확인해 주세요. 감량하면 안전하다는 뜻은 아니에요.',
+    }
+    pain = status == 'pain_context_required'
+    return {
+        'contract_version': 'novice-load-selection-v1',
+        'exercise_id': reference['exercise_id'], 'status': status,
+        'basis': 'product_navigation_with_observed_records',
+        'message': messages[status],
+        'actions': (['review_current_discomfort', 'seek_qualified_help', 'defer_session'] if pain else
+                    ['enter_known_working_load', 'seek_load_selection_help', 'defer_session'] if status == 'no_history' else
+                    ['review_previous_sets', 'enter_working_load', 'seek_load_selection_help', 'defer_session']),
+        'input': {'field': 'initial_loads_kg.' + reference['exercise_id'],
+                  'unit': 'kg', 'equipment_step_kg': equipment_step_kg,
+                  'default_value': None, 'required_to_start': True},
+        'recommended_load_kg': None, 'recommended_increment_kg': None,
+        'one_rm_test_required': False, 'automatic_progression': False,
+        'current_readiness_assessed': False,
+        'reference_workout_id': reference.get('workout_id'),
+        'reference_events_sha256': reference.get('history_events_sha256'),
+        'evidence_limit': 'Source used supervised initial assessment; no validated unsupervised first-load rule is implemented.',
+    }
+
+
+def session_inputs(instance, exercise_ids, history):
+    references = [previous_reference(history, eid) for eid in exercise_ids]
+    return {
+        'required_field': 'initial_loads_kg', 'exercise_ids': list(exercise_ids),
+        'previous_exercises': references,
+        'selection_basis': 'user_choice_not_automatic_prescription',
+        'load_selection': [load_selection(ref, instance['setup']['equipment_step_kg']) for ref in references],
+        'help_delivery': 'external_qualified_support_not_in_app_assessment',
+    }
+
+
 def prepare(instance, week, day, at, history, initial_loads=None):
     require(type(week) is int and type(day) is int and 1 <= week <= 12 and day in (1, 2), 'INVALID_SESSION')
     require(timestamp(at) >= timestamp(instance['created_at']), 'BEFORE_INSTANCE')
@@ -112,6 +154,8 @@ def prepare(instance, week, day, at, history, initial_loads=None):
             'adaptations': copy.deepcopy(instance['adaptations']), 'setup': copy.deepcopy(setup),
             'equipment_step_kg': step,
             'previous_exercises': [previous_reference(history, eid) for eid in target['exercises']],
+            'load_selection_context': {'contract_version': 'novice-load-selection-v1',
+                'load_selection': session_inputs(instance, target['exercises'], history)['load_selection']},
             'decisions': [{'exercise_id': eid, 'selected_kg': loads[eid], 'basis': 'user_choice',
                            'automatically_applied': False} for eid in target['exercises']]}}
 
