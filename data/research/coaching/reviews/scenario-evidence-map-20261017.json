@@ -7,6 +7,14 @@
   "scope": "SBD; no OHP prescription; not exhaustive; source count not sufficiency",
   "sources": [
     {
+          "id": "nsca_teaching2023",
+          "kind": "professional_instruction",
+          "record": "data/research/coaching/reviews/entry-education-20261017.json",
+          "extent": "full_text_reviewed",
+          "url": "https://www.nsca.com/education/articles/ptq/teaching-resistance-training-movement-patterns/",
+          "limit": "Teaching examples, not intervention efficacy or mandatory progression; barbell squat/deadlift bridge not supplied."
+    },
+    {
       "id": "mao2023",
       "kind": "intervention",
       "record": "data/research/coaching/reviews/novice-sbd-20261016.json",
@@ -151,6 +159,7 @@
       "segment": "entry",
       "question": "SBD 자세를 모르면 무엇부터 하나?",
       "source_ids": [
+        "nsca_teaching2023",
         "nsca_deadlift",
         "nsca_squat",
         "mao2023",
@@ -158,8 +167,8 @@
       ],
       "role": "education",
       "required_context": "S/B/D setup, demonstration, errors, help path, practice",
-      "gap": "Bench instructional source; reviewed video/cues; practice-to-training transition",
-      "next_action": "Review official SBD instruction and produce lesson records; no automatic mastery badge",
+      "gap": "Barbell squat/deadlift bridge; equipment safety; reviewed original/licensed media; first-load applicability",
+      "next_action": "Complete release gates in entry-education-20261017.json; 3 paths/9 example movements extracted, no mandatory sequence or training dose",
       "coverage": "partial_not_release_ready"
     },
     {

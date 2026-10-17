@@ -1,0 +1,141 @@
+{
+  "schema_version": "entry-education-v1",
+  "id": "sbd-entry-education-v1",
+  "review_date": "2026-10-17",
+  "kind": "education_not_training_programme",
+  "scientific_approval": false,
+  "runtime_enabled": false,
+  "source": {
+    "id": "nsca_teaching2023",
+    "title": "Progressive Strategies for Teaching Fundamental Resistance Training Movement Patterns",
+    "authors": [
+      "Lincoln",
+      "Ill",
+      "Ibrahim"
+    ],
+    "year": 2023,
+    "publication": "NSCA Personal Training Quarterly 10.2",
+    "url": "https://www.nsca.com/education/articles/ptq/teaching-resistance-training-movement-patterns/",
+    "full_text_url": "https://www.nsca.com/contentassets/3d09f06f0b4c4f6fbd8cc382ed1f3d4a/ptq-10.2.1-progressive-strategies-for-teaching-fundamental-resistance-training-movement-patterns.pdf",
+    "extent": "full_text_reviewed",
+    "evidence_type": "professional_instruction_not_intervention_trial",
+    "limitations": [
+      "Example sequences, not a universal mandatory progression.",
+      "No app-only mastery validation or longitudinal SBD outcome comparison.",
+      "Demonstration repetitions are not a training prescription."
+    ]
+  },
+  "paths": [
+    {
+      "lift": "squat",
+      "source_locator": "Figure 1",
+      "examples": [
+        "touch_and_go_box_squat",
+        "bodyweight_squat",
+        "goblet_squat"
+      ],
+      "target": "barbell_back_squat",
+      "target_in_source_sequence": false
+    },
+    {
+      "lift": "bench_press",
+      "source_locator": "Figure 3",
+      "examples": [
+        "elevated_push_up",
+        "push_up",
+        "barbell_bench_press"
+      ],
+      "target": "barbell_bench_press",
+      "target_in_source_sequence": true
+    },
+    {
+      "lift": "deadlift",
+      "source_locator": "Figure 2",
+      "examples": [
+        "wall_hip_hinge",
+        "dowel_hip_hinge",
+        "kettlebell_deadlift"
+      ],
+      "target": "barbell_deadlift",
+      "target_in_source_sequence": false
+    }
+  ],
+  "product_contract": {
+    "provenance": "product_policy_not_source_finding",
+    "assessment_unit": "per_lift",
+    "experience_values": [
+      "not_tried",
+      "needs_help",
+      "independent",
+      "unknown"
+    ],
+    "responses": {
+      "not_tried": "education_options",
+      "needs_help": "education_options",
+      "unknown": "ask_lift_experience",
+      "independent": "review_training_applicability"
+    },
+    "mandatory_sequence": false,
+    "automatic_mastery": false,
+    "automatic_training_unlock": false,
+    "training_dose": {
+      "sets": null,
+      "reps": null,
+      "load_kg": null,
+      "rest_seconds": null,
+      "reason": "No universal training dose extracted from this teaching article."
+    },
+    "practice_record_fields": [
+      "lift",
+      "exercise_id",
+      "experience_before",
+      "selected_option",
+      "help_requested",
+      "user_reported_completion"
+    ],
+    "completion_meaning": "User-reported practice only; neither technique certification nor measured strength.",
+    "noncompletion_action": "Keep recorded practice; offer another option or human help. No forced progression.",
+    "source_media_reuse_allowed": false
+  },
+  "release_gates": [
+    {
+      "id": "barbell_bridge",
+      "status": "open",
+      "scope": [
+        "squat",
+        "deadlift"
+      ],
+      "requirement": "Review transition to barbell target; do not silently append a stage to the source."
+    },
+    {
+      "id": "equipment_safety",
+      "status": "open",
+      "scope": [
+        "squat",
+        "bench_press",
+        "deadlift"
+      ],
+      "requirement": "Review setup, equipment limitations, assistance and stopping/help instructions."
+    },
+    {
+      "id": "original_instruction_media",
+      "status": "open",
+      "scope": [
+        "squat",
+        "bench_press",
+        "deadlift"
+      ],
+      "requirement": "Review original or licensed demonstrations and concise cues."
+    },
+    {
+      "id": "entry_to_training",
+      "status": "open",
+      "scope": [
+        "squat",
+        "bench_press",
+        "deadlift"
+      ],
+      "requirement": "Review initial-load and training-applicability decisions; lesson completion cannot unlock training."
+    }
+  ]
+}
