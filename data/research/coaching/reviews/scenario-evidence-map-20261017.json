@@ -1,0 +1,447 @@
+{
+  "schema_version": "scenario-evidence-map-v1",
+  "review_date": "2026-10-17",
+  "status": "research_mapping_not_runtime",
+  "scientific_approval": false,
+  "runtime_enabled": false,
+  "scope": "SBD; no OHP prescription; not exhaustive; source count not sufficiency",
+  "sources": [
+    {
+      "id": "mao2023",
+      "kind": "intervention",
+      "record": "data/research/coaching/reviews/novice-sbd-20261016.json",
+      "selector": "reports[id=10.3389/fphys.2023.1301535]",
+      "url": "https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2023.1301535/full",
+      "extent": "methods_results_rechecked",
+      "locator": "2.3,2.5,Table2",
+      "limit": "Supervised S/B/row, not SBD; reduction component not independently randomized."
+    },
+    {
+      "id": "petrizzo2018",
+      "kind": "intervention",
+      "record": "data/research/coaching/reviews/novice-sbd-20261016.json",
+      "selector": "reports[id=petrizzo2018-jep21-5-84]",
+      "extent": "existing_review_reused",
+      "limit": "Supervised feasibility; OHP in original; no randomized comparator; no unsupervised initial-load rule."
+    },
+    {
+      "id": "helms2018",
+      "kind": "intervention",
+      "record": "data/research/coaching/helms2018.json",
+      "extent": "existing_extraction_reused_publisher_resolved",
+      "url": "https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2018.00247/full",
+      "limit": "S/B only; trained men; original starting RPE loads researcher selected."
+    },
+    {
+      "id": "per2018",
+      "kind": "intervention",
+      "record": "data/research/coaching/pilot2018-sbd.json",
+      "extent": "existing_extraction_reused",
+      "limit": "Explicit SBD adaptation; Front squat mapping cannot be advertised as exact replication."
+    },
+    {
+      "id": "metd2021",
+      "kind": "intervention",
+      "record": "data/research/coaching/metd2021.json",
+      "extent": "existing_extraction_reused",
+      "limit": "Experienced male powerlifters and RPE users; small sample; no universal novice application."
+    },
+    {
+      "id": "zourdos2016",
+      "kind": "intervention",
+      "record": "data/research/coaching/reviews/zourdos2016.json",
+      "extent": "existing_review_reference_only",
+      "limit": "Source discrepancies and progression thresholds unresolved; no runtime adapter."
+    },
+    {
+      "id": "rest2016",
+      "kind": "intervention",
+      "record": "data/research/coaching/context-evidence.json",
+      "selector": "sources[id=rest-2016]",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26605807/",
+      "extent": "existing_abstract_review_reused",
+      "retrieval_note": "Current page open returned no abstract; do not claim new fulltext review.",
+      "limit": "Trained men; does not quantify individual penalty from shorter rest."
+    },
+    {
+      "id": "volume2019",
+      "kind": "intervention",
+      "record": "data/research/coaching/context-evidence.json",
+      "selector": "sources[id=volume-2019]",
+      "extent": "existing_fulltext_review_reused",
+      "limit": "Hypertrophy and strength outcomes differ; not a universal plateau algorithm."
+    },
+    {
+      "id": "deload2024",
+      "kind": "intervention",
+      "record": "data/research/coaching/context-evidence.json",
+      "selector": "sources[id=deload-2024]",
+      "extent": "existing_fulltext_review_reused",
+      "limit": "Complete cessation differs from load/volume reduction; Smith squat differs from competition SBD."
+    },
+    {
+      "id": "acsm2026",
+      "kind": "overview_of_reviews",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41843416/",
+      "extent": "prior_turn_abstract_verified",
+      "limit": "General healthy-adult synthesis, not one executable SBD programme; overlap with other reviews/trials must be checked."
+    },
+    {
+      "id": "autoreg2022",
+      "kind": "systematic_review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35038063/",
+      "extent": "prior_turn_abstract_verified",
+      "limit": "Not evidence for an arbitrary one-session 70-to-60 percent change; included trial overlap pending."
+    },
+    {
+      "id": "rir_accuracy",
+      "kind": "measurement_study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33337690/",
+      "extent": "search_metadata_and_snippet_only",
+      "limit": "Full methods inaccessible this pass; no runtime threshold adoption."
+    },
+    {
+      "id": "self_selection",
+      "kind": "scoping_review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35790622/",
+      "extent": "search_metadata_and_snippet_only",
+      "limit": "Candidate on self-selected loads, not approved load prescription."
+    },
+    {
+      "id": "learning_trial",
+      "kind": "intervention",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18438209/",
+      "extent": "search_metadata_and_snippet_only",
+      "limit": "Seated bench learning trial; not direct SBD barbell education; abstract open failed."
+    },
+    {
+      "id": "rest2010",
+      "kind": "intervention",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19966591/",
+      "extent": "abstract_verified",
+      "locator": "Abstract",
+      "facts": {
+        "participants": 34,
+        "population": "untrained college-aged men",
+        "weeks": 12,
+        "sessions_per_week": 2,
+        "comparison": "work:rest approximately 1:3 vs 1:6",
+        "finding": "No significant between-group bench/leg-press 1RM difference; not proof of equivalence."
+      },
+      "limit": "Full methods pending; not fixed 1 vs 3 minute comparison, not deadlift."
+    },
+    {
+      "id": "nsca_deadlift",
+      "kind": "technical_education",
+      "url": "https://www.nsca.com/education/videos/exercise-technique-deadlift/",
+      "extent": "official_page_verified_video_not_reviewed",
+      "limit": "Teaching source candidate, not efficacy trial; video content/accessibility/rights pending."
+    },
+    {
+      "id": "nsca_squat",
+      "kind": "technical_education",
+      "url": "https://www.nsca.com/education/videos/the-squathow-it-improves-athletic-performance/",
+      "extent": "search_metadata_only",
+      "limit": "Presentation candidate; not yet extracted beginner lesson or usage permission."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "SD01",
+      "segment": "entry",
+      "question": "SBD 자세를 모르면 무엇부터 하나?",
+      "source_ids": [
+        "nsca_deadlift",
+        "nsca_squat",
+        "mao2023",
+        "petrizzo2018"
+      ],
+      "role": "education",
+      "required_context": "S/B/D setup, demonstration, errors, help path, practice",
+      "gap": "Bench instructional source; reviewed video/cues; practice-to-training transition",
+      "next_action": "Review official SBD instruction and produce lesson records; no automatic mastery badge",
+      "coverage": "partial_not_release_ready"
+    },
+    {
+      "id": "SD02",
+      "segment": "novice",
+      "question": "1RM 없이 첫 중량을 어떻게 고르나?",
+      "source_ids": [
+        "petrizzo2018",
+        "self_selection",
+        "learning_trial",
+        "acsm2026"
+      ],
+      "role": "initial_load",
+      "required_context": "lift experience, equipment, supervised support, attempts",
+      "gap": "Unsupervised starting procedure and product applicability",
+      "next_action": "Compare supervised procedure with self-selection evidence; draft explicit adaptation decision",
+      "coverage": "partial_not_release_ready"
+    },
+    {
+      "id": "SD03",
+      "segment": "novice",
+      "question": "언제 얼마를 증량하나?",
+      "source_ids": [
+        "petrizzo2018",
+        "mao2023",
+        "acsm2026"
+      ],
+      "role": "progression",
+      "required_context": "all assigned sets/reps, actual load, changes, symptoms",
+      "gap": "Numeric increment not supplied by Petrizzo; cannot invent it as source fact",
+      "next_action": "Separate source trigger from product increment choice and revalidation",
+      "coverage": "partial_not_release_ready"
+    },
+    {
+      "id": "SD04",
+      "segment": "novice_intermediate_experienced",
+      "question": "목표 반복을 못 채우면?",
+      "source_ids": [
+        "mao2023",
+        "helms2018",
+        "autoreg2022"
+      ],
+      "role": "adjustment",
+      "required_context": "prescription, actual reps/load, effort, reason, technique/context",
+      "gap": "Applicability of source-specific adjustments outside original programme",
+      "next_action": "Use extracted source condition records; no global reduction percent",
+      "coverage": "partial_not_release_ready"
+    },
+    {
+      "id": "SD05",
+      "segment": "all",
+      "question": "감량한 오늘 운동은 의미가 있나?",
+      "source_ids": [
+        "mao2023",
+        "helms2018",
+        "autoreg2022"
+      ],
+      "role": "explanation",
+      "required_context": "set-level actuals, frozen baseline, reasons, matched context",
+      "gap": "No individual causal benefit estimate for arbitrary reduction",
+      "next_action": "Separate observed work, related evidence and next action; suppress invented benefit score",
+      "coverage": "partial_not_release_ready"
+    },
+    {
+      "id": "SD06",
+      "segment": "all",
+      "question": "휴식을 줄이거나 늘리면?",
+      "source_ids": [
+        "rest2016",
+        "rest2010",
+        "mao2023"
+      ],
+      "role": "rest",
+      "required_context": "actual timer, interruption type, training status, protocol rest",
+      "gap": "Different populations/protocols; no universal per-second penalty",
+      "next_action": "Compare both primary trials and preserve null result",
+      "coverage": "partial_not_release_ready"
+    },
+    {
+      "id": "SD07",
+      "segment": "all",
+      "question": "힘듦/RIR 입력을 얼마나 신뢰하나?",
+      "source_ids": [
+        "rir_accuracy",
+        "helms2018",
+        "metd2021"
+      ],
+      "role": "measurement",
+      "required_context": "RIR familiarity, exercise, load, self-report uncertainty",
+      "gap": "Measurement validation review pending, especially novices",
+      "next_action": "Allow unknown; do not translate one rating into measured fatigue",
+      "coverage": "partial_not_release_ready"
+    },
+    {
+      "id": "SD08",
+      "segment": "intermediate",
+      "question": "훈련량을 늘리면 정체를 풀 수 있나?",
+      "source_ids": [
+        "volume2019",
+        "acsm2026",
+        "per2018"
+      ],
+      "role": "volume",
+      "required_context": "comparable trend, adherence, actual volume, schedule",
+      "gap": "No validated personal plateau threshold or automatic add-set rule",
+      "next_action": "Distinguish strength from hypertrophy; investigate before changing dose",
+      "coverage": "partial_not_release_ready"
+    },
+    {
+      "id": "SD09",
+      "segment": "experienced",
+      "question": "SBD에 맞는 주간 구성을 어떻게 고르나?",
+      "source_ids": [
+        "metd2021",
+        "per2018",
+        "helms2018",
+        "zourdos2016",
+        "autoreg2022"
+      ],
+      "role": "programme",
+      "required_context": "per-lift skills, recent load, schedule, RPE familiarity",
+      "gap": "Applicability/release review; Helms incomplete SBD",
+      "next_action": "Compare complete programmes; avoid relabeling one as universal",
+      "coverage": "partial_not_release_ready"
+    },
+    {
+      "id": "SD10",
+      "segment": "all",
+      "question": "휴식기/결석 후 어떻게 복귀하나?",
+      "source_ids": [
+        "deload2024",
+        "acsm2026"
+      ],
+      "role": "reentry",
+      "required_context": "gap, prior actuals, current state",
+      "gap": "No reviewed gap-to-load formula",
+      "next_action": "Distinguish planned cessation from missed workouts; no automatic backlog",
+      "coverage": "partial_not_release_ready"
+    },
+    {
+      "id": "SD11",
+      "segment": "all",
+      "question": "통증/자세/장비 사유가 다르면?",
+      "source_ids": [],
+      "role": "product_boundary",
+      "required_context": "reason status, multiple reasons, selected action",
+      "gap": "Clinical guidance not reviewed; source-specific reduction cannot resolve pain",
+      "next_action": "Preserve existing pause/choice/record policy, no pain-to-load formula",
+      "coverage": "partial_not_release_ready"
+    },
+    {
+      "id": "SD12",
+      "segment": "all",
+      "question": "연구와 내 성장 차트를 어떻게 비교하나?",
+      "source_ids": [
+        "mao2023",
+        "helms2018",
+        "metd2021",
+        "rest2010"
+      ],
+      "role": "evaluation",
+      "required_context": "measurement type, dates, comparable conditions, denominators",
+      "gap": "User-vs-group causal comparison invalid",
+      "next_action": "Use reported timepoints and separate group reference from user outcome",
+      "coverage": "partial_not_release_ready"
+    }
+  ],
+  "source_condition_records": [
+    {
+      "id": "RC_MAO_MISSED_REPS",
+      "source_id": "mao2023",
+      "locator": "Methods 2.5",
+      "record_type": "source_method_not_product_prescription",
+      "inputs": [
+        "source_protocol",
+        "exercise",
+        "prescribed_reps",
+        "completed_reps",
+        "current_load_kg",
+        "set_completion_status"
+      ],
+      "trigger": "Unable to complete prescribed repetitions under study training conditions",
+      "action": {
+        "scope": "subsequent_set",
+        "load_multiplier": 0.9
+      },
+      "not_supported": [
+        "pain-based reduction",
+        "deadlift substitution",
+        "next-session blanket reduction",
+        "causal advantage over stopping"
+      ],
+      "explanation": "The study used a subsequent-set load reduction after repetition shortfall. The reduction component was not independently compared.",
+      "missing_context_action": "record_actuals_and_request_relevant_context",
+      "runtime_enabled": false
+    },
+    {
+      "id": "RC_PETRIZZO_PROGRESSION",
+      "source_id": "petrizzo2018",
+      "locator": "Existing review: Methods Procedures",
+      "record_type": "source_method_not_product_prescription",
+      "inputs": [
+        "all_assigned_sets_reps",
+        "actual_performance",
+        "participant_increment_choice",
+        "supervision_context"
+      ],
+      "trigger": "Previous assigned sets and repetitions completed",
+      "action": {
+        "scope": "next_session",
+        "increment_kg": null,
+        "increment_choice": "participant"
+      },
+      "not_supported": [
+        "fixed increment inferred from outcome regression",
+        "first set alone sufficient",
+        "unsupervised safe starting weight"
+      ],
+      "missing_context_action": "show_previous_actuals_without_automatic_increment",
+      "runtime_enabled": false
+    },
+    {
+      "id": "RC_REST_INTERPRETATION",
+      "source_ids": [
+        "rest2010",
+        "rest2016"
+      ],
+      "record_type": "synthesis_review_question",
+      "inputs": [
+        "training_status",
+        "programme",
+        "actual_rest",
+        "rest_end_type"
+      ],
+      "trigger": "Rest differs from planned rest",
+      "action": {
+        "scope": "summary",
+        "numeric_load_change": null
+      },
+      "not_supported": [
+        "short_rest_always_reduces_strength_gain",
+        "individual_effect_percent",
+        "untrained_and_trained_results_are_interchangeable"
+      ],
+      "missing_context_action": "show_difference_without_effect_estimate",
+      "runtime_enabled": false
+    }
+  ],
+  "chart_records": [
+    {
+      "id": "gentil2010-bench-change",
+      "source_id": "rest2010",
+      "locator": "Abstract",
+      "review_extent": "abstract_only",
+      "metric": "bench_press_1rm_change_percent",
+      "timepoint_weeks": 12,
+      "groups": [
+        {
+          "id": "short",
+          "n": 18,
+          "mean": 14.4,
+          "reported_plus_minus": 8.1
+        },
+        {
+          "id": "long",
+          "n": 16,
+          "mean": 10.5,
+          "reported_plus_minus": 6.4
+        }
+      ],
+      "dispersion_type": "not_labeled_in_retrieved_abstract",
+      "between_group": "p>0.05",
+      "render_error_bars": false,
+      "individual_prediction": false,
+      "public_enabled": false
+    }
+  ],
+  "limitations": [
+    "Existing extracts referenced, not all source methods reread this turn",
+    "Correction/retraction and cohort overlap reviews pending",
+    "Video page existence does not mean video reviewed",
+    "No minimum-five-per-level completion claim",
+    "Application review and app delivery not completed"
+  ]
+}
