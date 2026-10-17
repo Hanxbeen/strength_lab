@@ -87,7 +87,14 @@ class SessionInput(BaseModel):
 
 @router.get('/research-programmes')
 def programmes(user=Depends(owner)):
-    return execute(catalog)
+    def action():
+        from .programme_options import options
+        result = catalog()
+        allowed = {x.strip() for x in os.environ.get('COACHING_PREVIEW_OWNER_IDS','').split(',') if x.strip()}
+        for item in result['items']:
+            item['routine_options'] = options(item, user in allowed)
+        return result
+    return execute(action)
 
 @router.post('/programme-instances')
 def create(request:InstanceInput,user=Depends(owner),db=Depends(store)):

@@ -1,0 +1,143 @@
+{
+  "schema_version": "novice-supply-screen-v1",
+  "review_date": "2026-10-17",
+  "purpose": "Resolve first-load and complete novice SBD programme gaps",
+  "scientific_approval": false,
+  "reports": [
+    {
+      "id": "10.70252/CPOD1825",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11268928/",
+      "verification": [
+        "PMC fulltext Methods / Exercise Protocol",
+        "Publisher indexed record and PubMed 39055742"
+      ],
+      "population": {
+        "recruited": 20,
+        "analyzed": 18,
+        "sex": "female",
+        "age_range": [
+          13,
+          46
+        ],
+        "powerlifting_experience": "none"
+      },
+      "design": "single_group_pre_post",
+      "protocol": {
+        "weeks": 8,
+        "sessions_per_week": 3,
+        "total_visits": 24,
+        "instruction_and_baseline_visits": 3,
+        "training_visits": 18,
+        "final_testing_week": 8,
+        "main_lifts": [
+          "squat",
+          "bench_press",
+          "deadlift"
+        ],
+        "supervised": true,
+        "baseline_measure": "3RM",
+        "session_prescription": null
+      },
+      "decision": "education_and_supervised_entry_evidence_only",
+      "missing": [
+        "Complete session-level main-lift sets/reps/load schedule",
+        "Complete accessory prescription",
+        "Unsupervised starting-load pathway"
+      ],
+      "limits": [
+        "Do not convert 3RM to measured 1RM",
+        "Do not assign adult app eligibility from inclusion of minors",
+        "No control group; no causal or individual growth prediction",
+        "Reported tonnage range is not an executable prescription"
+      ]
+    },
+    {
+      "id": "10.71343/sorsu.sormrj.4.4.1",
+      "url": "https://mrj.sorsu.edu.ph/index.php/journal/article/download/164/26",
+      "verification": [
+        "Publisher PDF Methods p65",
+        "Publisher PDF Table2-6 p67-70"
+      ],
+      "population": {
+        "n": 20,
+        "minimum_age": 18,
+        "powerlifting_experience": "none",
+        "sampling": "purposive"
+      },
+      "protocol": {
+        "weeks": 6,
+        "sessions_per_week": 3,
+        "lifts": [
+          "squat",
+          "bench_press",
+          "deadlift"
+        ],
+        "sets_range": [
+          3,
+          4
+        ],
+        "reps_range": [
+          4,
+          6
+        ],
+        "rest_seconds_range": [
+          120,
+          180
+        ],
+        "arms": {
+          "PBT": {
+            "starting_percent_1rm": 70,
+            "ending_percent_1rm": 95,
+            "week_by_week": null
+          },
+          "RPE": {
+            "range": [
+              6,
+              9
+            ],
+            "week_by_week": null
+          }
+        }
+      },
+      "decision": "not_adopted_as_executable_routine",
+      "missing": [
+        "Per-session set/repetition/load choices",
+        "Progression and incomplete-work rules",
+        "Allocation method detail"
+      ],
+      "quality_flags": [
+        "Pre/post t statistics in Table4 appear consistent with unpaired comparison; paired observations are supplied and need independent reanalysis",
+        "Body mass text says lb; unit inconsistency requires resolution",
+        "RPE subsection is incorrectly headed PBT",
+        "Issue year2025 differs from online publication2026-03-16"
+      ],
+      "limits": [
+        "No interpolated weekly percentages",
+        "No conclusion that RPE is superior based on significance in one arm only",
+        "Do not use reported group changes as a personal forecast"
+      ]
+    },
+    {
+      "id": "10.2478/v10078-011-0043-8",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3588619/",
+      "verification": [
+        "Fulltext Procedures",
+        "Fulltext Table2 exercise identities"
+      ],
+      "protocol": {
+        "weeks": 24,
+        "sessions_per_week": 3,
+        "deadlift_variant": "stiff_legged_deadlift",
+        "full_session_schedule": null
+      },
+      "decision": "not_complete_competition_sbd_source",
+      "limits": [
+        "Stiff-legged deadlift is not competition deadlift",
+        "Examples of training days are not a full 24-week prescription",
+        "Band load setup needs supervision",
+        "Do not omit accessory work and call the complete source reproduced"
+      ]
+    }
+  ],
+  "next_action": "Finalize scoped use of existing novice SBD adaptation and expose concrete available arm data; do not repeat these searches unless missing primary material appears."
+}
