@@ -19,7 +19,7 @@ def catalog():
     base=os.environ.get('SUPABASE_URL','').rstrip('/')
     key=os.environ.get('SUPABASE_PUBLISHABLE_KEY','')
     if not base.startswith('https://') or not key:raise CatalogUnavailable('Database not configured')
-    req=urllib.request.Request(base+'/rest/v1/rpc/coaching_programme_catalog_v2',data=b'{}',method='POST',
+    req=urllib.request.Request(base+'/rest/v1/rpc/coaching_programme_catalog_v3',data=b'{}',method='POST',
         headers={'apikey':key,'Content-Type':'application/json'})
     try:
         with urllib.request.urlopen(req,timeout=10) as response:result=json.load(response)

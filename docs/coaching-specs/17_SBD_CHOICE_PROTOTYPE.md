@@ -53,10 +53,45 @@ Petrizzo 원문 Procedures pp.86–87을 다시 확인했다. 5RM 평가뿐 아�
 
 공개 차단은 기존 서버 소유 allowlist와 카탈로그 재확인으로 유지한다.
 원문 검토 JSON을 실행 정의로 바꾸지 않았다. 기존 원문 사실은 그대로 남는다.
-DB 적재·서버 배포·iOS 연결은 이번 구현의 완료 항목이 아니다.
-현재 DB의 coaching_programme_catalog_v2는 이전 실행기 3종만 반환한다. 여기에 새 실행기를 무조건 노출하면
-이전 서버의 전체 카탈로그 검증이 실패할 수 있다. 다음 배포는 구버전 조회를 보존한 새 카탈로그 계약과
-서버 지원을 함께 검증한 뒤 내부 자료를 적재해야 한다. 코드 테스트의 카탈로그 대역을 실제 DB 조회로 보고하지 않는다.
+최초 시제품 구현 시점에는 DB 적재·서버 배포·iOS 연결을 하지 않았다.
+아래 후속 검증으로 DB 적재와 실제 RPC 조회까지 완료했다. 서버 배포와 iOS 연결은 여전히 미완료다.
+
+## DB 후속 연결 — 2026-10-16 실행 / 2026-10-17 기록 정리
+
+- 마이그레이션 20261016120713_novice_choice_catalog 적용. 원문 추출 상태로 위장하지 않고
+  특정 novice-sbd-choice-v1의 internal_product_prototype 유형만 명시적으로 허용한다.
+- 기존 scientific_approval=false와 research_preview/suspended 제약, RLS를 유지한다.
+- coaching_programme_catalog_v3 추가. SECURITY INVOKER, 빈 search_path, 명시적 EXECUTE 권한 사용.
+  원문·프로그램 정의는 기존과 같이 읽을 수 있는 연구 자료다. 내부 실행 제한은 서버 allowlist이며 자료 비공개를 뜻하지 않는다.
+- 기존 coaching_source_catalog / coaching_programme_catalog / coaching_programme_catalog_v2는 수정하지 않았다.
+  추가 전후 DB 응답 MD5가 각각 533637b6ae85efd1e8ed74b09d4d0e95,
+  6504905a414853768a0a406d820ff186, 9397200e079df812483aff6c9d9bb9e6으로 동일했다.
+- 신규 정의 버전: 279463065a745b8b5f5581652a377ad37e7558bd1d3801aee46cc7b1f2140fcb.
+  ON CONFLICT DO NOTHING으로 저장하며 기존 버전을 덮어쓰거나 승인하지 않는다.
+- 새 카탈로그는 활성 내부 정의 4개를 제공한다. 중지된 이전 PER 버전은 보존하고 API에서 제외한다.
+  정의 4개는 승인된 루틴 4개 또는 독립 논문 4편을 의미하지 않는다.
+- scripts/verify_live_coaching_catalog.py로 실제 HTTPS RPC 정의/해시와 저장소 원본의 일치를 확인했다.
+  실제 카탈로그를 사용하는 로컬 API에서 1RM 없는 생성, 비허용 계정 실행 차단,
+  목표40 kg→35 kg 변경→4회→조기 종료→다음 회차 참고를 검증했다.
+  로컬 인증 의존성을 대체한 테스트이므로 운영 인증·배포 서버 검증은 아니다. 운동 기록은 임시 SQLite에만 저장했다.
+- 2026-10-16 및 2026-10-17 재실행에서 전체 테스트 195개 통과, 건너뜀 없음. 신규 카탈로그 계약 테스트 3개 포함.
+- 변경 전후 보안 점검에서 신규 경고 없음. 기존 research_internal 두 테이블의 RLS 정책 없음 INFO는 그대로다.
+  이번 작업으로 접근 권한을 추가하지 않았다. [해당 진단 설명](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy).
+
+다음은 새 후보를 더 만드는 일이 아니라 배포 서버의 인증·영속 저장·v3 계약과 앱 연결이다.
+서버가 v3를 지원하기 전 기존 카탈로그를 새 실행기로 확장하지 않는다.
+
+2026-10-17 저장소 확인: 추적된 Dockerfile/Procfile/호스팅 배포 설정이나 API_BASE_URL을 찾지 못했다.
+이는 저장소 밖에 서버가 없다는 증명이 아니다. backend/workout_api.py는 Supabase Bearer 인증과
+절대 경로 WORKOUT_DATABASE_PATH를 요구한다. SQLite를 쓰므로 영속 볼륨 없는 임시 파일시스템에 배포하면 안 된다.
+기존 서버 주소/운영 환경 확인 없이 새 유료 서버나 저장소 이전을 임의 수행하지 않는다.
+
+배포 전 확인할 다섯 항목:
+1. 기존 API 서버·호스팅·도메인이 있는가, 아니면 신규 환경 승인이 필요한가?
+2. 현재 SQLite를 보존할 영속 볼륨·백업·복구 방식은 무엇인가?
+3. 앱과 서버가 같은 Supabase 프로젝트의 실제 사용자 인증으로 연결되는가?
+4. 내부 검토 계정 allowlist를 누가 관리하며 일반 사용자 403을 실제로 확인했는가?
+5. 기존 앱의 로컬 기록과 서버 기록을 중복·유실 없이 연결하는 계약은 무엇인가?
 
 ## 검증 기준
 
