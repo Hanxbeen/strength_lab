@@ -111,6 +111,41 @@ class SBDAPITests(SBDTests):
         self.assertEqual(r.status_code,200,r.text);self.assertTrue(all(x['delta_kg'] is None for x in r.json()['lifts']))
         r=self.client.post('/v3/programme-instances/sbd/workouts',json={'workout_id':'w1d2','week':1,'day':2,'started_at':(at+timedelta(days=2)).isoformat()})
         self.assertEqual(r.status_code,409,r.text)
+    def test_interrupted_workout_can_close_programme(self):
+        self.create()
+        at=datetime.fromisoformat(self.at.replace('Z','+00:00'))
+        ex=self.start(1,1,at)
+        at+=timedelta(seconds=60)
+        ex=self.event('w1d1',ex,at,type='interrupt',reason='user_interruption')
+        self.assertEqual(ex['state'],'stopped')
+        r=self.client.post('/v3/programme-instances/sbd/evaluations',json={
+            'id':'interrupted-end','at':at.isoformat(),'outcome':'stopped'})
+        self.assertEqual(r.status_code,200,r.text)
+        self.assertEqual(r.json()['training']['stopped_sessions'],1)
+        self.assertEqual(r.json()['training']['recorded_sets'],0)
+
+    def test_reconnect_lists_only_owner_instances_with_cursor(self):
+        from backend import coaching_store
+        self.create()
+        at=datetime.fromisoformat(self.at.replace('Z','+00:00'))
+        self.start(1,1,at)
+        value=coaching_store.instance(self.db,self.user,'sbd')
+        coaching_store.save_instance(self.db,self.user,'sbd-2',value)
+        coaching_store.save_instance(self.db,'other','foreign',value)
+        # New HTTP client has no instance ID cached.
+        fresh=TestClient(app)
+        first=fresh.get('/v3/programme-instances',params={'limit':1})
+        self.assertEqual(first.status_code,200,first.text)
+        self.assertEqual(first.json()['items'][0]['instance_id'],'sbd')
+        self.assertEqual(first.json()['items'][0]['latest_workout_id'],'w1d1')
+        second=fresh.get('/v3/programme-instances',params={'limit':1,'after':first.json()['next_cursor']}).json()
+        self.assertEqual([x['instance_id'] for x in second['items']],['sbd-2'])
+        self.assertIsNone(second['next_cursor'])
+        self.assertEqual(fresh.get('/v3/programme-instances',params={'limit':0}).status_code,422)
+        self.user='other'
+        self.assertEqual([x['instance_id'] for x in fresh.get('/v3/programme-instances').json()['items']],['foreign'])
+        self.assertEqual(fresh.get('/v3/programme-instances/sbd').status_code,404)
+
     def test_allowlist_and_incomplete_evaluation(self):
         self.user='not-allowed'
         r=self.client.post('/v3/programme-instances',json={'id':'x','source_id':self.source['id'],'source_version':digest(self.source),

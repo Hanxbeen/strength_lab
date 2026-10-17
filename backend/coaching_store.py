@@ -26,6 +26,24 @@ def instance(db,user,id):
     if not row:raise KeyError(id)
     return json.loads(row[0])
 
+def list_instances(db,user,limit=20,after=None):
+    initialize(db)
+    with db.connect() as c:
+        rows=c.execute("""SELECT i.id,i.payload,
+            EXISTS(SELECT 1 FROM coaching_evaluations e WHERE e.owner=i.owner AND e.instance_id=i.id),
+            (SELECT s.workout_id FROM coaching_sessions s WHERE s.owner=i.owner AND s.instance_id=i.id
+             ORDER BY s.week DESC,s.day DESC LIMIT 1)
+            FROM coaching_instances i WHERE i.owner=? AND i.id>? ORDER BY i.id LIMIT ?""",
+            (user,after or '',limit+1)).fetchall()
+        items=[]
+        for id,payload,closed,last in rows[:limit]:
+            value=json.loads(payload)
+            items.append({'instance_id':id,'source_id':value['source']['id'],
+                          'programme_version':value['programme_version'],'created_at':value['created_at'],
+                          'programme_closed':bool(closed),'latest_workout_id':last})
+    return {'items':items,'next_cursor':rows[limit-1][0] if len(rows)>limit else None}
+
+
 def save_instance(db,user,id,value):
     initialize(db)
     with db.connect() as c:

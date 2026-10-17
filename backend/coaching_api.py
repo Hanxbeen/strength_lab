@@ -4,7 +4,7 @@ from typing import Optional
 import os
 import urllib.request
 import urllib.error
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
 from .repository import CatalogUnavailable
 from .workout_api import owner, store, execute
@@ -106,6 +106,11 @@ def create(request:InstanceInput,user=Depends(owner),db=Depends(store)):
         snapshot=make_instance(source['definition'],request.arm,request.profile,selected,request.setup,request.created_at)
         return {'instance_id':request.id,'instance':coaching_store.save_instance(db,user,request.id,snapshot)}
     return execute(action)
+
+@router.get('/programme-instances')
+def list_programmes(limit:int=Query(default=20,ge=1,le=100),after:Optional[str]=Query(default=None,max_length=100),
+                    user=Depends(owner),db=Depends(store)):
+    return execute(lambda:coaching_store.list_instances(db,user,limit,after))
 
 @router.get('/programme-instances/{instance_id}')
 def get(instance_id:str,user=Depends(owner),db=Depends(store)):

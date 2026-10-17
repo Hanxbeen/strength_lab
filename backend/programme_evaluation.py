@@ -37,7 +37,7 @@ def evaluate(db,user,instance_id,request):
             snap=json.loads(snapshot);ev=json.loads(events);execution=replay(snap,ev)
             require(execution['state'] in ('completed','stopped'),'PREVIOUS_SESSION_OPEN')
             last_event_at=max(last_event_at,timestamp(ev[-1]['at']))
-            last_at=max(last_at,max(timestamp(e['at']) for e in ev if e['type']=='finish'))
+            last_at=max(last_at,max(timestamp(e['at']) for e in ev if e['type'] in ('finish','interrupt')))
             results.append(execution)
             refs.append({'workout_id':wid,'revision':revision,'events_sha256':digest(ev)})
         require(at>=last_event_at,'EVALUATION_BEFORE_LATEST_RECORD')
