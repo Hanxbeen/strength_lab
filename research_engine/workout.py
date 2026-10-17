@@ -139,6 +139,21 @@ def replay(workout, events):
             paused_from = state; state = 'paused'
         elif kind == 'resume':
             require(state == 'paused', 'NOT_PAUSED'); state = paused_from; paused_from = None
+        elif kind == 'rest_adjust':
+            require(state == 'resting' and rest is not None, 'NOT_RESTING')
+            seconds = event.get('target_seconds')
+            require(type(seconds) == int and 0 <= seconds <= 3600, 'INVALID_REST_TARGET')
+            rest.setdefault('original_target_seconds', rest['target_seconds'])
+            rest.setdefault('adjustments', []).append({'event_id': eid, 'at': event['at'],
+                'from_seconds': rest['target_seconds'], 'to_seconds': seconds})
+            rest['target_seconds'] = seconds
+        elif kind == 'interrupt':
+            require(event.get('reason') in ('inactivity', 'user_interruption'), 'INTERRUPTION_REASON_REQUIRED')
+            close_rest(at, 'interrupted')
+            if rests and rests[-1]['outcome'] == 'interrupted':
+                rests[-1]['measurement_status'] = 'unconfirmed_after_interruption'
+            # Pending is unknown, not an assertion that the user did no exercise.
+            state = 'stopped'
         elif kind == 'rest_end':
             require(state == 'resting' and rest is not None, 'NOT_RESTING')
             require(event.get('outcome') in ('completed', 'skipped'), 'REST_OUTCOME_REQUIRED')
@@ -211,6 +226,8 @@ def replay(workout, events):
         guides.append(guide('READY_TO_FINISH', '모든 세트를 기록했어요. 운동을 마쳐 주세요.', ['finish']))
     if state in ('completed', 'stopped'):
         guides.append(guide('SAVED_RESULT', '수행한 세트와 건너뛴 세트를 구분해 기록했어요. 미완료 분량을 다음 운동에 자동으로 더하지 않아요.', []))
+        if any(e.get('type') == 'interrupt' for e in events):
+            guides[-1] = guide('INTERRUPTED_RESULT', '운동 기록을 중단 상태로 저장했어요. 기록하지 않은 세트의 수행 여부는 알 수 없어요.', [])
     if short_interset_rests(rests):
         guides.append(guide('REST_SHORTFALL', '목표보다 짧게 쉰 구간이 있어요. 기록 비교이며, 운동 효과나 다음 중량을 단정하는 기준은 아니에요.', []))
     chart = []; achieved = 0; planned = 0

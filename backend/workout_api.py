@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 from .source_repository import source_catalog
 from .repository import CatalogUnavailable
 from .workout_store import WorkoutStore, Conflict
+from .workout_result import project
 from research_engine.core import compile_programme, InvalidProgramme
 from research_engine.workout import create_workout
 
@@ -130,3 +131,12 @@ def get(workout_id: str, user=Depends(owner), db=Depends(store)):
 @router.post('/workouts/{workout_id}/events')
 def append(workout_id: str, request: EventInput, user=Depends(owner), db=Depends(store)):
     return execute(lambda: db.append(user, workout_id, request.expected_revision, request.event))
+
+@router.post('/workouts/{workout_id}/reconcile')
+def reconcile(workout_id: str, user=Depends(owner), db=Depends(store)):
+    """Call after pending local events sync, on foreground or a lifecycle check."""
+    return execute(lambda: project(db.reconcile_inactivity(user, workout_id)))
+
+@router.get('/workouts/{workout_id}/result')
+def result(workout_id: str, user=Depends(owner), db=Depends(store)):
+    return execute(lambda: project(db.get(user, workout_id)))

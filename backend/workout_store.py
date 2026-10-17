@@ -5,10 +5,12 @@ to a persistent private volume; missing configuration fails closed.
 """
 import json
 import sqlite3
+from datetime import datetime, timezone, timedelta
 from contextlib import contextmanager
 from pathlib import Path
 from research_engine.core import InvalidProgramme, digest
 from research_engine.workout import max_record, replay as base_replay
+from research_engine.workout import timestamp
 
 def replay(snapshot, events):
     result = base_replay(snapshot, events)
@@ -75,6 +77,8 @@ class WorkoutStore:
         return {'workout_id': id, 'execution': replay(snapshot, events), 'events': events}
 
     def append(self, owner, id, expected_revision, event):
+        if event.get('type') == 'interrupt' and event.get('reason') == 'inactivity':
+            raise InvalidProgramme('SERVER_EVENT_ONLY')
         with self.connect() as db:
             db.execute('BEGIN IMMEDIATE')
             row = db.execute('SELECT snapshot,events,revision FROM execution_workouts WHERE owner=? AND id=?', (owner, id)).fetchone()
@@ -93,3 +97,33 @@ class WorkoutStore:
                            (json.dumps(events), result['revision'], owner, id))
             result = replay(snapshot, events)
         return {'workout_id': id, 'execution': result, 'events': events}
+
+    def reconcile_inactivity(self, owner, id, now=None):
+        """Close an idle ledger atomically on reconciliation; not a background scheduler.
+
+        One hour is a product lifecycle policy, not a physiological recovery rule.
+        The authenticated API supplies server time; tests may inject a clock.
+        """
+        now = now or datetime.now(timezone.utc)
+        with self.connect() as db:
+            db.execute('BEGIN IMMEDIATE')
+            row = db.execute('SELECT snapshot,events,revision FROM execution_workouts WHERE owner=? AND id=?', (owner,id)).fetchone()
+            if not row: raise KeyError('WORKOUT_NOT_FOUND')
+            snapshot, events = json.loads(row[0]), json.loads(row[1])
+            result = replay(snapshot, events)
+            if snapshot['policy_version'] != 'execution-ledger-v1' and result['state'] not in ('completed','stopped'):
+                activity = [timestamp(e['at']) for e in events if e['type'] != 'reason_record']
+                last = max(activity or [timestamp(snapshot['started_at'])])
+                deadline = last + timedelta(hours=1)
+                latest = max([timestamp(e['at']) for e in events] or [last])
+                if now >= max(deadline, latest):
+                    event = {'id':'idle-' + digest({'workout':id,'revision':row[2]})[:32],
+                             'type':'interrupt','reason':'inactivity',
+                             'at':max(deadline,latest).isoformat(), 'detected_at':now.isoformat(),
+                             'inactivity_deadline':deadline.isoformat(),
+                             'lifecycle_policy':'idle-close-3600-v1','basis_revision':row[2]}
+                    events.append(event)
+                    result = replay(snapshot, events)
+                    db.execute('UPDATE execution_workouts SET events=?,revision=? WHERE owner=? AND id=?',
+                               (json.dumps(events),result['revision'],owner,id))
+        return {'workout_id':id,'execution':result,'events':events}
