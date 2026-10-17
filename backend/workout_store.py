@@ -23,6 +23,10 @@ def replay(snapshot, events):
 class Conflict(ValueError):
     pass
 
+
+class StorageUnavailable(RuntimeError):
+    pass
+
 class WorkoutStore:
     def __init__(self, path):
         self.path = str(path)

@@ -54,3 +54,12 @@ iOS 연결은 위 인수 흐름이 통과한 API 계약을 기준으로 진행�
 - Vercel CLI 57.0.0 설치, 인증 조회는 fetch failed로 실패. HTTP 직접 조회는 200이지만 Content-Type=text/html이며 JSON으로 읽히지 않았다. 인증 성공/프로젝트/환경변수는 미확인이다. 오류 3회 이후 같은 요청 반복을 중단했다.
 - 현재 프로세스에는 DATABASE_URL/SUPABASE_DB_URL이 설정되지 않았다. 기존 배포 환경의 설정 유무는 미확인이다.
 - 실패 원인을 확인하기 전 새 호스팅/DB 비밀번호 변경/인증 우회는 진행하지 않는다.
+
+## Postgres 원장 구현 체크포인트
+- 서버 전용 WORKOUT_POSTGRES_DSN: 기존 Supabase 프로젝트의 transaction-pooler 연결 문자열을 배포 환경의 secret으로 설정한다. 브라우저/iOS/응답/로그/저장소에 노출하지 않는다.
+- WORKOUT_DB_SSLROOTCERT: 기본 system(libpq17 이상), 필요한 경우 서버에 배치한 신뢰할 CA 파일 경로. 인증서 검증을 끄지 않는다.
+- 서버가 먼저 Supabase Auth로 사용자 UUID를 검증한다. DB 연결은 authenticated 역할로 낮추고 해당 소유자만 RLS로 허용한다. 이 역할 전환 권한을 실제 배포 연결에서 확인해야 한다.
+- execution_private는 Data API 노출 스키마에 추가하지 않는다. 마이그레이션은 관리 경로에서만 실행하며 HTTP 요청 중 DDL은 실행하지 않는다.
+- 현재 실제 DB 테이블/RLS 검증은 완료. Python driver와 DB를 연결한 종단 수행/동시 요청/재시작 검증은 미완료다. 새 7개 테스트는 transport 계약 검증이며 이를 대체하지 않는다.
+- 공개 카탈로그 승인, 사용자 적합성 판단, 기존 기록 이전은 이 마이그레이션의 범위가 아니다.
+- 성능 advisor는 기존 public 인덱스 미사용 INFO3건만 반환했다. 새 원장 경고는 없으며, 관측 사용량 부족을 이유로 기존 인덱스를 삭제하지 않았다. 진단: https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index

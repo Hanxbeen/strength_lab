@@ -7,6 +7,7 @@ from research_engine.programme_schedule import selected as schedule_selected,ind
 from .workout_store import Conflict
 
 def initialize(db):
+    if getattr(db,'schema_managed',False):return
     with db.connect() as c:
         c.executescript("""
         CREATE TABLE IF NOT EXISTS coaching_instances(

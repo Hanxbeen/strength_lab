@@ -9,7 +9,7 @@ from fastapi import APIRouter, Depends, Header, HTTPException
 from pydantic import BaseModel, Field
 from .source_repository import source_catalog
 from .repository import CatalogUnavailable
-from .workout_store import WorkoutStore, Conflict
+from .workout_store import WorkoutStore, Conflict, StorageUnavailable
 from .workout_result import project
 from research_engine.core import compile_programme, InvalidProgramme
 from research_engine.workout import create_workout
@@ -31,7 +31,13 @@ def owner(authorization: str = Header(default='')):
     except (urllib.error.URLError, TimeoutError, ValueError, KeyError):
         raise HTTPException(503, detail='로그인 상태를 확인하지 못했어요.')
 
-def store():
+def store(user=Depends(owner)):
+    dsn = os.environ.get('WORKOUT_POSTGRES_DSN')
+    if dsn:
+        from .postgres_store import PostgresWorkoutStore
+        return PostgresWorkoutStore(dsn,user,os.environ.get('WORKOUT_DB_SSLROOTCERT','system'))
+    if os.environ.get('VERCEL'):
+        raise HTTPException(503, detail='운영 운동 기록 저장소가 설정되지 않았어요.')
     path = os.environ.get('WORKOUT_DATABASE_PATH')
     if not path or not os.path.isabs(path): raise HTTPException(503, detail='운동 기록 저장소가 설정되지 않았어요.')
     try: return WorkoutStore(path)
@@ -43,7 +49,7 @@ def execute(operation):
     except KeyError: raise HTTPException(404, detail='기록을 찾지 못했어요.')
     except InvalidProgramme as error: raise HTTPException(422, detail={'code': str(error), 'action': 'check_input'})
     except (TypeError, ValueError, AttributeError): raise HTTPException(422, detail={'code': 'INVALID_INPUT', 'action': 'check_input'})
-    except sqlite3.Error: raise HTTPException(503, detail='기록을 저장하지 못했어요. 같은 요청 ID로 다시 시도해 주세요.')
+    except (sqlite3.Error, StorageUnavailable): raise HTTPException(503, detail='기록을 저장하지 못했어요. 같은 요청 ID로 다시 시도해 주세요.')
     except CatalogUnavailable: raise HTTPException(503, detail='원문 운동 구성을 불러오지 못했어요.')
 
 class MaxInput(BaseModel):
@@ -111,7 +117,7 @@ def register_max(request: MaxInput, user=Depends(owner), db=Depends(store)):
 
 @router.get('/max-records')
 def list_maxes(user=Depends(owner), db=Depends(store)):
-    return {'items': db.maxes(user)}
+    return execute(lambda: {'items': db.maxes(user)})
 
 @router.post('/workouts')
 def start(request: StartInput, user=Depends(owner), db=Depends(store)):

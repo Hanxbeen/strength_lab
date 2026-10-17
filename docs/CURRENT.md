@@ -2,6 +2,16 @@
 
 이 문서가 작업 재개 진입점이다. 과거 완료 보고보다 현재 코드·테스트·이 문서를 우선한다.
 
+## Postgres 수행 원장 구현 — 2026-10-17 후속
+- execution_private에 1RM/운동/프로그램/회차/종료 평가 5개 테이블을 실제 Supabase에 생성했다. 기존 iOS/SQLite 기록은 변경하거나 이전하지 않았다.
+- PostgresWorkoutStore는 기존 실행 규칙을 재사용한다. 검증된 인증 소유자를 트랜잭션 claims로 설정하고 authenticated 역할/RLS로 접근한다. 사용자별 트랜잭션 잠금으로 재시도·revision 경쟁을 직렬화한다.
+- WORKOUT_POSTGRES_DSN을 서버 환경에서만 사용한다. TLS verify-full, prepared statement 비활성화, 연결/쿼리/잠금 제한 적용. Vercel에서 DSN이 없으면 SQLite로 대체하지 않고 503으로 실패한다.
+- 실제 DB 검증: 5개 테이블 RLS 강제, 본인 조회, 타인 조회 0건, 타인 소유자 INSERT 및 owner 변경 차단. 검증 쓰기는 롤백했고 잔여 테스트 행은 0이다.
+- Python 전체 229개 통과(건너뜀 없음). 새 7개는 연결/SQL/설정 계약 대역 테스트이며 실제 Python→Postgres/인증/HTTPS 종단 검증이 아니다. psycopg3.2.10/libpq17.5 설치 확인.
+- 보안 advisor: 새 원장 경고 없음. 기존 research_internal의 정책 없는 내부 테이블 INFO2건은 유지: https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy
+- 남은 차단: Vercel 인증 조회 fetch failed, 운영 프로젝트/환경변수 미확인, 실제 서버 DSN 연결 미검증. 비밀값은 채팅/저장소에 넣지 않는다.
+- 공급 상태는 research_preview4/suspended1 그대로다. 이 저장 작업은 공개 루틴 증가나 5단계 인수 완료가 아니다. 다음은 기존 Vercel 연결 복구와 서버 DB 설정 후 실제 계정의 전체 흐름 검증, 동시에 공개 적용 범위 결정이다.
+
 ## 다섯 단계 인수 계획과 재접속 구현 — 2026-10-17 후속
 - 상세 실행 기준: 20_RUNTIME_DELIVERY_PLAN.md. 루틴 공급 / 실제 인증·저장 / 수행 영속화 / 재접속 / 배포 HTTPS 인수의 산출물·의존성·통과 조건을 명시했다.
 - GET /v3/programme-instances 구현: 본인 프로그램 목록, 커서 페이지, 최근 운동 ID, 종료 여부 반환. 새 클라이언트가 ID 캐시 없이 기존 상세·next-session에 접근할 수 있다. 목록 조회는 한 SQL로 처리한다.
