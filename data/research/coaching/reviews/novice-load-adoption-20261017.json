@@ -1,0 +1,89 @@
+{
+  "schema_version": "novice-load-adoption-v1",
+  "id": "novice-confirmed-choice-v1",
+  "review_date": "2026-10-17",
+  "status": "implemented_internal_user_choice",
+  "scientific_approval": false,
+  "public_release": false,
+  "sources": [
+    {
+      "id": "petrizzo2018",
+      "record": "data/research/coaching/reviews/novice-sbd-20261016.json",
+      "locator": "Procedures pp.86–87",
+      "extent": "existing_fulltext_extraction_rechecked",
+      "fact": "Completion of assigned work precedes participant-selected progression; initial load was supervised."
+    },
+    {
+      "id": "acsm2026",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823/",
+      "doi": "10.1249/MSS.0000000000003897",
+      "extent": "fulltext_methods_and_discussion_reviewed",
+      "locator": "Eligibility Criteria; Discussion",
+      "fact": "General healthy-adult synthesis supports individualized progressive training; it does not define one executable SBD programme.",
+      "limit": "Group evidence; exact app workflow and individual first-load choice not evaluated."
+    },
+    {
+      "id": "acsm2009",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/",
+      "extent": "abstract_only",
+      "fact": "Earlier position stand describes 2–10% increases after exceeding target repetitions.",
+      "decision": "Do not import this range into a fixed-five-repetition prototype as a universal or newer recommendation."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "first_load",
+      "decision": "retain_explicit_user_choice",
+      "scope": "Adult independently performing SBD and already able to select a working load.",
+      "implemented": "initial_loads_kg is required per session; no 1RM test or inferred percentage.",
+      "remaining_gap": "User who cannot select any first load requires guided instruction/assessment; that flow is not implemented.",
+      "provenance": "product_scope_not_unsupervised_efficacy_claim"
+    },
+    {
+      "id": "progression",
+      "decision": "accept_explicit_repeat_or_increase_recording",
+      "eligibility": [
+        "Most recent session for this lift is completed",
+        "All prescribed repetitions and loads completed without set load changes",
+        "Single actual working load across the lift's sets",
+        "No pain report in the referenced workout"
+      ],
+      "implementation": "User submits chosen load and reference workout/event hash. Server checks meaning, persistence and retry consistency.",
+      "increment_rule": "Positive user-selected change representable by configured equipment step; no recommended magnitude.",
+      "provenance": "product_adaptation_of_reported_completion_trigger",
+      "limit": "Matching a completed record does not establish current readiness, correct technique, appropriate increment or training effectiveness."
+    },
+    {
+      "id": "changed_or_missing",
+      "decision": "manual_reselection_with_actual_records",
+      "implementation": "No completion-based repeat/increase claim; previous set-level actuals remain available. Manual input remains supported.",
+      "provenance": "product_policy"
+    },
+    {
+      "id": "first_set_only",
+      "decision": "reject_completion_based_increase",
+      "reason": "One successful set does not meet the reported all-assigned-work condition."
+    },
+    {
+      "id": "pain_or_long_gap",
+      "decision": "no_automatic_prescription",
+      "implementation": "Pain context removes completion-based choice types; no automatic reduction. Elapsed time remains visible through next-session.",
+      "remaining_gap": "Current pain assessment and long-gap applicability remain unimplemented; user choice is not approval.",
+      "provenance": "product_scope_limit"
+    }
+  ],
+  "adversarial_review": [
+    "Do not call selected increment scientifically optimal or safe.",
+    "Manual entry may still be changed by the user; choice validation is provenance integrity, not a clinical restriction.",
+    "Maintain frozen selected load and reference identity when later records change.",
+    "Check stale references again within the write transaction.",
+    "Retain internal-preview access until programme applicability and deployment are separately resolved."
+  ],
+  "implementation_files": [
+    "research_engine/novice.py",
+    "backend/coaching_api.py",
+    "backend/coaching_store.py"
+  ],
+  "source_definition_changed": false,
+  "next_blocker": "Review applicability of the complete SBD-only weekly programme for public supply; the original OHP omission changes dose. Resolve unknown first-load pathway separately from known-working-load users."
+}

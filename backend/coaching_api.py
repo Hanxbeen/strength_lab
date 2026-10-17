@@ -83,6 +83,7 @@ class SessionInput(BaseModel):
     started_at:str
     initial_rpe_loads_kg:dict[str,float]=Field(default_factory=dict)
     initial_loads_kg:dict[str,float]=Field(default_factory=dict)
+    load_choices:dict[str,dict]=Field(default_factory=dict)
 
 @router.get('/research-programmes')
 def programmes(user=Depends(owner)):
@@ -121,6 +122,7 @@ def start(instance_id:str,request:SessionInput,user=Depends(owner),db=Depends(st
         history=coaching_store.history(db,user,instance_id)
         novice=value['source'].get('adapter_version')=='novice-sbd-choice-v1'
         require(not request.initial_rpe_loads_kg if novice else not request.initial_loads_kg,'UNEXPECTED_LOAD_INPUT')
+        require(novice or not request.load_choices,'UNEXPECTED_LOAD_CHOICE')
         loads=request.initial_loads_kg if novice else request.initial_rpe_loads_kg
         # Retry an existing request without re-reading a mutable current catalogue.
         prior=next((h for h in history if h['week']==request.week and h['day']==request.day),None)
@@ -129,6 +131,7 @@ def start(instance_id:str,request:SessionInput,user=Depends(owner),db=Depends(st
             require(prior['snapshot']['started_at']==request.started_at,'START_REQUEST_CONFLICT')
             if novice:
                 require(prior['snapshot']['coaching']['initial_loads_kg']==loads,'START_REQUEST_CONFLICT')
+                require(prior['snapshot']['coaching'].get('load_choices',{})==request.load_choices,'START_REQUEST_CONFLICT')
             elif value['source'].get('adapter_version')=='metd-2021-v1':
                 require(prior['snapshot']['coaching']['initial_rpe_loads_kg']==request.initial_rpe_loads_kg,'START_REQUEST_CONFLICT')
             elif value['arm']=='RPEG':
@@ -142,6 +145,9 @@ def start(instance_id:str,request:SessionInput,user=Depends(owner),db=Depends(st
                        and x['version']==digest(value['source'])),None)
         require(matching is not None and matching['status']=='research_preview','SOURCE_UNAVAILABLE_OR_SUSPENDED')
         snapshot=prepare(value,request.week,request.day,request.started_at,history,loads)
+        if novice:
+            from research_engine.novice import record_load_choices
+            snapshot=record_load_choices(snapshot,request.load_choices,history)
         return coaching_store.start(db,user,instance_id,request.workout_id,request.week,request.day,snapshot)
     return execute(action)
 

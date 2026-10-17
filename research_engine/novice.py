@@ -95,6 +95,8 @@ def load_selection(reference, equipment_step_kg):
         'pain_context_required': '지난 운동에 통증·불편함 기록이 있어요. 현재 상태를 먼저 확인해 주세요. 감량하면 안전하다는 뜻은 아니에요.',
     }
     pain = status == 'pain_context_required'
+    weights = {r['actual']['weight_kg'] for r in reference.get('sets', []) if r.get('actual')}
+    comparable = status == 'selected_plan_completed' and len(weights) == 1
     return {
         'contract_version': 'novice-load-selection-v1',
         'exercise_id': reference['exercise_id'], 'status': status,
@@ -107,6 +109,9 @@ def load_selection(reference, equipment_step_kg):
                   'unit': 'kg', 'equipment_step_kg': equipment_step_kg,
                   'default_value': None, 'required_to_start': True},
         'recommended_load_kg': None, 'recommended_increment_kg': None,
+        'reference_load_kg': next(iter(weights)) if comparable else None,
+        'recorded_choice_types': ['repeat', 'increase'] if comparable else [],
+        'choice_policy': 'novice-confirmed-choice-v1',
         'one_rm_test_required': False, 'automatic_progression': False,
         'current_readiness_assessed': False,
         'reference_workout_id': reference.get('workout_id'),
@@ -158,6 +163,37 @@ def prepare(instance, week, day, at, history, initial_loads=None):
                 'load_selection': session_inputs(instance, target['exercises'], history)['load_selection']},
             'decisions': [{'exercise_id': eid, 'selected_kg': loads[eid], 'basis': 'user_choice',
                            'automatically_applied': False} for eid in target['exercises']]}}
+
+
+def record_load_choices(snapshot, choices, history):
+    """Validate explicit choices against current records; never choose a load for the user."""
+    require(isinstance(choices, dict), 'INVALID_LOAD_CHOICES')
+    loads = snapshot['coaching']['initial_loads_kg']
+    require(set(choices) <= set(loads), 'UNEXPECTED_LOAD_CHOICE')
+    decisions = {d['exercise_id']: d for d in snapshot['coaching']['decisions']}
+    for eid, choice in choices.items():
+        require(isinstance(choice, dict) and set(choice) == {
+            'kind', 'reference_workout_id', 'reference_events_sha256'}, 'INVALID_LOAD_CHOICE')
+        require(choice['kind'] in ('repeat', 'increase'), 'INVALID_LOAD_CHOICE')
+        ref = previous_reference(history, eid)
+        require(ref.get('workout_id') == choice['reference_workout_id']
+                and ref.get('history_events_sha256') == choice['reference_events_sha256'],
+                'STALE_LOAD_REFERENCE')
+        guide = load_selection(ref, snapshot['coaching']['equipment_step_kg'])
+        require(choice['kind'] in guide['recorded_choice_types'], 'LOAD_CHOICE_NOT_AVAILABLE')
+        base = guide['reference_load_kg']
+        require(loads[eid] == base if choice['kind'] == 'repeat' else loads[eid] > base,
+                'LOAD_CHOICE_VALUE_MISMATCH')
+        decisions[eid].update({
+            'choice_kind': choice['kind'], 'reference_workout_id': ref['workout_id'],
+            'reference_events_sha256': ref['history_events_sha256'],
+            'reference_load_kg': base, 'chosen_increment_kg': round(loads[eid] - base, 8),
+            'rule_version': 'novice-confirmed-choice-v1',
+            'rule_basis': 'product_adaptation_of_petrizzo_completion_trigger',
+            'eligibility_meaning': 'record_matches_choice_not_current_readiness_or_safe_increment',
+        })
+    snapshot['coaching']['load_choices'] = copy.deepcopy(choices)
+    return snapshot
 
 
 def enrich(snapshot, result):

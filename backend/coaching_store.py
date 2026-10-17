@@ -71,6 +71,11 @@ def start(db,user,id,wid,week,day,snapshot):
                 # A 48-hour minimum is a conservative product policy, not a quoted research threshold.
                 require((timestamp(snapshot['started_at'])-timestamp(last['started_at'])).total_seconds()>=schedule['minimum_start_interval_seconds'],
                         'NONCONSECUTIVE_DAYS_REQUIRED')
+            for choice in snapshot.get('coaching',{}).get('load_choices',{}).values():
+                reference=c.execute('SELECT w.events FROM coaching_sessions s JOIN execution_workouts w ON w.owner=s.owner AND w.id=s.workout_id WHERE s.owner=? AND s.instance_id=? AND s.workout_id=?',
+                                    (user,id,choice['reference_workout_id'])).fetchone()
+                if reference is None or digest(json.loads(reference[0]))!=choice['reference_events_sha256']:
+                    raise Conflict('STALE_LOAD_REFERENCE')
             if c.execute('SELECT 1 FROM execution_workouts WHERE owner=? AND id=?',(user,wid)).fetchone():raise Conflict('WORKOUT_ID_CONFLICT')
             c.execute('INSERT INTO execution_workouts VALUES(?,?,?,?,0)',(user,wid,json.dumps(snapshot),'[]'))
             c.execute('INSERT INTO coaching_sessions VALUES(?,?,?,?,?)',(user,id,week,day,wid))

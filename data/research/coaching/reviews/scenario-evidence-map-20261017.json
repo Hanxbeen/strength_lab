@@ -90,8 +90,9 @@
     {
       "id": "acsm2026",
       "kind": "overview_of_reviews",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/41843416/",
-      "extent": "prior_turn_abstract_verified",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823/",
+      "extent": "fulltext_methods_and_discussion_reviewed",
+      "record": "data/research/coaching/reviews/novice-load-adoption-20261017.json",
       "limit": "General healthy-adult synthesis, not one executable SBD programme; overlap with other reviews/trials must be checked."
     },
     {
@@ -198,8 +199,8 @@
       ],
       "role": "progression",
       "required_context": "all assigned sets/reps, actual load, changes, symptoms",
-      "gap": "Numeric increment not supplied by Petrizzo; cannot invent it as source fact",
-      "next_action": "Separate source trigger from product increment choice and revalidation",
+      "gap": "User-selected increment recording implemented internally; public programme applicability and current readiness remain unresolved",
+      "next_action": "Use novice-load-adoption-20261017.json decision; do not keep searching for an unreported fixed Petrizzo increment",
       "coverage": "partial_not_release_ready"
     },
     {

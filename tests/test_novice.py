@@ -102,6 +102,75 @@ class NoviceTests(unittest.TestCase):
         self.assertEqual(context, frozen)
         self.assertEqual(snap['coaching']['decisions'][0]['basis'], 'user_choice')
 
+    def choice(self, prior, kind='increase'):
+        return {novice.EXERCISES[0]: dict(kind=kind, reference_workout_id=prior['workout_id'],
+                                        reference_events_sha256=digest(prior['events']))}
+
+    def test_explicit_increase_persists_origin_and_user_delta(self):
+        prior = self.completed()
+        snap = prepare(self.instance(), 1, 2, self.at, [prior],
+                       {novice.EXERCISES[0]: 42.5, novice.EXERCISES[2]: 40})
+        result = novice.record_load_choices(snap, self.choice(prior), [prior])
+        decision = result['coaching']['decisions'][0]
+        self.assertEqual(decision['reference_load_kg'], 40)
+        self.assertEqual(decision['selected_kg'], 42.5)
+        self.assertEqual(decision['chosen_increment_kg'], 2.5)
+        self.assertEqual(decision['basis'], 'user_choice')
+        self.assertFalse(decision['automatically_applied'])
+        self.assertEqual(result['session']['sets'][0]['weight_kg'], 42.5)
+
+    def test_changed_pain_missing_or_stopped_cannot_claim_completion_increase(self):
+        cases = [self.completed(changed=True), self.completed(pain=True), self.completed(), self.completed()]
+        cases[2]['execution']['sets'][0]['actual'] = None
+        cases[3]['execution']['state'] = 'stopped'
+        for prior in cases:
+            with self.subTest(status=prior['execution']['state']):
+                snap = self.snapshot(d=2, history=[prior])
+                with self.assertRaisesRegex(InvalidProgramme, 'LOAD_CHOICE_NOT_AVAILABLE'):
+                    novice.record_load_choices(snap, self.choice(prior), [prior])
+
+    def test_stale_choice_and_mismatched_value_rejected(self):
+        prior = self.completed()
+        choice = self.choice(prior)
+        snap = self.snapshot(d=2, history=[prior])
+        with self.assertRaisesRegex(InvalidProgramme, 'LOAD_CHOICE_VALUE_MISMATCH'):
+            novice.record_load_choices(snap, choice, [prior])
+        prior['events'].append({'id': 'later-correction'})
+        with self.assertRaisesRegex(InvalidProgramme, 'STALE_LOAD_REFERENCE'):
+            novice.record_load_choices(snap, choice, [prior])
+
+    def test_store_rechecks_reference_inside_write_transaction(self):
+        from backend import coaching_store
+        from backend.workout_store import Conflict
+        prior = self.completed()
+        with tempfile.TemporaryDirectory() as directory:
+            db = WorkoutStore(Path(directory)/'records.sqlite')
+            coaching_store.save_instance(db, 'owner', 'instance', self.instance())
+            coaching_store.start(db, 'owner', 'instance', 'prior', 1, 1, prior['snapshot'])
+            with db.connect() as c:
+                c.execute('UPDATE execution_workouts SET events=? WHERE owner=? AND id=?',
+                          (json.dumps(prior['events']), 'owner', 'prior'))
+            snap = prepare(self.instance(), 1, 2, '2026-10-19T09:00:00Z', [prior],
+                           {novice.EXERCISES[0]: 42.5, novice.EXERCISES[2]: 40})
+            novice.record_load_choices(snap, self.choice(prior), [prior])
+            corrected = copy.deepcopy(prior['events'])
+            corrected[0]['id'] = 'changed-after-selection'
+            with db.connect() as c:
+                c.execute('UPDATE execution_workouts SET events=? WHERE owner=? AND id=?',
+                          (json.dumps(corrected), 'owner', 'prior'))
+            with self.assertRaisesRegex(Conflict, 'STALE_LOAD_REFERENCE'):
+                coaching_store.start(db, 'owner', 'instance', 'second', 1, 2, snap)
+            with db.connect() as c:
+                self.assertIsNone(c.execute('SELECT id FROM execution_workouts WHERE id=?', ('second',)).fetchone())
+
+    def test_explicit_repeat_and_legacy_manual_path(self):
+        prior = self.completed()
+        snap = novice.record_load_choices(self.snapshot(d=2, history=[prior]), self.choice(prior, 'repeat'), [prior])
+        self.assertEqual(snap['coaching']['decisions'][0]['chosen_increment_kg'], 0)
+        plain = novice.record_load_choices(self.snapshot(), {}, [])
+        self.assertEqual(plain['coaching']['load_choices'], {})
+        self.assertNotIn('choice_kind', plain['coaching']['decisions'][0])
+
     def test_definition_counts_and_no_ohp_substitution(self):
         novice.validate_source(self.source)
         self.assertEqual(len(self.source['protocol']['sessions']), 24)
@@ -224,7 +293,21 @@ class NoviceAPITests(unittest.TestCase):
                             self.assertEqual(ready.json()['session_inputs']['required_field'], 'initial_loads_kg')
                             self.assertEqual([x['status'] for x in ready.json()['session_inputs']['load_selection']],
                                              ['selected_plan_completed', 'no_history'])
+                        if w == 1 and d == 2:
+                            guide = ready.json()['session_inputs']['load_selection'][0]
+                            payload['initial_loads_kg'][novice.EXERCISES[0]] = 42.5
+                            payload['load_choices'] = {novice.EXERCISES[0]: {
+                                'kind': 'increase', 'reference_workout_id': guide['reference_workout_id'],
+                                'reference_events_sha256': guide['reference_events_sha256']}}
+                            stale = copy.deepcopy(payload)
+                            stale['load_choices'][novice.EXERCISES[0]]['reference_events_sha256'] = 'stale'
+                            self.assertEqual(client.post(base+'/workouts', json=stale).status_code, 422)
                         ex = post(base+'/workouts', payload)['execution']
+                        if w == 1 and d == 2:
+                            stored = db.get(user, wid)['execution']['coaching']['decisions'][0]
+                            self.assertEqual(stored['chosen_increment_kg'], 2.5)
+                            altered = copy.deepcopy(payload); altered['load_choices'] = {}
+                            self.assertEqual(client.post(base+'/workouts', json=altered).status_code, 422)
                         self.assertEqual(post(base+'/workouts', payload)['execution'], ex)
                         bad = copy.deepcopy(payload); bad['initial_loads_kg'][novice.EXERCISES[0]] = 45
                         self.assertEqual(client.post(base+'/workouts', json=bad).status_code, 422)
