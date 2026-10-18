@@ -4,6 +4,7 @@ from .core import digest,number
 from .workout import require,timestamp,max_record,POLICY
 from .coaching import rounded
 from .execution_facts import pain_reported
+from .per_provenance import row_mapping, mapping_review
 
 ENGINE='sbd-template-v1'
 EXERCISES=('barbell_back_squat','barbell_bench_press','barbell_deadlift')
@@ -60,7 +61,8 @@ def prepare(instance,week,day,at,history,initial_loads=None):
                 'baseline_max_kg':maximum['weight_kg'],'max_record_id':maximum['id']},'weight_kg':weight,'unrounded_weight_kg':raw,
                 'tempo':{'kind':'not_encoded'},'rest_after':{'operator':'eq','seconds':setup['rest_seconds'],'basis':'user_choice'},
                 'source_exercise':r['source_exercise'],'source_row':copy.deepcopy(r['source']),'set_role':r['role'],
-                'exercise_mapping':'numbered_sbd_adaptation_v1'})
+                'exercise_mapping':'numbered_sbd_adaptation_v1',
+                'source_mapping':row_mapping(r)})
     rows[-1]['rest_after']=None
     previous=next((h for h in reversed(history) if h['day']==day),None)
     reference=None
@@ -76,6 +78,7 @@ def prepare(instance,week,day,at,history,initial_loads=None):
         'max_records':copy.deepcopy(instance['max_records']),'started_at':at,
         'coaching':{'engine':ENGINE,'week':week,'day':day,'arm':instance['arm'],'target':copy.deepcopy(target),
             'adaptations':copy.deepcopy(instance['adaptations']),'previous_same_day':reference,'decisions':[],
+            'source_mapping_review':mapping_review(instance['source']),
             'equipment_step_kg':setup['equipment_step_kg'],'setup':copy.deepcopy(setup),'instance_created_at':instance['created_at']}}
 
 def enrich(snapshot,result):

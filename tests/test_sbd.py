@@ -146,6 +146,40 @@ class SBDAPITests(SBDTests):
         self.assertEqual([x['instance_id'] for x in fresh.get('/v3/programme-instances').json()['items']],['foreign'])
         self.assertEqual(fresh.get('/v3/programme-instances/sbd').status_code,404)
 
+    def test_substitution_provenance_survives_change_stop_and_reload(self):
+        self.create()
+        at=datetime.fromisoformat(self.at.replace('Z','+00:00'))
+        ex=self.start(1,1,at)
+        front=next(r for r in ex['sets'] if r['source_exercise']=='Front squat')
+        mapping=front['source_mapping']
+        self.assertEqual(front['exercise_id'],'barbell_back_squat')
+        self.assertEqual(mapping['source_exercise_id'],'barbell_front_squat')
+        self.assertEqual(mapping['load_reference_exercise_id'],'barbell_back_squat')
+        self.assertTrue(mapping['substituted'])
+        self.assertFalse(mapping['source_load_reference_verified'])
+        # Work through preceding rows to reach the first substituted set.
+        for row in ex['sets'][:2]:
+            at+=timedelta(seconds=60)
+            ex=self.event('w1d1',ex,at,type='set_result',set_id=row['id'],reps=row['reps']['min'],rpe=8)
+            at+=timedelta(seconds=180)
+            ex=self.event('w1d1',ex,at,type='rest_end',outcome='completed')
+        at+=timedelta(seconds=1)
+        ex=self.event('w1d1',ex,at,type='change_load',set_id=front['id'],value=90,unit='kg',reason='fatigue')
+        at+=timedelta(seconds=60)
+        ex=self.event('w1d1',ex,at,type='set_result',set_id=front['id'],reps=2,rpe=9)
+        at+=timedelta(seconds=30)
+        ex=self.event('w1d1',ex,at,type='rest_end',outcome='skipped')
+        ex=self.event('w1d1',ex,at,type='interrupt',reason='user_interruption')
+        restored=self.client.get('/v2/workouts/w1d1').json()['execution']
+        actual=next(r for r in restored['sets'] if r['id']==front['id'])
+        self.assertEqual(actual['source_mapping'],mapping)
+        self.assertEqual(actual['weight_kg'],105)
+        self.assertEqual(actual['actual']['weight_kg'],90)
+        self.assertEqual(restored['rests'][-1]['elapsed_seconds'],30)
+        self.assertEqual(restored['state'],'stopped')
+        self.assertEqual(restored['coaching']['source_mapping_review']['substituted_set_count'],22)
+        self.assertIsNone(restored['coaching']['next_set_decision']['factor'])
+
     def test_allowlist_and_incomplete_evaluation(self):
         self.user='not-allowed'
         r=self.client.post('/v3/programme-instances',json={'id':'x','source_id':self.source['id'],'source_version':digest(self.source),

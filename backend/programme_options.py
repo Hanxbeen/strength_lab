@@ -104,5 +104,8 @@ def options(item, allowed):
         elif engine in ('novice-sbd-choice-v1', 'petrizzo-2018-v1'):
             value['arm_prescription'] = {k: deepcopy(protocol[k]) for k in
                 ('working_sets', 'reps', 'automatic_load_adjustment', 'source_stop_rule', 'product_stop_rule')}
+        if engine == 'sbd-template-v1':
+            from research_engine.per_provenance import mapping_review
+            value['source_mapping_review'] = mapping_review(source)
         result.append(value)
     return result

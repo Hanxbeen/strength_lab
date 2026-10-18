@@ -51,3 +51,21 @@ class ProgrammeOptionTests(unittest.TestCase):
         self.assertEqual(rows['AMRAP']['arm_prescription']['reps']['rpe'],[9,9.5])
         self.assertNotIn('initial_rpe_loads_kg', rows['AMRAP']['required_inputs'])
         self.assertIn('initial_rpe_loads_kg', rows['MAX']['required_inputs'])
+
+    def test_per_mapping_is_visible_without_mutating_source(self):
+        item = self.load('pilot2018-sbd')
+        before = digest(item)
+        row = options(item, True)[0]
+        review = row['source_mapping_review']
+        self.assertEqual(review['total_encoded_sets'], 515)
+        self.assertEqual(review['substituted_set_count'], 22)
+        self.assertEqual(review['substituted_row_count'], 12)
+        self.assertEqual(review['affected_session_count'], 4)
+        self.assertEqual(review['source_set_counts']['Front squat'], 22)
+        self.assertFalse(review['exact_source_replication'])
+        self.assertFalse(review['working_sets_verified'])
+        self.assertFalse(review['front_squat_from_back_squat_1rm_supported'])
+        self.assertEqual(digest(item), before)
+        self.assertTrue(all(x['source_exercise_id']=='barbell_front_squat'
+                            and x['applied_exercise_id']=='barbell_back_squat'
+                            for x in review['substitutions']))
