@@ -64,6 +64,9 @@ def guide(code, text, actions, basis='product_policy', evidence=None):
 
 def replay(workout, events):
     """Strict state machine. Rest uses elapsed wall time; pauses never erase physical recovery."""
+    if workout.get('policy_version') == 'entry-practice-v1':
+        from .entry_practice import replay as entry_replay
+        return entry_replay(workout, events)
     if workout['policy_version'] == 'execution-ledger-v1':
         from .workout_legacy_v1 import replay as legacy_replay
         result = legacy_replay(workout, events)

@@ -61,3 +61,6 @@ app.include_router(coaching_router)
 
 from .context_api import router as context_router
 app.include_router(context_router)
+
+from .entry_api import router as entry_router
+app.include_router(entry_router)

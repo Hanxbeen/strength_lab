@@ -1,0 +1,88 @@
+{
+  "id": "colquhoun2017-retrieval-20261018",
+  "doi": "10.1519/JSC.0000000000001500",
+  "status": "partial_source_review",
+  "executable": false,
+  "scientific_approval": false,
+  "sources": {
+    "journal": "https://journals.lww.com/nsca-jscr/Fulltext/2017/02000/Comparison_of_Powerlifting_Performance_in_Trained.1.aspx?sessionEnd=true",
+    "thesis": "https://digitalcommons.usf.edu/cgi/viewcontent.cgi?article=6657&context=etd"
+  },
+  "verified": [
+    "Journal fulltext Methods and erratum text retrieved",
+    "Thesis text Methods and Table3.2 retrieved",
+    "Journal erratum concerns author name, not protocol",
+    "One linked research family; not independent replication"
+  ],
+  "source_facts": {
+    "population": {
+      "sex": "male",
+      "minimum_training_months": 6,
+      "minimum_training_days_per_week": 3,
+      "minimum_sbd_bodymass_ratios": [
+        1.25,
+        1,
+        1.5
+      ],
+      "analysed": 25
+    },
+    "arms": [
+      "DUP",
+      "FDUP"
+    ],
+    "squat_bench": "all training days",
+    "deadlift": "power and strength days",
+    "progression_source": "thesis Table3.2, final plus set relative to repetition goal",
+    "progression_table": [
+      {
+        "difference_max": -5,
+        "delta_lb": -15
+      },
+      {
+        "difference_min": -4,
+        "difference_max": -3,
+        "delta_lb": -10
+      },
+      {
+        "difference_min": -2,
+        "difference_max": -1,
+        "delta_lb": -5
+      },
+      {
+        "difference_min": 0,
+        "difference_max": 1,
+        "delta_lb": 0
+      },
+      {
+        "difference_min": 2,
+        "difference_max": 3,
+        "delta_lb": 5
+      },
+      {
+        "difference_min": 4,
+        "difference_max": 5,
+        "delta_lb": 10
+      },
+      {
+        "difference_min": 6,
+        "delta_lb": 15
+      }
+    ],
+    "automatic_application": false
+  },
+  "unresolved": [
+    "Journal Table3 entire session and accessory prescription not extracted",
+    "Thesis referenced Table3.3 absent from fetched text; visual verification needed",
+    "Journal rest2-5min differs from thesis3-5min; do not merge silently",
+    "Training week vs calendar week/taper labeling differs within prose; reconcile Table1/3",
+    "Initial loads, plus-set selection after modified or stopped sessions require exact source and product choices"
+  ],
+  "download_blocker": {
+    "url": "https://digitalcommons.usf.edu/cgi/viewcontent.cgi?article=6657&context=etd",
+    "method": "normal curl GET on authorized Mac",
+    "status": 403,
+    "workaround_attempted": false,
+    "needed": "User-provided accessible original PDF or journal Tables1-3; do not infer missing cells"
+  },
+  "next_action": "Visually verify complete journal Tables1-3 against thesis before adapter or DB import. Do not rerun broad discovery as substitute."
+}

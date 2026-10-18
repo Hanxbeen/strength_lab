@@ -200,7 +200,7 @@ def routines(experience:Optional[str]=Query(default=None,pattern='^(entry|founda
         from .programme_options import options
         from .programme_readiness import required_fields
         from .programme_access import extra_fields
-        current=catalog();result=[];unavailable=[]
+        current=catalog();result=[];all_rows=[];unavailable=[]
         counts=dict(entry=0,foundation=0,trained=0,experienced=0)
         for item in current['items']:
             source=item['definition'];decision=availability(source,internal_access(user))
@@ -209,7 +209,6 @@ def routines(experience:Optional[str]=Query(default=None,pattern='^(entry|founda
                 continue
             rows=options(item,True)
             counts[decision['experience_context']]+=len(rows)
-            if experience and experience!=decision['experience_context']:continue
             for row in rows:
                 row['access']=decision['access'];row['availability']=decision
                 row['definition']=source
@@ -221,8 +220,11 @@ def routines(experience:Optional[str]=Query(default=None,pattern='^(entry|founda
                     'preview_endpoint':'/v3/routines/preview',
                     'create_endpoint':'/v3/programme-instances',
                     'selection':{'source_id':item['source_id'],'source_version':item['version'],'arm':row['arm']}}
-                result.append(row)
+                all_rows.append(row)
+                if not experience or experience==decision['experience_context']:result.append(row)
+        from .routine_coverage import report
         return {'schema_version':'routine-selection-v1','routines':result,'unavailable_adaptations':unavailable,
+            'supply_audit':report(all_rows),
             'coverage':{level:{'state':'explicit_selection' if count else 'not_ready','option_count':count,
                 'reason':('TECHNIQUE_AND_FIRST_LOAD_PATH_INCOMPLETE' if level=='entry' else 'NO_RELEASED_CATALOGUE_DATA') if not count else None}
                 for level,count in counts.items()},

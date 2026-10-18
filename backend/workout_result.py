@@ -5,6 +5,10 @@ from research_engine.core import digest
 
 def project(record):
     execution = record['execution']
+    if execution.get('kind') == 'guided_education_not_training':
+        return {'schema_version':'entry-result-v1','workout_id':record['workout_id'],
+                **deepcopy(execution),'resume_available':execution['state']=='active',
+                'charts':None,'assessment':None}
     groups = {}
     references = {m['exercise_id']: m for m in execution.get('max_records', [])}
     for row in execution['sets']:
