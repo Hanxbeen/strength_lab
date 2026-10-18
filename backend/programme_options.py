@@ -22,7 +22,17 @@ def options(item, allowed):
         'definition_reference': 'definition',
         'personal_weights_kg': None,
     }
-    if engine == 'novice-sbd-choice-v1':
+    if engine == 'petrizzo-2018-v1':
+        specs = [('FOUR_LIFT', source['title'])]
+        context = '네 동작을 배웠고 시작 중량을 알고 있는 성인의 기초 바벨 훈련'
+        basis = 'source_structure_with_explicit_choices'
+        inputs = ['age', 'independent_sbd', 'independent_ohp', 'starting_loads_kg',
+                  'starting_load_origins', 'initial_loads_kg', 'rest_seconds',
+                  'between_exercise_rest_seconds', 'warmup', 'equipment_step_kg']
+        limits = ['원 연구는 지도자 감독과 초기 5회 중량 평가를 포함했어요.',
+                  '프레스와 데드리프트 배치 및 직접 중량 선택을 명시한 구성이에요.',
+                  '혼자 처음 배우는 사용자를 위한 자세 평가 기능은 제공하지 않아요.']
+    elif engine == 'novice-sbd-choice-v1':
         specs = [('SBD_2D_OMISSION', 'SBD 주 2회 · 직접 중량 선택')]
         context = '독립적으로 SBD를 수행하고 작업 중량을 고를 수 있는 성인의 초급 구성 검토용'
         basis = 'product_adaptation'
@@ -91,7 +101,7 @@ def options(item, allowed):
                      duration_weeks=duration, training_sessions=len(sessions), sessions=sessions)
         if engine == 'metd-2021-v1':
             value['arm_prescription'] = deepcopy(protocol['arms'][arm])
-        elif engine == 'novice-sbd-choice-v1':
+        elif engine in ('novice-sbd-choice-v1', 'petrizzo-2018-v1'):
             value['arm_prescription'] = {k: deepcopy(protocol[k]) for k in
                 ('working_sets', 'reps', 'automatic_load_adjustment', 'source_stop_rule', 'product_stop_rule')}
         result.append(value)

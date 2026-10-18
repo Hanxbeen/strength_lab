@@ -61,10 +61,13 @@ def evaluate(db,user,instance_id,request):
                 'conditions_basis':'user_self_report','status':status,'delta_kg':delta,
                 'change_percent':round(delta/base['weight_kg']*100,4) if delta is not None else None})
         all_rows=[r for result in results for r in result['sets']]
+        # A four-lift programme must not add OHP to the powerlifting total.
+        total_lifts = ([x for x in lifts if x['exercise_id'] != 'barbell_standing_shoulder_press']
+                       if source.get('adapter_version') == 'petrizzo-2018-v1' else lifts)
         payload={'id':request['id'],'instance_id':instance_id,'revision':latest[1]+1 if latest else 1,
             'supersedes_id':request.get('supersedes_id'),'at':request['at'],'outcome':request['outcome'],
             'programme_version':instance['programme_version'],'history_inputs':refs,'lifts':lifts,
-            'total_delta_kg':sum(x['delta_kg'] for x in lifts) if all(x['delta_kg'] is not None for x in lifts) else None,
+            'total_delta_kg':sum(x['delta_kg'] for x in total_lifts) if all(x['delta_kg'] is not None for x in total_lifts) else None,
             'training':{'planned_sessions':planned,'closed_sessions':len(results),
                 'completed_sessions':sum(x['state']=='completed' for x in results),
                 'stopped_sessions':sum(x['state']=='stopped' for x in results),

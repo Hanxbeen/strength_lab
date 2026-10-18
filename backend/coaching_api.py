@@ -19,7 +19,7 @@ def catalog():
     base=os.environ.get('SUPABASE_URL','').rstrip('/')
     key=os.environ.get('SUPABASE_PUBLISHABLE_KEY','')
     if not base.startswith('https://') or not key:raise CatalogUnavailable('Database not configured')
-    req=urllib.request.Request(base+'/rest/v1/rpc/coaching_programme_catalog_v3',data=b'{}',method='POST',
+    req=urllib.request.Request(base+'/rest/v1/rpc/coaching_programme_catalog_v4',data=b'{}',method='POST',
         headers={'apikey':key,'Content-Type':'application/json'})
     try:
         with urllib.request.urlopen(req,timeout=10) as response:result=json.load(response)
@@ -104,7 +104,7 @@ def create(request:InstanceInput,user=Depends(owner),db=Depends(store)):
         if source is None:raise InvalidProgramme('SOURCE_VERSION_UNAVAILABLE')
         require(source['status']=='research_preview','SOURCE_SUSPENDED')
         expected=set(exercises(source['definition']))
-        require(set(request.max_record_ids)<=expected if source['definition'].get('adapter_version')=='novice-sbd-choice-v1'
+        require(set(request.max_record_ids)<=expected if source['definition'].get('adapter_version') in ('novice-sbd-choice-v1','petrizzo-2018-v1')
                 else set(request.max_record_ids)==expected,'MAX_REFERENCES_REQUIRED')
         records=db.maxes(user);selected=[]
         for eid,rid in request.max_record_ids.items():
@@ -132,7 +132,7 @@ def start(instance_id:str,request:SessionInput,user=Depends(owner),db=Depends(st
     def action():
         value=coaching_store.instance(db,user,instance_id)
         history=coaching_store.history(db,user,instance_id)
-        novice=value['source'].get('adapter_version')=='novice-sbd-choice-v1'
+        novice=value['source'].get('adapter_version') in ('novice-sbd-choice-v1','petrizzo-2018-v1')
         require(not request.initial_rpe_loads_kg if novice else not request.initial_loads_kg,'UNEXPECTED_LOAD_INPUT')
         require(novice or not request.load_choices,'UNEXPECTED_LOAD_CHOICE')
         loads=request.initial_loads_kg if novice else request.initial_rpe_loads_kg

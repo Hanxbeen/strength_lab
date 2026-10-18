@@ -132,9 +132,11 @@ def session_inputs(instance, exercise_ids, history):
 
 
 def prepare(instance, week, day, at, history, initial_loads=None):
-    require(type(week) is int and type(day) is int and 1 <= week <= 12 and day in (1, 2), 'INVALID_SESSION')
+    protocol = instance['source']['protocol']
+    require(type(week) is int and type(day) is int and 1 <= week <= protocol['weeks']
+            and 1 <= day <= protocol['days_per_week'], 'INVALID_SESSION')
     require(timestamp(at) >= timestamp(instance['created_at']), 'BEFORE_INSTANCE')
-    target = instance['source']['protocol']['sessions'][(week - 1) * 2 + day - 1]
+    target = protocol['sessions'][(week - 1) * protocol['days_per_week'] + day - 1]
     setup = instance['setup']; loads = initial_loads or {}; step = setup['equipment_step_kg']
     require(set(loads) == set(target['exercises']), 'EXPLICIT_SESSION_LOADS_REQUIRED')
     rows = []

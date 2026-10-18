@@ -14,7 +14,10 @@ def required_fields(source,arm):
     setup=['mode','accept_scope_limits','rest_seconds','equipment_step_kg']
     if engine!='helms-2018-v1':setup+=['accept_adaptations','between_exercise_rest_seconds']
     if engine=='sbd-template-v1':setup+=['exercise_mapping']
-    if engine=='novice-sbd-choice-v1':setup+=['adaptation_id']
+    if engine in ('novice-sbd-choice-v1','petrizzo-2018-v1'):setup+=['adaptation_id']
+    if engine=='petrizzo-2018-v1':
+        profile+=['independent_ohp']
+        setup+=['starting_loads_kg','starting_load_origins']
     if engine=='metd-2021-v1':profile+=['training_years','powerlifting_years','rpe_training_years']
     if not (engine=='metd-2021-v1' and arm=='AMRAP'):setup+=['warmup']
     return [('profile',f) for f in profile]+[('setup',f) for f in setup]
@@ -23,12 +26,12 @@ def preview(source,request,records,internal_access):
     missing=[{'field':group+'.'+field,'action':'provide_input'} for group,field in required_fields(source,request['arm'])
              if request[group].get(field) is None]
     refs=request['max_record_ids'];chosen=[]
-    optional_maxes=source['adapter_version']=='novice-sbd-choice-v1'
+    optional_maxes=source['adapter_version'] in ('novice-sbd-choice-v1','petrizzo-2018-v1')
     expected=tuple(refs) if optional_maxes else exercises(source)
     for eid in expected:
         r=next((r for r in records if r['id']==refs.get(eid) and r['exercise_id']==eid),None)
         if r is None:missing.append({'field':'max_record_ids.'+eid,'action':
-            'register_or_select_max_reference' if source['adapter_version']=='novice-sbd-choice-v1' else 'register_or_select_measured_max'})
+            'register_or_select_max_reference' if source['adapter_version'] in ('novice-sbd-choice-v1','petrizzo-2018-v1') else 'register_or_select_measured_max'})
         else:chosen.append(r)
     code=None;status='needs_input' if missing else 'ready';instance=None
     if not missing:
@@ -38,7 +41,7 @@ def preview(source,request,records,internal_access):
             instance=make_instance(source,request['arm'],request['profile'],chosen,request['setup'],request['created_at'])
         except InvalidProgramme as error:
             code=str(error)
-            status='outside_supported_scope' if any(s in code for s in ('OUTSIDE_STUDY_SCOPE','EXPERIENCE_SCOPE','HEALTH_SCOPE','EXPERIENCED_ADULT')) else 'invalid_input'
+            status='outside_supported_scope' if any(s in code for s in ('OUTSIDE_STUDY_SCOPE','EXPERIENCE_SCOPE','HEALTH_SCOPE','EXPERIENCED_ADULT','FOUR_LIFT_INSTRUCTION_REQUIRED')) else 'invalid_input'
         except (ValueError,TypeError,KeyError,AttributeError):status='invalid_input';code='INVALID_INPUT'
     engine=source['adapter_version'];arm=request['arm']
     daily_loads=(engine=='helms-2018-v1' and arm=='RPEG') or (engine=='metd-2021-v1' and arm in ('MAX','MAX_BOFF'))
@@ -58,7 +61,7 @@ def preview(source,request,records,internal_access):
         'recommendation_status':'not_assessed','scientific_approval':False,
         'decision_basis':'existing_adapter_validation_not_clinical_or_effectiveness_assessment',
         'next_actions':actions,'schedule_policy':policy(source),
-        'session_start_inputs':['initial_loads_kg_for_session_exercises'] if engine=='novice-sbd-choice-v1' else
+        'session_start_inputs':['initial_loads_kg_for_session_exercises'] if engine in ('novice-sbd-choice-v1','petrizzo-2018-v1') else
                                ['initial_rpe_loads_kg_for_session_exercises'] if daily_loads else [],
         'adaptations':source.get('adaptations',[]) if instance is None else instance.get('adaptations',[]),
         'not_assessed':['individual_effectiveness','current_pain_or_readiness','equipment_availability','personal_calendar_fit','long_gap_reentry'],
@@ -77,8 +80,9 @@ def next_session(instance,history,evaluations,at):
     if len(history)>=len(schedule['sessions']):
         return {**result,'state':'awaiting_evaluation','next_actions':['evaluate_programme'],'next_session':None}
     target=schedule['sessions'][len(history)]
-    if instance['source'].get('adapter_version')=='novice-sbd-choice-v1':
-        from research_engine.novice import session_inputs
+    if instance['source'].get('adapter_version') in ('novice-sbd-choice-v1','petrizzo-2018-v1'):
+        from research_engine.programme_dispatch import adapter
+        session_inputs = adapter(instance['source']).session_inputs
         source_session=instance['source']['protocol']['sessions'][len(history)]
         result['session_inputs']=session_inputs(instance,source_session['exercises'],history)
     available=timestamp(instance['created_at'])

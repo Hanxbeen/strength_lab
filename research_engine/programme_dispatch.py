@@ -1,5 +1,5 @@
 """Finite version dispatch; no generated prescription rules."""
-from . import coaching,sbd,metd,novice
+from . import coaching,sbd,metd,novice,petrizzo
 from .workout import require
 from .core import digest
 from .programme_schedule import policy,selected
@@ -10,6 +10,7 @@ def adapter(source):
     if version==sbd.ENGINE:return sbd
     if version==metd.ENGINE:return metd
     if version==novice.ENGINE:return novice
+    if version==petrizzo.ENGINE:return petrizzo
     require(False,'UNSUPPORTED_SOURCE')
 
 def validate_source(source):return adapter(source).validate_source(source)
