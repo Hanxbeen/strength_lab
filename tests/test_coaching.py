@@ -99,7 +99,7 @@ class CoachingAPITests(unittest.TestCase):
                 require_internal_preview(self.user)
             self.assertEqual(error.exception.status_code,403)
         self.start()
-        with patch.dict('os.environ',COACHING_PREVIEW_OWNER_IDS=''):
+        with patch.dict('os.environ',COACHING_PREVIEW_OWNER_IDS=''), patch('backend.programme_access.RELEASES',{}):
             self.assertEqual(self.client.post('/v3/programme-instances/i1/workouts',json=self.request).status_code,200)
             request={**self.request,'day':2,'workout_id':'w2'}
             self.assertEqual(self.client.post('/v3/programme-instances/i1/workouts',json=request).status_code,403)

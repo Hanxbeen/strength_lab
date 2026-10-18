@@ -9,6 +9,10 @@ from pydantic import BaseModel, Field
 from .repository import CatalogUnavailable
 from .workout_api import owner, store, execute
 from . import coaching_store
+from .programme_access import availability, authorize, apply_to_readiness
+
+def internal_access(user):
+    return user in {x.strip() for x in os.environ.get('COACHING_PREVIEW_OWNER_IDS','').split(',') if x.strip()}
 from research_engine.programme_dispatch import validate_source, make_instance, prepare, exercises
 from research_engine.core import digest, InvalidProgramme
 from research_engine.workout import require
@@ -54,7 +58,9 @@ def readiness(request:ReadinessInput,user=Depends(owner),db=Depends(store)):
         if source is None:raise InvalidProgramme('SOURCE_VERSION_UNAVAILABLE')
         require(source['status']=='research_preview','SOURCE_SUSPENDED')
         allowed={x.strip() for x in os.environ.get('COACHING_PREVIEW_OWNER_IDS','').split(',') if x.strip()}
-        return preview(source['definition'],request.dict(),db.maxes(user),user in allowed)
+        definition=source['definition']
+        result=preview(definition,request.dict(),db.maxes(user),availability(definition,user in allowed)['can_request_start'])
+        return apply_to_readiness(result,definition,request.profile,user in allowed)
     return execute(action)
 
 @router.get('/programme-instances/{instance_id}/next-session')
@@ -92,17 +98,21 @@ def programmes(user=Depends(owner)):
         result = catalog()
         allowed = {x.strip() for x in os.environ.get('COACHING_PREVIEW_OWNER_IDS','').split(',') if x.strip()}
         for item in result['items']:
-            item['routine_options'] = options(item, user in allowed)
+            decision=availability(item['definition'],user in allowed)
+            item['routine_options'] = options(item, decision['can_request_start'])
+            for row in item['routine_options']:
+                row['access']=decision['access']
+                row['availability']=decision
         return result
     return execute(action)
 
 @router.post('/programme-instances')
 def create(request:InstanceInput,user=Depends(owner),db=Depends(store)):
-    require_internal_preview(user)
     def action():
         source=next((x for x in catalog()['items'] if x['source_id']==request.source_id and x['version']==request.source_version),None)
         if source is None:raise InvalidProgramme('SOURCE_VERSION_UNAVAILABLE')
         require(source['status']=='research_preview','SOURCE_SUSPENDED')
+        access_decision=authorize(source['definition'],request.profile,internal_access(user))
         expected=set(exercises(source['definition']))
         require(set(request.max_record_ids)<=expected if source['definition'].get('adapter_version') in ('novice-sbd-choice-v1','petrizzo-2018-v1')
                 else set(request.max_record_ids)==expected,'MAX_REFERENCES_REQUIRED')
@@ -111,6 +121,7 @@ def create(request:InstanceInput,user=Depends(owner),db=Depends(store)):
             record=next((r for r in records if r['id']==rid and r['exercise_id']==eid),None)
             require(record is not None,'MAX_RECORD_NOT_FOUND');selected.append(record)
         snapshot=make_instance(source['definition'],request.arm,request.profile,selected,request.setup,request.created_at)
+        snapshot['access_decision']=access_decision
         return {'instance_id':request.id,'instance':coaching_store.save_instance(db,user,request.id,snapshot)}
     return execute(action)
 
@@ -152,11 +163,12 @@ def start(instance_id:str,request:SessionInput,user=Depends(owner),db=Depends(st
             else:
                 require(not request.initial_rpe_loads_kg,'START_REQUEST_CONFLICT')
             return db.get(user,request.workout_id)
-        require_internal_preview(user)
         matching=next((x for x in catalog()['items'] if x['source_id']==value['source']['id']
                        and x['version']==digest(value['source'])),None)
         require(matching is not None and matching['status']=='research_preview','SOURCE_UNAVAILABLE_OR_SUSPENDED')
+        decision=authorize(value['source'],value['profile'],internal_access(user))
         snapshot=prepare(value,request.week,request.day,request.started_at,history,loads)
+        snapshot['access_decision']=decision
         if novice:
             from research_engine.novice import record_load_choices
             snapshot=record_load_choices(snapshot,request.load_choices,history)
@@ -175,3 +187,73 @@ class EvaluationInput(BaseModel):
 def evaluate(instance_id:str,request:EvaluationInput,user=Depends(owner),db=Depends(store)):
     from .programme_evaluation import evaluate as operation
     return execute(lambda:operation(db,user,instance_id,request.model_dump()))
+
+# User-facing catalogue and non-persisting first-session preview.
+class RoutinePreviewInput(ReadinessInput):
+    initial_loads_kg:dict[str,float]=Field(default_factory=dict)
+    initial_rpe_loads_kg:dict[str,float]=Field(default_factory=dict)
+
+@router.get('/routines')
+def routines(experience:Optional[str]=Query(default=None,pattern='^(entry|foundation|trained|experienced)$'),
+             user=Depends(owner)):
+    def action():
+        from .programme_options import options
+        from .programme_readiness import required_fields
+        from .programme_access import extra_fields
+        current=catalog();result=[];unavailable=[]
+        counts=dict(entry=0,foundation=0,trained=0,experienced=0)
+        for item in current['items']:
+            source=item['definition'];decision=availability(source,internal_access(user))
+            if not decision['public_selection'] or item['status']!='research_preview':
+                unavailable.append(dict(source_id=item['source_id'],reason=decision['reason'] or 'INTERNAL_ADAPTATION'))
+                continue
+            rows=options(item,True)
+            counts[decision['experience_context']]+=len(rows)
+            if experience and experience!=decision['experience_context']:continue
+            for row in rows:
+                row['access']=decision['access'];row['availability']=decision
+                row['definition']=source
+                row['input_contract']={
+                    'required_fields':[group+'.'+field for group,field in required_fields(source,row['arm'])]
+                                      +['profile.'+field for field in extra_fields(source)],
+                    'max_record_ids_required':source['adapter_version'] not in ('novice-sbd-choice-v1','petrizzo-2018-v1'),
+                    'max_record_exercise_ids':list(exercises(source)),
+                    'preview_endpoint':'/v3/routines/preview',
+                    'create_endpoint':'/v3/programme-instances',
+                    'selection':{'source_id':item['source_id'],'source_version':item['version'],'arm':row['arm']}}
+                result.append(row)
+        return {'schema_version':'routine-selection-v1','routines':result,'unavailable_adaptations':unavailable,
+            'coverage':{level:{'state':'explicit_selection' if count else 'not_ready','option_count':count,
+                'reason':('TECHNIQUE_AND_FIRST_LOAD_PATH_INCOMPLETE' if level=='entry' else 'NO_RELEASED_CATALOGUE_DATA') if not count else None}
+                for level,count in counts.items()},
+            'recommendation_status':'not_assessed','scientific_approval':False}
+    return execute(action)
+
+@router.post('/routines/preview')
+def routine_preview(request:RoutinePreviewInput,user=Depends(owner),db=Depends(store)):
+    def action():
+        from .programme_readiness import preview
+        item=next((x for x in catalog()['items'] if x['source_id']==request.source_id
+                   and x['version']==request.source_version),None)
+        require(item is not None and item['status']=='research_preview','SOURCE_VERSION_UNAVAILABLE')
+        source=item['definition'];records=db.maxes(user);internal=internal_access(user)
+        result=apply_to_readiness(preview(source,request.model_dump(),records,
+            availability(source,internal)['can_request_start']),source,request.profile,internal)
+        result.update(persisted=False,session_preview=None,session_status='blocked',session_blocking_code=None)
+        if not result['can_create_instance']:return result
+        selected=[r for r in records if request.max_record_ids.get(r['exercise_id'])==r['id']]
+        instance=make_instance(source,request.arm,request.profile,selected,request.setup,request.created_at)
+        manual=source['adapter_version'] in ('novice-sbd-choice-v1','petrizzo-2018-v1')
+        require(not request.initial_rpe_loads_kg if manual else not request.initial_loads_kg,'UNEXPECTED_LOAD_INPUT')
+        loads=request.initial_loads_kg if manual else request.initial_rpe_loads_kg
+        try:
+            snapshot=prepare(instance,1,1,request.created_at,[],loads)
+        except InvalidProgramme as error:
+            result.update(session_status='needs_session_input',session_blocking_code=str(error))
+            return result
+        result.update(session_status='ready',session_preview=snapshot,
+            start_request={'week':1,'day':1,'started_at':request.created_at,
+                'initial_loads_kg':request.initial_loads_kg,'initial_rpe_loads_kg':request.initial_rpe_loads_kg},
+            revalidation_required_at_start=True)
+        return result
+    return execute(action)

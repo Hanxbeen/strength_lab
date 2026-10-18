@@ -6,7 +6,8 @@
 - [현재 상태와 작업 기준](docs/CURRENT.md) — 세션을 이어갈 때의 단일 진입점
 - [서비스 원칙](docs/coaching-specs/SERVICE_PRINCIPLES.md)
 - [현재 실행 인수 계획](docs/coaching-specs/20_RUNTIME_DELIVERY_PLAN.md)
-- [최신 루틴 공급 결정](docs/coaching-specs/21_FOUR_LIFT_DELIVERY.md)
+- [최신 루틴 선택 API·공급 범위](docs/coaching-specs/22_EXPLICIT_SELECTION_RELEASE.md)
+- [네 종목 원 정의](docs/coaching-specs/21_FOUR_LIFT_DELIVERY.md)
 - [iOS 개발](apps/ios/README.md)
 
 연구 미리보기는 과학적 승인이나 사용자 공개 처방이 아니다.

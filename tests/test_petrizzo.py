@@ -95,7 +95,7 @@ class PetrizzoTests(unittest.TestCase):
                             self.assertEqual(response.status_code,200,response.text)
                             return response.json()
                         request=dict(self.request(),id='four')
-                        with patch.dict(os.environ,COACHING_PREVIEW_OWNER_IDS=''):
+                        with patch.dict(os.environ,COACHING_PREVIEW_OWNER_IDS=''), patch('backend.programme_access.RELEASES',{}):
                             self.assertEqual(client.post('/v3/programme-instances',json=request).status_code,403)
                         post('/v3/programme-instances',request);base='/v3/programme-instances/four'
                         for session in self.source['protocol']['sessions']:
