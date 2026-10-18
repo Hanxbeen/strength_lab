@@ -82,7 +82,7 @@
     "method": "normal curl GET on authorized Mac",
     "status": 403,
     "workaround_attempted": false,
-    "needed": "User-provided accessible original PDF or journal Tables1-3; do not infer missing cells"
+    "needed": "Optional public full tables for this candidate only; user upload is not required and does not block supply work"
   },
-  "next_action": "Visually verify complete journal Tables1-3 against thesis before adapter or DB import. Do not rerun broad discovery as substitute."
+  "next_action": "Superseded by user direction: pursue public alternatives and existing complete supplementary data; see 24_PUBLIC_SOURCE_REPLACEMENT.md. Preserve this partial review without waiting for paid access."
 }

@@ -41,7 +41,7 @@ supply_complete=false는 현재 검토 결론이며 테스트 통과로 자동 t
 휴식 시간과 주차 표기 차이를 확인했으며 전체 보조 운동/세션 표는 미검증이다.
 원 PDF 직접 다운로드는 HTTP403. 권한 우회 없음.
 data/research/coaching/reviews/colquhoun2017-retrieval-20261018.json 참조.
-필요 입력: 접근 가능한 원 PDF 또는 저널 Tables1-3 원본. 추정 수치로 채우지 않는다.
+2026-10-18 사용자 지시로 원 PDF/표 업로드 대기는 폐기. 공개 대체 자료 검토는 24_PUBLIC_SOURCE_REPLACEMENT.md를 따른다. 이 후보는 공급 선행조건이 아니며 미확인 수치를 추정으로 채우지 않는다.
 
 ## 아직 완료가 아닌 다섯 항목
 1. 독립 입문자의 시연·장비·첫 바벨 부하 경로.

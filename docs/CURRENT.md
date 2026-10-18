@@ -67,7 +67,7 @@ DB 활성 내부 정의6개 / 선택안9개 / 중지된 과거 버전1개.
 최신 검토/구현: [23_ENTRY_PRACTICE_AND_SUPPLY_GAPS.md](coaching-specs/23_ENTRY_PRACTICE_AND_SUPPLY_GAPS.md).
 - 입문 지도자 동반 학습3종 시작·기록·휴식·중단 API 추가. 독립 입문/첫 바벨 부하 미완료. 교육 정의는 서버 코드이며 DB 훈련 루틴 수에 포함하지 않는다.
 - /v3/routines.supply_audit에서 선택안/연구군/SBD포함/공백을 분리. 전체 완료 false.
-- Colquhoun 저널·학위논문 진행표 일부 재확인. 전체 처방표 시각 검증 필요. 원 PDF 다운로드 HTTP403으로 중지; 원 PDF 또는 Tables1-3 필요.
+- 공개 자료 대체 검토: [24_PUBLIC_SOURCE_REPLACEMENT.md](coaching-specs/24_PUBLIC_SOURCE_REPLACEMENT.md). 유료 Colquhoun 원문/사용자 업로드 대기는 폐기. Vargas 두 arm48회차 추출 저장, 부하/표/대상자 충돌 미해결로 공개 추가0개. 기존 PER 공개 보충자료 매핑 검토와 입문 근거 종합을 우선한다.
 - 최종 전체255개 통과, 건너뜀 없음. 새 교육 흐름은 로컬 검증이며 운영 사용자 쓰기 없음.
 - 다음 우선순위: 독립 입문 경로 → 초급 실제 다양성 → 중급 SBD 원표 검증/데이터화 → 숙련 목적 범위. 아래 배포는 이 공급 작업을 대신하지 않는다.
 
