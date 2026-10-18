@@ -1,6 +1,7 @@
 {
   "schema_version": "novice-source-screen-v1",
   "review_date": "2026-10-16",
+  "record_scope": "Historical evidence extraction. Adoption/next-decision fields are not current instructions; docs/CURRENT.md and 21_FOUR_LIFT_DELIVERY.md supersede them.",
   "status": "reviewed_source_facts_not_runtime_programme",
   "executable": false,
   "scientific_approval": false,
@@ -64,7 +65,7 @@
     "derive_petrizzo_start_from_1rm_percentage": "rejected_as_unreported",
     "derive_fixed_increment_from_completer_regression": "rejected_as_unvalidated",
     "use_first_set_completion_to_increase_next_session": "rejected; all assigned sets and reps are the reported condition",
-    "no_ohp_product_scope": "preserved; original OHP remains in evidence only",
+    "no_ohp_product_scope": "superseded_2026-10-18; no blanket OHP exclusion; see docs/coaching-specs/21_FOUR_LIFT_DELIVERY.md",
     "source_supported_choices": ["Petrizzo training frequency of 2 or 3 nonconsecutive days", "Petrizzo participant-chosen progression increment and rest"],
     "remaining_product_decisions": ["SBD-only weekly workload after removal of OHP", "Starting-load selection without supervised 5RM assessment", "Eligibility for user-confirmed progression after actual load changes", "Incomplete work and long-absence reentry"],
     "automatic_sbd_prescription": false
