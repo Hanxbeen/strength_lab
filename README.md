@@ -12,6 +12,7 @@
 - [PER 원종목·수식 기반 추가 공급](docs/coaching-specs/26_PER_SOURCE_LABEL_RELEASE.md)
 - [네 종목 원 정의](docs/coaching-specs/21_FOUR_LIFT_DELIVERY.md)
 - [iOS API 연결·설치 차단](docs/coaching-specs/28_IOS_RUNTIME_CONNECTION.md)
+- [API 구현·와이어프레임 인수](docs/coaching-specs/29_API_IMPLEMENTATION_HANDOFF.md)
 - [iOS 개발](apps/ios/README.md)
 
 연구 미리보기는 과학적 승인이나 사용자 공개 처방이 아니다.

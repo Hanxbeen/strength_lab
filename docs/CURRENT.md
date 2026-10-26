@@ -1,4 +1,4 @@
-# 현재 상태 — 2026-10-26
+# 현재 상태 — 2026-10-27
 이 문서가 세션 재개 기준이다. 실제 DB 공급, 로컬 API 검증, 운영 배포를 구분한다.
 브랜치 codex/ux-foundations-v2 / GitHub Hanxbeen/strength_lab.
 
@@ -6,6 +6,7 @@
 - 목적: SBD 중량 향상에 필요한 근거·훈련·수행 기록·다음 선택을 연결한다.
 - 숙련도별 실제 선택/시작 가능한 데이터 공급이 최우선이다. UI 재설계, 회복/AI/과금 확장이 공급을 대신하지 않는다.
 - 로그인 유지. 운영 인증/권한을 테스트 대역으로 대체해 완료라고 보고하지 않는다.
+- 2026-10-26 사용자 확정: Supabase 인증·DB + 기존 Python API 유지. Vercel 필수 아님. API 구현 정리 후 와이어프레임 설계.
 - OHP/보조 운동 일괄 제외는 폐기했다. 원 연구의 종목과 역할을 보존하고 변경은 제품 결정으로 명시한다.
 - 입문(자세/첫 부하 모름)과 초급(독립 수행/알려진 작업 중량)을 구분한다. 릴라 레벨/1RM 크기만으로 분류하지 않는다.
 - 연구 조건 / 제품 규칙 / 사용자 자기보고 / 실제 수행을 분리한다. 수행률을 성장 효과로 바꾸지 않는다.
@@ -38,7 +39,7 @@
 - 입문 중량을 사용할 때 같은 소유자의 완료 원기록·event_id·중량·시각 검증. 1RM/자세 인증/자동 해금 없음.
 - 공개10안 실제 HTTPS DB 조회 → 로컬 API 미리보기/생성/시작/감량/반복변경/중단/재조회/다음 회차 검증 통과.
 - 입문 통증/불확실/누락/중복/권한/원기록 불일치/1시간 무활동 검사 통과.
-- 전체 Python277개 통과,57.929초,건너뜀0.
+- 전체 Python287개 통과,57.604초,건너뜀0(2026-10-26 API 보완 포함).
 - 근거: data/research/coaching/reviews/all-level-live-api-verification.json.
 - 이 검증은 인증 대역+임시 SQLite다. 실제 JWT/서버 Postgres/iPhone 사용자 검증과 구분한다.
 - 보안 advisor 기존 private 연구 테이블 RLS 정책 없음 INFO2건만 유지, 신규 경고 없음.
@@ -72,7 +73,7 @@
 - 데이터 SQL: python -m scripts.export_per_source_sql (허용 해시만 출력). 기존행 덮어쓰기 없음.
 - 전체 검사: python -m scripts.verify_tests. 원문 캐시 필요; 건너뜀은 실패.
 - 실제 카탈로그: 정상 SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY 설정 후 python -m scripts.verify_live_routine_selection.
-- 서버 WORKOUT_POSTGRES_DSN은 비밀 설정, TLS verify-full. Vercel 미설정 시503 유지. SQLite fallback을 운영 성공으로 취급하지 않는다.
+- 서버 WORKOUT_POSTGRES_DSN은 비밀 설정, TLS verify-full. staging/production 또는 Vercel에서 DSN 미설정 시503 유지. SQLite fallback을 운영 성공으로 취급하지 않는다.
 - execution_private 원장5테이블·소유자RLS는 기존 구현. 운영 재검증은 별도다.
 - iOS 빌드/검증은 위 최신 항목을 따른다. 무서명 빌드 성공을 실기기 설치 성공으로 표현하지 않는다.
 - 데스크톱 원격 연결 인증서 오류는 NODE_USE_SYSTEM_CA=1 실행으로 연결된 상태다. TLS 검증을 끄지 않는다.
@@ -87,3 +88,13 @@
 - 변경 후 무서명 iphoneos Debug 빌드 성공, Swift16개 프로그램 통과, Python277개60.160초 통과.
 - 위 검증은 실제 로그인/서버 Postgres/시뮬레이터 조작/아이폰 검증이 아니다.
 - 사용자 확인: iOS 앱에 Vercel 자체는 필수 아님. Python 실행 위치 선택과 앱 배포를 분리. 운영 배포는 실기기 테스트 이후 원칙 유지.
+
+## API 인수 상태 — 2026-10-27
+- 최신 계약/실행법: coaching-specs/29_API_IMPLEMENTATION_HANDOFF.md.
+- /v3/runtime-readiness: 인증·전체 숙련도 공급·원장5테이블 읽기 확인. 쓰기/사용자 효과/화면 검증 완료를 뜻하지 않음.
+- scripts.serve_api: Supabase Auth·Postgres 필수, 호스팅 독립 실행. scripts.verify_runtime_connection: 실제 토큰 읽기 검증, 인증 대역 없음.
+- 인증 응답 오류와 토큰 만료/제공자 장애 구분. 운영환경 SQLite 대체 금지를 Vercel 외 호스트에도 적용.
+- 실제 HTTPS 카탈로그 재검증: 초급3/중급3/숙련4, 입문학습1. 공개10안 로컬 생명주기 통과. 인증 대역+임시SQLite라는 한계 유지.
+- 실행환경 재확인: 현재 Mac 프로세스에 WORKOUT_POSTGRES_DSN, MUGEMUGE_TEST_ACCESS_TOKEN, MUGEMUGE_API_URL 없음.
+- 공급 및 주요 운동 API 코드/로컬 계약은 준비. 실계정 Postgres 저장·2계정 격리·동시성·앱실행 인수는 미완료.
+- 와이어프레임에는 이미 구현된 성공/입력부족/조건거절/연결실패/충돌/중단 상태를 반영. 이번 작업에서 새 화면 설계를 시작하지 않음.

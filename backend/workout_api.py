@@ -25,7 +25,10 @@ def owner(authorization: str = Header(default='')):
     request = urllib.request.Request(base + '/auth/v1/user', headers={'apikey': key, 'Authorization': authorization})
     try:
         with urllib.request.urlopen(request, timeout=10) as response:
-            return str(UUID(json.loads(response.read())['id']))
+            value = json.loads(response.read())
+            if not isinstance(value, dict) or not isinstance(value.get('id'), str):
+                raise ValueError('Invalid authentication response')
+            return str(UUID(value['id']))
     except urllib.error.HTTPError as error:
         raise HTTPException(401 if error.code in (401,403) else 503, detail='로그인 상태를 확인하지 못했어요.')
     except (urllib.error.URLError, TimeoutError, ValueError, KeyError):
@@ -36,7 +39,7 @@ def store(user=Depends(owner)):
     if dsn:
         from .postgres_store import PostgresWorkoutStore
         return PostgresWorkoutStore(dsn,user,os.environ.get('WORKOUT_DB_SSLROOTCERT','system'))
-    if os.environ.get('VERCEL'):
+    if os.environ.get('VERCEL') or os.environ.get('MUGEMUGE_ENV', '').lower() in ('production', 'staging'):
         raise HTTPException(503, detail='운영 운동 기록 저장소가 설정되지 않았어요.')
     path = os.environ.get('WORKOUT_DATABASE_PATH')
     if not path or not os.path.isabs(path): raise HTTPException(503, detail='운동 기록 저장소가 설정되지 않았어요.')

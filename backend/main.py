@@ -66,3 +66,6 @@ from .entry_api import router as entry_router
 app.include_router(entry_router)
 from .entry_learning_api import router as entry_learning_router
 app.include_router(entry_learning_router)
+
+from .runtime_api import router as runtime_router
+app.include_router(runtime_router)
