@@ -25,11 +25,11 @@ struct ApprovedHomeView: View {
     @State private var showIntroduction = false
     var body: some View {
         TabView {
-            NavigationStack { TrainingHome() }
+            NavigationStack { ServerTrainingHome() }
                 .tabItem { Label("홈", image: "lucide-house") }
-            NavigationStack { RoutineLibrary() }
+            NavigationStack { ServerRoutineLibrary() }
                 .tabItem { Label("루틴", image: "lucide-dumbbell") }
-            NavigationStack { TrainingHistory() }
+            NavigationStack { ServerRoutineLibrary() }
                 .tabItem { Label("기록", image: "lucide-chart-no-axes-column-increasing") }
         }
         .tint(MugeStyle.tint)
@@ -110,7 +110,7 @@ private struct TrainingHome: View {
                     }
                 }
                 if workouts.active == nil {
-                    NavigationLink { RoutineLibrary() } label: {
+                    NavigationLink { ServerRoutineLibrary() } label: {
                         MugeCard {
                             MugeNavigationLabel(title: "오늘 할 운동 찾기", icon: "dumbbell")
                         }
@@ -126,15 +126,13 @@ private struct TrainingHome: View {
                         }
                     }.buttonStyle(.plain)
                 }
-                if let demo = catalog.demo.first {
-                    NavigationLink { RoutineOverview(item: demo) } label: {
-                        MugeCard {
-                            MugeNavigationLabel(title: "운동이 처음이라면", icon: "dumbbell")
-                            Text("기록 연습 · 논문 루틴 아님")
-                                .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
-                        }
-                    }.buttonStyle(.plain)
-                }
+                NavigationLink { ServerRoutineLibrary() } label: {
+                    MugeCard {
+                        MugeNavigationLabel(title: "내 루틴 · 서버 운동 기록", icon: "dumbbell")
+                        Text("입문 학습부터 숙련 루틴까지 확인해요.")
+                            .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                    }
+                }.buttonStyle(.plain)
                 if !helpDismissed {
                     MugeCard {
                         HStack {
@@ -653,4 +651,41 @@ private struct TrainingIntroduction: View {
         }.interactiveDismissDisabled()
     }
     private func close() { completed = true; dismiss() }
+}
+
+
+private struct ServerTrainingHome:View {
+    @EnvironmentObject private var auth:CloudAuth
+    var body:some View {
+        ScrollView {
+            VStack(alignment:.leading,spacing:MugeStyle.Space.section) {
+                Text("오늘의 운동").font(MugeStyle.TypeStyle.hero)
+                MugeCard {
+                    Text("내 경험에 맞는 루틴부터").font(MugeStyle.TypeStyle.section)
+                    Text("처음이라면 동작 학습부터, 익숙하다면 훈련 구성을 확인해요.")
+                        .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                    NavigationLink { ServerRoutineLibrary() } label: { Text("루틴과 내 운동 보기") }
+                        .buttonStyle(MugePrimaryButtonStyle())
+                }
+                MugeCard {
+                    NavigationLink { ServerMaxRegistration() } label: {
+                        MugeNavigationLabel(title:"최대 중량 등록",icon:"dumbbell")
+                    }
+                    Text("알고 있는 기록만 등록해요. 입문 학습에는 필요하지 않아요.")
+                        .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                }
+                MugeCard {
+                    NavigationLink { CloudAccountView() } label: {
+                        MugeNavigationLabel(title:auth.userID == nil ? "로그인":"내 계정")
+                    }
+                    NavigationLink { TrainingHistory() } label: {
+                        MugeNavigationLabel(title:"이전 기기 운동 기록")
+                    }
+                }
+            }.padding(MugeStyle.Space.page)
+        }.background(MugeStyle.canvas).navigationTitle("무게무게")
+            .toolbar { ToolbarItem(placement:.topBarTrailing) {
+                NavigationLink { TrainingSettings() } label: { MugeIcon(name:"settings") }
+            }}
+    }
 }

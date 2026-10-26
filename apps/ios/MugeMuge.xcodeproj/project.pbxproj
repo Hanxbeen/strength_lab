@@ -10,6 +10,8 @@
 		04C05F88D64036C356C23EEE /* WorkoutReasonSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF326C29AE2BBCD362E24EE /* WorkoutReasonSheet.swift */; };
 		0B23ACBA556F234DE0144654 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50C3D9EBFC46A557B4E3556 /* Models.swift */; };
 		0CAA66D77327DCE1174514FA /* RecordMaintenanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD2E482B99A47AD79C7155F /* RecordMaintenanceView.swift */; };
+		0E13190E6B5ADE27C8FEB1DB /* RoutineAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6655D5F08371955A09F9A9 /* RoutineAPI.swift */; };
+		1B8BED1F64FEC0675442C01F /* ServerEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA980038A2801C39ED91A912 /* ServerEntryView.swift */; };
 		1FB75BAFC37ACD416C5858E6 /* MugeMascot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7982630AB09572CCC9E04F6A /* MugeMascot.swift */; };
 		2E77BC668202584B256799ED /* TrainingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19401CE421EA9BB3C3247D7E /* TrainingState.swift */; };
 		33623D38E614D9AD85752167 /* CloudMerge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1500B8521141D46032C62 /* CloudMerge.swift */; };
@@ -31,6 +33,8 @@
 		C823FC79C3514EF02C0448C7 /* lila.riv in Resources */ = {isa = PBXBuildFile; fileRef = 0B0BD92E7F331AC2FB098A97 /* lila.riv */; };
 		C853A510FAB500B0654518F2 /* LilaStudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA53A123DA4073A23074D2B /* LilaStudioView.swift */; };
 		CF91AB864F6CDAB7B681CD92 /* GuidedWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A7ECE819FBCF711F3CA8E4 /* GuidedWorkoutView.swift */; };
+		E4876F17F3DD44F63331A472 /* ServerRoutineViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31487C4738836B1DB9474480 /* ServerRoutineViews.swift */; };
+		E84C91AEF1710235FC2E2866 /* ServerWorkoutViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F251AB18F050325ACD46D /* ServerWorkoutViews.swift */; };
 		ECC05F5E541E83F5FCA90EBF /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 60E8E264E18D28532039C109 /* RiveRuntime */; };
 		FA90F1448175EB9D4AB9F72C /* LilaRiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5195BA454957DEBAF2686CAF /* LilaRiveView.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +53,8 @@
 		07375A476AB1E5577D26D23C /* CloudAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAuth.swift; sourceTree = "<group>"; };
 		0B0BD92E7F331AC2FB098A97 /* lila.riv */ = {isa = PBXFileReference; path = lila.riv; sourceTree = "<group>"; };
 		19401CE421EA9BB3C3247D7E /* TrainingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingState.swift; sourceTree = "<group>"; };
+		1F6F251AB18F050325ACD46D /* ServerWorkoutViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerWorkoutViews.swift; sourceTree = "<group>"; };
+		31487C4738836B1DB9474480 /* ServerRoutineViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerRoutineViews.swift; sourceTree = "<group>"; };
 		3AD2E482B99A47AD79C7155F /* RecordMaintenanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMaintenanceView.swift; sourceTree = "<group>"; };
 		5195BA454957DEBAF2686CAF /* LilaRiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilaRiveView.swift; sourceTree = "<group>"; };
 		51E9F0A3257FF80C10101CDD /* ApprovedHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedHomeView.swift; sourceTree = "<group>"; };
@@ -66,12 +72,14 @@
 		A2A7ECE819FBCF711F3CA8E4 /* GuidedWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedWorkoutView.swift; sourceTree = "<group>"; };
 		C50C3D9EBFC46A557B4E3556 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		CDCF347449ABE0A62C0B2E63 /* BrandUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandUI.swift; sourceTree = "<group>"; };
+		CE6655D5F08371955A09F9A9 /* RoutineAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineAPI.swift; sourceTree = "<group>"; };
 		D22E921D81DFFD49ED96A27D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D572A0A487D87B6E13722EBB /* demo-catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "demo-catalog.json"; sourceTree = "<group>"; };
 		D6DAE7A055551BEC23579F96 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		D86AAC36109BD955C8A0A463 /* MugeMuge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MugeMuge.entitlements; sourceTree = "<group>"; };
 		E3A254024E9A0EDAC4CE8EDA /* MugeMuge.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MugeMuge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA16D5385563895CF99ED96B /* CloudThreeWayMerge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudThreeWayMerge.swift; sourceTree = "<group>"; };
+		EA980038A2801C39ED91A912 /* ServerEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerEntryView.swift; sourceTree = "<group>"; };
 		ED6DC524ED31912C1513BC54 /* CloudTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudTransport.swift; sourceTree = "<group>"; };
 		FAD1500B8521141D46032C62 /* CloudMerge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudMerge.swift; sourceTree = "<group>"; };
 		FBA53A123DA4073A23074D2B /* LilaStudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilaStudioView.swift; sourceTree = "<group>"; };
@@ -137,6 +145,10 @@
 				583DA68DA456AA82C0E33974 /* MugeMugeApp.swift */,
 				604C1EA0AECEB9A6B8CB3594 /* MugeMugeDevelopment.entitlements */,
 				3AD2E482B99A47AD79C7155F /* RecordMaintenanceView.swift */,
+				CE6655D5F08371955A09F9A9 /* RoutineAPI.swift */,
+				EA980038A2801C39ED91A912 /* ServerEntryView.swift */,
+				31487C4738836B1DB9474480 /* ServerRoutineViews.swift */,
+				1F6F251AB18F050325ACD46D /* ServerWorkoutViews.swift */,
 				D6DAE7A055551BEC23579F96 /* Services.swift */,
 				6F7587D144FA81489AC657AF /* StrengthMetrics.swift */,
 				582D5B32629D0B570FD5A8F1 /* StrengthSetupView.swift */,
@@ -290,6 +302,10 @@
 				1FB75BAFC37ACD416C5858E6 /* MugeMascot.swift in Sources */,
 				AAE69B3A60EC25C845B53DCF /* MugeMugeApp.swift in Sources */,
 				0CAA66D77327DCE1174514FA /* RecordMaintenanceView.swift in Sources */,
+				0E13190E6B5ADE27C8FEB1DB /* RoutineAPI.swift in Sources */,
+				1B8BED1F64FEC0675442C01F /* ServerEntryView.swift in Sources */,
+				E4876F17F3DD44F63331A472 /* ServerRoutineViews.swift in Sources */,
+				E84C91AEF1710235FC2E2866 /* ServerWorkoutViews.swift in Sources */,
 				8FDFB5B3F32E1239CC65E045 /* Services.swift in Sources */,
 				A3C16BF9E09A3C02DE8E17A4 /* StrengthMetrics.swift in Sources */,
 				470D61ACD79D26128639B537 /* StrengthSetupView.swift in Sources */,
@@ -320,6 +336,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "무게무게";
+				INFOPLIST_KEY_MugeMugeAPIURL = "$(MUGEMUGE_API_URL)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -401,12 +418,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGNING_ALLOWED = YES;
-				CODE_SIGN_ENTITLEMENTS = MugeMuge/MugeMugeDevelopment.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MugeMuge/MugeMuge.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C7C4WB633C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "무게무게";
+				INFOPLIST_KEY_MugeMugeAPIURL = "$(MUGEMUGE_API_URL)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (

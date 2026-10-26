@@ -28,7 +28,8 @@ targets:
         CODE_SIGNING_ALLOWED: YES
         CODE_SIGN_STYLE: Automatic
         INFOPLIST_KEY_CFBundleDisplayName: "무게무게"
-        CODE_SIGN_ENTITLEMENTS: MugeMuge/MugeMugeDevelopment.entitlements
+        INFOPLIST_KEY_MugeMugeAPIURL: "$(MUGEMUGE_API_URL)"
+        CODE_SIGN_ENTITLEMENTS: MugeMuge/MugeMuge.entitlements
       configs:
         Debug:
           DEVELOPMENT_TEAM: C7C4WB633C

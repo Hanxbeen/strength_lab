@@ -1,6 +1,6 @@
 # 무게무게 iOS
 현재 상태는 [CURRENT](../../docs/CURRENT.md)를 먼저 읽는다.
-활성 화면은 ApprovedHomeView → GuidedWorkoutView다. 삭제된 HomeView는 사용하지 않는다.
+활성 화면은 ApprovedHomeView → ServerRoutineLibrary → ServerProgrammeView/ServerWorkoutView다. 이전 기기 원장은 별도 접근으로 유지한다.
 
 ## 빌드
 Xcode와 XcodeGen이 필요하다.
@@ -22,9 +22,10 @@ DEBUG 테스트 실행은 MUGEMUGE_UI_TEST_FILE=ui-test-<고유값>.json으로 �
 - 0회 수행과 사유 미응답을 허용한다. 자기보고는 실패 원인 진단이 아니다.
 - 정정은 직전 응답 ID를 참조하며 과거 응답을 유지한다.
 - 백업은 JSON 수동 내보내기/복원이다. 복원은 현재 계정 기록을 교체하므로 확인이 필요하다.
-- 기존 카탈로그 RPC와 번들 체험 루틴을 사용한다. 번들 체험은 연구 승인 루틴이 아니다.
-- Python v3 실행 API와 iOS 기록은 아직 연결되지 않았다.
-- API 주소 설정은 MugeMugeAPIURL이다. 서버 설정만으로 v3 연결이 완료되지는 않는다.
+- 신규 루틴/입문/운동 기록은 Python v3/v2 API를 사용한다. 이전 기기 원장과 자동 병합하지 않는다.
+- 클라이언트 연결 코드는 구현했으나 실계정 서버와 실기기 통합 검증은 아직이다.
+- HTTPS 테스트 API를 MUGEMUGE_API_URL 빌드 설정으로 지정하면 MugeMugeAPIURL에 반영된다. 기본 주소 없음.
+- Debug에도 Apple Sign In 권한이 필요하다. 서명 프로파일/개발 계정을 설정해야 설치할 수 있다.
 - 디자인 값은 design-tokens/tokens.json 및 생성된 BrandUI.swift를 따른다.
 
 ## 검증

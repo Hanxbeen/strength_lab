@@ -45,12 +45,24 @@
 - supply_audit.all_levels_data_ready는 최소 MVP 데이터 준비; all_levels_complete/client_execution_verified는 여전히 false.
 - main 병합, 운영 배포, 아이폰 설치는 아직 하지 않았다.
 
-## 다음 작업 — 데이터 재수집부터 반복하지 않는다
-1. iOS가 새 /v3/routines 및 입문 학습 API를 실제 소비하도록 연결 상태를 확인한다.
-2. 실계정 인증/소유자 원장과 테스트 서버를 연결해 아이폰 설치 전 통합 검증한다.
-3. 아이폰 설치 및 선택→입력→운동→변경/휴식/중단→결과→다음 선택을 검사한다. 외부 시연 링크도 실제 재생 확인한다.
-4. 사용자 확인 후 운영 배포. 사용자 최신 순서는 데이터 준비→아이폰 테스트→운영 배포이며 뒤집지 않는다.
-5. 자기보고 자세/중량의 한계, 연구군 다양성, 제품 구성의 효과 미검증을 유지한다. 새 연구 자동 공개 금지.
+## iOS 연결 구현 — 2026-10-26
+- 홈/루틴/기록을 새 서버 경로로 연결. 이전 기기 기록은 별도 접근으로 보존.
+- 숙련도별 목록, 적용 조건/1RM 입력, 서버 미리보기→선택→회차 시작 구현.
+- 세트 중량/횟수/RPE, 사유, 휴식, 중단, 결과 차트, 다음 회차, 루틴 마무리 API 소비.
+- 입문 학습/첫 중량 관찰 및 기존 학습 기록 API 소비.
+- 계정별 원자적 outbox에 미확인 요청 ID/리비전 보존. 인증 우회/자동 재전송 없음.
+- kg/lb 입력 환산 및 결과 표시. 기존 BrandUI 토큰 사용.
+- 무서명 iphoneos Debug 빌드 성공, Swift 검증16개 프로그램 통과.
+- 실계정 실행과 실기기 UI 검증은 아직 아님. 상세: coaching-specs/28_IOS_RUNTIME_CONNECTION.md.
+
+## 현재 설치 차단과 다음 작업
+1. devicectl에서 아이폰2대 모두 unavailable. USB 연결·잠금 해제·기기 신뢰 필요.
+2. 서명 프로파일 없음. 자동 provisioning 재시도도 Xcode No Accounts. Apple 개발 계정 설정 필요.
+3. 앱의 HTTPS 테스트 API 주소 미설정. MUGEMUGE_API_URL 빌드 설정으로 v2/v3 테스트 서버를 지정해야 함.
+4. 위 조건 해소 후 실계정/서버 저장→아이폰 설치/사용자 흐름 확인. 운영 배포는 이후.
+5. 입문 후보 원기록 선택 UI와 사후 최대중량 비교 조건 UI는 아직 미구현. 현재 명시적 작업중량 입력과 미측정 루틴 마무리는 구현.
+6. 데이터 재수집으로 되돌아가지 않는다. 최신 DB10훈련 선택/입문1의 실행 연결이 다음 검증 대상.
+7. main 병합/운영 배포/아이폰 설치는 아직 수행하지 않았다.
 
 ## 재현과 인수인계
 - Mac: /Users/hanbeen/codex-workspace/strength_lab.
@@ -62,5 +74,5 @@
 - 실제 카탈로그: 정상 SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY 설정 후 python -m scripts.verify_live_routine_selection.
 - 서버 WORKOUT_POSTGRES_DSN은 비밀 설정, TLS verify-full. Vercel 미설정 시503 유지. SQLite fallback을 운영 성공으로 취급하지 않는다.
 - execution_private 원장5테이블·소유자RLS는 기존 구현. 운영 재검증은 별도다.
-- Swift/iOS 변경 시 해당 테스트·빌드를 수행한다. 이번은 Python/데이터 변경이며 iOS 빌드 결과를 주장하지 않는다.
+- iOS 빌드/검증은 위 최신 항목을 따른다. 무서명 빌드 성공을 실기기 설치 성공으로 표현하지 않는다.
 - 데스크톱 원격 연결 인증서 오류는 NODE_USE_SYSTEM_CA=1 실행으로 연결된 상태다. TLS 검증을 끄지 않는다.
