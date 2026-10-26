@@ -5,7 +5,7 @@
 1. git status와 현재 브랜치를 확인한다. 기존 사용자 변경을 보존한다.
 2. AGENTS.md, docs/CURRENT.md를 읽는다. CURRENT가 현재 구현/검증/차단 상태의 기준이다.
 3. docs/coaching-specs/SERVICE_PRINCIPLES.md를 읽는다.
-4. 해당 작업에 필요한 코드/문서만 읽는다. 현재 공급 결정은 docs/coaching-specs/22_EXPLICIT_SELECTION_RELEASE.md, 실행 인수는 20_RUNTIME_DELIVERY_PLAN.md다.
+4. 해당 작업에 필요한 코드/문서만 읽는다. 현재 공급 결정은 docs/coaching-specs/26_PER_SOURCE_LABEL_RELEASE.md 및 22_EXPLICIT_SELECTION_RELEASE.md, 실행 인수는 20_RUNTIME_DELIVERY_PLAN.md다.
 5. 사용자 최신 지시 > AGENTS > CURRENT의 현재 상태 > 상세 명세 > 날짜별 과거 기록 순으로 충돌을 해소한다. 실제 코드/DB가 문서와 다르면 확인 결과를 수정한다.
 
 핵심: 숙련도별 실제 루틴 선택/시작이 최우선이다. 내부 정의 수와 테스트 수를 실사용 완료로 보고하지 않는다.

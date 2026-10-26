@@ -1,6 +1,6 @@
 # 작업 시작
 1. README.md와 docs/CURRENT.md를 읽고 git status를 확인한다.
-2. 제품 원칙은 docs/coaching-specs/SERVICE_PRINCIPLES.md, 현재 인수 계획은 20_RUNTIME_DELIVERY_PLAN.md, 최신 공급 결정은 22_EXPLICIT_SELECTION_RELEASE.md다. 21_FOUR_LIFT_DELIVERY.md는 네 종목 원 정의 검토다. 09_STRATEGY_RESET.md는 과거 전략 검토이며 다음 작업은 CURRENT를 따른다.
+2. 제품 원칙은 docs/coaching-specs/SERVICE_PRINCIPLES.md, 현재 인수 계획은 20_RUNTIME_DELIVERY_PLAN.md, 최신 공급 결정은 26_PER_SOURCE_LABEL_RELEASE.md 및 22_EXPLICIT_SELECTION_RELEASE.md다. 21_FOUR_LIFT_DELIVERY.md는 네 종목 원 정의 검토다. 09_STRATEGY_RESET.md는 과거 전략 검토이며 다음 작업은 CURRENT를 따른다.
 3. 날짜별 검토 문서는 당시 기록이며 현재 출시 상태로 인용하지 않는다. 사용자 최신 지시 > AGENTS > CURRENT의 현재 상태 > 상세 명세 > 과거 기록 순으로 충돌을 해소하고 실제 코드/DB와 대조한다.
 4. 원격 호출 전 판단 기준을 정하고 관련 읽기를 묶는다. 전체 파일/로그를 반복 출력하지 않는다. CURRENT에는 현재 상태를 갱신하며 과거 일지를 누적하지 않는다.
 

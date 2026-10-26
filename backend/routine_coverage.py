@@ -1,6 +1,6 @@
 """Report supply gaps separately from executable option counts."""
 SBD={'barbell_back_squat','barbell_bench_press','barbell_deadlift'}
-FAMILIES={'petrizzo-2018-v1':'petrizzo2018','helms-2018-v1':'helms2018','metd-2021-v1':'metd2021'}
+FAMILIES={'petrizzo-2018-v1':'petrizzo2018','helms-2018-v1':'helms2018','metd-2021-v1':'metd2021','sbd-template-v1':'pilot2018','per-source-labels-v1':'pilot2018'}
 
 def report(rows):
     result={}

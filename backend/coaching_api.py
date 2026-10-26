@@ -13,7 +13,7 @@ from .programme_access import availability, authorize, apply_to_readiness
 
 def internal_access(user):
     return user in {x.strip() for x in os.environ.get('COACHING_PREVIEW_OWNER_IDS','').split(',') if x.strip()}
-from research_engine.programme_dispatch import validate_source, make_instance, prepare, exercises
+from research_engine.programme_dispatch import validate_source, make_instance, prepare, exercises, max_exercises
 from research_engine.core import digest, InvalidProgramme
 from research_engine.workout import require
 
@@ -23,7 +23,7 @@ def catalog():
     base=os.environ.get('SUPABASE_URL','').rstrip('/')
     key=os.environ.get('SUPABASE_PUBLISHABLE_KEY','')
     if not base.startswith('https://') or not key:raise CatalogUnavailable('Database not configured')
-    req=urllib.request.Request(base+'/rest/v1/rpc/coaching_programme_catalog_v4',data=b'{}',method='POST',
+    req=urllib.request.Request(base+'/rest/v1/rpc/coaching_programme_catalog_v5',data=b'{}',method='POST',
         headers={'apikey':key,'Content-Type':'application/json'})
     try:
         with urllib.request.urlopen(req,timeout=10) as response:result=json.load(response)
@@ -113,7 +113,7 @@ def create(request:InstanceInput,user=Depends(owner),db=Depends(store)):
         if source is None:raise InvalidProgramme('SOURCE_VERSION_UNAVAILABLE')
         require(source['status']=='research_preview','SOURCE_SUSPENDED')
         access_decision=authorize(source['definition'],request.profile,internal_access(user))
-        expected=set(exercises(source['definition']))
+        expected=set(max_exercises(source['definition']))
         require(set(request.max_record_ids)<=expected if source['definition'].get('adapter_version') in ('novice-sbd-choice-v1','petrizzo-2018-v1')
                 else set(request.max_record_ids)==expected,'MAX_REFERENCES_REQUIRED')
         records=db.maxes(user);selected=[]
@@ -216,7 +216,7 @@ def routines(experience:Optional[str]=Query(default=None,pattern='^(entry|founda
                     'required_fields':[group+'.'+field for group,field in required_fields(source,row['arm'])]
                                       +['profile.'+field for field in extra_fields(source)],
                     'max_record_ids_required':source['adapter_version'] not in ('novice-sbd-choice-v1','petrizzo-2018-v1'),
-                    'max_record_exercise_ids':list(exercises(source)),
+                    'max_record_exercise_ids':list(max_exercises(source)),
                     'preview_endpoint':'/v3/routines/preview',
                     'create_endpoint':'/v3/programme-instances',
                     'selection':{'source_id':item['source_id'],'source_version':item['version'],'arm':row['arm']}}

@@ -1,6 +1,6 @@
 """Read-only preflight: execution prerequisites are not scientific suitability."""
 from research_engine.core import digest,InvalidProgramme
-from research_engine.programme_dispatch import make_instance,exercises
+from research_engine.programme_dispatch import make_instance,exercises,max_exercises
 from research_engine.programme_schedule import policy
 from research_engine.programme_schedule import selected,earliest
 from research_engine.workout import timestamp
@@ -13,7 +13,11 @@ def required_fields(source,arm):
              if engine=='helms-2018-v1' else ['age','independent_sbd'])
     setup=['mode','accept_scope_limits','rest_seconds','equipment_step_kg']
     if engine!='helms-2018-v1':setup+=['accept_adaptations','between_exercise_rest_seconds']
-    if engine=='sbd-template-v1':setup+=['exercise_mapping']
+    if engine in ('sbd-template-v1','per-source-labels-v1'):
+        setup+=['exercise_mapping']
+        if source.get('id')=='pilot2018-per-source-labels-v1':
+            profile+=['sex','training_years','powerlifting_years','independent_front_squat','rpe_familiarized','prior_moderate_high_load_training']
+            setup+=['accept_source_discrepancy']
     if engine in ('novice-sbd-choice-v1','petrizzo-2018-v1'):setup+=['adaptation_id']
     if engine=='petrizzo-2018-v1':
         profile+=['independent_ohp']
@@ -27,7 +31,7 @@ def preview(source,request,records,internal_access):
              if request[group].get(field) is None]
     refs=request['max_record_ids'];chosen=[]
     optional_maxes=source['adapter_version'] in ('novice-sbd-choice-v1','petrizzo-2018-v1')
-    expected=tuple(refs) if optional_maxes else exercises(source)
+    expected=tuple(refs) if optional_maxes else max_exercises(source)
     for eid in expected:
         r=next((r for r in records if r['id']==refs.get(eid) and r['exercise_id']==eid),None)
         if r is None:missing.append({'field':'max_record_ids.'+eid,'action':

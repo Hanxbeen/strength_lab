@@ -3,9 +3,10 @@ import copy
 from fastapi import HTTPException
 from research_engine.core import digest
 
-VERSION = 'explicit-source-selection-20261018-v1'
+VERSION = 'explicit-source-selection-20261026-v2'
 # Changing a source hash requires a new product-scope review.
 RELEASES = {
+ 'pilot2018-per-source-labels-v1': ('c1a67f3ce6ffc7c0bf325fbb1e20b270c41b883d651bee168a9fb7d2d1a3bf98','experienced'),
  'petrizzo2018-four-lift-2d-v1': ('cb4fa8fcaa9e5417c72fb7c4a87bed4868f725c5d1003962745ffb1e966035aa','foundation'),
  'petrizzo2018-four-lift-3d-v1': ('2ffb984866484e669cf39fa669cec0b23fd03d024863140bd3d01af06edd47c9','foundation'),
  '10.3389/fphys.2018.00247': ('9d6b5123ca6b04e524d44b95c7e81a48838de4354036c1cd889825a7e8ba32e0','trained'),
@@ -22,7 +23,7 @@ def availability(source, internal=False):
         classification_basis='navigation_not_personal_suitability',
         scientific_approval=False,independent_expert_review=False,
         reason=None if public or internal else 'PRODUCT_ADAPTATION_NOT_RELEASED',
-        review_reference='docs/coaching-specs/22_EXPLICIT_SELECTION_RELEASE.md')
+        review_reference=('docs/coaching-specs/26_PER_SOURCE_LABEL_RELEASE.md' if source['id']=='pilot2018-per-source-labels-v1' else 'docs/coaching-specs/22_EXPLICIT_SELECTION_RELEASE.md'))
 
 def extra_fields(source):
     if source['adapter_version']=='metd-2021-v1':

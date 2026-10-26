@@ -1,94 +1,79 @@
-# 현재 상태 — 2026-10-18
-이 문서가 세션 재개 기준이다. 상태는 명시적 선택 API 구현(2026-10-18) 기준이다. 운영 배포 완료와 구분하며 코드/DB를 확인한다.
-브랜치: codex/ux-foundations-v2. GitHub: Hanxbeen/strength_lab.
-과거 진행 일지와 폐기된 다음 작업은 현재 문서에서 제거했다. 복구: git show c8ff613:docs/CURRENT.md.
-상태 변경 시 과거 일지를 덧붙이지 말고 해당 현재 항목을 갱신한다.
+# 현재 상태 — 2026-10-26
+이 문서가 세션 재개 기준이다. 실제 DB 공급, 로컬 API 검증, 운영 배포를 구분한다.
+브랜치 codex/ux-foundations-v2 / GitHub Hanxbeen/strength_lab.
 
 ## 고정 결정
 - 목적: SBD 중량 향상에 필요한 근거·훈련·수행 기록·다음 선택을 연결한다.
-- OHP/보조 운동 일괄 제외는 폐기했다. 원 연구와 역할을 확인해 유지한다. 제외/대체는 제품 변경으로 명시한다.
-- 로그인 아키텍처 유지. UI 재설계보다 실제 루틴 공급/실행을 우선한다.
-- 장기 전략: [PRODUCT_VISION.md](PRODUCT_VISION.md). SBD MVP 이후 회복 관찰→근거 기반 회복/영양 지원→종목 확장. 현재 루틴 공급을 지연시키지 않으며 리브랜딩/제품 추천은 후속 가설이다.
-- 입문(자세/첫 중량 모름)과 초급(독립 수행/알려진 작업 중량)을 구분한다. 릴라 레벨이나 1RM 크기로 숙련도를 확정하지 않는다.
-- 원 연구 / 제품 규칙 / 사용자 선택 / 실제 수행을 분리한다. 수행률을 성장 효과로 바꾸지 않는다.
-- 새 연구 자동 공개를 하지 않는다. 초기 근거 체계를 구축하고 이후 발견/변경 검토를 한다.
-- 명시적 중단·한 시간 무활동 중단은 닫힌 stopped. 중단 후 재개 없음. 미기록을 실패/0회로 채우지 않는다.
-- 디자인은 BrandUI.swift 토큰, 릴라 털 차콜, 단위 kg/lb. 현재 작업은 UI 확장이 아니다.
+- 숙련도별 실제 선택/시작 가능한 데이터 공급이 최우선이다. UI 재설계, 회복/AI/과금 확장이 공급을 대신하지 않는다.
+- 로그인 유지. 운영 인증/권한을 테스트 대역으로 대체해 완료라고 보고하지 않는다.
+- OHP/보조 운동 일괄 제외는 폐기했다. 원 연구의 종목과 역할을 보존하고 변경은 제품 결정으로 명시한다.
+- 입문(자세/첫 부하 모름)과 초급(독립 수행/알려진 작업 중량)을 구분한다. 릴라 레벨/1RM 크기만으로 분류하지 않는다.
+- 연구 조건 / 제품 규칙 / 사용자 자기보고 / 실제 수행을 분리한다. 수행률을 성장 효과로 바꾸지 않는다.
+- 새 연구는 발견/검토 후 버전별 채택한다. 자동 공개하지 않는다.
+- 명시적 중단·1시간 무활동 중단은 닫힌 stopped, 중단 후 재개 없음. 미기록을 0회/실패로 채우지 않는다.
+- BrandUI.swift 토큰, 차콜/아이보리, kg/lb 유지.
+- 장기 전략은 PRODUCT_VISION.md: SBD MVP 이후 회복 관찰→근거 기반 회복/영양→종목 확장. 현재 범위 확장 아님.
 
-## 실제 공급과 공백
-| 구성 | 내부 선택안 | 회차 | 조건/한계 |
+## 실제 DB 공급과 공개 선택 구현
+| 구성 | 공개 선택안 | 회차 | 적용 조건/한계 |
 | --- | ---: | --- | --- |
-| Petrizzo 네 종목 | 2 | 24 / 36 | 알려진 시작 중량과 네 동작 경험. OHP 포함. 156 / 228 본세트 |
-| 기존 OHP 생략 시제품 | 1 | 24 | 과거 기록 호환용 정의 보존. 현재 기본 방향을 뜻하지 않음 |
-| PER 조정안 | 1 | 30 | 원 종목 변경이 있는 제품 조정 |
-| Helms | 2 | 각 23 훈련 회차 | 스쿼트·벤치. 검사 회차 제외. 1RM 비율/RPE 구분 |
-| METD | 3 | 각 18 | 경험/RPE 요구. 적은 세트 수가 낮은 난이도를 의미하지 않음 |
+| Petrizzo 네 종목 | 2 | 24 / 36 | 초급 탐색. 네 동작 경험·알려진 시작 중량, OHP 포함 |
+| Helms | 2 | 각 23 | 훈련 경험자 탐색. 스쿼트·벤치만, 1RM 비율/RPE |
+| METD | 3 | 각 18 | 숙련 탐색. 근력/PL/RPE 경험 요구 |
+| PER 보충표 종목 보존 | 1 | 30 | 숙련 탐색. SBD+프런트스쿼트, 원표와 본문 차이 명시 |
+| 과거 OHP 생략 시제품 / PER 종목 대체안 | 0 (내부2) | 24 / 30 | 과거 호환·내부 검토. 일반 공개 아님 |
 
-DB 활성 내부 정의6개 / 선택안9개 / 중지된 과거 버전1개.
-같은 연구의 arm/일정 변형이 포함되며 독립된9편이나 공개 루틴9개가 아니다.
-정확한 해시 4개에 대한 명시적 선택 7안 구현: 초급2 / 훈련경험2 / 숙련3. 개인 추천이 아니다.
-입문 학습·첫 부하 안내와 자동 적합성 추천은 미완료다. 운영 배포/실계정 검증은 미완료다.
-공개 선택 조건·한계는 [22_EXPLICIT_SELECTION_RELEASE.md](coaching-specs/22_EXPLICIT_SELECTION_RELEASE.md)가 최신이다.
-근거/적용 결정: [21_FOUR_LIFT_DELIVERY.md](coaching-specs/21_FOUR_LIFT_DELIVERY.md).
-과거 후보/교육 근거: data/research/coaching/reviews/ (실행 여부를 개별 확인).
+- 활성 정의7개 / 내부 전체 선택안10개 / 중지 과거 버전1개.
+- 정확한 해시5개에 공개 선택8안: 초급2, 훈련경험2, 숙련4, 독립 입문0.
+- 같은 연구의 arm/일정 변형 포함. 8개 독립 연구 또는 모든 숙련도 공급 완료가 아니다.
+- 입문은 지도자 동반 학습3종 기록 API만 구현. 독립 동작 교육·첫 부하 경로 미완료.
+- 초급 연구군 다양성, 중급 완전 SBD 구성은 여전히 공백.
+- 최신 추가 결정: coaching-specs/26_PER_SOURCE_LABEL_RELEASE.md.
+- 기본 공개 결정: 22_EXPLICIT_SELECTION_RELEASE.md. 25_PER_MAPPING_REVIEW.md는 구버전 검토 기록이다.
 
-## API와 저장 경로
-- backend/coaching_api.py: GET /v3/routines → 활성 7선택안/전체 구성/입력 계약/실제 coverage.
-- POST /v3/routines/preview → 저장 없는 첫 세션 계산/부족 입력. 생성·시작에서도 조건 재검증.
-- 기존 GET /v3/research-programmes는 연구·내부 조정안 호환용. 사용자 선택 화면은 /v3/routines 사용.
-- backend/programme_readiness.py: 입력 충족/접근 상태/다음 세션. 적합성 평가 완료라는 의미가 아니다.
-- research_engine/petrizzo.py: 주2/3회 전체 정의, 시작 중량 출처, 사용자 직접 선택.
-- backend/programme_evaluation.py: 기간 종료/비교 조건. OHP는 별도 표시하고 SBD 합계에서 제외.
-- 기존 v2 workout API: 변경/휴식/통증/미완료/중단/결과. 원 목표와 실제 수행, revision/재시도 보존.
-- 프로그램 목록/상세/next-session으로 새 클라이언트에서 복구 가능. 앱 자동 호출/배포 종단 검증과 구분한다.
-- Supabase project: gttvyfeyrnuspnnphuzk.
-- 카탈로그 RPC v4: schema_version=3 구조 + catalog_revision=4. 신규 어댑터 포함.
-- RPC v3는 구버전 서버 호환용 집합 유지. v3 총5행 / v4 총7행, 각각 중지1 포함. Python은 중지행 제외.
-- execution_private 5개 원장 테이블과 소유자 RLS 생성/검증 완료.
-- PostgresWorkoutStore는 기존 실행 로직 재사용, 소유자별 트랜잭션 잠금 및 authenticated 역할 적용.
-- WORKOUT_POSTGRES_DSN은 서버 전용 설정. TLS verify-full, libpq17+의 system CA 또는 WORKOUT_DB_SSLROOTCERT.
-- Vercel에서 DSN 누락 시503. SQLite fallback으로 운영 성공을 가장하지 않는다.
-- backend/programme_access.py는 정확한 버전 해시만 명시적 선택 허용. 새 해시 자동 공개 금지.
-- COACHING_PREVIEW_OWNER_IDS는 미공개 내부 조정안 허용 목록이며 일반 7선택안에는 필요하지 않다. 사용자 동의나 JWT user_metadata로 권한을 부여하지 않는다.
+## 이번 완료 — PER 원표의 실제 API 공급
+- source_id pilot2018-per-source-labels-v1, adapter per-source-labels-v1, arm PER_SOURCE_LABELS.
+- 해시 c1a67f3ce6ffc7c0bf325fbb1e20b270c41b883d651bee168a9fb7d2d1a3bf98.
+- 원 XLS 수식296개 해석, 훈련275행 산술/캐시 대조 불일치0. xlrd 부재 차단 해소.
+- 전체10주30회차515인코딩세트, front squat22세트 보존. 515본세트라고 하지 않는다.
+- 실제 운동 종목과 1RM 참조 종목 분리. front squat은 원표의 squat 1RM 참조를 사용하며 별도 front 1RM을 강제하지 않는다.
+- 수식 검증은 과학적 효과 승인/원 연구 전체 재현이 아니다. 본문과 보충표 종목 차이, 감독 차이 유지.
+- 성인 남성, RT2년/PL1년 이상, 독립 SBD/front squat·RPE 활용·이전 중고부하 경험 입력을 검사한다.
+- 원본 셀/수식/목표/변경/실제/휴식/중단 출처가 저장된다. front squat은 SBD 평가 합계에서 제외한다.
+- 기존 PER 정의 및 저장된 사용자 기록은 덮어쓰지 않았다.
 
-## 확인된 검증
-- 2026-10-18 최종 전체 Python257개 통과(41.579초), 건너뜀 없음. PER 종목 대체·감량·휴식·중단 후 출처 보존 반례 포함. git diff --check 통과.
-- main 병합/운영 배포는 이번 작업에서 수행하지 않았다. codex/ux-foundations-v2 구현과 운영 응답을 구분한다.
-- 신규 일정 전체60회차 로컬 API 수행/읽기/종료, 재시도, 정보 부족, 변경·통증·미완료 반례.
-- 실제 Supabase HTTPS 카탈로그: 파일/DB/버전 해시 일치, 구버전 응답 호환성 확인.
-- 실제 Supabase HTTPS 데이터를 사용한 일반 사용자 대역 로컬 API: 7선택안 전부 미리보기→생성→시작→35kg/1회 변경→중단→재조회→다음 회차 응답 확인.
-- 재현: python -m scripts.verify_live_routine_selection. 운영 사용자 데이터 쓰기 없음.
-- 위 로컬 실행은 인증 대체 + 임시 SQLite. 배포 인증/Postgres 운동 저장 검증이 아니다.
-- DB RLS: 본인/타인 접근과 소유자 변경 차단 검증. 테스트 쓰기 롤백.
-- 보안 advisor: 기존 private 연구 테이블의 정책 없는 RLS INFO2건. 신규 경고 없음.
-- 최신 마이그레이션: 20261017123755_petrizzo_four_lift_catalog.sql, 20261018005609_version_four_lift_catalog_rpc.sql. 실제 적용 완료. 재적용 전에 원격 이력 확인.
+## API·DB·검증
+- GET /v3/routines → 공개8선택안/전체 세션/입력 계약/공급 공백.
+- POST /v3/routines/preview → 저장 없는 첫 세션 계산. 생성에서도 조건 재검사.
+- 실행은 기존 programme-instances 및 v2 workouts의 변경/휴식/통증/미완료/중단/결과 원장 사용.
+- Supabase gttvyfeyrnuspnnphuzk는 재접속 시 INACTIVE였고 복구 후 ACTIVE_HEALTHY 확인.
+- 카탈로그 RPC v5 추가: schema_version=3, catalog_revision=5. 새 어댑터만 추가.
+- v3/v4 응답 집합 유지: 중지 포함 v3=5행, v4=7행, v5=8행. Python은 중지행 제외.
+- 적용 migration: 20261026011453_per_source_label_catalog_v5.sql. 새 원본 DB 삽입 완료.
+- 2026-10-26 전체 Python268개 통과, 56.218초, 건너뜀0. 새30회차515세트 전체 실행 포함.
+- 실제 HTTPS DB 카탈로그 데이터로 8선택안 미리보기→생성→시작→감량/반복변경→중단→재조회→다음회차 로컬 API 검사 통과.
+- 위 실행 검사는 인증 대역 + 임시 SQLite다. 운영 JWT/서버 Postgres 운동 저장 완료가 아니다.
+- 보안 advisor는 기존 private 연구 테이블 정책 없는 RLS INFO2건만 유지. 새 경고 없음.
+- 근거: data/research/coaching/reviews/per-formula-audit.json, per-formulas.json, per-live-api-verification.json.
+- main 병합, Vercel 배포, iPhone 설치는 이번에 수행하지 않았다.
 
-## 다음 작업 — 숙련도별 공급 공백 우선
-최신 사용자 지시: 7선택안 API 실행 통과가 아니라 숙련도별 실제 공급을 마무리한다.
-최신 PER 구현: [25_PER_MAPPING_REVIEW.md](coaching-specs/25_PER_MAPPING_REVIEW.md). 원문 Front squat22세트의 제품 대체와 부하 기준을 카탈로그/실행/결과에 구조화. DB와 로컬 정의 대조 완료. 처방/공개 범위 변경 없음. 원 XLS 재추출은 xlrd 부재로 미완료.
-전체 공급 공백: [23_ENTRY_PRACTICE_AND_SUPPLY_GAPS.md](coaching-specs/23_ENTRY_PRACTICE_AND_SUPPLY_GAPS.md).
-- 입문 지도자 동반 학습3종 시작·기록·휴식·중단 API 추가. 독립 입문/첫 바벨 부하 미완료. 교육 정의는 서버 코드이며 DB 훈련 루틴 수에 포함하지 않는다.
-- /v3/routines.supply_audit에서 선택안/연구군/SBD포함/공백을 분리. 전체 완료 false.
-- 공개 자료 대체 검토: [24_PUBLIC_SOURCE_REPLACEMENT.md](coaching-specs/24_PUBLIC_SOURCE_REPLACEMENT.md). 유료 Colquhoun 원문/사용자 업로드 대기는 폐기. Vargas 두 arm48회차 추출 저장, 부하/표/대상자 충돌 미해결로 공개 추가0개. 기존 PER 공개 보충자료 매핑 검토와 입문 근거 종합을 우선한다.
-- 최종 전체257개 통과, 건너뜀 없음. 교육/PER 실행은 로컬 검증이며 이번 실제 DB 접근은 읽기 전용이었다.
-- 다음 우선순위: 독립 입문 경로 → 초급 실제 다양성 → 중급 SBD 원표 검증/데이터화 → 숙련 목적 범위. 아래 배포는 이 공급 작업을 대신하지 않는다.
+## 다음 작업 — 다시 PER 수식 검토부터 시작하지 않는다
+1. 독립 입문 경로를 실제 사용 시나리오로 완성한다: 동작 설명/실습 미디어 출처·사용권, 장비 제약, 첫 부하 선택, 중단/도움 요청, 초급 전환 조건.
+   원 연구 그대로의 루틴과 교육용 근거 종합/제품 규칙을 구분한다. 지도자 동반 기록3종을 독립 입문 완료로 세지 않는다.
+2. 초급 선택2안은 같은 연구의 주2/3회 변형이다. 새로운 실질적 대안을 준비한다. 논문 개수 목표만 채우지 않는다.
+3. 중급 완전 SBD 구성 공백을 해소한다. Vargas 공개표는 충돌이 남아 미공개이며 유료 Colquhoun 업로드를 기다리지 않는다.
+4. 위 공급 이후 운영 연결: 기존 Vercel/인증 유지, 서버 DSN·소유자 RLS·실계정 흐름과 iOS 단일 API 연결 검증.
+5. 연구·코드·실제 DB가 달라지면 갱신한다. 새 버전 자동 공개나 임의 감량계수 추가 금지.
 
-## 이후 배포·실기기 인수
-1. 기존 Vercel 프로젝트/배포 버전/서버 설정을 확인한다. 이전 인증 조회는 fetch failed 또는 HTML 응답으로 실패했으며 현재 연결 상태를 다시 확인해야 한다.
-2. 기존 인증을 유지한 채 WORKOUT_POSTGRES_DSN 연결과 사용자 역할/RLS를 실제 서버에서 검증한다. 테스트 로그인 세션 필요. 비밀값은 기록하지 않는다.
-3. 실제 계정으로 카탈로그→입력→생성→세트/감량/휴식/중단·완료→재접속→다음 회차를 실행한다. 타인 접근/만료 토큰도 확인한다.
-4. 22번 명세의 7선택안/고정 해시만 배포한다. 입문·미검토 조정안까지 범위를 확대하지 않는다.
-5. iOS 단일 API 경로를 연결해 실기기 검증한다. 입문 학습/첫 부하 공백은 별도 산출물로 남기고 완료라고 표시하지 않는다.
-인수 세부: [20_RUNTIME_DELIVERY_PLAN.md](coaching-specs/20_RUNTIME_DELIVERY_PLAN.md).
-해결되지 않은 접근 문제를 새 호스팅·인증 우회·비밀번호 초기화로 우회하지 않는다.
-
-## 재현 환경
-- 알려진 Mac 경로: /Users/hanbeen/codex-workspace/strength_lab (세션별 연결 확인).
-- 알려진 Python: /tmp/mugemuge-coaching-env/bin/python (임시 경로이므로 존재 여부 확인).
-- 의존성: backend/requirements.txt, requirements-test.txt. 원문 캐시가 필요한 검사는 verify_tests가 건너뜀을 실패로 처리한다.
-- 전체 검사: python -m scripts.verify_tests.
-- 실제 카탈로그: SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY를 정상 설정하고 python -m scripts.verify_live_petrizzo_catalog.
-- Swift 기록: bash scripts/test_ios_records.sh. iOS 빌드는 apps/ios/README.md 참고.
-- 배포된 실제 앱 버전, 운영 DSN, 로그인 세션은 이 문서에 확보됐다고 가정하지 않는다.
-- 권한/연결 실패는 관측 오류와 필요한 조치를 기록한다. 같은 실패 요청을 계속 반복하지 않는다.
-- 2026-10-18 인수인계 정리: CLAUDE/AGENTS/README와 상세 문서의 폐기 지침을 대조·수정했다. 리뷰 JSON 관련 기존5개 검사와 diff 점검 통과. 문서 변경에서 전체239개 코드를 재검증했다고 주장하지 않는다.
+## 재현과 인수인계
+- Mac: /Users/hanbeen/codex-workspace/strength_lab.
+- Python: .venv-coaching/bin/python (Python3.13, 영속 작업 디렉터리). 이전 /tmp 환경은 없어졌다.
+- 의존성 requirements-test.txt / backend/requirements.txt. xlrd==2.0.2는 원표 감사용.
+- 원표: python -m scripts.decode_per_formulas → scripts.audit_per_formulas → scripts.build_per_source_labels.
+- 데이터 SQL: python -m scripts.export_per_source_sql (허용 해시만 출력). 기존행 덮어쓰기 없음.
+- 전체 검사: python -m scripts.verify_tests. 원문 캐시 필요; 건너뜀은 실패.
+- 실제 카탈로그: 정상 SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY 설정 후 python -m scripts.verify_live_routine_selection.
+- 서버 WORKOUT_POSTGRES_DSN은 비밀 설정, TLS verify-full. Vercel 미설정 시503 유지. SQLite fallback을 운영 성공으로 취급하지 않는다.
+- execution_private 원장5테이블·소유자RLS는 기존 구현. 운영 재검증은 별도다.
+- Swift/iOS 변경 시 해당 테스트·빌드를 수행한다. 이번은 Python/데이터 변경이며 iOS 빌드 결과를 주장하지 않는다.
+- 데스크톱 원격 연결 인증서 오류는 NODE_USE_SYSTEM_CA=1 실행으로 연결된 상태다. TLS 검증을 끄지 않는다.

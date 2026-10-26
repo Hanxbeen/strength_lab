@@ -40,7 +40,7 @@ def options(item, allowed):
                   'between_exercise_rest_seconds', 'warmup', 'equipment_step_kg']
         limits = ['OHP를 제외한 이 전체 구성의 효과는 원 연구에서 검증하지 않았어요.',
                   '첫 중량을 모르는 입문자의 시작 안내는 아직 제공하지 않아요.']
-    elif engine == 'sbd-template-v1':
+    elif engine in ('sbd-template-v1','per-source-labels-v1'):
         specs = [('PER_ADAPTED', 'SBD 10주 · 주기화 조정안')]
         context = '독립 SBD 수행 성인의 주기화 구성 검토용; 중급 적합성은 미평가'
         basis = 'product_adaptation'
@@ -48,6 +48,17 @@ def options(item, allowed):
                   'between_exercise_rest_seconds', 'warmup', 'equipment_step_kg']
         limits = ['원 자료의 동작을 SBD 기준 동작으로 바꾼 조정이 포함돼요.',
                   '연구와 같은 전체 훈련을 재현하거나 중급 적합성을 보장하지 않아요.']
+        if source['id']=='pilot2018-per-source-labels-v1':
+            specs=[('PER_SOURCE_LABELS',source['title'])]
+            common['exercise_ids']=list(source['exercises'])
+            context='SBD와 프런트스쿼트를 독립 수행하고 RPE를 사용하는 훈련 경험자'
+            basis='supplement_labels_and_formula_with_explicit_product_choices'
+            inputs+=['sex','training_years','powerlifting_years','independent_front_squat',
+                     'rpe_familiarized','prior_moderate_high_load_training','accept_source_discrepancy']
+            limits=['보충표의 프런트스쿼트를 그대로 포함하며, 해당 중량은 표의 스쿼트 1RM을 참조해요.',
+                    '본문의 SBD 설명과 보충표의 종목 표기는 달라요. 연구 전체를 재현했다고 볼 수 없어요.',
+                    '원 연구는 감독과 RPE 사전 연습을 포함했어요. RPE 9 초과를 피하되 자동 감량하지 않아요.',
+                    '515개는 표에 기록된 전체 세트예요. 준비 세트와 본세트 구분은 확인되지 않았어요.']
     elif engine == 'metd-2021-v1':
         specs = [('MAX', 'SBD 6주 · 고노력도 싱글'),
                  ('MAX_BOFF', 'SBD 6주 · 싱글과 백오프'),
@@ -104,7 +115,7 @@ def options(item, allowed):
         elif engine in ('novice-sbd-choice-v1', 'petrizzo-2018-v1'):
             value['arm_prescription'] = {k: deepcopy(protocol[k]) for k in
                 ('working_sets', 'reps', 'automatic_load_adjustment', 'source_stop_rule', 'product_stop_rule')}
-        if engine == 'sbd-template-v1':
+        if engine in ('sbd-template-v1','per-source-labels-v1'):
             from research_engine.per_provenance import mapping_review
             value['source_mapping_review'] = mapping_review(source)
         result.append(value)

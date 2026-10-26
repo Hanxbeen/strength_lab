@@ -62,8 +62,8 @@ def evaluate(db,user,instance_id,request):
                 'change_percent':round(delta/base['weight_kg']*100,4) if delta is not None else None})
         all_rows=[r for result in results for r in result['sets']]
         # A four-lift programme must not add OHP to the powerlifting total.
-        total_lifts = ([x for x in lifts if x['exercise_id'] != 'barbell_standing_shoulder_press']
-                       if source.get('adapter_version') == 'petrizzo-2018-v1' else lifts)
+        total_lifts = ([x for x in lifts if x['exercise_id'] in ('barbell_back_squat','barbell_bench_press','barbell_deadlift')]
+                       if source.get('adapter_version') in ('petrizzo-2018-v1','sbd-template-v1','per-source-labels-v1') else lifts)
         payload={'id':request['id'],'instance_id':instance_id,'revision':latest[1]+1 if latest else 1,
             'supersedes_id':request.get('supersedes_id'),'at':request['at'],'outcome':request['outcome'],
             'programme_version':instance['programme_version'],'history_inputs':refs,'lifts':lifts,

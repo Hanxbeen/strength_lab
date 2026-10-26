@@ -1,0 +1,33 @@
+{
+  "real_https_catalog": true,
+  "options": 8,
+  "coverage": {
+    "entry": {
+      "state": "not_ready",
+      "option_count": 0,
+      "reason": "TECHNIQUE_AND_FIRST_LOAD_PATH_INCOMPLETE"
+    },
+    "foundation": {
+      "state": "explicit_selection",
+      "option_count": 2,
+      "reason": null
+    },
+    "trained": {
+      "state": "explicit_selection",
+      "option_count": 2,
+      "reason": null
+    },
+    "experienced": {
+      "state": "explicit_selection",
+      "option_count": 4,
+      "reason": null
+    }
+  },
+  "all_eight_local_lifecycles": true,
+  "deployed_auth_verified": false,
+  "production_user_writes": false,
+  "verified_at": "2026-10-26",
+  "python_suite_count": 268,
+  "python_suite_skips": 0,
+  "source_version": "c1a67f3ce6ffc7c0bf325fbb1e20b270c41b883d651bee168a9fb7d2d1a3bf98"
+}

@@ -8,7 +8,7 @@ from backend.workout_api import owner,store
 from backend.workout_store import WorkoutStore
 from backend.programme_access import availability
 from research_engine.core import digest
-from tests import test_petrizzo, test_coaching, test_metd
+from tests import test_petrizzo, test_coaching, test_metd, test_sbd
 from backend.coaching_store import initialize
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -19,7 +19,7 @@ class RoutineSelectionTests(unittest.TestCase):
         self.user='normal'
         app.dependency_overrides[owner]=lambda:self.user
         app.dependency_overrides[store]=lambda:self.db
-        names=['petrizzo2018-four-lift-2d','petrizzo2018-four-lift-3d','helms2018','metd2021','pilot2018-sbd','novice-sbd-choice']
+        names=['petrizzo2018-four-lift-2d','petrizzo2018-four-lift-3d','helms2018','metd2021','pilot2018-sbd','novice-sbd-choice','pilot2018-source-labels']
         self.items=[]
         for name in names:
             s=json.loads((ROOT/'data/research/coaching'/f'{name}.json').read_text())
@@ -36,6 +36,12 @@ class RoutineSelectionTests(unittest.TestCase):
             f=test_petrizzo.PetrizzoTests();f.fixture(source['protocol']['days_per_week']);records=[]
             at=f.at;loads={e:40 for e in source['protocol']['sessions'][0]['exercises']}
             daily=dict(initial_loads_kg=loads)
+        elif source['id']=='pilot2018-per-source-labels-v1':
+            f=test_sbd.SBDTests();f.setUp();records=f.records;at='2026-10-18T09:00:00Z'
+            f.profile.update(sex='male',training_years=3,powerlifting_years=2,
+                independent_front_squat=True,rpe_familiarized=True,prior_moderate_high_load_training=True)
+            f.setup.update(exercise_mapping='source_labels_verified_formula_v1',accept_source_discrepancy=True)
+            daily={}
         elif source['adapter_version']=='helms-2018-v1':
             f=test_coaching.CoachingTests();f.setUp();records=f.records;at='2026-10-18T09:00:00Z'
             daily=dict(initial_rpe_loads_kg={'barbell_back_squat':100,'barbell_bench_press':80} if arm=='RPEG' else {})
@@ -50,15 +56,15 @@ class RoutineSelectionTests(unittest.TestCase):
         req=dict(source_id=source['id'],source_version=digest(source),arm=arm,created_at=at,
             profile=f.profile,setup=f.setup,max_record_ids={r['exercise_id']:r['id'] for r in records})
         return req,daily
-    def test_seven_complete_options_and_explicit_coverage_gap(self):
+    def test_eight_complete_options_and_explicit_coverage_gap(self):
         data=self.client.get('/v3/routines').json()
-        self.assertEqual(len(data['routines']),7);self.assertEqual(len(data['unavailable_adaptations']),2)
+        self.assertEqual(len(data['routines']),8);self.assertEqual(len(data['unavailable_adaptations']),2)
         for r in data['routines']:
             self.assertEqual(r['access'],'explicit_selection')
             self.assertEqual(len(r['sessions']),r['training_sessions'])
             self.assertTrue(r['input_contract']['required_fields'])
             self.assertFalse(r['scientific_approval'])
-        for experience,count in [('entry',0),('foundation',2),('trained',2),('experienced',3)]:
+        for experience,count in [('entry',0),('foundation',2),('trained',2),('experienced',4)]:
             result=self.client.get('/v3/routines',params={'experience':experience})
             self.assertEqual(result.status_code,200,result.text);self.assertEqual(len(result.json()['routines']),count)
         self.assertEqual(data['coverage']['entry']['state'],'not_ready')

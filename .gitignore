@@ -17,3 +17,5 @@ data/research/engine-sources/
 data/research/engine/catalog-v2.json
 
 data/research/source-build/
+
+.venv-coaching/

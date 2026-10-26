@@ -17,10 +17,10 @@ def verify():
         response=case.client.get('/v3/routines')
         assert response.status_code==200,response.text
         data=response.json()
-        assert len(data['routines'])==7,data['coverage']
+        assert len(data['routines'])==8,data['coverage']
         case.test_every_public_option_preview_create_start_change_stop_reload()
         return dict(real_https_catalog=True,options=len(data['routines']),
-            coverage=data['coverage'],all_seven_local_lifecycles=True,
+            coverage=data['coverage'],all_eight_local_lifecycles=True,
             deployed_auth_verified=False,production_user_writes=False)
     finally:
         case.tearDown()
