@@ -136,10 +136,15 @@ def list_programmes(limit:int=Query(default=20,ge=1,le=100),after:Optional[str]=
 @router.get('/programme-instances/{instance_id}')
 def get(instance_id:str,user=Depends(owner),db=Depends(store)):
     from .programme_evaluation import list_evaluations
-    return execute(lambda:{'instance_id':instance_id,'instance':coaching_store.instance(db,user,instance_id),
-                           'evaluations':list_evaluations(db,user,instance_id),
-                           'history':[{k:v for k,v in h.items() if k not in ('snapshot','events')}
-                                      for h in coaching_store.history(db,user,instance_id)]})
+    from research_engine.programme_dispatch import exercises
+    def action():
+        instance=coaching_store.instance(db,user,instance_id)
+        return {'instance_id':instance_id,'instance':instance,
+                'evaluation_exercise_ids':list(exercises(instance['source'])),
+                'evaluations':list_evaluations(db,user,instance_id),
+                'history':[{k:v for k,v in h.items() if k not in ('snapshot','events')}
+                           for h in coaching_store.history(db,user,instance_id)]}
+    return execute(action)
 
 @router.post('/programme-instances/{instance_id}/workouts')
 def start(instance_id:str,request:SessionInput,user=Depends(owner),db=Depends(store)):

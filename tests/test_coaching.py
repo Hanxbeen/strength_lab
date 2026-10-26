@@ -171,6 +171,7 @@ class CoachingAPITests(unittest.TestCase):
                 self.assertEqual(response.json()['execution']['state'],'completed')
         self.assertEqual(recorded,128)
         result=self.client.get('/v3/programme-instances/i1').json()
+        self.assertEqual(result['evaluation_exercise_ids'],['barbell_back_squat','barbell_bench_press'])
         self.assertEqual(len(result['history']),23)
         self.assertEqual(result['history'][-1]['execution']['summary']['minimum_reps_completion_percent'],100)
 

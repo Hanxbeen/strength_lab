@@ -9,8 +9,7 @@ struct ServerProgrammeView: View {
     @AppStorage("displayUnit") private var unit:MassUnit = .kg
     @State private var next: RoutineValue = .null
     @State private var loads: [String:String] = [:]
-    @State private var pendingEvaluation:RoutineValue?
-    @State private var confirmClosure=false
+    @State private var showEvaluation=false
     @State private var pending: RoutineValue?
     @State private var workoutID: String?
     private var base: String { "/v3/programme-instances/" + RoutineAPI.component(instanceID) }
@@ -31,8 +30,8 @@ struct ServerProgrammeView: View {
             VStack(alignment: .leading, spacing: MugeStyle.Space.section) {
                 Text(instance["source"]["title"].text).font(MugeStyle.TypeStyle.section)
                 if let error = request.error { Text(error).foregroundStyle(MugeStyle.danger) }
-                if request.definitiveFailure && (pending != nil || pendingEvaluation != nil) {
-                    Button("입력 다시 확인") { pending=nil;pendingEvaluation=nil }
+                if request.definitiveFailure && pending != nil {
+                    Button("입력 다시 확인") { pending=nil }
                 }
                 if request.busy { ProgressView() }
                 if next["state"].text == "workout_open" {
@@ -73,8 +72,11 @@ struct ServerProgrammeView: View {
                     }
                 }
                 if !record["history"].array.isEmpty && next["state"].text != "workout_open" && next["state"].text != "programme_closed" {
-                    Button(next["state"].text == "awaiting_evaluation" ? "루틴 마무리":"이 루틴 종료") { confirmClosure=true }
+                    Button(next["state"].text == "awaiting_evaluation" ? "루틴 마무리":"이 루틴 종료") { showEvaluation=true }
                         .disabled(request.busy || pending != nil)
+                }
+                if next["state"].text == "programme_closed" {
+                    Button("측정 기록 추가·비교") { showEvaluation=true }.disabled(request.busy)
                 }
                 ForEach(record["evaluations"].array.indices,id: \.self) { index in
                     let evaluation=record["evaluations"].array[index]
@@ -85,9 +87,11 @@ struct ServerProgrammeView: View {
             }.padding(MugeStyle.Space.page)
         }.background(MugeStyle.canvas).navigationTitle("내 루틴")
             .task { await load() }
-            .confirmationDialog("현재 수행 기록으로 루틴을 마무리할까요?",isPresented:$confirmClosure) {
-                Button("기록을 저장하고 마무리") { Task { await closeProgramme() } }
-                Button("취소",role:.cancel) {}
+            .sheet(isPresented:$showEvaluation,onDismiss:{ Task { await load() } }) {
+                NavigationStack {
+                    ServerProgrammeEvaluation(instanceID:instanceID,record:record,
+                        outcome:next["state"].text == "awaiting_evaluation" ? "completed" : "stopped")
+                }
             }
             .navigationDestination(isPresented:Binding(get:{workoutID != nil},set:{if !$0 { workoutID=nil;Task{await load()} }})) {
                 if let workoutID { ServerWorkoutView(workoutID:workoutID) }
@@ -102,19 +106,6 @@ struct ServerProgrammeView: View {
                     loads[exercise] = value.number.map { String(unit.display($0)) } ?? ""
                 }
             }
-        }
-    }
-    private func closeProgramme() async {
-        await request.run {
-            if pendingEvaluation == nil {
-                pendingEvaluation = .object(["id":.string(UUID().uuidString),"at":.string(RoutineAPI.timestamp()),
-                    "outcome":.string(next["state"].text == "awaiting_evaluation" ? "completed":"stopped"),
-                    "post_max_record_ids":.object([:]),"comparison_conditions":.object([:])])
-            }
-            _ = try await request.call(auth,base+"/evaluations",pendingEvaluation)
-            pendingEvaluation=nil
-            record=try await request.call(auth,base)
-            next=try await request.call(auth,base+"/next-session?at="+RoutineAPI.timestamp())
         }
     }
     private func start() async {

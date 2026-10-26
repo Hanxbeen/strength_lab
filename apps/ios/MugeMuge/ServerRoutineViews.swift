@@ -210,6 +210,8 @@ struct ServerRoutineSetup: View {
     @State private var instanceID = UUID().uuidString
     @State private var created = false
     @State private var showMax = false
+    @State private var entryCandidates:[RoutineValue] = []
+    @State private var entryRefs:[String:RoutineValue] = [:]
     @AppStorage("displayUnit") private var unit:MassUnit = .kg
     private var fields: [String] { item["input_contract"]["required_fields"].array.map(\.text) }
     private var manual: Bool { fields.contains("setup.starting_loads_kg") }
@@ -257,8 +259,31 @@ struct ServerRoutineSetup: View {
                         Text("앱이 중량을 추정하지 않아요. 동작과 중량을 모르면 입문 학습부터 확인해 주세요.")
                             .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
                         ForEach(loadExercises, id: \.self) { exercise in
-                            TextField(RoutinePresentation.exercise(exercise), text: Binding(get: { loads[exercise] ?? "" }, set: { loads[exercise] = $0;preview = .null;acceptedBody = nil }))
+                            TextField(RoutinePresentation.exercise(exercise), text: Binding(get: { loads[exercise] ?? "" }, set: { loads[exercise] = $0;entryRefs.removeValue(forKey:exercise);preview = .null;acceptedBody = nil }))
                                 .keyboardType(.decimalPad).textFieldStyle(.roundedBorder)
+                        }
+                    }
+                }
+                if manual && item["definition"]["adapter_version"].text == "sbd-evidence-synthesis-v1" {
+                    MugeCard {
+                        Text("입문에서 연습한 중량 가져오기").font(MugeStyle.TypeStyle.card)
+                        Text("완료한 학습의 편하게 수행한 기록만 보여요. 자세 인증이나 적합성 판정은 아니에요.")
+                            .font(MugeStyle.TypeStyle.detail).foregroundStyle(MugeStyle.muted)
+                        if entryCandidates.isEmpty { Text("가져올 완료 학습 기록이 없어요.") }
+                        ForEach(entryCandidates.indices,id: \.self) { index in
+                            let candidate=entryCandidates[index]
+                            Button {
+                                let exercise=candidate["exercise_id"].text
+                                entryRefs[exercise]=candidate
+                                loads[exercise]=candidate["weight_kg"].number.map{String(unit.display($0))} ?? ""
+                                preview = .null;acceptedBody=nil
+                            } label: {
+                                Text("\(RoutinePresentation.exercise(candidate["exercise_id"].text)) · \(candidate["weight_kg"].number.map{unit.label($0)} ?? "") · \(candidate["at"].text.prefix(10))")
+                            }
+                        }
+                        if !entryRefs.isEmpty {
+                            Text("선택한 원기록을 함께 저장해요. 중량을 직접 수정하면 원기록 선택이 해제돼요.")
+                                .font(MugeStyle.TypeStyle.note)
                         }
                     }
                 }
@@ -288,11 +313,29 @@ struct ServerRoutineSetup: View {
                 }
             }.padding(MugeStyle.Space.page)
         }.background(MugeStyle.canvas).navigationTitle("루틴 시작")
-            .task { await loadMaxes() }
+            .task { await loadMaxes();await loadEntryCandidates() }
             .sheet(isPresented: $showMax, onDismiss: { Task { await loadMaxes() } }) { NavigationStack { ServerMaxRegistration() } }
             .navigationDestination(isPresented: $created) { ServerProgrammeView(instanceID: instanceID) }
     }
     private func loadMaxes() async { await request.run { maxes = try await request.call(auth, "/v2/max-records")["items"].array } }
+    private func loadEntryCandidates() async {
+        guard item["definition"]["adapter_version"].text=="sbd-evidence-synthesis-v1" else{return}
+        await request.run {
+            var cursor="",seen=Set<String>(),collected:[RoutineValue]=[]
+            repeat {
+                let path="/v3/entry/learning-sessions" + (cursor.isEmpty ? "" : "?after="+RoutineAPI.component(cursor))
+                let page=try await request.call(auth,path)
+                for session in page["items"].array where session["execution"]["state"].text=="completed" {
+                    for candidate in session["execution"]["candidate_working_loads"].object.values {
+                        var value=candidate.object;value["workout_id"]=session["id"];collected.append(.object(value))
+                    }
+                }
+                cursor=page["next_cursor"].text
+                if !cursor.isEmpty && !seen.insert(cursor).inserted { throw RoutineAPIError.invalidResponse }
+            } while !cursor.isEmpty
+            entryCandidates=collected.sorted{$0["at"].text>$1["at"].text}
+        }
+    }
     private func requestBody() throws -> RoutineValue {
         var profile: [String: RoutineValue] = [:], setup: [String: RoutineValue] = ["mode":.string("user_selected_source")]
         for field in fields {
@@ -315,11 +358,18 @@ struct ServerRoutineSetup: View {
         var chosen: [String: RoutineValue] = [:]
         for exercise in loadExercises {
             guard let n = Double(loads[exercise] ?? ""), n.isFinite, n > 0 else { throw RoutineAPIError.server(422,"WORKING_LOAD_REQUIRED") }
-            chosen[exercise] = .number(unit.kilograms(n))
+            chosen[exercise] = entryRefs[exercise]?["weight_kg"] ?? .number(unit.kilograms(n))
         }
         if manual {
             setup["starting_loads_kg"] = .object(chosen)
-            setup["starting_load_origins"] = .object(chosen.mapValues { _ in .string("known_working_load") })
+            var origins=chosen.mapValues { _ in RoutineValue.string("known_working_load") }
+            var references:[String:RoutineValue]=[:]
+            for (exercise,reference) in entryRefs {
+                origins[exercise] = .string("self_reported_intro_trial")
+                references[exercise] = .object(["workout_id":reference["workout_id"],"event_id":reference["event_id"]])
+            }
+            setup["starting_load_origins"] = .object(origins)
+            if !references.isEmpty { setup["entry_trial_references"] = .object(references) }
         }
         var value: [String: RoutineValue] = ["source_id":item["source_id"],"source_version":item["source_version"],"arm":item["arm"],
             "created_at":.string(RoutineAPI.timestamp()),"profile":.object(profile),"setup":.object(setup),
