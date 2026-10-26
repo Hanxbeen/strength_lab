@@ -1,0 +1,132 @@
+{
+  "id": "mugemuge-entry-learning-v2",
+  "adapter_version": "entry-learning-v2",
+  "kind": "self_guided_education_not_training",
+  "review_status": "reviewed_product_synthesis",
+  "scientific_approval": false,
+  "title": "처음 시작하기 · 동작과 첫 중량",
+  "lessons": [
+    {
+      "id": "squat",
+      "exercise_id": "sit_to_stand",
+      "target_lift": "barbell_back_squat",
+      "title": "의자에서 일어나기",
+      "equipment": [
+        "움직이지 않는 의자",
+        "미끄럽지 않은 바닥"
+      ],
+      "steps": [
+        "발바닥이 바닥에 닿는 의자 가장자리에 앉아요.",
+        "몸을 조금 앞으로 기울이고 다리로 천천히 일어나요.",
+        "균형을 잡고 천천히 다시 앉아요."
+      ],
+      "practice_reps": 5,
+      "rep_basis": "NHS sit-to-stand example; may stop earlier",
+      "demonstration": {
+        "url": "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+        "section": "Sit-to-stand",
+        "kind": "external_illustrated_instruction"
+      },
+      "barbell_demonstration": "https://www.nsca.com/education/videos/exercise-technique-high-bar-back-squat/"
+    },
+    {
+      "id": "push",
+      "exercise_id": "wall_press_up",
+      "target_lift": "barbell_bench_press",
+      "title": "벽 밀기",
+      "equipment": [
+        "움직이지 않는 벽",
+        "미끄럽지 않은 바닥"
+      ],
+      "steps": [
+        "벽에서 팔 길이 정도 떨어져 서서 가슴 높이에 손을 대요.",
+        "몸을 곧게 유지하며 팔꿈치를 굽혀 벽 쪽으로 가까워져요.",
+        "천천히 벽을 밀고 돌아와요."
+      ],
+      "practice_reps": 5,
+      "rep_basis": "Product single practice set; NHS describes 3 sets of 5–10",
+      "demonstration": {
+        "url": "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+        "section": "Wall press-up",
+        "kind": "external_illustrated_instruction"
+      },
+      "barbell_demonstration": "https://www.nsca.com/contentassets/48a12160221541acbdc048498d77192d/basics_of_strength_and_conditioning_manual.pdf"
+    },
+    {
+      "id": "hinge",
+      "exercise_id": "wall_hip_hinge",
+      "target_lift": "barbell_deadlift",
+      "title": "엉덩이 뒤로 보내기",
+      "equipment": [
+        "벽 앞의 빈 공간"
+      ],
+      "steps": [
+        "벽을 등지고 서서 무릎을 가볍게 풀어요.",
+        "엉덩이를 뒤로 보내 벽에 가볍게 닿게 해요.",
+        "허리를 억지로 굽히지 않고 편한 범위에서 돌아와요."
+      ],
+      "practice_reps": 5,
+      "rep_basis": "Product familiarization example, not source training dose",
+      "demonstration": {
+        "url": "https://www.nsca.com/education/articles/ptq/teaching-resistance-training-movement-patterns/",
+        "section": "Figure 2; linked professional teaching material",
+        "kind": "external_instruction"
+      },
+      "barbell_demonstration": "https://www.nsca.com/education/videos/exercise-technique-deadlift/"
+    }
+  ],
+  "evidence": [
+    {
+      "url": "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+      "kind": "public_health_instruction",
+      "role": "self-directed low-load movement examples"
+    },
+    {
+      "url": "https://www.nsca.com/education/articles/ptq/teaching-resistance-training-movement-patterns/",
+      "kind": "professional_instruction",
+      "role": "movement learning sequence; self-guided adaptation is a product choice"
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823/",
+      "kind": "overview_of_reviews",
+      "role": "starting simply and avoiding required failure; not first-load algorithm validation"
+    }
+  ],
+  "sequence": [
+    "check_environment",
+    "read_and_view",
+    "practice",
+    "record_control_and_effort",
+    "optional_first_load",
+    "review_next_step"
+  ],
+  "practice": {
+    "external_load_kg": 0,
+    "sets": 1,
+    "rest_seconds": null,
+    "basis": "product_introductory_practice_not_strength_dose"
+  },
+  "first_load": {
+    "optional": true,
+    "reps": 5,
+    "max_trials_per_lift": 3,
+    "load_choice": "user selects an available light training implement; never default a bar to 20 kg",
+    "required": [
+      "lift_instruction_reviewed",
+      "equipment_checked",
+      "safety_support_ready"
+    ],
+    "success": "five controlled easy repetitions reported by user; observation only",
+    "next": "record the candidate or choose lighter; no automatic increase",
+    "stop": "pain, uncertain control or inability to use the lightest available implement: stop and seek qualified help",
+    "basis": "product familiarization workflow; not a validated RM test"
+  },
+  "automatic_mastery": false,
+  "automatic_training_unlock": false,
+  "one_rm_required": false,
+  "limitations": [
+    "앱은 자세를 판정하지 않아요. 불확실하면 중량을 들기 전에 도움을 요청해 주세요.",
+    "가벼운 연습 기록은 1RM이나 5RM 측정값이 아니에요.",
+    "시연은 원 제공기관의 페이지에서 열어요. 영상 재생 환경에 따라 접근이 달라질 수 있어요."
+  ]
+}

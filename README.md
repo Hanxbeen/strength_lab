@@ -6,6 +6,7 @@
 - [현재 상태와 작업 기준](docs/CURRENT.md) — 세션을 이어갈 때의 단일 진입점
 - [서비스 원칙](docs/coaching-specs/SERVICE_PRINCIPLES.md)
 - [장기 제품 비전·회복 및 종목 확장](docs/PRODUCT_VISION.md) — 현재 루틴 공급 이후의 단계
+- [숙련도별 최신 데이터 공급](docs/coaching-specs/27_ALL_LEVEL_DATA_DELIVERY.md)
 - [현재 실행 인수 계획](docs/coaching-specs/20_RUNTIME_DELIVERY_PLAN.md)
 - [최신 루틴 선택 API·공급 범위](docs/coaching-specs/22_EXPLICIT_SELECTION_RELEASE.md)
 - [PER 원종목·수식 기반 추가 공급](docs/coaching-specs/26_PER_SOURCE_LABEL_RELEASE.md)

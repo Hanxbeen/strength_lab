@@ -5,7 +5,7 @@ from research_engine.core import digest
 
 def project(record):
     execution = record['execution']
-    if execution.get('kind') == 'guided_education_not_training':
+    if execution.get('kind') in ('guided_education_not_training','self_guided_education_not_training'):
         return {'schema_version':'entry-result-v1','workout_id':record['workout_id'],
                 **deepcopy(execution),'resume_available':execution['state']=='active',
                 'charts':None,'assessment':None}

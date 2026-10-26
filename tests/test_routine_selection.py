@@ -19,7 +19,7 @@ class RoutineSelectionTests(unittest.TestCase):
         self.user='normal'
         app.dependency_overrides[owner]=lambda:self.user
         app.dependency_overrides[store]=lambda:self.db
-        names=['petrizzo2018-four-lift-2d','petrizzo2018-four-lift-3d','helms2018','metd2021','pilot2018-sbd','novice-sbd-choice','pilot2018-source-labels']
+        names=['petrizzo2018-four-lift-2d','petrizzo2018-four-lift-3d','helms2018','metd2021','pilot2018-sbd','novice-sbd-choice','pilot2018-source-labels','mugemuge-sbd-foundation-v1','mugemuge-sbd-trained-v1']
         self.items=[]
         for name in names:
             s=json.loads((ROOT/'data/research/coaching'/f'{name}.json').read_text())
@@ -32,7 +32,15 @@ class RoutineSelectionTests(unittest.TestCase):
     def post(self,path,data,status=200):
         r=self.client.post(path,json=data);self.assertEqual(r.status_code,status,r.text);return r.json()
     def request_for(self,source,arm):
-        if source['adapter_version']=='petrizzo-2018-v1':
+        if source['adapter_version']=='sbd-evidence-synthesis-v1':
+            from types import SimpleNamespace
+            loads={e:40 for e in source['exercises']}
+            f=SimpleNamespace(profile=dict(age=30,independent_sbd=True,current_pain=False,exercise_restriction=False,training_months=12),
+                setup=dict(mode='user_selected_source',accept_scope_limits=True,accept_adaptations=True,adaptation_id=source['id'],
+                rest_seconds=180,between_exercise_rest_seconds=300,warmup='user selected light warmup',equipment_step_kg=2.5,
+                starting_loads_kg=loads,starting_load_origins={e:'known_working_load' for e in loads}))
+            records=[];at='2026-10-18T09:00:00Z';daily=dict(initial_loads_kg=loads)
+        elif source['adapter_version']=='petrizzo-2018-v1':
             f=test_petrizzo.PetrizzoTests();f.fixture(source['protocol']['days_per_week']);records=[]
             at=f.at;loads={e:40 for e in source['protocol']['sessions'][0]['exercises']}
             daily=dict(initial_loads_kg=loads)
@@ -56,15 +64,15 @@ class RoutineSelectionTests(unittest.TestCase):
         req=dict(source_id=source['id'],source_version=digest(source),arm=arm,created_at=at,
             profile=f.profile,setup=f.setup,max_record_ids={r['exercise_id']:r['id'] for r in records})
         return req,daily
-    def test_eight_complete_options_and_explicit_coverage_gap(self):
+    def test_ten_options_and_explicit_coverage_gap(self):
         data=self.client.get('/v3/routines').json()
-        self.assertEqual(len(data['routines']),8);self.assertEqual(len(data['unavailable_adaptations']),2)
+        self.assertEqual(len(data['routines']),10);self.assertEqual(len(data['unavailable_adaptations']),2)
         for r in data['routines']:
             self.assertEqual(r['access'],'explicit_selection')
             self.assertEqual(len(r['sessions']),r['training_sessions'])
             self.assertTrue(r['input_contract']['required_fields'])
             self.assertFalse(r['scientific_approval'])
-        for experience,count in [('entry',0),('foundation',2),('trained',2),('experienced',4)]:
+        for experience,count in [('entry',0),('foundation',3),('trained',3),('experienced',4)]:
             result=self.client.get('/v3/routines',params={'experience':experience})
             self.assertEqual(result.status_code,200,result.text);self.assertEqual(len(result.json()['routines']),count)
         self.assertEqual(data['coverage']['entry']['state'],'not_ready')

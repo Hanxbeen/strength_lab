@@ -1,6 +1,6 @@
 # 작업 시작
 1. README.md와 docs/CURRENT.md를 읽고 git status를 확인한다.
-2. 제품 원칙은 docs/coaching-specs/SERVICE_PRINCIPLES.md, 현재 인수 계획은 20_RUNTIME_DELIVERY_PLAN.md, 최신 공급 결정은 26_PER_SOURCE_LABEL_RELEASE.md 및 22_EXPLICIT_SELECTION_RELEASE.md다. 21_FOUR_LIFT_DELIVERY.md는 네 종목 원 정의 검토다. 09_STRATEGY_RESET.md는 과거 전략 검토이며 다음 작업은 CURRENT를 따른다.
+2. 제품 원칙은 docs/coaching-specs/SERVICE_PRINCIPLES.md, 현재 인수 계획은 20_RUNTIME_DELIVERY_PLAN.md, 최신 공급 결정은 27_ALL_LEVEL_DATA_DELIVERY.md다. 26_PER_SOURCE_LABEL_RELEASE.md 및 22_EXPLICIT_SELECTION_RELEASE.md는 이전 공급 근거다. 21_FOUR_LIFT_DELIVERY.md는 네 종목 원 정의 검토다. 09_STRATEGY_RESET.md는 과거 전략 검토이며 다음 작업은 CURRENT를 따른다.
 3. 날짜별 검토 문서는 당시 기록이며 현재 출시 상태로 인용하지 않는다. 사용자 최신 지시 > AGENTS > CURRENT의 현재 상태 > 상세 명세 > 과거 기록 순으로 충돌을 해소하고 실제 코드/DB와 대조한다.
 4. 원격 호출 전 판단 기준을 정하고 관련 읽기를 묶는다. 전체 파일/로그를 반복 출력하지 않는다. CURRENT에는 현재 상태를 갱신하며 과거 일지를 누적하지 않는다.
 
@@ -15,6 +15,9 @@
 - 한 논문에 모든 조건이 없다는 이유로 무한 검색하지 않는다. 근거 종합과 명시적 제품 규칙을 검토하되 원 연구 전체가 재현·검증됐다고 주장하지 않는다.
 - 공급에 필요한 최소 API/저장/검증은 함께 진행한다. 모든 논문을 모을 때까지 실행 확인을 뒤로 미루지 않는다.
 - 새 세션에서도 이 우선순위를 유지한다. 변경은 사용자 지시 또는 직접적인 공급 차단 해소 필요가 있을 때만 한다.
+
+# 실행 순서
+- 사용자 최신 결정: 숙련도별 데이터/흐름 준비 → 아이폰 설치/테스트 → 운영 배포. 데이터 검증만으로 배포하거나 main에 병합하지 않는다.
 
 # 변경 기준
 - 사용자 고정 원칙(2026-10-17): 매 작업에서 적대적 검증을 한다. 시작 시 사용자에게 생기는 실제 변화와 완료 조건을 적고, 종료 전 정상·변경·중단·통증·정보 부족 반례를 확인한다. 근거/권한 공백을 테스트 수나 안내 문구로 덮지 않는다.

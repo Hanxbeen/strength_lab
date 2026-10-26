@@ -10,6 +10,7 @@ from .repository import CatalogUnavailable
 from .workout_api import owner, store, execute
 from . import coaching_store
 from .programme_access import availability, authorize, apply_to_readiness
+from .entry_load_reference import validate as validate_entry_loads
 
 def internal_access(user):
     return user in {x.strip() for x in os.environ.get('COACHING_PREVIEW_OWNER_IDS','').split(',') if x.strip()}
@@ -23,7 +24,7 @@ def catalog():
     base=os.environ.get('SUPABASE_URL','').rstrip('/')
     key=os.environ.get('SUPABASE_PUBLISHABLE_KEY','')
     if not base.startswith('https://') or not key:raise CatalogUnavailable('Database not configured')
-    req=urllib.request.Request(base+'/rest/v1/rpc/coaching_programme_catalog_v5',data=b'{}',method='POST',
+    req=urllib.request.Request(base+'/rest/v1/rpc/coaching_programme_catalog_v6',data=b'{}',method='POST',
         headers={'apikey':key,'Content-Type':'application/json'})
     try:
         with urllib.request.urlopen(req,timeout=10) as response:result=json.load(response)
@@ -59,6 +60,7 @@ def readiness(request:ReadinessInput,user=Depends(owner),db=Depends(store)):
         require(source['status']=='research_preview','SOURCE_SUSPENDED')
         allowed={x.strip() for x in os.environ.get('COACHING_PREVIEW_OWNER_IDS','').split(',') if x.strip()}
         definition=source['definition']
+        validate_entry_loads(db,user,definition,request.setup,request.created_at)
         result=preview(definition,request.dict(),db.maxes(user),availability(definition,user in allowed)['can_request_start'])
         return apply_to_readiness(result,definition,request.profile,user in allowed)
     return execute(action)
@@ -113,8 +115,9 @@ def create(request:InstanceInput,user=Depends(owner),db=Depends(store)):
         if source is None:raise InvalidProgramme('SOURCE_VERSION_UNAVAILABLE')
         require(source['status']=='research_preview','SOURCE_SUSPENDED')
         access_decision=authorize(source['definition'],request.profile,internal_access(user))
+        validate_entry_loads(db,user,source['definition'],request.setup,request.created_at)
         expected=set(max_exercises(source['definition']))
-        require(set(request.max_record_ids)<=expected if source['definition'].get('adapter_version') in ('novice-sbd-choice-v1','petrizzo-2018-v1')
+        require(set(request.max_record_ids)<=expected if source['definition'].get('adapter_version') in ('novice-sbd-choice-v1','petrizzo-2018-v1','sbd-evidence-synthesis-v1')
                 else set(request.max_record_ids)==expected,'MAX_REFERENCES_REQUIRED')
         records=db.maxes(user);selected=[]
         for eid,rid in request.max_record_ids.items():
@@ -143,7 +146,7 @@ def start(instance_id:str,request:SessionInput,user=Depends(owner),db=Depends(st
     def action():
         value=coaching_store.instance(db,user,instance_id)
         history=coaching_store.history(db,user,instance_id)
-        novice=value['source'].get('adapter_version') in ('novice-sbd-choice-v1','petrizzo-2018-v1')
+        novice=value['source'].get('adapter_version') in ('novice-sbd-choice-v1','petrizzo-2018-v1','sbd-evidence-synthesis-v1')
         require(not request.initial_rpe_loads_kg if novice else not request.initial_loads_kg,'UNEXPECTED_LOAD_INPUT')
         require(novice or not request.load_choices,'UNEXPECTED_LOAD_CHOICE')
         loads=request.initial_loads_kg if novice else request.initial_rpe_loads_kg
@@ -172,6 +175,10 @@ def start(instance_id:str,request:SessionInput,user=Depends(owner),db=Depends(st
         if novice:
             from research_engine.novice import record_load_choices
             snapshot=record_load_choices(snapshot,request.load_choices,history)
+            if value['source'].get('adapter_version')=='sbd-evidence-synthesis-v1':
+                for decision in snapshot['coaching']['decisions']:
+                    if 'rule_basis' in decision:
+                        decision['rule_basis']='product_explicit_choice_not_source_progression_rule'
         return coaching_store.start(db,user,instance_id,request.workout_id,request.week,request.day,snapshot)
     return execute(action)
 
@@ -215,7 +222,7 @@ def routines(experience:Optional[str]=Query(default=None,pattern='^(entry|founda
                 row['input_contract']={
                     'required_fields':[group+'.'+field for group,field in required_fields(source,row['arm'])]
                                       +['profile.'+field for field in extra_fields(source)],
-                    'max_record_ids_required':source['adapter_version'] not in ('novice-sbd-choice-v1','petrizzo-2018-v1'),
+                    'max_record_ids_required':source['adapter_version'] not in ('novice-sbd-choice-v1','petrizzo-2018-v1','sbd-evidence-synthesis-v1'),
                     'max_record_exercise_ids':list(max_exercises(source)),
                     'preview_endpoint':'/v3/routines/preview',
                     'create_endpoint':'/v3/programme-instances',
@@ -223,10 +230,19 @@ def routines(experience:Optional[str]=Query(default=None,pattern='^(entry|founda
                 all_rows.append(row)
                 if not experience or experience==decision['experience_context']:result.append(row)
         from .routine_coverage import report
+        from .entry_learning_api import catalogue as learning_catalogue
+        try:
+            learning_paths=learning_catalogue()['items'];learning_status='available' if learning_paths else 'empty'
+        except CatalogUnavailable:
+            learning_paths=[];learning_status='unavailable'
         return {'schema_version':'routine-selection-v1','routines':result,'unavailable_adaptations':unavailable,
-            'supply_audit':report(all_rows),
-            'coverage':{level:{'state':'explicit_selection' if count else 'not_ready','option_count':count,
-                'reason':('TECHNIQUE_AND_FIRST_LOAD_PATH_INCOMPLETE' if level=='entry' else 'NO_RELEASED_CATALOGUE_DATA') if not count else None}
+            'supply_audit':report(all_rows,learning_paths),
+            'learning_paths':learning_paths if experience in (None,'entry') else [],
+            'learning_catalog_status':learning_status,
+            'learning_paths_endpoint':'/v3/entry/learning-paths',
+            'learning_sessions_endpoint':'/v3/entry/learning-sessions',
+            'coverage':{level:{'state':'self_guided_learning' if level=='entry' and learning_paths else 'explicit_selection' if count else 'not_ready','option_count':count,'learning_path_count':len(learning_paths) if level=='entry' else 0,
+                'reason':('TECHNIQUE_AND_FIRST_LOAD_PATH_INCOMPLETE' if level=='entry' else 'NO_RELEASED_CATALOGUE_DATA') if not count and not (level=='entry' and learning_paths) else None}
                 for level,count in counts.items()},
             'recommendation_status':'not_assessed','scientific_approval':False}
     return execute(action)
@@ -239,13 +255,14 @@ def routine_preview(request:RoutinePreviewInput,user=Depends(owner),db=Depends(s
                    and x['version']==request.source_version),None)
         require(item is not None and item['status']=='research_preview','SOURCE_VERSION_UNAVAILABLE')
         source=item['definition'];records=db.maxes(user);internal=internal_access(user)
+        validate_entry_loads(db,user,source,request.setup,request.created_at)
         result=apply_to_readiness(preview(source,request.model_dump(),records,
             availability(source,internal)['can_request_start']),source,request.profile,internal)
         result.update(persisted=False,session_preview=None,session_status='blocked',session_blocking_code=None)
         if not result['can_create_instance']:return result
         selected=[r for r in records if request.max_record_ids.get(r['exercise_id'])==r['id']]
         instance=make_instance(source,request.arm,request.profile,selected,request.setup,request.created_at)
-        manual=source['adapter_version'] in ('novice-sbd-choice-v1','petrizzo-2018-v1')
+        manual=source['adapter_version'] in ('novice-sbd-choice-v1','petrizzo-2018-v1','sbd-evidence-synthesis-v1')
         require(not request.initial_rpe_loads_kg if manual else not request.initial_loads_kg,'UNEXPECTED_LOAD_INPUT')
         loads=request.initial_loads_kg if manual else request.initial_rpe_loads_kg
         try:

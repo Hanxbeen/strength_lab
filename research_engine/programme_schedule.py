@@ -4,7 +4,7 @@ from datetime import timedelta
 from .workout import require,timestamp
 
 VERSION='programme-schedule-v1'
-SUPPORTED=('helms-2018-v1','sbd-template-v1','per-source-labels-v1','metd-2021-v1','novice-sbd-choice-v1','petrizzo-2018-v1')
+SUPPORTED=('helms-2018-v1','sbd-template-v1','per-source-labels-v1','sbd-evidence-synthesis-v1','metd-2021-v1','novice-sbd-choice-v1','petrizzo-2018-v1')
 
 def policy(source):
     require(source.get('adapter_version') in SUPPORTED,'UNSUPPORTED_SCHEDULE_ADAPTER')

@@ -1,0 +1,291 @@
+{
+  "id": "mugemuge-sbd-trained-v1",
+  "adapter_version": "sbd-evidence-synthesis-v1",
+  "title": "SBD 주 3회 · 무게무게 근거 종합",
+  "experience_context": "trained",
+  "review_status": "reviewed_product_synthesis",
+  "publication_status": "explicit_selection_candidate",
+  "scientific_approval": false,
+  "independent_expert_review": false,
+  "exercises": [
+    "barbell_back_squat",
+    "barbell_bench_press",
+    "barbell_deadlift"
+  ],
+  "evidence": {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823/",
+    "locator": "2026 ACSM position stand: Table 6, strength, implications",
+    "kind": "overview_of_reviews",
+    "outcome_scope": "general_strength_not_validation_of_this_SBD_programme",
+    "limits": [
+      "Many included participants were inexperienced; not a powerlifting-only review.",
+      "No individual growth curve or effect size is assigned to this product programme."
+    ]
+  },
+  "adaptations": [
+    {
+      "id": "sbd_selection",
+      "basis": "product_policy",
+      "change": "Select SBD for the powerlifting MVP; not a whole-body general fitness claim."
+    },
+    {
+      "id": "fixed_cycle",
+      "basis": "product_policy",
+      "change": "Eight weeks, 3 nonconsecutive sessions per week, 3 sets of five per lift. This exact combination was not tested by the review."
+    },
+    {
+      "id": "effort_and_load",
+      "basis": "user_choice",
+      "change": "Known submaximal working loads; stop with repetitions in reserve. No 1RM test or fixed percentage required."
+    },
+    {
+      "id": "rest",
+      "basis": "user_choice",
+      "change": "Explicit inter-set/inter-exercise rest and warmup; no optimal-rest claim."
+    },
+    {
+      "id": "progression",
+      "basis": "product_policy",
+      "change": "Review actual sets and choose repeat/increase/decrease. No automatic increment, reset, plateau diagnosis or growth forecast."
+    }
+  ],
+  "protocol": {
+    "weeks": 8,
+    "days_per_week": 3,
+    "sessions": [
+      {
+        "week": 1,
+        "day": 1,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 1,
+        "day": 2,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 1,
+        "day": 3,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 2,
+        "day": 1,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 2,
+        "day": 2,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 2,
+        "day": 3,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 3,
+        "day": 1,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 3,
+        "day": 2,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 3,
+        "day": 3,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 4,
+        "day": 1,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 4,
+        "day": 2,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 4,
+        "day": 3,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 5,
+        "day": 1,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 5,
+        "day": 2,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 5,
+        "day": 3,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 6,
+        "day": 1,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 6,
+        "day": 2,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 6,
+        "day": 3,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 7,
+        "day": 1,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 7,
+        "day": 2,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 7,
+        "day": 3,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 8,
+        "day": 1,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 8,
+        "day": 2,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      },
+      {
+        "week": 8,
+        "day": 3,
+        "exercises": [
+          "barbell_back_squat",
+          "barbell_bench_press",
+          "barbell_deadlift"
+        ]
+      }
+    ],
+    "working_sets": {
+      "barbell_back_squat": 3,
+      "barbell_bench_press": 3,
+      "barbell_deadlift": 3
+    },
+    "reps": 5,
+    "automatic_load_adjustment": null,
+    "source_stop_rule": null,
+    "product_stop_rule": "Stop for pain, loss of control or user choice; incomplete records remain unknown.",
+    "effort_guidance": "실패할 때까지 반복하지 않아요. 자세가 흐트러지거나 통증이 생기면 멈춰요.",
+    "duration_basis": "product_review_interval_not_expected_growth_deadline"
+  },
+  "product_scope": {
+    "adult": true,
+    "independent_sbd": true,
+    "known_working_loads": true,
+    "training_months_min": 6
+  }
+}

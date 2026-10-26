@@ -1,0 +1,34 @@
+{
+  "real_https_catalog": true,
+  "options": 10,
+  "coverage": {
+    "entry": {
+      "state": "self_guided_learning",
+      "option_count": 0,
+      "learning_path_count": 1,
+      "reason": null
+    },
+    "foundation": {
+      "state": "explicit_selection",
+      "option_count": 3,
+      "learning_path_count": 0,
+      "reason": null
+    },
+    "trained": {
+      "state": "explicit_selection",
+      "option_count": 3,
+      "learning_path_count": 0,
+      "reason": null
+    },
+    "experienced": {
+      "state": "explicit_selection",
+      "option_count": 4,
+      "learning_path_count": 0,
+      "reason": null
+    }
+  },
+  "learning_paths": 1,
+  "all_ten_local_lifecycles": true,
+  "deployed_auth_verified": false,
+  "production_user_writes": false
+}

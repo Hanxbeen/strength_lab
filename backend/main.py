@@ -64,3 +64,5 @@ app.include_router(context_router)
 
 from .entry_api import router as entry_router
 app.include_router(entry_router)
+from .entry_learning_api import router as entry_learning_router
+app.include_router(entry_learning_router)

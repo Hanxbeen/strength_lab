@@ -20,7 +20,7 @@ class CatalogueV3Tests(unittest.TestCase):
         with patch.dict(os.environ,SUPABASE_URL='https://example.test',SUPABASE_PUBLISHABLE_KEY='test'), \
              patch('urllib.request.urlopen',return_value=response) as opened:
             result = catalog()
-            self.assertTrue(opened.call_args[0][0].full_url.endswith('/coaching_programme_catalog_v5'))
+            self.assertTrue(opened.call_args[0][0].full_url.endswith('/coaching_programme_catalog_v6'))
             return result
     def test_new_rpc_and_suspended_filter(self):
         entry=self.entry();stopped=copy.deepcopy(entry);stopped['status']='suspended'

@@ -22,7 +22,16 @@ def options(item, allowed):
         'definition_reference': 'definition',
         'personal_weights_kg': None,
     }
-    if engine == 'petrizzo-2018-v1':
+    if engine == 'sbd-evidence-synthesis-v1':
+        specs=[('SBD_SYNTHESIS',source['title'])]
+        context='독립적으로 SBD를 수행하고 작업 중량을 아는 사용자'
+        basis='explicit_product_synthesis_not_trial_replication'
+        inputs=['age','independent_sbd','current_pain','exercise_restriction','starting_loads_kg',
+                'starting_load_origins','initial_loads_kg','rest_seconds','between_exercise_rest_seconds','warmup','equipment_step_kg']
+        if source['experience_context']=='trained':inputs+=['training_months']
+        limits=['일반 근력훈련 근거를 바탕으로 무게무게가 구성했어요. 이 전체 SBD 일정이 논문에서 직접 실험된 것은 아니에요.',
+                '8주·5회 반복·종목 선택은 제품 규칙이에요. 중량은 직접 정하고 실패 반복을 요구하지 않아요.']
+    elif engine == 'petrizzo-2018-v1':
         specs = [('FOUR_LIFT', source['title'])]
         context = '네 동작을 배웠고 시작 중량을 알고 있는 성인의 기초 바벨 훈련'
         basis = 'source_structure_with_explicit_choices'
@@ -112,7 +121,7 @@ def options(item, allowed):
                      duration_weeks=duration, training_sessions=len(sessions), sessions=sessions)
         if engine == 'metd-2021-v1':
             value['arm_prescription'] = deepcopy(protocol['arms'][arm])
-        elif engine in ('novice-sbd-choice-v1', 'petrizzo-2018-v1'):
+        elif engine in ('novice-sbd-choice-v1', 'petrizzo-2018-v1', 'sbd-evidence-synthesis-v1'):
             value['arm_prescription'] = {k: deepcopy(protocol[k]) for k in
                 ('working_sets', 'reps', 'automatic_load_adjustment', 'source_stop_rule', 'product_stop_rule')}
         if engine in ('sbd-template-v1','per-source-labels-v1'):

@@ -5,6 +5,9 @@ from research_engine.core import digest
 from tests.test_routine_selection import RoutineSelectionTests
 
 def verify():
+    from backend.entry_learning_api import catalogue
+    learning=catalogue()
+    assert len(learning['items'])==1, 'ENTRY_DATA_MISSING'
     actual=catalog()
     assert actual['items'], 'EMPTY_LIVE_CATALOGUE'
     for item in actual['items']:
@@ -17,10 +20,10 @@ def verify():
         response=case.client.get('/v3/routines')
         assert response.status_code==200,response.text
         data=response.json()
-        assert len(data['routines'])==8,data['coverage']
+        assert len(data['routines'])==10,data['coverage']
         case.test_every_public_option_preview_create_start_change_stop_reload()
         return dict(real_https_catalog=True,options=len(data['routines']),
-            coverage=data['coverage'],all_eight_local_lifecycles=True,
+            coverage=data['coverage'],learning_paths=len(learning['items']),all_ten_local_lifecycles=True,
             deployed_auth_verified=False,production_user_writes=False)
     finally:
         case.tearDown()
