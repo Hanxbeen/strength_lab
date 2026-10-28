@@ -139,7 +139,10 @@ def get(instance_id:str,user=Depends(owner),db=Depends(store)):
     from research_engine.programme_dispatch import exercises
     def action():
         instance=coaching_store.instance(db,user,instance_id)
+        from .programme_options import options
+        detail=next((x for x in options({'definition':instance['source'],'source_id':instance['source']['id'],'version':digest(instance['source'])},True) if x['arm']==instance['arm']),None)
         return {'instance_id':instance_id,'instance':instance,
+                'experience':detail['experience'] if detail else None,
                 'evaluation_exercise_ids':list(exercises(instance['source'])),
                 'evaluations':list_evaluations(db,user,instance_id),
                 'history':[{k:v for k,v in h.items() if k not in ('snapshot','events')}
@@ -237,7 +240,11 @@ def routines(experience:Optional[str]=Query(default=None,pattern='^(entry|founda
         from .routine_coverage import report
         from .entry_learning_api import catalogue as learning_catalogue
         try:
-            learning_paths=learning_catalogue()['items'];learning_status='available' if learning_paths else 'empty'
+            from copy import deepcopy
+            from .experience_content import entry_content
+            learning_paths=deepcopy(learning_catalogue()['items'])
+            for item in learning_paths:item['experience']=entry_content(item['definition'])
+            learning_status='available' if learning_paths else 'empty'
         except CatalogUnavailable:
             learning_paths=[];learning_status='unavailable'
         return {'schema_version':'routine-selection-v1','routines':result,'unavailable_adaptations':unavailable,

@@ -127,5 +127,7 @@ def options(item, allowed):
         if engine in ('sbd-template-v1','per-source-labels-v1'):
             from research_engine.per_provenance import mapping_review
             value['source_mapping_review'] = mapping_review(source)
+        from .experience_content import routine_content
+        value['experience'] = routine_content(source, value)
         result.append(value)
     return result

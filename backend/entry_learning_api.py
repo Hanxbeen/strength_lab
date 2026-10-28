@@ -34,7 +34,14 @@ class LearningInput(BaseModel):
     profile:dict=Field(default_factory=dict)
     setup:dict=Field(default_factory=dict)
 @router.get('/learning-paths')
-def paths(user=Depends(owner)):return execute(catalogue)
+def paths(user=Depends(owner)):
+    def action():
+        from copy import deepcopy
+        from .experience_content import entry_content
+        data=deepcopy(catalogue())
+        for item in data['items']:item['experience']=entry_content(item['definition'])
+        return data
+    return execute(action)
 @router.post('/learning-sessions')
 def start(request:LearningInput,user=Depends(owner),db=Depends(store)):
     def action():

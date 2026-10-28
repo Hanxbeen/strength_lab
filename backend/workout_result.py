@@ -4,11 +4,12 @@ from research_engine.core import digest
 
 
 def project(record):
+    from .experience_content import session_analysis
     execution = record['execution']
     if execution.get('kind') in ('guided_education_not_training','self_guided_education_not_training'):
         return {'schema_version':'entry-result-v1','workout_id':record['workout_id'],
                 **deepcopy(execution),'resume_available':execution['state']=='active',
-                'charts':None,'assessment':None}
+                'charts':None,'assessment':None,'analysis':session_analysis(execution)}
     groups = {}
     references = {m['exercise_id']: m for m in execution.get('max_records', [])}
     for row in execution['sets']:
@@ -58,6 +59,7 @@ def project(record):
                    'skipped': sum(r['status'] == 'skipped' for r in execution['sets']),
                    'not_attempted': sum(r['status'] == 'not_attempted' for r in execution['sets'])},
         'assessment': None,
+        'analysis': session_analysis(execution),
         'coaching': {'mode': 'on_explicit_request', 'available': False,
                      'reason': 'service_not_connected', 'free_request_limit': None},
     }

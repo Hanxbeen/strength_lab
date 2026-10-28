@@ -16,7 +16,9 @@ def replay(snapshot, events):
     result = base_replay(snapshot, events)
     if snapshot.get("coaching"):
         from research_engine.programme_dispatch import enrich
-        return enrich(snapshot, result)
+        result = enrich(snapshot, result)
+    from .experience_content import execution_content
+    result['experience'] = execution_content(result, snapshot.get('source'), events)
     return result
 
 

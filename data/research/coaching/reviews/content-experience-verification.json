@@ -1,0 +1,110 @@
+{
+  "schema_version": "content-experience-verification-v1",
+  "public_options": 10,
+  "learning_paths": 1,
+  "exercise_guides": [
+    "barbell_back_squat",
+    "barbell_bench_press",
+    "barbell_deadlift",
+    "barbell_front_squat",
+    "barbell_standing_shoulder_press",
+    "sit_to_stand",
+    "wall_hip_hinge",
+    "wall_press_up"
+  ],
+  "levels": {
+    "foundation": 3,
+    "trained": 3,
+    "experienced": 4
+  },
+  "choices": [
+    {
+      "source_id": "petrizzo2018-four-lift-2d-v1",
+      "arm": "FOUR_LIFT",
+      "level": "foundation",
+      "research_chart_available": true,
+      "research_metric": "participant_flow",
+      "local_lifecycle_verified": true
+    },
+    {
+      "source_id": "petrizzo2018-four-lift-3d-v1",
+      "arm": "FOUR_LIFT",
+      "level": "foundation",
+      "research_chart_available": true,
+      "research_metric": "participant_flow",
+      "local_lifecycle_verified": true
+    },
+    {
+      "source_id": "10.3389/fphys.2018.00247",
+      "arm": "1RMG",
+      "level": "trained",
+      "research_chart_available": true,
+      "research_metric": "measured_1rm_change",
+      "local_lifecycle_verified": true
+    },
+    {
+      "source_id": "10.3389/fphys.2018.00247",
+      "arm": "RPEG",
+      "level": "trained",
+      "research_chart_available": true,
+      "research_metric": "measured_1rm_change",
+      "local_lifecycle_verified": true
+    },
+    {
+      "source_id": "metd2021-sbd-v1",
+      "arm": "MAX",
+      "level": "experienced",
+      "research_chart_available": true,
+      "research_metric": "sbd_total_1rm_change",
+      "local_lifecycle_verified": true
+    },
+    {
+      "source_id": "metd2021-sbd-v1",
+      "arm": "MAX_BOFF",
+      "level": "experienced",
+      "research_chart_available": true,
+      "research_metric": "sbd_total_1rm_change",
+      "local_lifecycle_verified": true
+    },
+    {
+      "source_id": "metd2021-sbd-v1",
+      "arm": "AMRAP",
+      "level": "experienced",
+      "research_chart_available": true,
+      "research_metric": "sbd_total_1rm_change",
+      "local_lifecycle_verified": true
+    },
+    {
+      "source_id": "pilot2018-per-source-labels-v1",
+      "arm": "PER_SOURCE_LABELS",
+      "level": "experienced",
+      "research_chart_available": true,
+      "research_metric": "individual_measured_1rm",
+      "local_lifecycle_verified": true
+    },
+    {
+      "source_id": "mugemuge-sbd-foundation-v1",
+      "arm": "SBD_SYNTHESIS",
+      "level": "foundation",
+      "research_chart_available": false,
+      "research_metric": null,
+      "local_lifecycle_verified": true
+    },
+    {
+      "source_id": "mugemuge-sbd-trained-v1",
+      "arm": "SBD_SYNTHESIS",
+      "level": "trained",
+      "research_chart_available": false,
+      "research_metric": null,
+      "local_lifecycle_verified": true
+    }
+  ],
+  "entry_pain_stop_verified": true,
+  "evaluation_reload_verified": true,
+  "source_definitions_unchanged": true,
+  "validation_environment": "TestClient + source fixtures + owner substitute + temporary SQLite",
+  "live_catalog_verified": false,
+  "deployed_auth_verified": false,
+  "production_user_writes": false,
+  "iphone_interactions_verified": false
+}

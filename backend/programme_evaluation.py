@@ -6,10 +6,30 @@ from research_engine.programme_dispatch import exercises
 from .workout_store import Conflict,replay
 from . import coaching_store
 
+def project_evaluation(payload, results):
+    from copy import deepcopy
+    from .experience_content import programme_analysis
+    value=deepcopy(payload)
+    value['analysis']=programme_analysis(value,results)
+    return value
+
+def project_stored(db,user,instance_id,payload):
+    history=coaching_store.history(db,user,instance_id)
+    # Only records referenced by this evaluation revision; never append later history.
+    indexed={x['workout_id']:x for x in history}
+    results=[]
+    for ref in payload['history_inputs']:
+        row=indexed[ref['workout_id']]
+        events=row['events'][:ref['revision']]
+        require(digest(events)==ref['events_sha256'],'EVALUATION_HISTORY_MISMATCH')
+        results.append(replay(row['snapshot'],events))
+    return project_evaluation(payload,results)
+
 def list_evaluations(db,user,instance_id):
     coaching_store.instance(db,user,instance_id)
     with db.connect() as c:
-        return [json.loads(r[0]) for r in c.execute('SELECT payload FROM coaching_evaluations WHERE owner=? AND instance_id=? ORDER BY revision',(user,instance_id))]
+        payloads=[json.loads(r[0]) for r in c.execute('SELECT payload FROM coaching_evaluations WHERE owner=? AND instance_id=? ORDER BY revision',(user,instance_id))]
+    return [project_stored(db,user,instance_id,p) for p in payloads]
 
 def evaluate(db,user,instance_id,request):
     instance=coaching_store.instance(db,user,instance_id)
@@ -23,7 +43,7 @@ def evaluate(db,user,instance_id,request):
         old=c.execute('SELECT fingerprint,payload FROM coaching_evaluations WHERE owner=? AND instance_id=? AND id=?',(user,instance_id,request['id'])).fetchone()
         if old:
             if old[0]!=fingerprint:raise Conflict('EVALUATION_ID_CONFLICT')
-            return json.loads(old[1])
+            return project_stored(db,user,instance_id,json.loads(old[1]))
         latest=c.execute('SELECT id,revision,payload FROM coaching_evaluations WHERE owner=? AND instance_id=? ORDER BY revision DESC LIMIT 1',(user,instance_id)).fetchone()
         if request.get('supersedes_id')!=(latest[0] if latest else None):raise Conflict('EVALUATION_REVISION_CONFLICT')
         if latest:
@@ -78,4 +98,4 @@ def evaluate(db,user,instance_id,request):
             'next_actions':['review_actuals','choose_next_programme','register_optional_post_test'],
             'interpretation':'Measured change is descriptive, not proof the programme caused it. No automatic next-cycle load.'}
         c.execute('INSERT INTO coaching_evaluations VALUES(?,?,?,?,?,?,?)',(user,instance_id,request['id'],payload['revision'],fingerprint,json.dumps(payload),request['at']))
-        return payload
+        return project_evaluation(payload,results)
